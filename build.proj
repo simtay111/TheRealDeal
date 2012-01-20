@@ -1,10 +1,1 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
- 
-  <Target Name="RunTests">
-    <Exec Command="cd C:\Program Files (x86)\TestDriven.NET 3\NUnit\2.5\">
-      
-    </Exec>
-    <Exec Command="nunit-console C:\projects\recreateme\tests\recreatemetests.csproj /labels"/>
-  </Target>
-</Project>
+﻿<?xml version="1.0" encoding="utf-8"?>

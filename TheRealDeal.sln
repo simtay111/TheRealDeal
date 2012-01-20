@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeSqlTests", "Recre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeSql", "RecreateMeSql\RecreateMeSql\RecreateMeSql.csproj", "{F1BBA61D-7921-4083-AD8E-100F70B700EF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScripts", "{7EE6380A-0115-4E73-A9AC-E1D131C223B3}"
+	ProjectSection(SolutionItems) = preProject
+		build.proj = build.proj
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
