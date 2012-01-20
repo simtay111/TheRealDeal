@@ -1,0 +1,30 @@
+﻿@using TheRealDeal.Models.Account
+@model RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_accountLayout.cshtml";
+}
+
+<h2>This is the register screen</h2>
+@Html.ValidationSummary(true, "Errors!")
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            @Html.Label("User Name", "Login Email: ")
+        </div>
+        <div> @Html.TextBoxFor(d => d.UserName)</div>
+        <div>
+            @Html.Label("Password", "Password: ")
+        </div>
+        <div>@Html.PasswordFor(d => d.Password)</div>
+        <div>
+            @Html.Label("Confirm Password", "Confirm Password: ")
+        </div>
+        <div>@Html.PasswordFor(d => d.ConfirmPassword)</div>
+        
+        <button type="submit">Register Me!</button>
+    </div>
+}

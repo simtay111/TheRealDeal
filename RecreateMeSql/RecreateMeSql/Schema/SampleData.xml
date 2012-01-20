@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<Data xmlns="http://tempuri.org/RecreateMe.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="www.moo.com RecreateMe.xsd">
+  
+  <Logins>
+    <Username>billy@bob.com</Username>
+    <Password>jimbos</Password>
+  </Logins>
+  
+</Data>

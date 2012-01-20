@@ -1,0 +1,25 @@
+﻿@using TheRealDeal.Models
+@using TheRealDeal.Models.Account
+@model LogOnModel
+
+@{
+    Layout = "~/Views/Shared/_accountLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <div>
+            @Html.Label("Username", "User Name:")
+            @Html.TextBoxFor(x => x.UserName)
+        </div>
+        <div>
+            @Html.Label("Password", "Password:")
+            @Html.TextBoxFor(x => x.Password)
+        </div>
+        <button type="submit">Login</button>
+        @Html.ActionLink("New User?", "Register", "Account")
+    </div>
+}
