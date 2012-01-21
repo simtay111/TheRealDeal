@@ -15,7 +15,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeSql", "RecreateMe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScripts", "{7EE6380A-0115-4E73-A9AC-E1D131C223B3}"
 	ProjectSection(SolutionItems) = preProject
-		build.proj = build.proj
+		Scripts\build.proj = Scripts\build.proj
+		Scripts\CreateLoginsTable.sql = Scripts\CreateLoginsTable.sql
+		Scripts\Data.bat = Scripts\Data.bat
+		Scripts\Data.ps1 = Scripts\Data.ps1
+		Scripts\Tests.bat = Scripts\Tests.bat
 	EndProjectSection
 EndProject
 Global

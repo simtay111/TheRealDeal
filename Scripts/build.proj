@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Nunit>C:\Program Files (x86)\TestDriven.NET 3\NUnit\2.5 </Nunit>
+    <RecreateMeProj>C:\projects\TheRealDeal\RecreateMe\Tests\recreatemetests.csproj</RecreateMeProj>
+    <RecreateMeTestDir>C:\Projects\TheRealDeal\RecreateMe\Tests\bin\Debug</RecreateMeTestDir>
+    <RecreateMeSqlTestDir>C:\Projects\TheRealDeal\RecreateMeSql\RecreateMeSqlTests\bin\Debug</RecreateMeSqlTestDir>
+    
+  </PropertyGroup>
+
+  <Target Name="Tests">
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(RecreateMeTestDir)\RecreateMe.Tests.Dll"></Exec>
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(RecreateMeSqlTestDir)\RecreateMeSqlTests.Dll /labels"></Exec>
+  </Target>
+</Project>
