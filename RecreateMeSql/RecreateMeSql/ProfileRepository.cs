@@ -8,19 +8,21 @@ namespace RecreateMeSql
 {
     public class ProfileRepository : IProfileRepository
     {
+        private readonly IJsonDataAccess _jsonDataAccess;
+
+        public ProfileRepository(IJsonDataAccess jsonDataAccess)
+        {
+            _jsonDataAccess = jsonDataAccess;
+        }
+
         public Profile GetByUniqueId(string uniqueId)
         {
-            throw new System.NotImplementedException();
+            return _jsonDataAccess.GetByFileName<Profile>(uniqueId);
         }
 
         public bool SaveOrUpdate(Profile profile)
         {
-            using (var writer = new StreamWriter(String.Format(@"C:\Test\{0}.txt", profile.UniqueId)))
-            {
-                writer.AutoFlush = true;
-
-                Json.Write(profile, writer);
-            }
+            _jsonDataAccess.WriteToJson(profile, profile.UniqueId);
             
             return true;
         }

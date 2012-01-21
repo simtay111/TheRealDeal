@@ -37,9 +37,10 @@
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IJsonDataAccess.cs" />
+    <Compile Include="JsonDataAccess.cs" />
     <Compile Include="ProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RecreateMe\RecreateMe\RecreateMe.csproj">
