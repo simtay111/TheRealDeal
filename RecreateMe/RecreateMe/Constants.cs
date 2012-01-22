@@ -2,6 +2,7 @@
 {
     public static class Constants
     {
+        public const int MaxNumberOfProfilesPerAccount = 3;
         public const int MaxAmountOfTeamsPerGame = 2;
         public const string DefaultTeamName = "My Team";
         public const int DefaultLocationId = 0;

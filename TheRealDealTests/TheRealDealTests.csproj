@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17791E72-A723-4BF7-9598-105F0A0D7B06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TheRealDealTests</RootNamespace>
+    <AssemblyName>TheRealDealTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\..\..\Tools\Moq.4.0.10827\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\RecreateMe\Tests\bin\Debug\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataTests\JsonDataAccessTests.cs" />
+    <Compile Include="DataTests\ProfileRepositoryTests.cs" />
+    <Compile Include="DeliveryTests\Class1.cs" />
+    <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
+    <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />
+    <Compile Include="DomainTests\Friends\Search\SearchForFriendsRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Locales\LocationTests.cs" />
+    <Compile Include="DomainTests\Login\LoginRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Login\RegisterUserHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\Handlers\AddLocationToProfileRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\Handlers\AddSportToProfileRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\Handlers\CreateProfileRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\Handlers\GetProfilesForAccountRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\NameTests.cs" />
+    <Compile Include="DomainTests\Profiles\PersonTests.cs" />
+    <Compile Include="DomainTests\Profiles\ProfileBuilderTests.cs" />
+    <Compile Include="DomainTests\Profiles\Search\Handlers\SearchForProfileRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\GameFactoryTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\GameTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\GameWithoutTeamsTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\GameWithTeamTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\AddTeamToGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\CreateGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\JoinGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\SearchForGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Sports\SkillLevelTests.cs" />
+    <Compile Include="DomainTests\Sports\SportTests.cs" />
+    <Compile Include="DomainTests\Sports\SportWithSkillLevelTests.cs" />
+    <Compile Include="DomainTests\Teams\CreateTeamRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Teams\TeamTests.cs" />
+    <Compile Include="DomainTests\TestData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RecreateMeSql\RecreateMeSql\RecreateMeSql.csproj">
+      <Project>{F1BBA61D-7921-4083-AD8E-100F70B700EF}</Project>
+      <Name>RecreateMeSql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecreateMe\RecreateMe\RecreateMe.csproj">
+      <Project>{78C723FA-8ABF-459A-9959-5057666FDD36}</Project>
+      <Name>RecreateMe</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

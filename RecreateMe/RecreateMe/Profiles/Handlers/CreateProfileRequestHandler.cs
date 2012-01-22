@@ -21,6 +21,7 @@ namespace RecreateMe.Profiles.Handlers
 
         public CreateProfileResponse Handle(CreateProfileRequest request)
         {
+            if (AtMaxAmountOfProfiles(request.UserId)) return new CreateProfileResponse(ResponseCodes.MaxProfilesReached);
             if (string.IsNullOrEmpty(request.Name)) return new CreateProfileResponse(ResponseCodes.NameNotSpecified);
 
             var profile = BuildProfileFromRequest(request);
@@ -28,6 +29,14 @@ namespace RecreateMe.Profiles.Handlers
             _profileRepository.SaveOrUpdate(profile);
 
             return new CreateProfileResponse(ResponseCodes.Success);
+        }
+
+        private bool AtMaxAmountOfProfiles(string userId)
+        {
+            var profileCount = _profileRepository.GetByAccount(userId).Count;
+
+            if (profileCount < Constants.MaxNumberOfProfilesPerAccount) return false;
+            return true;
         }
 
         private Profile BuildProfileFromRequest(CreateProfileRequest request)

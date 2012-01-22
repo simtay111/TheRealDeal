@@ -62,6 +62,7 @@
     <Compile Include="Profiles\Handlers\AddLocationToProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\AddSportToProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\CreateProfileRequestHandler.cs" />
+    <Compile Include="Profiles\Handlers\GetProfilesForAccountRequestHandler.cs" />
     <Compile Include="Profiles\IProfileBuilder.cs" />
     <Compile Include="Profiles\IProfileRepository.cs" />
     <Compile Include="Profiles\Name.cs" />

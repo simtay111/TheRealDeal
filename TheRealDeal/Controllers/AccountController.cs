@@ -28,17 +28,17 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult LogIn(LogOnModel model)
         {
-            //var handler = new LoginRequestHandler(new UserRepository());
+            var handler = new LoginRequestHandler(new UserRepository());
 
-            //var request = new LoginRequest() {Password = model.Password, Username = model.UserName};
+            var request = new LoginRequest() { Password = model.Password, Username = model.UserName };
 
-            //var response = handler.Handle(request);
+            var response = handler.Handle(request);
 
-            //if (response.Status == ResponseCodes.Success)
-            //{
-            //    FormsAuthentication.SetAuthCookie(model.UserName, false);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (response.Status == ResponseCodes.Success)
+            {
+                FormsAuthentication.SetAuthCookie(model.UserName, false);
+                return RedirectToAction("Index", "Home");
+            }
 
             return View();
         }
@@ -51,25 +51,25 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
-            //var handler = new RegisterUserHandler(new UserRepository());
+            var handler = new RegisterUserHandler(new UserRepository());
 
-            //var request = new RegisterUserRequest()
-            //                  {
-            //                      ConfirmPassword = model.ConfirmPassword,
-            //                      LoginEmail = model.UserName,
-            //                      Password = model.Password
-            //                  };
+            var request = new RegisterUserRequest()
+                              {
+                                  ConfirmPassword = model.ConfirmPassword,
+                                  LoginEmail = model.UserName,
+                                  Password = model.Password
+                              };
 
-            //var response = handler.Handle(request);
+            var response = handler.Handle(request);
 
-            //if (response.Status == ResponseCodes.Success)
-            //{
-            //    FormsAuthentication.SetAuthCookie(model.UserName, true);
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (response.Status == ResponseCodes.Success)
+            {
+                FormsAuthentication.SetAuthCookie(model.UserName, true);
+                return RedirectToAction("Index", "Home");
+            }
 
-            //var errorMessage = response.Status.GetMessage();
-            //ModelState.AddModelError("", errorMessage);
+            var errorMessage = response.Status.GetMessage();
+            ModelState.AddModelError("", errorMessage);
 
             return View(model);
         }

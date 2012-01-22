@@ -19,7 +19,8 @@ namespace RecreateMe
         OnlyTeamsCanJoin,
         NoCriteriaSpecified,
         FieldsAreBlank,
-        PasswordsDontMatch
+        PasswordsDontMatch,
+        MaxProfilesReached
     }
 
     public static class ResponseCodeExtensions
@@ -43,6 +44,8 @@ namespace RecreateMe
                                          Constants.MinPasswordLength, Constants.MaxPasswordLength);
                 case (ResponseCodes.PasswordsDontMatch):
                     return "The passwords do not match. Try again";
+                case (ResponseCodes.MaxProfilesReached):
+                    return "You have reached your maximum amount of profiles for this account";
 
             }
 

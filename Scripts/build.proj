@@ -5,13 +5,11 @@
   <PropertyGroup>
     <Nunit>C:\Program Files (x86)\TestDriven.NET 3\NUnit\2.5 </Nunit>
     <RecreateMeProj>C:\projects\TheRealDeal\RecreateMe\Tests\recreatemetests.csproj</RecreateMeProj>
-    <RecreateMeTestDir>C:\Projects\TheRealDeal\RecreateMe\Tests\bin\Debug</RecreateMeTestDir>
-    <RecreateMeSqlTestDir>C:\Projects\TheRealDeal\RecreateMeSql\RecreateMeSqlTests\bin\Debug</RecreateMeSqlTestDir>
+    <TheRealDealTests>C:\Projects\TheRealDeal\TheRealDealTests\bin\Debug</TheRealDealTests>
     
   </PropertyGroup>
 
   <Target Name="Tests">
-    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(RecreateMeTestDir)\RecreateMe.Tests.Dll"></Exec>
-    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(RecreateMeSqlTestDir)\RecreateMeSqlTests.Dll /labels"></Exec>
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels"></Exec>
   </Target>
 </Project>

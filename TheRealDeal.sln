@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1989552C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMe", "RecreateMe\RecreateMe\RecreateMe.csproj", "{78C723FA-8ABF-459A-9959-5057666FDD36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeTests", "RecreateMe\Tests\RecreateMeTests.csproj", "{0B6B419E-C664-41A6-80A1-4C4745AEBD3C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeSqlTests", "RecreateMeSql\RecreateMeSqlTests\RecreateMeSqlTests.csproj", "{02703979-7148-45C5-862A-90A927AD99F0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecreateMeSql", "RecreateMeSql\RecreateMeSql\RecreateMeSql.csproj", "{F1BBA61D-7921-4083-AD8E-100F70B700EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScripts", "{7EE6380A-0115-4E73-A9AC-E1D131C223B3}"
@@ -21,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\Data.ps1 = Scripts\Data.ps1
 		Scripts\Tests.bat = Scripts\Tests.bat
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRealDealTests", "TheRealDealTests\TheRealDealTests.csproj", "{17791E72-A723-4BF7-9598-105F0A0D7B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,24 +34,19 @@ Global
 		{78C723FA-8ABF-459A-9959-5057666FDD36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78C723FA-8ABF-459A-9959-5057666FDD36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78C723FA-8ABF-459A-9959-5057666FDD36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B6B419E-C664-41A6-80A1-4C4745AEBD3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B6B419E-C664-41A6-80A1-4C4745AEBD3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B6B419E-C664-41A6-80A1-4C4745AEBD3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B6B419E-C664-41A6-80A1-4C4745AEBD3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02703979-7148-45C5-862A-90A927AD99F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02703979-7148-45C5-862A-90A927AD99F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02703979-7148-45C5-862A-90A927AD99F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02703979-7148-45C5-862A-90A927AD99F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0B6B419E-C664-41A6-80A1-4C4745AEBD3C} = {1989552C-995F-465C-9B79-EB71C60E5017}
-		{02703979-7148-45C5-862A-90A927AD99F0} = {1989552C-995F-465C-9B79-EB71C60E5017}
+		{17791E72-A723-4BF7-9598-105F0A0D7B06} = {1989552C-995F-465C-9B79-EB71C60E5017}
 	EndGlobalSection
 EndGlobal

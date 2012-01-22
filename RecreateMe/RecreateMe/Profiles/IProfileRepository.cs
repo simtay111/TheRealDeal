@@ -11,5 +11,6 @@ namespace RecreateMe.Profiles
         IList<Profile> FindByLocation(string locationName);
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);
+        IList<Profile> GetByAccount(string accountName);
     }
 }

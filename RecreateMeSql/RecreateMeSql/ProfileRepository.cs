@@ -46,5 +46,10 @@ namespace RecreateMeSql
         {
             throw new System.NotImplementedException();
         }
+
+        public IList<Profile> GetByAccount(string accountName)
+        {
+            return new List<Profile>() {new Profile(), new Profile()};
+        }
     }
 }

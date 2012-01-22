@@ -42,36 +42,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
-    <Compile Include="Friends\Invites\InviteFactoryTests.cs" />
-    <Compile Include="Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
-    <Compile Include="Friends\Invites\InviteSenderTests.cs" />
-    <Compile Include="Friends\Search\SearchForFriendsRequestHandlerTests.cs" />
-    <Compile Include="Locales\LocationTests.cs" />
-    <Compile Include="Login\LoginRequestHandlerTests.cs" />
-    <Compile Include="Login\RegisterUserHandlerTests.cs" />
-    <Compile Include="Profiles\Handlers\AddLocationToProfileRequestHandlerTests.cs" />
-    <Compile Include="Profiles\Handlers\AddSportToProfileRequestHandlerTests.cs" />
-    <Compile Include="Profiles\Handlers\CreateProfileRequestHandlerTests.cs" />
-    <Compile Include="Profiles\NameTests.cs" />
-    <Compile Include="Profiles\PersonTests.cs" />
-    <Compile Include="Profiles\ProfileBuilderTests.cs" />
-    <Compile Include="Profiles\Search\Handlers\SearchForProfileRequestHandlerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduling\Games\GameFactoryTests.cs" />
-    <Compile Include="Scheduling\Games\GameTests.cs" />
-    <Compile Include="Scheduling\Games\GameWithoutTeamsTests.cs" />
-    <Compile Include="Scheduling\Games\GameWithTeamTests.cs" />
-    <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandlerTests.cs" />
-    <Compile Include="Scheduling\Handlers\CreateGameRequestHandlerTests.cs" />
-    <Compile Include="Scheduling\Handlers\JoinGameRequestHandlerTests.cs" />
-    <Compile Include="Scheduling\Handlers\SearchForGameRequestHandlerTests.cs" />
-    <Compile Include="Sports\SkillLevelTests.cs" />
-    <Compile Include="Sports\SportTests.cs" />
-    <Compile Include="Sports\SportWithSkillLevelTests.cs" />
-    <Compile Include="Teams\CreateTeamRequestHandlerTests.cs" />
-    <Compile Include="Teams\TeamTests.cs" />
-    <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
