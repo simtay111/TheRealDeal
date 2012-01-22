@@ -9,31 +9,31 @@ namespace TheRealDealTests.DataTests
     [Ignore]
     public class ProfileRepositoryTests
     {
-         [Test]
-        public void WritesToJson()
-         {
-             var profile = new Profile {UniqueId = "123"};
-             var mockJsonAccess = new Mock<IJsonDataAccess>();
-             mockJsonAccess.Setup(x => x.WriteToJson(profile, profile.UniqueId)).Returns(true);
-             var repo = new ProfileRepository(mockJsonAccess.Object);
+        // [Test]
+        //public void WritesToJson()
+        // {
+        //     var profile = new Profile {UniqueId = "123"};
+        //     var mockJsonAccess = new Mock<IJsonDataAccess>();
+        //     mockJsonAccess.Setup(x => x.WriteToJson(profile, profile.UniqueId)).Returns(true);
+        //     var repo = new ProfileRepository(mockJsonAccess.Object);
 
-             var success  = repo.SaveOrUpdate(profile);
+        //     var success  = repo.SaveOrUpdate(profile);
 
-             Assert.True(success);
-         }
+        //     Assert.True(success);
+        // }
 
-         [Test]
-         public void CanGetByUniqueId()
-         {
-             var profileToReturn = new Profile { UniqueId = "123" };
-             var mockJsonAccess = new Mock<IJsonDataAccess>();
-             mockJsonAccess.Setup(x => x.GetByFileName<Profile>(profileToReturn.UniqueId)).Returns(profileToReturn);
-             var repo = new ProfileRepository(mockJsonAccess.Object);
+        // [Test]
+        // public void CanGetByUniqueId()
+        // {
+        //     var profileToReturn = new Profile { UniqueId = "123" };
+        //     var mockJsonAccess = new Mock<IJsonDataAccess>();
+        //     mockJsonAccess.Setup(x => x.GetByFileName<Profile>(profileToReturn.UniqueId)).Returns(profileToReturn);
+        //     var repo = new ProfileRepository(mockJsonAccess.Object);
 
-             var profile = repo.GetByUniqueId(profileToReturn.UniqueId);
+        //     var profile = repo.GetByUniqueId(profileToReturn.UniqueId);
 
-             Assert.NotNull(profile);
-             Assert.That((object) profile, Is.TypeOf<Profile>());
-         }
+        //     Assert.NotNull(profile);
+        //     Assert.That((object) profile, Is.TypeOf<Profile>());
+        // }
     }
 }

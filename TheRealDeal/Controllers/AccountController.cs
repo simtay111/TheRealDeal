@@ -37,7 +37,8 @@ namespace TheRealDeal.Controllers
             if (response.Status == ResponseCodes.Success)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
-                return RedirectToAction("Index", "Home");
+
+                return RedirectToAction("ChooseProfile", "Profile", new { accountName = model.UserName});
             }
 
             return View();

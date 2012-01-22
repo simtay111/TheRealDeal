@@ -8,22 +8,13 @@ namespace RecreateMeSql
 {
     public class ProfileRepository : IProfileRepository
     {
-        private readonly IJsonDataAccess _jsonDataAccess;
-
-        public ProfileRepository(IJsonDataAccess jsonDataAccess)
-        {
-            _jsonDataAccess = jsonDataAccess;
-        }
-
         public Profile GetByUniqueId(string uniqueId)
         {
-            return _jsonDataAccess.GetByFileName<Profile>(uniqueId);
+            return null;
         }
 
         public bool SaveOrUpdate(Profile profile)
         {
-            _jsonDataAccess.WriteToJson(profile, profile.UniqueId);
-            
             return true;
         }
 
@@ -49,7 +40,7 @@ namespace RecreateMeSql
 
         public IList<Profile> GetByAccount(string accountName)
         {
-            return new List<Profile>() {new Profile(), new Profile()};
+            return TestData.GetListOfMockedProfiles();
         }
     }
 }

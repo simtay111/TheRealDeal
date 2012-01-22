@@ -1,0 +1,20 @@
+﻿@using RecreateMe.Profiles
+@model object
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_accountLayout.cshtml";
+}
+
+<h2>Which Profile Would You Like To Use?</h2>
+@using (Html.BeginForm())
+{
+    foreach (var prof in (IList<Profile>)ViewData["Profiles"])
+    {
+        <div>
+        @Html.RadioButton()
+        @Html.Label(prof.Name.FullName)
+        </div>
+    }
+    <button type="submit">Use Selected</button>
+}
