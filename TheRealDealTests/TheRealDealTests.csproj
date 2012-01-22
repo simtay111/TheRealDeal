@@ -39,11 +39,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTests\JsonDataAccessTests.cs" />
     <Compile Include="DataTests\ProfileRepositoryTests.cs" />
-    <Compile Include="DeliveryTests\Class1.cs" />
+    <Compile Include="DeliveryTests\AccountControllerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
@@ -84,6 +85,10 @@
     <ProjectReference Include="..\RecreateMe\RecreateMe\RecreateMe.csproj">
       <Project>{78C723FA-8ABF-459A-9959-5057666FDD36}</Project>
       <Name>RecreateMe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheRealDeal\TheRealDeal.csproj">
+      <Project>{138B45DB-5096-4ABE-B001-60323D59FA30}</Project>
+      <Name>TheRealDeal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
