@@ -2,6 +2,6 @@
 {
     public class ChooseProfileModel
     {
-        public string AccountName { get; set; } 
+        public string Profile { get; set; } 
     }
 }

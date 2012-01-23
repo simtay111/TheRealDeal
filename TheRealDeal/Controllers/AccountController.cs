@@ -1,13 +1,10 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Collections.Specialized;
 using System.Web.Mvc;
 using System.Web.Security;
-using Moq;
+using FormsAuthenticationExtensions;
 using RecreateMe;
-using RecreateMe.Login;
 using RecreateMe.Login.Handlers;
 using RecreateMeSql;
-using TheRealDeal.Models;
 using TheRealDeal.Models.Account;
 
 namespace TheRealDeal.Controllers
@@ -36,9 +33,20 @@ namespace TheRealDeal.Controllers
 
             if (response.Status == ResponseCodes.Success)
             {
-                FormsAuthentication.SetAuthCookie(model.UserName, false);
+                var ticketData = new NameValueCollection
+                {
+                    { "Profile", "Start1" }
+                };
 
-                return RedirectToAction("ChooseProfile", "Profile", new { accountName = model.UserName});
+                new FormsAuthentication().SetAuthCookie(HttpContext.User.Identity.Name, true, ticketData);
+
+                var ticketDat2a = new NameValueCollection
+            {
+                { "Profile", "BorkBork" },
+            };
+                new FormsAuthentication().SetAuthCookie(User.Identity.Name, true, ticketDat2a);
+
+                return RedirectToAction("ChooseProfile", "Profile");
             }
 
             return View();
