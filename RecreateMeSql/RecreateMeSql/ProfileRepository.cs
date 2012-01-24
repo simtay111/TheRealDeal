@@ -40,7 +40,9 @@ namespace RecreateMeSql
 
         public IList<Profile> GetByAccount(string accountName)
         {
-            return TestData.GetListOfMockedProfiles();
+            var profiles = TestData.GetListOfMockedProfiles();
+            profiles.RemoveAt(0);
+            return profiles;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@using RecreateMe.Profiles
+﻿@using System.Collections
+@using RecreateMe.Profiles
 @using TheRealDeal.Models.Profile
 @model ChooseProfileModel
 
@@ -7,15 +8,26 @@
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
 
+
+
+
 <h2>Which Profile Would You Like To Use?</h2>
 @using (Html.BeginForm())
 {
-    <div>
-    @foreach (var prof in (IList<Profile>)ViewData["Profile"])
+    var profiles = (IList<Profile>) ViewData["Profile"];
+    foreach (var prof in profiles)
     {
-        @Html.RadioButton("Profile", prof.UniqueId)
-        @Html.Label(prof.Name.FullName)
+            <div id="ProfileOption">
+                @Html.RadioButton("Profile", prof.UniqueId)
+                @Html.Label(prof.Name.FullName)
+            </div>
     }
-    </div>
-    <button type="submit">Use Selected</button>
+    if (profiles.Count != 0)
+    {
+         <button type="submit">Use Selected</button>
+    }
+    if (profiles.Count < 3)
+    {
+        @Html.ActionLink("Create new profile", "CreateProfile", "Profile")
+    }
 }

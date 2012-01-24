@@ -45,5 +45,11 @@ namespace TheRealDeal.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [Authorize]
+        public ActionResult CreateProfile()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
