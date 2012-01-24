@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -27,7 +28,7 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
 
-            ViewData["Profiles"] = response.Profiles;
+            ViewData["Profile"] = response.Profiles;
 
             return View();
         }
@@ -36,14 +37,11 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult ChooseProfile(ChooseProfileModel model)
         {
-            var ticketData = new NameValueCollection
-            {
-                { "Profile", "BorkBork" },
-            };
-            new FormsAuthentication().SetAuthCookie(User.Identity.Name,  true, ticketData);
+            var cookie = HttpContext.Request.Cookies[Constants.CookieName] ??
+                new HttpCookie(Constants.CookieName) { Expires = DateTime.Now.AddHours(1) };
+            cookie.Values[Constants.CurrentProfileCookieField] = model.Profile;
 
-            var moo = ((FormsIdentity) User.Identity).Ticket.UserData;
-
+            HttpContext.Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index", "Home");
         }

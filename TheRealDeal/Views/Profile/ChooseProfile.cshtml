@@ -11,9 +11,9 @@
 @using (Html.BeginForm())
 {
     <div>
-    @foreach (var prof in (IList<Profile>)ViewData["Profiles"])
+    @foreach (var prof in (IList<Profile>)ViewData["Profile"])
     {
-        @Html.RadioButton("Profiles", prof.UniqueId)
+        @Html.RadioButton("Profile", prof.UniqueId)
         @Html.Label(prof.Name.FullName)
     }
     </div>
