@@ -1,0 +1,38 @@
+﻿@using RecreateMe.Sports
+@using TheRealDeal.Models.Profile
+@model CreateProfileModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_accountLayout.cshtml";
+}
+<div id="BannerText">
+<h2>Create new profile</h2>
+</div>
+@Html.ValidationSummary(true, "Oops! Problem creating profile!")
+
+@using (Html.BeginForm())
+{
+    
+    <div class="CreateProfile">
+    @Html.LabelFor(x => x.Name)
+    @Html.TextBoxFor(x => x.Name)
+    @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="CreateProfile">
+    @Html.LabelFor(x => x.Location)
+    @Html.TextBoxFor(x => x.Location)
+    </div>
+    <div class="CreateProfile">
+    @Html.LabelFor(x => x.Sports)
+    @Html.DropDownList("Sports", (SelectList)ViewData["ListOfSports"], "Select your first sport!")
+    
+    </div>
+    <div class="CreateProfile">
+    @Html.LabelFor(x => Model.SkillLevel)
+    @Html.TextBoxFor(x => Model.SkillLevel, new {})
+    @Html.ValidationMessageFor(x => Model.SkillLevel)
+    </div>
+    
+    <button type="submit">CreateProfile</button>
+}

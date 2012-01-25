@@ -55,7 +55,6 @@
     <Compile Include="IHandler.cs" />
     <Compile Include="Locales\ILocationRepository.cs" />
     <Compile Include="Locales\Location.cs" />
-    <Compile Include="Locales\LocationRepository.cs" />
     <Compile Include="Login\IUserRepository.cs" />
     <Compile Include="Login\Handlers\LoginRequestHandler.cs" />
     <Compile Include="Login\Handlers\RegisterUserHandler.cs" />
@@ -87,7 +86,6 @@
     <Compile Include="Sports\ISportRepository.cs" />
     <Compile Include="Sports\SkillLevel.cs" />
     <Compile Include="Sports\Sport.cs" />
-    <Compile Include="Sports\SportRepository.cs" />
     <Compile Include="Sports\SportWithSkillLevel.cs" />
     <Compile Include="Teams\Handlers\CreateTeamRequestHandler.cs" />
     <Compile Include="Teams\ITeamRepository.cs" />

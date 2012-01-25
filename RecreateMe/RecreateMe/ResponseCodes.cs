@@ -46,7 +46,8 @@ namespace RecreateMe
                     return "The passwords do not match. Try again";
                 case (ResponseCodes.MaxProfilesReached):
                     return "You have reached your maximum amount of profiles for this account";
-
+                case(ResponseCodes.NameNotSpecified):
+                    return "You must specify a name for the account";
             }
 
             return message;

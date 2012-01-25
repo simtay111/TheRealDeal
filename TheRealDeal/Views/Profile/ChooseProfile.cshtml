@@ -7,27 +7,37 @@
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
-
-
-
-
-<h2>Which Profile Would You Like To Use?</h2>
+<div id="BannerText">
+<h2>Choose/Create A Profile</h2>
+</div>
 @using (Html.BeginForm())
 {
+    
     var profiles = (IList<Profile>) ViewData["Profile"];
-    foreach (var prof in profiles)
+    var checkFirstProfile = true;
+    
+    <ul id="ProfileList">
+    
+    @foreach (var prof in profiles)
     {
-            <div id="ProfileOption">
-                @Html.RadioButton("Profile", prof.UniqueId)
+        
+            <li id="ProfileOption">
+                @Html.RadioButton("Profile", prof.UniqueId, checkFirstProfile)
                 @Html.Label(prof.Name.FullName)
-            </div>
+            </li>
+        checkFirstProfile = false;
     }
-    if (profiles.Count != 0)
+    </ul>
+    
+    <div id="ButtonsContainer">
+    @if (profiles.Count != 0)
     {
          <button type="submit">Use Selected</button>
     }
-    if (profiles.Count < 3)
+    @if (profiles.Count < 3)
     {
-        @Html.ActionLink("Create new profile", "CreateProfile", "Profile")
+        @: Or
+        <button type="button" onclick="location.href='/Profile/CreateProfile/'">Create Profile</button>
     }
+    </div>
 }

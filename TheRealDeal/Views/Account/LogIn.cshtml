@@ -8,9 +8,12 @@
 
 <!DOCTYPE html>
 
+<div id="BannerText">
+<h2>Welcome! Please Login!</h2>
+</div>
 @using (Html.BeginForm())
 {
-    <div>
+    <div id="LoginTextBoxes">
         <div>
             @Html.Label("Username", "User Name:")
             @Html.TextBoxFor(x => x.UserName)
@@ -19,7 +22,10 @@
             @Html.Label("Password", "Password:")
             @Html.TextBoxFor(x => x.Password)
         </div>
-        <button type="submit">Login</button>
-        @Html.ActionLink("New User?", "Register", "Account")
     </div>
+    <div id="ButtonsContainer">
+        <button type="submit">Login</button>
+        Or 
+        <button type="button" onclick="location.href='/Account/Register/'">New User?</button>
+        </div>
 }

@@ -4,8 +4,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Moq;
+using RecreateMe;
+using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Profiles.Handlers;
+using RecreateMe.Sports;
 using RecreateMeSql;
 using TheRealDeal.Models.Profile;
 using FormsAuthenticationExtensions;
@@ -49,7 +52,43 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult CreateProfile()
         {
-            throw new NotImplementedException();
+            var sportRepo = new SportRepository();
+
+            var sports = sportRepo.GetNamesOfAllSports();
+            
+            var selectList = new SelectList(sports);
+
+            ViewData["ListOfSports"] = selectList;
+
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateProfile(CreateProfileModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var request = new CreateProfileRequest(User.Identity.Name, model.Name, model.Location, model.Sports,
+                                                   model.SkillLevel);
+
+            var handler = new CreateProfileRequestHandler(new SportRepository(), new LocationRepository(),
+                                                          new ProfileRepository(), new ProfileBuilder());
+
+            var response = handler.Handle(request);
+
+            if (response.Status == ResponseCodes.Success)
+            {
+                return RedirectToAction("ChooseProfile");
+            }
+
+            var errorMessage = response.Status.GetMessage();
+            ModelState.AddModelError("", errorMessage);
+
+            return View(model);
         }
     }
 }

@@ -1,12 +1,13 @@
 using System;
+using RecreateMe.Locales;
 
-namespace RecreateMe.Locales
+namespace RecreateMeSql
 {
     public class LocationRepository : ILocationRepository
     {
         public Location FindByName(string name)
         {
-            throw new NotImplementedException();
+            return TestData.CreateLocation1();
         }
     }
 }

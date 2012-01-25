@@ -1,0 +1,43 @@
+﻿body {
+    width: 200px;
+    margin-right: 200px;
+}
+
+#LoginContainer {
+    width: 300px;
+    height: auto;
+    background-color: grey;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#ButtonsContainer {
+    padding: 5px;
+    text-align: center;
+    width: auto;
+}
+
+#ProfileOption {
+    text-align: left;
+    padding: 5px;
+}
+
+#ProfileList {
+    padding-left: 30px;
+}
+
+.CreateProfile
+{
+    text-align: center;
+}
+
+#LoginTextBoxes 
+{
+    padding-left: 20px;
+}
+
+#BannerText {
+    padding-left: 20px;
+    padding-top: 1px;
+    width: 500px;
+}
