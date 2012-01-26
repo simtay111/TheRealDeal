@@ -58,7 +58,7 @@ namespace TheRealDeal.Controllers
             
             var selectList = new SelectList(sports);
 
-            ViewData["ListOfSports"] = selectList;
+            ViewBag.ListOfSports = selectList;
 
             return View();
         }

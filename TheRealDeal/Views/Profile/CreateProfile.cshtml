@@ -1,6 +1,7 @@
 ﻿@using RecreateMe.Sports
 @using TheRealDeal.Models.Profile
 @model CreateProfileModel
+           
 
 @{
     ViewBag.Title = "title";
@@ -10,6 +11,7 @@
 <h2>Create new profile</h2>
 </div>
 @Html.ValidationSummary(true, "Oops! Problem creating profile!")
+
 
 @using (Html.BeginForm())
 {
@@ -25,7 +27,8 @@
     </div>
     <div class="CreateProfile">
     @Html.LabelFor(x => x.Sports)
-    @Html.DropDownList("Sports", (SelectList)ViewData["ListOfSports"], "Select your first sport!")
+    @Html.DropDownList("Sports", (SelectList)ViewBag.ListOfSports, "-- Select One --")
+    @Html.ValidationMessageFor(x => x.Sports)
     
     </div>
     <div class="CreateProfile">

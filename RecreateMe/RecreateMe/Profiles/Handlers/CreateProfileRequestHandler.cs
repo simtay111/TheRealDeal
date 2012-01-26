@@ -54,7 +54,7 @@ namespace RecreateMe.Profiles.Handlers
         private SkillLevel CreateSkillLevel(CreateProfileRequest request)
         {
             var skillLevel = new SkillLevel();
-            if (request.SkillLevel != "")
+            if (!string.IsNullOrEmpty(request.SkillLevel))
                 skillLevel.Level = int.Parse(request.SkillLevel);
             return skillLevel;
         }
