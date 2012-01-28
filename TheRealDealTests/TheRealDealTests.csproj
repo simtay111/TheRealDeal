@@ -38,6 +38,7 @@
       <HintPath>..\RecreateMe\Tests\bin\Debug\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
@@ -45,6 +46,7 @@
     <Compile Include="DataTests\JsonDataAccessTests.cs" />
     <Compile Include="DataTests\ProfileRepositoryTests.cs" />
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
+    <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
@@ -91,6 +93,9 @@
       <Project>{138B45DB-5096-4ABE-B001-60323D59FA30}</Project>
       <Name>TheRealDeal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
