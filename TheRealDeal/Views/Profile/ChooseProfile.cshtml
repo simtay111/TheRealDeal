@@ -1,5 +1,6 @@
 ﻿@using System.Collections
 @using RecreateMe.Profiles
+@using TheRealDeal
 @using TheRealDeal.Models.Profile
 @model ChooseProfileModel
 
@@ -13,7 +14,7 @@
 @using (Html.BeginForm())
 {
     
-    var profiles = (IList<Profile>) ViewData["Profile"];
+    var profiles = (IList<Profile>) ViewData[ViewDataConstants.Profiles];
     var checkFirstProfile = true;
     
     <ul id="ProfileList">

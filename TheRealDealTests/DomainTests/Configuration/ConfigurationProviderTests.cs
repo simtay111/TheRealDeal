@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RecreateMe;
 using RecreateMe.Configuration;
 using System.Configuration;
 
@@ -20,7 +21,7 @@ namespace TheRealDealTests.DomainTests.Configuration
         public void CanGetListOfOneConfigurableProfileOptions()
          {
             const string appOptions = "Sports";
-            ConfigurationManager.AppSettings.Set("ProfileOptions", appOptions);
+            ConfigurationManager.AppSettings.Set(AppConfigConstants.ProfileOptions, appOptions);
 
              var options = _provider.GetAllConfigurableProfileOptions();
 
@@ -33,7 +34,7 @@ namespace TheRealDealTests.DomainTests.Configuration
         public void CanParseMultipleOptions()
         {
             const string appOptions = "Sports, Location";
-            ConfigurationManager.AppSettings.Set("ProfileOptions", appOptions);
+            ConfigurationManager.AppSettings.Set(AppConfigConstants.ProfileOptions, appOptions);
 
             var options = _provider.GetAllConfigurableProfileOptions();
 

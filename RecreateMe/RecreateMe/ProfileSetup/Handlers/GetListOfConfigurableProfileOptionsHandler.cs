@@ -14,13 +14,10 @@ namespace RecreateMe.ProfileSetup.Handlers
 
         public GetListOfConfigurableProfileOptionsResponse Handle(GetListOfConfigurableProfileOptionsRequest request)
         {
-            var response = new GetListOfConfigurableProfileOptionsResponse
-                               {
-                                   ListOfConfigurableOptions = _configurationProvider.GetAllConfigurableProfileOptions()
-                               };
-
-
-            return response;
+            return new GetListOfConfigurableProfileOptionsResponse
+            {
+                ListOfConfigurableOptions = _configurationProvider.GetAllConfigurableProfileOptions()
+            };
         }
     }
 

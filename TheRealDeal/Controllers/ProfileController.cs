@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using Moq;
 using RecreateMe;
-using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Profiles.Handlers;
-using RecreateMe.Sports;
 using RecreateMeSql;
 using TheRealDeal.Models.Profile;
-using FormsAuthenticationExtensions;
 
 namespace TheRealDeal.Controllers
 {
@@ -31,7 +25,7 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
 
-            ViewData["Profile"] = response.Profiles;
+            ViewData[ViewDataConstants.Profiles] = response.Profiles;
 
             return View();
         }

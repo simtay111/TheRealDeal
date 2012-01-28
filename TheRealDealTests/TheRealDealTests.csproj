@@ -60,6 +60,7 @@
     <Compile Include="DomainTests\Profiles\Handlers\AddSportToProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\CreateProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\GetProfilesForAccountRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Profiles\Handlers\GetSportsForProfileHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\NameTests.cs" />
     <Compile Include="DomainTests\Profiles\PersonTests.cs" />
     <Compile Include="DomainTests\Profiles\ProfileBuilderTests.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="DomainTests\Scheduling\Handlers\CreateGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\JoinGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\SearchForGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Sports\SkillLevelProviderTests.cs" />
     <Compile Include="DomainTests\Sports\SkillLevelTests.cs" />
     <Compile Include="DomainTests\Sports\SportTests.cs" />
     <Compile Include="DomainTests\Sports\SportWithSkillLevelTests.cs" />

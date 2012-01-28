@@ -2,7 +2,19 @@
 
 @{
     ViewBag.Title = "title";
-    Layout = "_Layout";
+    Layout = "../Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<h2>Which options would you like to setup for your profile?</h2>
+<ul>
+@foreach (var option in (IList<string>)ViewData["ListOfOptions"])
+{
+  
+    <li>
+    <button type="button" onclick="location.href='/Setup/@option/'">@option</button>
+    </li>
+}
+</ul>
+
+
+

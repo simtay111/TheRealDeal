@@ -1,0 +1,30 @@
+﻿@using RecreateMe.Sports
+@using TheRealDeal
+@using TheRealDeal.Models.Setup
+@model AddSportModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Which sport would you like to add to your profile</h2>
+
+<div> Your current sports are:
+@foreach (var sport in (IList<SportWithSkillLevel>)ViewData[ViewDataConstants.SportsForProfile])
+{
+    <div>
+    @Html.Label("Sports", sport.Name + " - Skill Level: " + sport.SkillLevel.Level)
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        <h3>Which sport would you like to add?</h3>
+        @Html.DropDownList("ChosenSport", (SelectList)ViewBag.AvailableSports, "-- Select One --")
+        @Html.DropDownList("ChosenSkillLevel", new SelectList())
+    </div>
+    <button type="submit">Add this sport pleeease!</button>
+}
+</div>

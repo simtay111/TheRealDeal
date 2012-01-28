@@ -10,7 +10,7 @@ namespace RecreateMeSql
     {
         public Profile GetByUniqueId(string uniqueId)
         {
-            return null;
+            return TestData.MockProfile1();
         }
 
         public bool SaveOrUpdate(Profile profile)

@@ -9,7 +9,7 @@ namespace RecreateMe.Configuration
     {
         public IList<string> GetAllConfigurableProfileOptions()
         {
-            var allOptions = ConfigurationManager.AppSettings["ProfileOptions"];
+            var allOptions = ConfigurationManager.AppSettings[AppConfigConstants.ProfileOptions];
             
             return allOptions.Split(',').Select(x => x.Trim()).ToList();
         }

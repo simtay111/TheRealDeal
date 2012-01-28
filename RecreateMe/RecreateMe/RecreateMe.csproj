@@ -39,6 +39,7 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConfigConstants.cs" />
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Profiles\Handlers\AddSportToProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\CreateProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\GetProfilesForAccountRequestHandler.cs" />
+    <Compile Include="Profiles\Handlers\GetSportsForProfileHandler.cs" />
     <Compile Include="Profiles\IProfileBuilder.cs" />
     <Compile Include="Profiles\IProfileRepository.cs" />
     <Compile Include="Profiles\Name.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Scheduling\IGameRepository.cs" />
     <Compile Include="Sports\ISportRepository.cs" />
     <Compile Include="Sports\SkillLevel.cs" />
+    <Compile Include="Sports\SkillLevelProvider.cs" />
     <Compile Include="Sports\Sport.cs" />
     <Compile Include="Sports\SportWithSkillLevel.cs" />
     <Compile Include="Teams\Handlers\CreateTeamRequestHandler.cs" />

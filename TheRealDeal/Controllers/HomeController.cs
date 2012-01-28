@@ -7,9 +7,6 @@ namespace TheRealDeal.Controllers
         [Authorize]
          public ActionResult Index()
         {
-
-            var moo = HttpContext.Request.Cookies[Constants.CookieName].Values[Constants.CurrentProfileCookieField];
-
              return View();
          }
     }
