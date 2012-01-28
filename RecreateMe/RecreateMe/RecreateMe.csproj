@@ -37,6 +37,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Exceptions\CannotAddItemException.cs" />
     <Compile Include="Exceptions\Formatting\BadFormatException.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Login\IUserRepository.cs" />
     <Compile Include="Login\Handlers\LoginRequestHandler.cs" />
     <Compile Include="Login\Handlers\RegisterUserHandler.cs" />
+    <Compile Include="ProfileSetup\Handlers\GetListOfConfigurableProfileOptionsHandler.cs" />
     <Compile Include="Profiles\Handlers\AddLocationToProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\AddSportToProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\CreateProfileRequestHandler.cs" />

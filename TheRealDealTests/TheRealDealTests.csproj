@@ -53,6 +53,7 @@
     <Compile Include="DomainTests\Locales\LocationTests.cs" />
     <Compile Include="DomainTests\Login\LoginRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Login\RegisterUserHandlerTests.cs" />
+    <Compile Include="DomainTests\ProfileSetup\Handlers\GetListOfConfigurableProfileOptionsHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\AddLocationToProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\AddSportToProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\CreateProfileRequestHandlerTests.cs" />

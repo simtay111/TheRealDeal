@@ -9,23 +9,6 @@
 </head>
 
 <body>
-    <div id="Login"> @Html.Partial("LogOnPartial") </div>
-
-    <div id="header">
-        <div id="Photo" class="container">photo</div>
-        <div id="Info" class="container">
-          </div>
-    </div>
-    <div id="MainBody">
-        <div id="Navigation" class="container"> 
-        navigation
-        </div>
-        <div id="MainContent" class="container">
-         @RenderBody()
-        </div>
-    </div>
-
-
-    
+    @RenderBody()
 </body>
 </html>
