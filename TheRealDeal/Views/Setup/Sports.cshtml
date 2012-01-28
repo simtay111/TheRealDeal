@@ -22,8 +22,8 @@
 {
     <div>
         <h3>Which sport would you like to add?</h3>
-        @Html.DropDownList("ChosenSport", (SelectList)ViewBag.AvailableSports, "-- Select One --")
-        @Html.DropDownList("ChosenSkillLevel", new SelectList())
+        @Html.DropDownList("ChosenSport", (SelectList)ViewBag.AvailableSports, "-- Select Sport --")
+        @Html.DropDownList("ChosenSkillLevel", (SelectList)ViewData[ViewDataConstants.SkillLevels], "-- Skill Level --")
     </div>
     <button type="submit">Add this sport pleeease!</button>
 }

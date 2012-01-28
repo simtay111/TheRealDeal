@@ -44,7 +44,8 @@ namespace TheRealDeal.Controllers
                 sports.Where(x => sportsForProfile.FirstOrDefault(y => y.Name == x) == null).ToList();
 
 
-
+            ViewData[ViewDataConstants.SkillLevels] = new SelectList(new SkillLevelProvider()
+                .GetListOfAvailableSkillLevels());
             ViewData[ViewDataConstants.AvailableSports] = new SelectList(leftOverSportsToPotentiallyAdd);
             ViewData[ViewDataConstants.SportsForProfile] = sportsForProfile;
 
@@ -56,7 +57,12 @@ namespace TheRealDeal.Controllers
         public ActionResult Sports(AddSportModel model)
         {
             var profile = GetProfileCookie();
-            var request = new AddSportToProfileRequest() {SkillLevel = 1, Sport = model.ChosenSport, UniqueId = profile};
+            var request = new AddSportToProfileRequest()
+                              {
+                                  SkillLevel = int.Parse(model.ChosenSkillLevel),
+                                  Sport = model.ChosenSport, 
+                                  UniqueId = profile
+                              };
 
             var handler = new AddSportToProfileRequestHandler(new ProfileRepository(), new SportRepository());
 
