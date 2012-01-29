@@ -116,7 +116,6 @@ namespace TheRealDeal.Controllers
             return View(model);
         }
 
-
         private string GetProfileFromCookie()
         {
             var cookie = HttpContext.Request.Cookies[Constants.CookieName];
