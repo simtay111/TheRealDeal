@@ -20,22 +20,17 @@ namespace RecreateMeSql
 
         public IList<Profile> FindAllByName(string name)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IList<Profile> FindByLocation(string locationName)
-        {
-            throw new System.NotImplementedException();
+            return TestData.GetListOfMockedProfiles();
         }
 
         public IList<Profile> FindAllBySport(string sport)
         {
-            throw new System.NotImplementedException();
+            return TestData.GetListOfMockedProfiles();
         }
 
         public IList<Profile> FindAllByLocation(string location)
         {
-            throw new System.NotImplementedException();
+            return TestData.GetListOfMockedProfiles();
         }
 
         public IList<Profile> GetByAccount(string accountName)

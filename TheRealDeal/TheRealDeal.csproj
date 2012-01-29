@@ -72,6 +72,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FriendController.cs" />
+    <Compile Include="Models\Friend\SearchForFriendModel.cs" />
     <Compile Include="Models\Setup\AddLocationModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -184,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Models\Search\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -198,7 +200,13 @@
     <Content Include="Views\Setup\Location.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Friend\Index.cshtml" />
+    <Content Include="Views\Friend\FriendList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Friend\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Friend\SearchResults.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

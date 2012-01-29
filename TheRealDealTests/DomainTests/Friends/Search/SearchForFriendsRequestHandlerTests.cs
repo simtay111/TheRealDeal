@@ -24,7 +24,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchByName()
         {
-            var request = new SearchForFriendsRequest {Name = Name1, Sport = "", Location = ""};
+            var request = new SearchForFriendsRequest {ProfileName = Name1, Sport = "", Location = ""};
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
@@ -38,7 +38,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchByNameAndSport()
         {
-            var request = new SearchForFriendsRequest {Name = Name1, Sport = Sport, Location = ""};
+            var request = new SearchForFriendsRequest {ProfileName = Name1, Sport = Sport, Location = ""};
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
@@ -52,7 +52,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchByNameLocationAndSport()
         {
-            var request = new SearchForFriendsRequest {Name = Name1, Sport = Sport, Location = Location};
+            var request = new SearchForFriendsRequest {ProfileName = Name1, Sport = Sport, Location = Location};
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
@@ -66,7 +66,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchBySportOnly()
         {
-            var request = new SearchForFriendsRequest { Name = "", Sport = Sport, Location = "" };
+            var request = new SearchForFriendsRequest { ProfileName = "", Sport = Sport, Location = "" };
 
             SetupProfileRepoForSports();
 
@@ -80,7 +80,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchByLocationOnly()
         {
-            var request = new SearchForFriendsRequest { Name = "", Sport = "", Location = Location };
+            var request = new SearchForFriendsRequest { ProfileName = "", Sport = "", Location = Location };
 
             SetupProfileRepoToReturnTForLocationQuery();
 
@@ -94,7 +94,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void CanSearchByLocationAndSportOnly()
         {
-            var request = new SearchForFriendsRequest { Name = "", Sport = Sport, Location = Location };
+            var request = new SearchForFriendsRequest { ProfileName = "", Sport = Sport, Location = Location };
 
             SetupProfileRepoToReturnTForLocationQuery();
             SetupProfileRepoForSports();
@@ -109,7 +109,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         [Test]
         public void ReturnsBadResponseCodeIfNoFieldsWereSpecified()
         {
-            var request = new SearchForFriendsRequest { Name = "", Sport = "", Location = "" };
+            var request = new SearchForFriendsRequest { ProfileName = "", Sport = "", Location = "" };
             var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);

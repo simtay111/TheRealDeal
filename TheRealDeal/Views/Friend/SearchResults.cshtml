@@ -1,0 +1,20 @@
+﻿@using TheRealDeal.Models.Friend
+@model SearchForFriendModel
+
+<div>
+@if (Model != null){
+    if (Model.Results != null){
+        <h2>We found you some friends!</h2>
+        foreach (var friend in Model.Results)
+        {
+            <div>
+            @Html.ActionLink("Add: " + friend.Name.FullName, "Add", "Friend", new { friendId = friend.UniqueId }, null)
+            </div>
+        }
+    }
+    else
+    {
+        <h2>No people found that matched your criteria! Try a broader search.</h2>
+    }
+}
+</div>

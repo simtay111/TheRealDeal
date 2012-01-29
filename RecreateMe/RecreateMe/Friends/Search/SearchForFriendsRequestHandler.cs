@@ -36,8 +36,8 @@ namespace RecreateMe.Friends.Search
         {
             IList<Profile> results = new List<Profile>();
 
-            if (!String.IsNullOrEmpty(request.Name))
-                results = _profileRepository.FindAllByName(request.Name);
+            if (!String.IsNullOrEmpty(request.ProfileName))
+                results = _profileRepository.FindAllByName(request.ProfileName);
             else
             {
                 if (!String.IsNullOrEmpty(request.Sport))
@@ -54,7 +54,7 @@ namespace RecreateMe.Friends.Search
 
     public class SearchForFriendsRequest
     {
-        public string Name { get; set; }
+        public string ProfileName { get; set; }
         public string Sport { get; set; }
         public string Location { get; set; }
     }

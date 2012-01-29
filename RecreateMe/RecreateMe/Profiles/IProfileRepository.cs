@@ -8,7 +8,6 @@ namespace RecreateMe.Profiles
         Profile GetByProfileId(string profileId);
         bool SaveOrUpdate(Profile profile);
         IList<Profile> FindAllByName(string name);
-        IList<Profile> FindByLocation(string locationName);
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);
         IList<Profile> GetByAccount(string accountName);

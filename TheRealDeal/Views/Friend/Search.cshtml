@@ -1,0 +1,36 @@
+﻿@using TheRealDeal.Models.Friend
+@model SearchForFriendModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search for a friend:</h2>
+@Html.ValidationSummary("Oops!")
+
+@using (Html.BeginForm())
+{
+    <div>
+    @Html.LabelFor(x => x.ProfileName)
+    @Html.TextBoxFor(x => x.ProfileName)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.Location)
+    @Html.TextBoxFor(x => x.Location)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.Sport)
+    @Html.TextBoxFor(x => x.Sport)
+    </div>
+    
+    <button type="submit">Find me some friends!</button>
+}
+
+@Html.Partial("SearchResults")
+
+
+
+
+
+

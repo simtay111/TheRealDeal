@@ -15,27 +15,28 @@
 
 @using (Html.BeginForm())
 {
+
+    <div class="CreateProfile">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="CreateProfile">
+        @Html.LabelFor(x => x.Location)
+        @Html.TextBoxFor(x => x.Location)
+    </div>
+    <div class="CreateProfile">
+        @Html.LabelFor(x => x.Sports)
+        @Html.DropDownList("Sports", (SelectList) ViewBag.ListOfSports, "-- Select One --")
+        @Html.ValidationMessageFor(x => x.Sports)
     
-    <div class="CreateProfile">
-    @Html.LabelFor(x => x.Name)
-    @Html.TextBoxFor(x => x.Name)
-    @Html.ValidationMessageFor(x => x.Name)
     </div>
     <div class="CreateProfile">
-    @Html.LabelFor(x => x.Location)
-    @Html.TextBoxFor(x => x.Location)
+        @Html.LabelFor(x => Model.SkillLevel)
+        @Html.TextBoxFor(x => Model.SkillLevel, new {})
+        @Html.ValidationMessageFor(x => Model.SkillLevel)
     </div>
-    <div class="CreateProfile">
-    @Html.LabelFor(x => x.Sports)
-    @Html.DropDownList("Sports", (SelectList)ViewBag.ListOfSports, "-- Select One --")
-    @Html.ValidationMessageFor(x => x.Sports)
-    
-    </div>
-    <div class="CreateProfile">
-    @Html.LabelFor(x => Model.SkillLevel)
-    @Html.TextBoxFor(x => Model.SkillLevel, new {})
-    @Html.ValidationMessageFor(x => Model.SkillLevel)
-    </div>
-    
+
     <button type="submit">CreateProfile</button>
+    <button type="button" onclick="location.href = '/Profile/ChooseProfile/'">Go back please!</button>
 }
