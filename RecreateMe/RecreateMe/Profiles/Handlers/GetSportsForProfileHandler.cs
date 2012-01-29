@@ -14,7 +14,7 @@ namespace RecreateMe.Profiles.Handlers
 
         public GetSportsForProfileResponse Handle(GetSportsForProfileRequest request)
         {
-            var profile = _profileRepository.GetByUniqueId(request.ProfileId);
+            var profile = _profileRepository.GetByProfileId(request.ProfileId);
 
             return new GetSportsForProfileResponse {SportsForProfile = profile.SportsPlayed};
         }

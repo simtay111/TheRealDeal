@@ -13,9 +13,9 @@ namespace RecreateMe.Friends.Handlers
 
         public AddPlayerToFriendsResponse Handle(AddPlayerToFriendsRequest request)
         {
-            var profile = _profileRepository.GetByUniqueId(request.ProfileId);
+            var profile = _profileRepository.GetByProfileId(request.ProfileId);
 
-            profile.Friends.Add(request.FriendId);
+            profile.FriendsIds.Add(request.FriendId);
 
             _profileRepository.SaveOrUpdate(profile);
 

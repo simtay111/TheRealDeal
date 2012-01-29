@@ -72,7 +72,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private void SetUpMockProfileUpdaterAndSportRepo(string uniqueId)
         {
             _mockIProfileUpdater = new Mock<IProfileRepository>();
-            _mockIProfileUpdater.Setup(x => x.GetByUniqueId(It.Is<string>(d => d == uniqueId))).Returns(_profile);
+            _mockIProfileUpdater.Setup(x => x.GetByProfileId(It.Is<string>(d => d == uniqueId))).Returns(_profile);
             _mockSportRepo = new Mock<ISportRepository>();
             _mockSportRepo.Setup(x => x.FindByName(It.Is<string>(d => d == _request.Sport))).Returns(new Sport());
         }

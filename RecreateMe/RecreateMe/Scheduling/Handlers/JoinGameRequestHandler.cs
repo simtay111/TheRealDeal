@@ -21,7 +21,7 @@ namespace RecreateMe.Scheduling.Handlers
             var game = GetValidGame(request.GameId);
             if (game == null) return new JoinGameResponse(ResponseCodes.OnlyTeamsCanJoin);
 
-            var profileToAdd = _profileRepository.GetByUniqueId(request.GameId);
+            var profileToAdd = _profileRepository.GetByProfileId(request.GameId);
 
             game.Players.Add(profileToAdd);
 

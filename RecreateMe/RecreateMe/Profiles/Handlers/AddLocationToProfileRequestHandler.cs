@@ -16,7 +16,7 @@ namespace RecreateMe.Profiles.Handlers
 
         public AddLocationToProfileResponse Handle(AddLocationToProfileRequest request)
         {
-            var profile = _profileRepository.GetByUniqueId(request.ProfileId);
+            var profile = _profileRepository.GetByProfileId(request.ProfileId);
 
             if (request.Location == null) return new AddLocationToProfileResponse(ResponseCodes.LocationNotSpecified);
             var location = _locationRepository.FindByName(request.Location);

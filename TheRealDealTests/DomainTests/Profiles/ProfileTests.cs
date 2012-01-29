@@ -6,7 +6,7 @@ using RecreateMe.Sports;
 namespace TheRealDealTests.DomainTests.Profiles
 {
     [TestFixture]
-    public class PersonTests
+    public class ProfileTests
     {
         private Profile _profile;
 
@@ -37,6 +37,16 @@ namespace TheRealDealTests.DomainTests.Profiles
             _profile.SportsPlayed.Add(sport);
             Assert.That((object) _profile.SportsPlayed.Count, Is.EqualTo(1));
             Assert.That((object) _profile.SportsPlayed[0], Is.SameAs(sport));
+        }
+
+        [Test]
+        public void CanGetFullAccountName()
+        {
+            var name = new Name("Simon", "Taylor");
+            _profile.Name = name;
+            _profile.AccountId = "Moo@Moo.com";
+
+            Assert.That(_profile.FullAccountName, Is.EqualTo("Simon Taylor (Moo@Moo.com)"));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace RecreateMe.Profiles.Handlers
             if (request.Sport == null)
                 return new AddSportToProfileResponse(ResponseCodes.SportNotSpecified);
 
-            var profile = _profileRepository.GetByUniqueId(request.UniqueId);
+            var profile = _profileRepository.GetByProfileId(request.UniqueId);
 
             var sport = CreateSportWithSkillLevelFromRequest(request);
 

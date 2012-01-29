@@ -20,7 +20,7 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var profile = new Profile();
 
             _mockProfileRepo = new Mock<IProfileRepository>();
-            _mockProfileRepo.Setup(x => x.GetByUniqueId(request.ProfileId)).Returns(profile);
+            _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);
             _mockProfileRepo.Setup(x => x.SaveOrUpdate(profile)).Callback(() => profileWasSaved = true);
 
             var handler = new AddPlayerToFriendsRequestHandler(_mockProfileRepo.Object);
@@ -28,7 +28,7 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var response = handler.Handle(request);
 
             Assert.True(profileWasSaved);
-            Assert.That((object) profile.Friends[0], Is.EqualTo(request.FriendId));
+            Assert.That((object) profile.FriendsIds[0], Is.EqualTo(request.FriendId));
             Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
         }
     }

@@ -5,12 +5,13 @@ namespace RecreateMe.Profiles
 {
     public interface IProfileRepository
     {
-        Profile GetByUniqueId(string uniqueId);
+        Profile GetByProfileId(string profileId);
         bool SaveOrUpdate(Profile profile);
         IList<Profile> FindAllByName(string name);
         IList<Profile> FindByLocation(string locationName);
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);
         IList<Profile> GetByAccount(string accountName);
+        Dictionary<string, Name> GetFriendIdAndNameListForProfile(string profileId);
     }
 }

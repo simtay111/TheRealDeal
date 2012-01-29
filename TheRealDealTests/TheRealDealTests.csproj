@@ -48,6 +48,7 @@
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Friends\Handlers\GetFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="DomainTests\Profiles\Handlers\GetProfilesForAccountRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\GetSportsForProfileHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\NameTests.cs" />
-    <Compile Include="DomainTests\Profiles\PersonTests.cs" />
+    <Compile Include="DomainTests\Profiles\ProfileTests.cs" />
     <Compile Include="DomainTests\Profiles\ProfileBuilderTests.cs" />
     <Compile Include="DomainTests\Profiles\Search\Handlers\SearchForProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameFactoryTests.cs" />

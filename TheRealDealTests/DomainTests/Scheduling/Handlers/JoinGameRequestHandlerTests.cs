@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
             _mockGameRepo.Setup(x => x.SaveOrUpdate(game)).Returns(true);
 
-            _mockProfileRepo.Setup(x => x.GetByUniqueId(request.ProfileId)).Returns(new Profile());
+            _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(new Profile());
 
 
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object, _mockProfileRepo.Object);

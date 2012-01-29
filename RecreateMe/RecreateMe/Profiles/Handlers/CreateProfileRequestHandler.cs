@@ -47,7 +47,7 @@ namespace RecreateMe.Profiles.Handlers
             var name = NameParser.CreateName(request.Name);
 
             var profile = CreateProfile(sport, skill, name, location);
-            profile.UserId = request.UserId;
+            profile.AccountId = request.UserId;
             return profile;
         }
 

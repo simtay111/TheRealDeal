@@ -8,7 +8,7 @@ namespace RecreateMeSql
 {
     public class ProfileRepository : IProfileRepository
     {
-        public Profile GetByUniqueId(string uniqueId)
+        public Profile GetByProfileId(string profileId)
         {
             return TestData.MockProfile1();
         }
@@ -43,6 +43,13 @@ namespace RecreateMeSql
             var profiles = TestData.GetListOfMockedProfiles();
             profiles.RemoveAt(0);
             return profiles;
+        }
+
+        public Dictionary<string, Name> GetFriendIdAndNameListForProfile(string profileId)
+        {
+            var friend1 = TestData.MockProfile2();
+            var friend2 = TestData.MockProfile3();
+            return new Dictionary<string, Name>() {{friend1.UniqueId, friend1.Name}, {friend2.UniqueId, friend2.Name}};
         }
     }
 }

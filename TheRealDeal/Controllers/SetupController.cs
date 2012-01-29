@@ -84,7 +84,7 @@ namespace TheRealDeal.Controllers
         {
             var repo = new ProfileRepository();
 
-            var profile = repo.GetByUniqueId(GetProfileFromCookie());
+            var profile = repo.GetByProfileId(GetProfileFromCookie());
 
             ViewData[ViewDataConstants.CurrentLocations] = profile.Locations;
 

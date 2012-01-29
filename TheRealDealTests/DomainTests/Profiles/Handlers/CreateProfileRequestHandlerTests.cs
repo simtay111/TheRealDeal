@@ -30,7 +30,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         public void ResponseContainsAPerson()
         {
             CreateMockRepositories();
-            var request = new CreateProfileRequest("UserId", "Simon Taylor", "location", "Soccer", "10");
+            var request = new CreateProfileRequest("AccountId", "Simon Taylor", "location", "Soccer", "10");
             var handler = CreateProfileRequestHandler();
             var response = handler.Handle(request);
             Assert.NotNull(response);
@@ -41,7 +41,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         public void CanBeHandledWithOnlyName()
         {
             CreateMockRepositories();
-            var request = new CreateProfileRequest("UserId", "Bob");
+            var request = new CreateProfileRequest("AccountId", "Bob");
             var handler = CreateProfileRequestHandler();
             var response = handler.Handle(request);
             Assert.NotNull(response);
@@ -51,7 +51,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         public void CreatingNameWithEmptyStringThrowsNotEnoughInfoException()
         {
             CreateMockRepositories();
-            var request = new CreateProfileRequest("UserId", "");
+            var request = new CreateProfileRequest("AccountId", "");
             var handler = CreateProfileRequestHandler();
 
             var response = handler.Handle(request);
@@ -64,12 +64,12 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         {
             CreateMockRepositories();
 
-            var request = new CreateProfileRequest("UserId", "Happy Days");
+            var request = new CreateProfileRequest("AccountId", "Happy Days");
             var handler = CreateProfileRequestHandler();
 
             handler.Handle(request);
 
-            Assert.That((object) _profile.UserId, Is.EqualTo("UserId"));
+            Assert.That((object) _profile.AccountId, Is.EqualTo("AccountId"));
         }
 
         [Test]

@@ -11,14 +11,16 @@ namespace RecreateMe.Profiles
         {
             Locations = new List<Location>();
             SportsPlayed = new List<SportWithSkillLevel>();
-            Friends = new List<string>();
+            FriendsIds = new List<string>();
         }
 
-        public string UserId { get; set; }
-        public IList<string> Friends;
+        public string AccountId { get; set; }
+        public IList<string> FriendsIds;
         public Name Name { get; set; }
+        public string FullAccountName { get { return String.Format("{0} ({1})", Name.FullName, AccountId); }}
         public IList<Location> Locations { get; set; }
         public string UniqueId { get; set; }
         public IList<SportWithSkillLevel> SportsPlayed { get; set; }
+
     }
 }
