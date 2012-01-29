@@ -33,8 +33,8 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) _profile.Locations.Count, Is.Not.EqualTo(0));
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(_profile.Locations.Count, Is.Not.EqualTo(0));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -49,7 +49,23 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
+        }
+
+        [Test]
+        public void ReturnsLocationNotFoundStatusIfTheLocationSpecifiedCouldNotBeFound()
+        {
+            var request = new AddLocationToProfileRequest()
+            {
+                Location = "Hamsterton"
+            };
+            CreateMockProfileAndLocationRepos("Moo", request.Location);
+            _mockLocationRepo.Setup(x => x.FindByName(request.Location)).Returns(() => null);
+            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotFound));
         }
 
         private void CreateMockProfileAndLocationRepos(string profileId, string location)

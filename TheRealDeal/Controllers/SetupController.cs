@@ -32,7 +32,7 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Sports()
         {
-            var profileId = GetProfileCookie();
+            var profileId = GetProfileFromCookie();
 
             var sportsForProfile = GetSportsForProfile(profileId);
 
@@ -56,7 +56,7 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult Sports(AddSportModel model)
         {
-            var profile = GetProfileCookie();
+            var profile = GetProfileFromCookie();
             var request = new AddSportToProfileRequest()
                               {
                                   SkillLevel = int.Parse(model.ChosenSkillLevel),
@@ -79,7 +79,45 @@ namespace TheRealDeal.Controllers
             return View(model);
         }
 
-        private string GetProfileCookie()
+        [Authorize]
+        public ActionResult Location()
+        {
+            var repo = new ProfileRepository();
+
+            var profile = repo.GetByUniqueId(GetProfileFromCookie());
+
+            ViewData[ViewDataConstants.CurrentLocations] = profile.Locations;
+
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Location(AddLocationModel model)
+        {
+            var request = new AddLocationToProfileRequest()
+                              {
+                                  Location = model.LocationToAdd,
+                                  ProfileId = GetProfileFromCookie()
+                              };
+
+            var handler = new AddLocationToProfileRequestHandler(new ProfileRepository(), new LocationRepository());
+
+            var response = handler.Handle(request);
+
+            if (response.Status == ResponseCodes.Success)
+            {
+                return RedirectToAction("Location", "Setup");
+            }
+
+            var errorMessage = response.Status.GetMessage();
+            ModelState.AddModelError("", errorMessage);
+
+            return View(model);
+        }
+
+
+        private string GetProfileFromCookie()
         {
             var cookie = HttpContext.Request.Cookies[Constants.CookieName];
             if (cookie == null) RedirectToAction("ChooseProfile", "Profile");

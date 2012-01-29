@@ -15,12 +15,6 @@ namespace TheRealDealTests.DomainTests.Locales
         }
 
         [Test]
-        public void HasAListOfChildLocationsThatItEncompasses()
-        {
-            Assert.NotNull(_location.SubLocations);
-        }
-
-        [Test]
         public void MustBeCreatedWithAnId()
         {
             const int id = 5;
@@ -36,12 +30,5 @@ namespace TheRealDealTests.DomainTests.Locales
             Assert.That((object) _location.Name, Is.EqualTo(name));
         }
 
-        [Test]
-        public void CanAddChildLocations()
-        {
-            var sublocation1 = new Location(32);
-            _location.SubLocations.Add(sublocation1);
-            Assert.That((object) _location.SubLocations[0], Is.SameAs(sublocation1));
-        }
     }
 }

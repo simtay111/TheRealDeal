@@ -21,6 +21,8 @@ namespace RecreateMe.Profiles.Handlers
             if (request.Location == null) return new AddLocationToProfileResponse(ResponseCodes.LocationNotSpecified);
             var location = _locationRepository.FindByName(request.Location);
 
+            if (location == null) return new AddLocationToProfileResponse(ResponseCodes.LocationNotFound);
+
             profile.Locations.Add(location);
 
             _profileRepository.SaveOrUpdate(profile);

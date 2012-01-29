@@ -1,0 +1,39 @@
+﻿@using RecreateMe.Locales
+@using TheRealDeal
+@using TheRealDeal.Models.Setup
+@model AddLocationModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Would you like to update your location?</h2>
+
+
+<div>  Your current locations:
+<ul>
+@foreach (var location in (IList<Location>)ViewData[ViewDataConstants.CurrentLocations])
+{
+    <li>
+    @Html.Label("CurrentLocations", location.Name)
+    </li>
+}
+</ul>
+</div>
+
+@Html.ValidationSummary("Oops!")
+@Html.ValidationMessage("LogOnModel")
+
+<div>
+@using (Html.BeginForm())
+{
+    @Html.Label("Please type the name of the location: ")
+    <div>
+    @Html.TextBoxFor(x => x.LocationToAdd)
+    </div>
+    <div>
+    <button type="submit">Add this location!</button>
+    </div>
+}
+</div>

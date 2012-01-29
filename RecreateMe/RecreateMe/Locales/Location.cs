@@ -6,12 +6,10 @@ namespace RecreateMe.Locales
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public IList<Location> SubLocations { get; set; }
 
         public Location(int id)
         {
             Id = id;
-            SubLocations = new List<Location>();
         }
 
         public Location(int id, string name) : this(id)
