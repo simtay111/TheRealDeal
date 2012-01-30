@@ -4,7 +4,7 @@ using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers.Games
 {
-    public class Game
+    public abstract class Game
     {
         public readonly string Id;
         public DateTime DateTime { get; set; }

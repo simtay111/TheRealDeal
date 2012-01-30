@@ -23,9 +23,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var location1 = TestData.CreateLocationBend();
             var location2 = TestData.CreateLocationHamsterville();
 
-            var soccerGame1 = new Game(DateTime.Now, soccer, location1);
-            var soccerGame2 = new Game(DateTime.Now, soccer, location2);
-            var basketballGame = new Game(DateTime.Now, basketball, location1);
+            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
+            var soccerGame2 = new GameWithTeams(DateTime.Now, soccer, location2);
+            var basketballGame = new GameWithTeams(DateTime.Now, basketball, location1);
             var listOfGames = new List<Game> {soccerGame1, soccerGame2, basketballGame};
 
             var request = new SearchForGameRequest {Location = location1.Name, Sport = soccer.Name};
@@ -38,9 +38,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.GamesFound.Count, Is.EqualTo(1));
-            Assert.That((object) response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
-            Assert.That((object) response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
+            Assert.That(response.GamesFound.Count, Is.EqualTo(1));
+            Assert.That(response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
+            Assert.That(response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
         }
 
         [Test]

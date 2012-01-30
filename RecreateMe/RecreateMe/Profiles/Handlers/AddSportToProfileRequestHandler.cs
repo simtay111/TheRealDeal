@@ -25,7 +25,7 @@ namespace RecreateMe.Profiles.Handlers
 
             profile.SportsPlayed.Add(sport);
 
-            _profileRepository.SaveOrUpdate(profile);
+            _profileRepository.AddSportToProfile(profile, sport);
 
             return new AddSportToProfileResponse(ResponseCodes.Success);
         }

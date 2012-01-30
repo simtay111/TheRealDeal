@@ -37,8 +37,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object, _mockProfileRepo.Object);
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That((object) game.Players.Count, Is.Not.EqualTo(0));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(game.Players.Count, Is.Not.EqualTo(0));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.OnlyTeamsCanJoin));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.OnlyTeamsCanJoin));
         }
     }
 }

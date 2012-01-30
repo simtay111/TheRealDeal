@@ -13,6 +13,13 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private Mock<ILocationRepository> _mockLocationRepo;
         private Mock<IProfileRepository> _mockProfileRepo;
         private Profile _profile;
+        private bool _profileWasSavedSuccessfully;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _profileWasSavedSuccessfully = false;
+        }
 
         [Test]
         public void CanAddLocationToProfile()
@@ -35,6 +42,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             Assert.That(_profile.Locations.Count, Is.Not.EqualTo(0));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.True(_profileWasSavedSuccessfully);
         }
 
         [Test]
@@ -50,6 +58,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
+            Assert.False(_profileWasSavedSuccessfully);
         }
 
         [Test]
@@ -66,6 +75,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotFound));
+            Assert.False(_profileWasSavedSuccessfully);
         }
 
         private void CreateMockProfileAndLocationRepos(string profileId, string location)
@@ -74,7 +84,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _mockLocationRepo.Setup(x => x.FindByName(It.Is<string>(d => d == location))).Returns(new Location(1));
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(It.Is<string>(d => d == profileId))).Returns(_profile);
-            _mockProfileRepo.Setup(x => x.SaveOrUpdate(It.IsAny<Profile>())).Returns(true);
+            _mockProfileRepo.Setup(x => x.AddLocationToProfile(It.IsAny<Profile>(), It.IsAny<Location>())).Callback(() => _profileWasSavedSuccessfully = true);
         }
     }
 }

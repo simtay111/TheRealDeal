@@ -25,7 +25,7 @@ namespace RecreateMe.Profiles.Handlers
 
             profile.Locations.Add(location);
 
-            _profileRepository.SaveOrUpdate(profile);
+            _profileRepository.AddLocationToProfile(profile, location);
 
             return new AddLocationToProfileResponse(ResponseCodes.Success);
         }

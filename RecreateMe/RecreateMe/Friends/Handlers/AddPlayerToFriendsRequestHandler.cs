@@ -14,10 +14,11 @@ namespace RecreateMe.Friends.Handlers
         public AddPlayerToFriendsResponse Handle(AddPlayerToFriendsRequest request)
         {
             var profile = _profileRepository.GetByProfileId(request.ProfileId);
+            var friendProfile = _profileRepository.GetByProfileId(request.FriendId);
 
-            profile.FriendsIds.Add(request.FriendId);
+            profile.FriendsIds.Add(friendProfile);
 
-            _profileRepository.SaveOrUpdate(profile);
+            _profileRepository.AddFriendToProfile(profile, friendProfile);
 
             return new AddPlayerToFriendsResponse(ResponseCodes.Success);
         }

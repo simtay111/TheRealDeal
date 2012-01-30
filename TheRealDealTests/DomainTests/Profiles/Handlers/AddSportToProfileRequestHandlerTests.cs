@@ -14,6 +14,13 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private Mock<ISportRepository> _mockSportRepo;
         private AddSportToProfileRequest _request;
         private Profile _profile;
+        private bool _profileWasSavedSuccessfully;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _profileWasSavedSuccessfully = false;
+        }
 
         [Test]
         public void CanAddSportToProfileViaUniqueIdOfPerson()
@@ -29,13 +36,15 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _profile = new Profile();
 
             SetUpMockProfileUpdaterAndSportRepo(uniqueId);
-            _mockIProfileUpdater.Setup(x => x.SaveOrUpdate(It.Is<Profile>(d => d == _profile))).Returns(true);
+            _mockIProfileUpdater.Setup(x => x.AddSportToProfile(It.Is<Profile>(d => d == _profile), It.IsAny<Sport>())).
+                Callback(() => _profileWasSavedSuccessfully = true);
 
             var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
             var response = handler.Handle(_request);
 
             Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
             Assert.AreEqual(_profile.SportsPlayed.Count, 1);
+            Assert.True(_profileWasSavedSuccessfully);
         }
 
         [Test]

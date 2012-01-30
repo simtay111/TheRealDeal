@@ -16,7 +16,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [SetUp]
         public void SetUp()
         {
-            _game = new Game(DateTime.Now, null, null);
+            _game = new TestableGame(DateTime.Now, null, null);
         }
 
         [Test]
@@ -57,6 +57,13 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         public void EveryGameHasAGameIdThatIsAGuidCreatedAtCreationgOfGame()
         {
             Assert.NotNull(_game.Id);
+        }
+    }
+
+    public class TestableGame : Game
+    {
+        public TestableGame(DateTime dateTime, Sport sport, Location location) : base(dateTime, sport, location)
+        {
         }
     }
 }

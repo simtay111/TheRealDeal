@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Helpers;
+using RecreateMe.Locales;
 using RecreateMe.Profiles;
+using RecreateMe.Sports;
 
 namespace RecreateMeSql
 {
@@ -14,6 +16,21 @@ namespace RecreateMeSql
         }
 
         public bool SaveOrUpdate(Profile profile)
+        {
+            return true;
+        }
+
+        public bool AddSportToProfile(Profile profile, Sport sport)
+        {
+            return true;
+        }
+
+        public bool AddLocationToProfile(Profile profile, Location location)
+        {
+            return true;
+        }
+
+        public bool AddFriendToProfile(Profile profile, Profile friend)
         {
             return true;
         }

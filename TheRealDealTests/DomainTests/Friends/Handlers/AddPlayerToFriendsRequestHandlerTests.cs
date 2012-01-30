@@ -18,18 +18,20 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var request = new AddPlayerToFriendsRequest() {FriendId = "SomeId", ProfileId = "ProfId"};
 
             var profile = new Profile();
+            var friendProfile = new Profile();
 
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);
-            _mockProfileRepo.Setup(x => x.SaveOrUpdate(profile)).Callback(() => profileWasSaved = true);
+            _mockProfileRepo.Setup(x => x.GetByProfileId(request.FriendId)).Returns(friendProfile);
+            _mockProfileRepo.Setup(x => x.AddFriendToProfile(profile, friendProfile)).Callback(() => profileWasSaved = true);
 
             var handler = new AddPlayerToFriendsRequestHandler(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
             Assert.True(profileWasSaved);
-            Assert.That((object) profile.FriendsIds[0], Is.EqualTo(request.FriendId));
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
     }
 }
