@@ -46,15 +46,16 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult CreateProfile()
         {
-            var sportRepo = new SportRepository();
-
-            var sports = sportRepo.GetNamesOfAllSports();
+            var sports = new SportRepository().GetNamesOfAllSports();
             
             var selectList = new SelectList(sports);
 
-            ViewBag.ListOfSports = selectList;
+            var viewModel = new CreateProfileModel()
+                                {
+                                    SportsList = selectList
+                                };
 
-            return View();
+            return View(viewModel);
         }
 
         [Authorize]
@@ -63,7 +64,16 @@ namespace TheRealDeal.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                var sports = new SportRepository().GetNamesOfAllSports();
+
+                var selectList = new SelectList(sports);
+
+                var viewModel = new CreateProfileModel()
+                                    {
+                                        SportsList = selectList
+                                    };
+
+                return View(viewModel);
             }
 
             var request = new CreateProfileRequest(User.Identity.Name, model.Name, model.Location, model.Sports,

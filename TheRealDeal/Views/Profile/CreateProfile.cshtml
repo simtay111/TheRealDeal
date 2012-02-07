@@ -27,7 +27,7 @@
     </div>
     <div class="CreateProfile">
         @Html.LabelFor(x => x.Sports)
-        @Html.DropDownList("Sports", (SelectList) ViewBag.ListOfSports, "-- Select One --")
+        @Html.DropDownList("Sports", Model.SportsList, "-- Select One --")
         @Html.ValidationMessageFor(x => x.Sports)
     
     </div>

@@ -34,8 +34,20 @@
     <Reference Include="Moq">
       <HintPath>..\..\..\Tools\Moq.4.0.10827\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Neo4jClient">
+      <HintPath>..\packages\Neo4jClient.1.0.0.272\lib\Neo4jClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Neo4RestNet">
+      <HintPath>..\..\DatabaseTests\SepiaGroup-Neo4jRestNet-ac4b5be\Neo4jRestNet\bin\Debug\Neo4RestNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.2.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\RecreateMe\Tests\bin\Debug\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.101.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -43,8 +55,12 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTests\JsonDataAccessTests.cs" />
-    <Compile Include="DataTests\ProfileRepositoryTests.cs" />
+    <Compile Include="DataTests\DataBuilder\AccountRelationship.cs" />
+    <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
+    <Compile Include="DataTests\DataBuilder\SampleDataBuilderTests.cs" />
+    <Compile Include="DataTests\PersistentTestObject.cs" />
+    <Compile Include="DataTests\Neo4JConnectionTests.cs" />
+    <Compile Include="DataTests\UserRepositoryTests.cs" />
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />

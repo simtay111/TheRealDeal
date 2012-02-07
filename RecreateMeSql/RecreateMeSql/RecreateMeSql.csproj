@@ -31,14 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Neo4RestNet">
+      <HintPath>..\..\..\DatabaseTests\SepiaGroup-Neo4jRestNet-ac4b5be\Neo4jRestNet\bin\Debug\Neo4RestNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\DatabaseTests\SepiaGroup-Neo4jRestNet-ac4b5be\Neo4jRestNet\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IJsonDataAccess.cs" />
-    <Compile Include="JsonDataAccess.cs" />
     <Compile Include="LocationRepository.cs" />
     <Compile Include="ProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

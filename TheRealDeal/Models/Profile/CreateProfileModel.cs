@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace TheRealDeal.Models.Profile
 {
@@ -10,6 +11,8 @@ namespace TheRealDeal.Models.Profile
         public string Sports { get; set; }
 
         [RegularExpression("[0-9]", ErrorMessage = "Skill Level Must Be From One To Ten!")]
-        public string SkillLevel { get; set; } 
+        public string SkillLevel { get; set; }
+
+        public SelectList SportsList { get; set; }
     }
 }
