@@ -59,7 +59,6 @@
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilderTests.cs" />
     <Compile Include="DataTests\PersistentTestObject.cs" />
-    <Compile Include="DataTests\Neo4JConnectionTests.cs" />
     <Compile Include="DataTests\UserRepositoryTests.cs" />
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
