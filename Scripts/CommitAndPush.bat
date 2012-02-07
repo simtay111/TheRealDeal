@@ -1,8 +1,8 @@
 cd..
 git add -A
-go
+pause
 git commit -m "%*"
-go
+pause
 git push origin master
-go
+pause
 cd scripts
