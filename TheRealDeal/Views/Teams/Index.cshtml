@@ -1,0 +1,20 @@
+﻿@using TheRealDeal.Models.Teams
+@model TeamsViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Your Teams</h2>
+
+<ul>
+@foreach (var team in Model.Teams)
+{
+    <li>
+        @Html.Label(team.Name)
+    </li>
+}
+</ul>
+
+<button type="button" onclick="location.href = '/Teams/CreateTeam/'">Create A Team.</button>

@@ -5,6 +5,7 @@ using System.Web.Helpers;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using TheRealDealTests.DomainTests;
 
 namespace RecreateMeSql
 {

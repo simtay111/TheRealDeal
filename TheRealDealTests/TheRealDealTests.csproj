@@ -55,12 +55,13 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTests\DataBuilder\AccountRelationship.cs" />
+    <Compile Include="DataTests\DataBuilder\DataBuilderTests.cs" />
+    <Compile Include="DataTests\DataBuilder\DataTestHelper.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
-    <Compile Include="DataTests\DataBuilder\SampleDataBuilderTests.cs" />
-    <Compile Include="DataTests\PersistentTestObject.cs" />
+    <Compile Include="DataTests\ProfileRepositoryTests.cs" />
     <Compile Include="DataTests\UserRepositoryTests.cs" />
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
+    <Compile Include="DeliveryTests\TeamsControllerTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\GetFriendsRequestHandlerTests.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="DomainTests\Sports\SportTests.cs" />
     <Compile Include="DomainTests\Sports\SportWithSkillLevelTests.cs" />
     <Compile Include="DomainTests\Teams\CreateTeamRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Teams\GetTeamsForProfileHandlerTests.cs" />
     <Compile Include="DomainTests\Teams\TeamTests.cs" />
     <Compile Include="DomainTests\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

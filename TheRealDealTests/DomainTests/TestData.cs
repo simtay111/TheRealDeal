@@ -3,6 +3,7 @@ using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMe.Teams;
 
 namespace TheRealDealTests.DomainTests
 {
@@ -109,6 +110,30 @@ namespace TheRealDealTests.DomainTests
                        };
             return _basketball;
         }
+
+        public static Team CreateTeam1()
+        {
+            return new Team()
+                       {
+                           MaxSize = 6,
+                           Name = "Super team",
+                           Players = GetListOfMockedProfiles()
+                       };
+        }
+
+        public static Team CreateTeam2()
+        {
+            var profiles = GetListOfMockedProfiles();
+            profiles.RemoveAt(0);
+
+            return new Team()
+                       {
+                           MaxSize = 12,
+                           Name = "Mega team",
+                           Players = profiles
+                       };
+        }
+
         public static Location CreateLocationBend()
         {
             _location1 = new Location(1, "Bend");
@@ -131,7 +156,5 @@ namespace TheRealDealTests.DomainTests
                            CreateLocationHamsterville()
                        };
         }
-
-
     }
 }

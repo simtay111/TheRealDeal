@@ -7,6 +7,7 @@ using Neo4jRestNet.GremlinPlugin;
 using Neo4jRestNet.Rest;
 using RecreateMe.Profiles;
 using RecreateMeSql;
+using TheRealDealTests.DataTests.DataBuilder;
 
 namespace TheRealDealTests.DataTests
 {
@@ -15,53 +16,65 @@ namespace TheRealDealTests.DataTests
     public class UserRepositoryTests
     {
         private UserRepository _userRepo;
+        readonly SampleDataBuilder _dataBuilder = new SampleDataBuilder();
 
         [SetUp]
         public void SetUp()
         {
             _userRepo = new UserRepository();
+
+            _dataBuilder.DeleteAllData();
         }
 
         [Test]
         public void CanCreateNewUser()
         {
-           // const string userName = "Billy@Bob.com";
-           // const string password = "password1";
-            
-           // _userRepo.CreateUser(userName, password);
+            const string username = "Bilbo";
+            const string password = "Baggins";
 
-           // var rootNode = Node.GetRootNode();
+            _userRepo.CreateUser(username, password);
 
-           // var travRel = new TraverseRelationship("Account", RelationshipDirection.All);
+            var createdUsers = DataTestHelper.GetAllAccountNodes();
 
-           //var nodes = rootNode.Traverse(Order.BreadthFirst, Uniqueness.None, new List<TraverseRelationship>{ travRel},PruneEvaluator.None, ReturnFilter.AllButStartNode, 1, ReturnType.Node);
-
-            
-
-           // var nodesList = nodes as List<Node>;
-
-           // var nodesy = nodesList.Where(x => (string) x.Properties.GetProperty("Username") == "Billy@Bob.com");
-
-
-           // foreach (Node graphObject in nodes)
-           // {
-           //     Assert.NotNull(graphObject);
-           // }
-
-           // Neo4jRestApi.GetNode();
-
-           // //var node = Node.GetNode();
-            //Assert.NotNull(node);
+            Assert.That(createdUsers.Count, Is.EqualTo(1));
+            Assert.That(createdUsers[0].Password, Is.EqualTo(password));
+            Assert.That(createdUsers[0].UserName, Is.EqualTo(username));
         }
 
         [Test]
         public void CanSeeIfUserAlreadyExists()
         {
-            const string userName = "Billy@Bob.com";
+            const string username = "Bilbo";
+            const string password = "Baggins";
+            _userRepo.CreateUser(username, password);
 
-            var userAlreadyExists = _userRepo.AlreadyExists(userName);
+            var userExists = _userRepo.AlreadyExists(username);
 
-            Assert.True(userAlreadyExists);
+            Assert.True(userExists);
+        }
+
+        [Test]
+        public void CanFindUserByNameAndPassword()
+        {
+            const string username = "Bilbo";
+            const string password = "Baggins";
+            _userRepo.CreateUser(username, password);
+
+            var userExists = _userRepo.FoundUserByNameAndPassword(username, password);
+
+            Assert.True(userExists);
+        }
+
+        [Test]
+        public void FindingUsersByNameAndPasswordIsCaseSensitive()
+        {
+            const string username = "Bilbo";
+            const string password = "Baggins";
+            _userRepo.CreateUser(username, password);
+
+            var userExists = _userRepo.FoundUserByNameAndPassword(username, "baggins");
+
+            Assert.IsFalse(userExists);
         }
     }
 }

@@ -3,8 +3,9 @@ using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMe.Teams;
 
-namespace RecreateMeSql
+namespace TheRealDealTests.DomainTests
 {
     public static class TestData
     {
@@ -29,58 +30,56 @@ namespace RecreateMeSql
         public static Profile MockProfile1()
         {
             _profile1 = new Profile()
-                           {
-                               Name = new Name("Profile", "One"),
-                               SportsPlayed = { CreateSoccerWithSkillLevel() },
-                               UniqueId = "Prof1",
-                               Locations = {CreateLocation1()},
-                               AccountId = "User1"
-                               
-                           };
+            {
+                Name = new Name("Profile", "One"),
+                SportsPlayed = { CreateSoccerWithSkillLevel() },
+                UniqueId = "Prof1",
+                Locations = { CreateLocation1() }
+            };
             return _profile1;
         }
 
         public static Profile MockProfile2()
         {
             _profile2 = new Profile()
-                           {
-                               Name = new Name("Profile", "Two"),
-                               SportsPlayed = { CreateSoccerWithSkillLevel() },
-                               UniqueId = "Prof2",
-                               Locations = { CreateLocation2() },
-                               AccountId = "User1"
-                           };
+            {
+                Name = new Name("Profile", "Two"),
+                SportsPlayed = { CreateSoccerWithSkillLevel() },
+                UniqueId = "Prof2",
+                Locations = { CreateLocation2() }
+            };
             return _profile2;
         }
 
         public static Profile MockProfile3()
         {
             _profile3 = new Profile()
-                           {
-                               Name = new Name("Profile", "Three"),
-                               SportsPlayed = { CreateBasketballWithSkillLevel() },
-                               UniqueId = "Prof3",
-                               Locations = { CreateLocation3() },
-                               AccountId = "User1"
-                           };
+            {
+                Name = new Name("Profile", "Three"),
+                SportsPlayed = { CreateBasketballWithSkillLevel() },
+                UniqueId = "Prof3",
+                Locations = { CreateLocation3() }
+            };
             return _profile3;
         }
 
-        public static SportWithSkillLevel CreateSoccerWithSkillLevel(){
+        public static SportWithSkillLevel CreateSoccerWithSkillLevel()
+        {
             var sport = new SportWithSkillLevel()
-                            {
-                                Name = "Soccer",
-                                SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
-                            };
+            {
+                Name = "Soccer",
+                SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
+            };
             return sport;
         }
 
-        public static SportWithSkillLevel CreateBasketballWithSkillLevel(){
+        public static SportWithSkillLevel CreateBasketballWithSkillLevel()
+        {
             var sport = new SportWithSkillLevel()
-                            {
-                                Name = "Basketball",
-                                SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
-                            };
+            {
+                Name = "Basketball",
+                SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
+            };
             return sport;
         }
 
@@ -100,19 +99,43 @@ namespace RecreateMeSql
         public static Sport CreateSoccerGame()
         {
             _soccer = new Sport()
-                       {
-                           Name = "Soccer"
-                       };
+            {
+                Name = "Soccer"
+            };
             return _soccer;
         }
         public static Sport CreateBasketballGame()
         {
-           _basketball = new Sport()
-                       {
-                           Name = "Basketball"
-                       };
+            _basketball = new Sport()
+            {
+                Name = "Basketball"
+            };
             return _basketball;
         }
+
+        public static Team CreateTeam1()
+        {
+            return new Team()
+            {
+                MaxSize = 6,
+                Name = "Super team",
+                Players = GetListOfMockedProfiles()
+            };
+        }
+
+        public static Team CreateTeam2()
+        {
+            var profiles = GetListOfMockedProfiles();
+            profiles.RemoveAt(0);
+
+            return new Team()
+            {
+                MaxSize = 12,
+                Name = "Mega team",
+                Players = profiles
+            };
+        }
+
         public static Location CreateLocationBend()
         {
             _location1 = new Location(1, "Bend");
@@ -135,7 +158,5 @@ namespace RecreateMeSql
                            CreateLocationHamsterville()
                        };
         }
-
-
     }
 }

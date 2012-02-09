@@ -1,4 +1,3 @@
-using RecreateMe.Exceptions;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Teams;
 
@@ -8,7 +7,6 @@ namespace RecreateMe.Scheduling.Handlers
     {
         private readonly IGameRepository _gameRepository;
         private readonly ITeamRepository _teamRepository;
-        public AddTeamToGameRequestHandler() : this(new GameRepository(), new TeamRepository()){}
 
         public AddTeamToGameRequestHandler(IGameRepository gameRepository, ITeamRepository teamRepository)
         {
