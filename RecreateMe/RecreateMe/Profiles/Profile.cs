@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 
@@ -11,16 +12,22 @@ namespace RecreateMe.Profiles
         {
             Locations = new List<Location>();
             SportsPlayed = new List<SportWithSkillLevel>();
-            FriendsIds = new List<Profile>();
+            FriendsIds = new List<string>();
         }
 
+        [JsonIgnore]
         public string AccountId { get; set; }
-        public IList<Profile> FriendsIds;
-        public Name Name { get; set; }
-        public string FullAccountName { get { return String.Format("{0} ({1})", Name.FullName, AccountId); }}
+
+        [JsonIgnore]
+        public IList<string> FriendsIds;
+
+        [JsonIgnore]
         public IList<Location> Locations { get; set; }
-        public string UniqueId { get; set; }
+
+        [JsonIgnore]
         public IList<SportWithSkillLevel> SportsPlayed { get; set; }
 
+        public string UniqueId { get; set; }
+        public string ProfileId { get; set; }
     }
 }

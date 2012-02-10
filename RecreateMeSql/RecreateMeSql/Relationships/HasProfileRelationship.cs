@@ -3,14 +3,14 @@ using RecreateMe.Login;
 
 namespace RecreateMeSql.Relationships
 {
-    public class AccountRelationship : Relationship, IRelationshipAllowingSourceNode<RootNode>
+    public class HasProfileRelationship : Relationship, IRelationshipAllowingSourceNode<Account>
     {
-        public AccountRelationship(NodeReference targetNode)
+        public HasProfileRelationship(NodeReference targetNode)
             : base(targetNode)
         {
         }
 
-        public AccountRelationship(NodeReference targetNode, object data)
+        public HasProfileRelationship(NodeReference targetNode, object data)
             : base(targetNode, data)
         {
         }

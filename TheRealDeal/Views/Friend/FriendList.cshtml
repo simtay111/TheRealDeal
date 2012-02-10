@@ -10,10 +10,10 @@
 <h2>Here are your friends!</h2>
 
 <ul>
-@foreach (var friend in (Dictionary<string, Name>)ViewData[ViewDataConstants.FriendsDictionary])
+@foreach (var friend in (Dictionary<string, string>)ViewData[ViewDataConstants.FriendsDictionary])
 {
     <li>
-    @Html.Label(friend.Key, friend.Value.FullName)
+    @Html.Label(friend.Key, friend.Value)
     </li>
 }
 </ul>

@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RecreateMe.Profiles;
 using RecreateMeSql;
 using TheRealDealTests.DataTests.DataBuilder;
 
@@ -7,7 +8,7 @@ namespace TheRealDealTests.DataTests
     [TestFixture]
     public class ProfileRepositoryTests
     {
-        readonly SampleDataBuilder _data = new SampleDataBuilder();
+        private readonly SampleDataBuilder _data = new SampleDataBuilder();
         private ProfileRepository _repo;
 
         [SetUp]
@@ -18,10 +19,27 @@ namespace TheRealDealTests.DataTests
             _repo = new ProfileRepository();
         }
 
-         [Test]
+        [Test]
         public void CanGetByAccount()
-         {
-             Assert.Fail();
-         }
+        {
+            const string accountName = "Simtay111@gmail.com";
+            var profiles = _repo.GetByAccount(accountName);
+
+            Assert.That(profiles.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CanSaveProfiles()
+        {
+            var profile = new Profile()
+                              {
+                                  AccountId = "Simtay111@gmail.com",
+                                  ProfileId = "Simtay111",
+                              };
+
+            var wasSuccessful = _repo.Save(profile);
+
+            Assert.True(wasSuccessful);
+        }
     }
 }

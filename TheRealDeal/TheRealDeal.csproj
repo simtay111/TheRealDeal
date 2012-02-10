@@ -40,9 +40,6 @@
     <Reference Include="FormsAuthenticationExtensions">
       <HintPath>..\packages\FormsAuthenticationExtensions.1.2.0\lib\FormsAuthenticationExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Moq">
-      <HintPath>..\..\..\Tools\Moq.4.0.10827\NET40\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="RecreateMe, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using Neo4jClient;
-using Neo4jRestNet.Core;
-using Neo4jRestNet.GremlinPlugin;
 using RecreateMeSql;
 
 namespace TheRealDealTests.DataTests.DataBuilder

@@ -3,7 +3,6 @@ using Moq;
 using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Locales;
-using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Profiles.Handlers;
 using RecreateMe.Sports;
@@ -17,7 +16,6 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private Mock<ISportRepository> _mockSportRepo;
         private Mock<IProfileRepository> _mockProfileRepo;
         private Mock<ProfileBuilder> _mockProfileBuilder;
-        private Mock<IUserRepository> _mockUserRepository;
         private Profile _profile;
 
         [SetUp]
@@ -88,6 +86,22 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.MaxProfilesReached));
         }
 
+        [Test]
+        public void ChecksToSeeIfProfileNameIsAlreadyInUse()
+        {
+            CreateMockRepositories();
+            const string accountName = "NoProfiles";
+
+            var request = new CreateProfileRequest(accountName, "MyAccount");
+            _mockProfileRepo.Setup(x => x.GetByAccount(accountName)).Returns(new List<Profile>());
+            _mockProfileRepo.Setup(x => x.ProfileExistsWithName(request.ProfileId)).Returns(true);
+            var handler = CreateProfileRequestHandler();
+
+           var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileNameAlreadyExists));
+        }
+
         private CreateProfileRequestHandler CreateProfileRequestHandler()
         {
             var handler = new CreateProfileRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
@@ -102,7 +116,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _mockSportRepo = new Mock<ISportRepository>();
             _mockSportRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(new Sport());
             _mockProfileRepo = new Mock<IProfileRepository>();
-            _mockProfileRepo.Setup(x => x.SaveOrUpdate(It.IsAny<Profile>())).Returns(true);
+            _mockProfileRepo.Setup(x => x.Save(It.IsAny<Profile>())).Returns(true);
             _mockProfileRepo.Setup(x => x.GetByAccount(It.IsAny<string>())).Returns(new List<Profile>(){ new Profile()});
             _mockProfileBuilder = new Mock<ProfileBuilder>() {CallBase = true};
             _mockProfileBuilder.Setup(x => x.Build()).Returns(_profile);

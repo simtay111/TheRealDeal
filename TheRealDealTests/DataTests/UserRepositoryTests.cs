@@ -1,11 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using Moq;
 using NUnit.Framework;
-using Neo4jRestNet.Core;
-using Neo4jRestNet.GremlinPlugin;
-using Neo4jRestNet.Rest;
-using RecreateMe.Profiles;
 using RecreateMeSql;
 using TheRealDealTests.DataTests.DataBuilder;
 

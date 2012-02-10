@@ -27,7 +27,7 @@ namespace RecreateMeSql
         {
             var gc = CreateGraphClient();
 
-            var nodes = gc.RootNode.OutE(UserEnums.Account.ToString()).InV<Account>(n => n.UserName == username);
+            var nodes = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.UserName == username);
 
             return nodes.Any();
         }
@@ -36,7 +36,7 @@ namespace RecreateMeSql
         {
             var gc = CreateGraphClient();
 
-            var accountNode = gc.RootNode.OutE(UserEnums.Account.ToString()).InV<Account>(n => (n.UserName == username)).FirstOrDefault();
+            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => (n.UserName == username)).FirstOrDefault();
 
             if (accountNode == null)
                 return false;

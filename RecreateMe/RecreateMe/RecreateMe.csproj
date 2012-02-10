@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -73,8 +76,6 @@
     <Compile Include="Profiles\Handlers\GetSportsForProfileHandler.cs" />
     <Compile Include="Profiles\IProfileBuilder.cs" />
     <Compile Include="Profiles\IProfileRepository.cs" />
-    <Compile Include="Profiles\Name.cs" />
-    <Compile Include="Profiles\NameParser.cs" />
     <Compile Include="Profiles\Profile.cs" />
     <Compile Include="Profiles\ProfileBuilder.cs" />
     <Compile Include="Profiles\Search\Handlers\SearchForProfileRequestHandler.cs" />

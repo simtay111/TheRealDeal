@@ -8,7 +8,7 @@ namespace RecreateMe.Profiles
     {
         private Profile _profile;
         public virtual Sport Sport { get; set; }
-        public virtual Name Name { get; private set; }
+        public virtual string ProfileId { get; private set; }
         public SkillLevel LevelOfSkill { get; set; }
         public virtual Location Location { get; private set; }
 
@@ -25,7 +25,7 @@ namespace RecreateMe.Profiles
         {
             _profile = new Profile
             {
-                Name = Name
+                ProfileId = ProfileId
             };
             _profile.Locations.Add(Location);
             CreateSportAndSkillLevel();
@@ -55,9 +55,9 @@ namespace RecreateMe.Profiles
             }
         }
 
-        public ProfileBuilder WithName(Name name)
+        public ProfileBuilder WithProfileId(string profileId)
         {
-            Name = name;
+            ProfileId = profileId;
             return this;
         }
 

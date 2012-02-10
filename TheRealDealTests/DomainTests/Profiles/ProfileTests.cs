@@ -17,14 +17,6 @@ namespace TheRealDealTests.DomainTests.Profiles
         }
 
         [Test]
-        public void CanGetAndSetNameProperty()
-        {
-            var name = new Mock<Name>().Object;
-            _profile.Name = name;
-            Assert.That((object) _profile.Name, Is.SameAs(name));
-        }
-
-        [Test]
         public void HoldsAListOfLocationProperties()
         {
             Assert.NotNull(_profile.Locations);
@@ -39,14 +31,5 @@ namespace TheRealDealTests.DomainTests.Profiles
             Assert.That((object) _profile.SportsPlayed[0], Is.SameAs(sport));
         }
 
-        [Test]
-        public void CanGetFullAccountName()
-        {
-            var name = new Name("Simon", "Taylor");
-            _profile.Name = name;
-            _profile.AccountId = "Moo@Moo.com";
-
-            Assert.That(_profile.FullAccountName, Is.EqualTo("Simon Taylor (Moo@Moo.com)"));
-        }
     }
 }

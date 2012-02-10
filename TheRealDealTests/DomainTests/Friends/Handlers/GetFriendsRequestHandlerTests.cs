@@ -20,8 +20,8 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
 
             var repo = new Mock<IProfileRepository>();
             repo.Setup(x => x.GetFriendIdAndNameListForProfile(profile.UniqueId)).
-                Returns(new Dictionary<string, Name>()
-                            {{friend1.UniqueId, friend1.Name}, {friend2.UniqueId, friend2.Name}});
+                Returns(new Dictionary<string, string>()
+                            {{friend1.UniqueId, friend1.ProfileId}, {friend2.UniqueId, friend2.ProfileId}});
             
             var request = new GetFriendsRequestHandlerRequest()
                               {
@@ -33,8 +33,8 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.FriendsNamesAndIds.Count, Is.EqualTo(2));
-            Assert.That(response.FriendsNamesAndIds[friend1.UniqueId], Is.EqualTo(friend1.Name));
-            Assert.That(response.FriendsNamesAndIds[friend2.UniqueId], Is.EqualTo(friend2.Name));
+            Assert.That(response.FriendsNamesAndIds[friend1.UniqueId], Is.EqualTo(friend1.ProfileId));
+            Assert.That(response.FriendsNamesAndIds[friend2.UniqueId], Is.EqualTo(friend2.ProfileId));
         }
          
     }

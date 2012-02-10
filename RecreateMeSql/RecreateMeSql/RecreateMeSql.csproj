@@ -51,10 +51,11 @@
     <Compile Include="ProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships\AccountRelationship.cs" />
+    <Compile Include="Relationships\HasProfileRelationship.cs" />
     <Compile Include="SportRepository.cs" />
     <Compile Include="TeamRepository.cs" />
     <Compile Include="TestData.cs" />
-    <Compile Include="UserEnums.cs" />
+    <Compile Include="RelationsTypes.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

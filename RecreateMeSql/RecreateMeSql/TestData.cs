@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile1 = new Profile()
             {
-                Name = new Name("Profile", "One"),
+                ProfileId = "ProfileOne",
                 SportsPlayed = { CreateSoccerWithSkillLevel() },
                 UniqueId = "Prof1",
                 Locations = { CreateLocation1() }
@@ -43,7 +43,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile2 = new Profile()
             {
-                Name = new Name("Profile", "Two"),
+                ProfileId = "ProfileTwo",
                 SportsPlayed = { CreateSoccerWithSkillLevel() },
                 UniqueId = "Prof2",
                 Locations = { CreateLocation2() }
@@ -55,7 +55,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile3 = new Profile()
             {
-                Name = new Name("Profile", "Three"),
+                ProfileId = "ProfileThree",
                 SportsPlayed = { CreateBasketballWithSkillLevel() },
                 UniqueId = "Prof3",
                 Locations = { CreateLocation3() }

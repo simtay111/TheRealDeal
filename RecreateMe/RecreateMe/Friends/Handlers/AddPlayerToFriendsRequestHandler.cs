@@ -16,7 +16,7 @@ namespace RecreateMe.Friends.Handlers
             var profile = _profileRepository.GetByProfileId(request.ProfileId);
             var friendProfile = _profileRepository.GetByProfileId(request.FriendId);
 
-            profile.FriendsIds.Add(friendProfile);
+            profile.FriendsIds.Add(friendProfile.ProfileId);
 
             _profileRepository.AddFriendToProfile(profile, friendProfile);
 

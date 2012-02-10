@@ -21,7 +21,8 @@ namespace RecreateMe
         FieldsAreBlank,
         PasswordsDontMatch,
         MaxProfilesReached,
-        LocationNotFound
+        LocationNotFound,
+        ProfileNameAlreadyExists
     }
 
     public static class ResponseCodeExtensions

@@ -6,7 +6,7 @@ namespace RecreateMe.Profiles
     public interface IProfileBuilder
     {
         Profile Build();
-        ProfileBuilder WithName(Name name);
+        ProfileBuilder WithProfileId(string profileId);
         ProfileBuilder WithLocation(Location location);
         ProfileBuilder WithSport(Sport sport);
         ProfileBuilder WithSkillLevel(SkillLevel skillLevel);

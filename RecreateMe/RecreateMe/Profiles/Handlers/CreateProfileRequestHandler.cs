@@ -22,13 +22,19 @@ namespace RecreateMe.Profiles.Handlers
         public CreateProfileResponse Handle(CreateProfileRequest request)
         {
             if (AtMaxAmountOfProfiles(request.UserId)) return new CreateProfileResponse(ResponseCodes.MaxProfilesReached);
-            if (string.IsNullOrEmpty(request.Name)) return new CreateProfileResponse(ResponseCodes.NameNotSpecified);
+            if (string.IsNullOrEmpty(request.ProfileId)) return new CreateProfileResponse(ResponseCodes.NameNotSpecified);
+            if (ProfileNameAlreadyExists(request.ProfileId)) return new CreateProfileResponse(ResponseCodes.ProfileNameAlreadyExists);
 
             var profile = BuildProfileFromRequest(request);
 
-            _profileRepository.SaveOrUpdate(profile);
+            _profileRepository.Save(profile);
 
             return new CreateProfileResponse(ResponseCodes.Success);
+        }
+
+        private bool ProfileNameAlreadyExists(string profileName)
+        {
+            return _profileRepository.ProfileExistsWithName(profileName);    
         }
 
         private bool AtMaxAmountOfProfiles(string userId)
@@ -44,9 +50,9 @@ namespace RecreateMe.Profiles.Handlers
             var skill = CreateSkillLevel(request);
             var sport = request.Sports != "" ? _sportRepository.FindByName(request.Sports) : null ;
             var location = request.Location != "" ? _locationRepository.FindByName(request.Location) : null;
-            var name = NameParser.CreateName(request.Name);
+            var profileId = request.ProfileId;
 
-            var profile = CreateProfile(sport, skill, name, location);
+            var profile = CreateProfile(sport, skill, profileId, location);
             profile.AccountId = request.UserId;
             return profile;
         }
@@ -59,9 +65,9 @@ namespace RecreateMe.Profiles.Handlers
             return skillLevel;
         }
 
-        private Profile CreateProfile(Sport sport, SkillLevel skill, Name name, Location location)
+        private Profile CreateProfile(Sport sport, SkillLevel skill, string profileId, Location location)
         {
-            var person = _profileBuilder.WithName(name)
+            var person = _profileBuilder.WithProfileId(profileId)
                 .WithLocation(location)
                 .WithSport(sport)
                 .WithSkillLevel(skill)
@@ -72,17 +78,17 @@ namespace RecreateMe.Profiles.Handlers
 
     public class CreateProfileRequest
     {
-        public CreateProfileRequest(string userId, string name, string location = "", string sports = "", string skillLevel = "")
+        public CreateProfileRequest(string userId, string profileId, string location = "", string sports = "", string skillLevel = "")
         {
             UserId = userId;
-            Name = name;
+            ProfileId = profileId;
             Location = location;
             Sports = sports;
             SkillLevel = skillLevel;
         }
 
         public readonly string UserId;
-        public readonly string Name;
+        public readonly string ProfileId;
         public readonly string Location;
         public readonly string Sports;
         public readonly string SkillLevel;

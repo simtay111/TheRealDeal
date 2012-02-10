@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Web.Helpers;
+using System.Linq;
+using Neo4jClient;
+using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
+using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMeSql.Relationships;
 using TheRealDealTests.DomainTests;
 
 namespace RecreateMeSql
@@ -16,11 +19,20 @@ namespace RecreateMeSql
             return TestData.MockProfile1();
         }
 
-        public bool SaveOrUpdate(Profile profile)
+        public bool Save(Profile profile)
         {
+            //var gc = CreateGraphClient();
+
+            //var profileNode = gc.Create(profile);
+
+            //var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.UserName == profile.AccountId).FirstOrDefault();
+
+            //    //.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>();
+            //gc.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
+
             return true;
         }
-
+        
         public bool AddSportToProfile(Profile profile, Sport sport)
         {
             return true;
@@ -58,11 +70,24 @@ namespace RecreateMeSql
             return profiles;
         }
 
-        public Dictionary<string, Name> GetFriendIdAndNameListForProfile(string profileId)
+        public Dictionary<string, string> GetFriendIdAndNameListForProfile(string profileId)
         {
             var friend1 = TestData.MockProfile2();
             var friend2 = TestData.MockProfile3();
-            return new Dictionary<string, Name>() {{friend1.UniqueId, friend1.Name}, {friend2.UniqueId, friend2.Name}};
+            return new Dictionary<string, string>() {{friend1.UniqueId, friend1.ProfileId}, {friend2.UniqueId, friend2.ProfileId}};
+        }
+
+        public bool ProfileExistsWithName(string profileName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private GraphClient CreateGraphClient()
+        {
+            var graphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
+
+            graphClient.Connect();
+            return graphClient;
         }
     }
 }

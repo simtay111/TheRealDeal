@@ -31,9 +31,9 @@ namespace TheRealDealTests.DomainTests.Profiles
         [Test]
         public void WithNameSetsNameOnProfile()
         {
-            var name = new Mock<Name>().Object;
-            var builder = _builder.WithName(name);
-            Assert.That((object) builder.Name, Is.EqualTo(name));
+            var profileId = "Myname";
+            var builder = _builder.WithProfileId(profileId);
+            Assert.That((object) builder.ProfileId, Is.EqualTo(profileId));
         }
 
         [Test]
@@ -47,10 +47,10 @@ namespace TheRealDealTests.DomainTests.Profiles
         [Test]
         public void CreatingLocationWithNullAssignsDefaultLocation()
         {
-            var name = new Mock<Name>().Object;
+            var profileId = "Myname";
             var profile = _builder
                 .WithLocation(null)
-                .WithName(name)
+                .WithProfileId(profileId)
                 .Build();
             Assert.AreEqual(profile.Locations.Count, 1);
             Assert.IsInstanceOf(typeof(Location), profile.Locations[0]);
@@ -107,7 +107,7 @@ namespace TheRealDealTests.DomainTests.Profiles
         private Mock<ProfileBuilder> CreateAMockBuilder()
         {
             var builder = new Mock<ProfileBuilder>() {CallBase = true};
-            builder.Setup(x => x.Name).Returns(new Mock<Name>().Object);
+            builder.Setup(x => x.ProfileId).Returns(string.Empty);
             builder.Setup(x => x.Location).Returns(new Mock<Location>(1).Object);
             return builder;
         }

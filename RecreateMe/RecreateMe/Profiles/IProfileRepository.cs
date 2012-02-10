@@ -8,7 +8,7 @@ namespace RecreateMe.Profiles
     public interface IProfileRepository
     {
         Profile GetByProfileId(string profileId);
-        bool SaveOrUpdate(Profile profile);
+        bool Save(Profile profile);
         bool AddSportToProfile(Profile profile, Sport sport);
         bool AddLocationToProfile(Profile profile, Location location);
         bool AddFriendToProfile(Profile profile, Profile friend);
@@ -16,6 +16,7 @@ namespace RecreateMe.Profiles
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);
         IList<Profile> GetByAccount(string accountName);
-        Dictionary<string, Name> GetFriendIdAndNameListForProfile(string profileId);
+        Dictionary<string, string> GetFriendIdAndNameListForProfile(string profileId);
+        bool ProfileExistsWithName(string profileName);
     }
 }

@@ -27,6 +27,6 @@ namespace RecreateMe.Friends.Handlers
 
     public class GetFriendsRequestHandlerResponse
     {
-        public Dictionary<string, Name> FriendsNamesAndIds { get; set; }
+        public Dictionary<string, string> FriendsNamesAndIds { get; set; }
     }
 }
