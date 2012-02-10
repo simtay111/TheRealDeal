@@ -36,6 +36,14 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             CreateAccounts();
             CreateProfilesForAccounts();
+            CreateSports();
+        }
+
+        private void CreateSports()
+        {
+            CreateSoccerSport();
+            CreateBasketballSport();
+            CreateFootballSport();
         }
 
         private void CreateProfilesForAccounts()
@@ -87,6 +95,24 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var userRepo = new UserRepository();
             userRepo.CreateUser("Pickles@Moo.com", "password");
+        }
+
+        public void CreateSoccerSport()
+        {
+            var sportRepo = new SportRepository();
+            sportRepo.CreateSport("Soccer");
+        }
+
+        public void CreateBasketballSport()
+        {
+            var sportRepo = new SportRepository();
+            sportRepo.CreateSport("Basketball");
+        }
+
+        public void CreateFootballSport()
+        {
+            var sportRepo = new SportRepository();
+            sportRepo.CreateSport("Football");
         }
     }
 

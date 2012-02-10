@@ -3,6 +3,8 @@
     public enum RelationsTypes
     {
         Account,
-        HasProfile
+        HasProfile,
+        BaseNode,
+        Sport
     }
 }

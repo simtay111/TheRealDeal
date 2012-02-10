@@ -6,7 +6,8 @@ namespace TheRealDealTests.DataTests.DataBuilder
     {
         SampleDataBuilder _dataBuilder = new SampleDataBuilder();
 
-        [Test]    
+        [Test]
+        [Category("TestingOnly")]
         public void BuildMeSumDater()
         {
             _dataBuilder.DeleteAllData();

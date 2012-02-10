@@ -1,0 +1,24 @@
+﻿using Neo4jClient;
+using RecreateMe.Login;
+using RecreateMeSql.SchemaNodes;
+
+namespace RecreateMeSql.Relationships
+{
+    public class SportRelationship : Relationship, IRelationshipAllowingSourceNode<SchemaNode>
+    {
+        public SportRelationship(NodeReference targetNode)
+            : base(targetNode)
+        {
+        }
+
+        public SportRelationship(NodeReference targetNode, object data)
+            : base(targetNode, data)
+        {
+        }
+
+        public override string RelationshipTypeKey
+        {
+            get { return RelationsTypes.Sport.ToString(); }
+        }
+    }
+}

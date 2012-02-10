@@ -6,5 +6,6 @@ namespace RecreateMe.Sports
     {
         Sport FindByName(string name);
         IList<string> GetNamesOfAllSports();
+        void CreateSport(string sportName);
     }
 }
