@@ -93,7 +93,7 @@ namespace RecreateMeSql
         {
             var friend1 = TestData.MockProfile2();
             var friend2 = TestData.MockProfile3();
-            return new Dictionary<string, string>() {{friend1.UniqueId, friend1.ProfileId}, {friend2.UniqueId, friend2.ProfileId}};
+            return new Dictionary<string, string>() {{friend1.ProfileId, friend1.ProfileId}, {friend2.ProfileId, friend2.ProfileId}};
         }
 
         public bool ProfileExistsWithName(string profileName)

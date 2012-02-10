@@ -8,7 +8,7 @@
         foreach (var friend in Model.Results)
         {
             <div>
-            @Html.ActionLink("Add: " + friend.ProfileId, "Add", "Friend", new { friendId = friend.UniqueId }, null)
+            @Html.ActionLink("Add: " + friend.ProfileId, "Add", "Friend", new { friendId = friend.ProfileId }, null)
             </div>
         }
     }

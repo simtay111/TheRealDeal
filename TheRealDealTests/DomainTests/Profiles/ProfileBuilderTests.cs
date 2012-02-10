@@ -95,15 +95,6 @@ namespace TheRealDealTests.DomainTests.Profiles
             Assert.AreEqual(profile.SportsPlayed[0].SkillLevel.Level, Constants.DefaultSkillLevel);
         }
 
-        [Test]
-        public void SetsAGuidAsTheUniqueIdAsAStringUponCreation()
-        {
-            _builder = CreateAMockBuilder().Object;
-            _builder.WithSport(new Mock<Sport>().Object);
-            var profile = _builder.Build();
-            Assert.False(string.IsNullOrEmpty(profile.UniqueId));
-        }
-
         private Mock<ProfileBuilder> CreateAMockBuilder()
         {
             var builder = new Mock<ProfileBuilder>() {CallBase = true};

@@ -16,7 +16,6 @@ namespace RecreateMe.Profiles
         {
             HandleNullParameters();
             CreateProfileWithDataFromBuilder();
-            _profile.UniqueId = Guid.NewGuid().ToString();
 
             return _profile;
         }

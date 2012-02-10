@@ -30,7 +30,7 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var response = handler.Handle(request);
 
             Assert.True(profileWasSaved);
-            Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile));
+            Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile.ProfileId));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
     }
