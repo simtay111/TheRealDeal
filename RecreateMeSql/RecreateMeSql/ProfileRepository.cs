@@ -7,6 +7,7 @@ using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
 using TheRealDealTests.DomainTests;
 
@@ -21,14 +22,15 @@ namespace RecreateMeSql
 
         public bool Save(Profile profile)
         {
-            //var gc = CreateGraphClient();
+            var gc = CreateGraphClient();
 
-            //var profileNode = gc.Create(profile);
+            var accountNode =
+                gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == profile.AccountId).Single();
+                    //.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
 
-            //var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.UserName == profile.AccountId).FirstOrDefault();
+            var profileNode = gc.Create(profile);
 
-            //    //.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>();
-            //gc.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
+            gc.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
 
             return true;
         }
@@ -65,9 +67,26 @@ namespace RecreateMeSql
 
         public IList<Profile> GetByAccount(string accountName)
         {
-            var profiles = TestData.GetListOfMockedProfiles();
-            profiles.RemoveAt(0);
-            return profiles;
+            var gc = CreateGraphClient();
+
+            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == accountName);
+            var profileNodes = accountNode.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
+
+            var profileMapper = new ProfileMapper();
+
+            var listOfProfiles = new List<Profile>();
+
+            foreach (var node  in profileNodes)
+            {
+                listOfProfiles.Add(profileMapper.Map(node));
+            }
+
+
+
+            //var profiles = TestData.GetListOfMockedProfiles();
+            //profiles.RemoveAt(0);
+            //return profiles;
+            return listOfProfiles;
         }
 
         public Dictionary<string, string> GetFriendIdAndNameListForProfile(string profileId)
@@ -89,5 +108,9 @@ namespace RecreateMeSql
             graphClient.Connect();
             return graphClient;
         }
+    }
+
+    public class GenericNodeType
+    {
     }
 }

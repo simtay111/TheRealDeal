@@ -34,12 +34,15 @@ namespace TheRealDealTests.DataTests
             var profile = new Profile()
                               {
                                   AccountId = "Simtay111@gmail.com",
-                                  ProfileId = "Simtay111",
+                                  ProfileId = "MyProfile"
                               };
 
             var wasSuccessful = _repo.Save(profile);
 
+            var profiles = _repo.GetByAccount(profile.AccountId);
+
             Assert.True(wasSuccessful);
+            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
         }
     }
 }

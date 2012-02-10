@@ -12,7 +12,7 @@ namespace RecreateMeSql
     {
         public void CreateUser(string userName, string password)
         {
-            var account = new Account() {Password = password, UserName = userName};
+            var account = new Account() {Password = password, AccountName = userName};
 
             var graphClient = CreateGraphClient();
 
@@ -27,7 +27,7 @@ namespace RecreateMeSql
         {
             var gc = CreateGraphClient();
 
-            var nodes = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.UserName == username);
+            var nodes = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == username);
 
             return nodes.Any();
         }
@@ -36,7 +36,7 @@ namespace RecreateMeSql
         {
             var gc = CreateGraphClient();
 
-            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => (n.UserName == username)).FirstOrDefault();
+            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
 
             if (accountNode == null)
                 return false;

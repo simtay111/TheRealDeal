@@ -9,7 +9,7 @@ namespace RecreateMeSql.Mappers
             return new Account()
                        {
                            Password = accountNode.Data.Password,
-                           UserName = accountNode.Data.UserName
+                           AccountName = accountNode.Data.AccountName
                        };
         }
     }

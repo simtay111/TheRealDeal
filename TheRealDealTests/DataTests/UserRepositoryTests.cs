@@ -31,7 +31,7 @@ namespace TheRealDealTests.DataTests
 
             Assert.That(createdUsers.Count, Is.EqualTo(1));
             Assert.That(createdUsers[0].Password, Is.EqualTo(password));
-            Assert.That(createdUsers[0].UserName, Is.EqualTo(username));
+            Assert.That(createdUsers[0].AccountName, Is.EqualTo(username));
         }
 
         [Test]

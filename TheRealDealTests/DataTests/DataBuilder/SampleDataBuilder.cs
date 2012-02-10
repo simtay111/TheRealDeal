@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
+using RecreateMe.Profiles;
 using RecreateMeSql;
 
 namespace TheRealDealTests.DataTests.DataBuilder
@@ -38,6 +39,14 @@ namespace TheRealDealTests.DataTests.DataBuilder
             userRepo.CreateUser("Pickles@Moo.com", "password");
             userRepo.CreateUser("Cows@Moo.com", "password");
             userRepo.CreateUser("Simtay111@Gmail.com", "password");
+
+            var profileRepo = new ProfileRepository();
+
+            profileRepo.Save(new Profile()
+                                 {
+                                     AccountId = "Simtay111@Gmail.com",
+                                     ProfileId = "Simtay111"
+                                 });
         }
     }
 
