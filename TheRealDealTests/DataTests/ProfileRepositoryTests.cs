@@ -6,6 +6,7 @@ using TheRealDealTests.DataTests.DataBuilder;
 namespace TheRealDealTests.DataTests
 {
     [TestFixture]
+    [Category("Integration")]
     public class ProfileRepositoryTests
     {
         private const string AccountId = "Simtay111@gmail.com";
