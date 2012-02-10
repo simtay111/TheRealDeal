@@ -15,7 +15,7 @@ namespace RecreateMe.Profiles
         IList<Profile> FindAllByName(string name);
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);
-        IList<Profile> GetByAccount(string accountName);
+        IList<Profile> GetByAccount(string accountId);
         Dictionary<string, string> GetFriendIdAndNameListForProfile(string profileId);
         bool ProfileExistsWithName(string profileName);
     }

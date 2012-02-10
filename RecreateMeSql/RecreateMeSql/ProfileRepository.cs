@@ -65,11 +65,11 @@ namespace RecreateMeSql
             return TestData.GetListOfMockedProfiles();
         }
 
-        public IList<Profile> GetByAccount(string accountName)
+        public IList<Profile> GetByAccount(string accountId)
         {
             var gc = CreateGraphClient();
 
-            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == accountName);
+            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == accountId);
             var profileNodes = accountNode.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
 
             var profileMapper = new ProfileMapper();
@@ -81,11 +81,6 @@ namespace RecreateMeSql
                 listOfProfiles.Add(profileMapper.Map(node));
             }
 
-
-
-            //var profiles = TestData.GetListOfMockedProfiles();
-            //profiles.RemoveAt(0);
-            //return profiles;
             return listOfProfiles;
         }
 
@@ -98,7 +93,12 @@ namespace RecreateMeSql
 
         public bool ProfileExistsWithName(string profileName)
         {
-            throw new System.NotImplementedException();
+            var gc = CreateGraphClient();
+
+            var nodes = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
+                .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileName);
+
+            return nodes.Any();
         }
 
         private GraphClient CreateGraphClient()
@@ -108,9 +108,5 @@ namespace RecreateMeSql
             graphClient.Connect();
             return graphClient;
         }
-    }
-
-    public class GenericNodeType
-    {
     }
 }

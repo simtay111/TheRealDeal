@@ -27,7 +27,6 @@ namespace RecreateMe.Profiles
         [JsonIgnore]
         public IList<SportWithSkillLevel> SportsPlayed { get; set; }
 
-        public string UniqueId { get; set; }
         public string ProfileId { get; set; }
     }
 }

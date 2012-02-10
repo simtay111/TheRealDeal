@@ -33,7 +33,6 @@ namespace TheRealDealTests.DomainTests
                            {
                                ProfileId = "ProfileOne",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
-                               UniqueId = "Prof1",
                                Locations = {CreateLocation1()}
                            };
             return _profile1;
@@ -45,7 +44,6 @@ namespace TheRealDealTests.DomainTests
                            {
                                ProfileId = "ProfileTwo",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
-                               UniqueId = "Prof2",
                                Locations = {CreateLocation2()}
                            };
             return _profile2;
@@ -57,7 +55,6 @@ namespace TheRealDealTests.DomainTests
                            {
                                ProfileId = "ProfileThree",
                                SportsPlayed = { CreateBasketballWithSkillLevel() },
-                               UniqueId = "Prof3",
                                Locations = {CreateLocation3()}
                            };
             return _profile3;

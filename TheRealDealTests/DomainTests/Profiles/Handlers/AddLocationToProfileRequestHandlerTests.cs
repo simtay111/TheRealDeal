@@ -28,7 +28,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             const string profileId = "123";
             _profile = new Profile
                            {
-                                  UniqueId = profileId
+                                  ProfileId = profileId
                               };
             var request = new AddLocationToProfileRequest
                               {

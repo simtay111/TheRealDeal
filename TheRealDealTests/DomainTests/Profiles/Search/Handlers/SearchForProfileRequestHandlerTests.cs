@@ -23,8 +23,8 @@ namespace TheRealDealTests.DomainTests.Profiles.Search.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That((object) response.Profiles.Count, Is.EqualTo(3));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Profiles.Count, Is.EqualTo(3));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Search.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.NoResultsFound));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.NoResultsFound));
         }
 
         private Mock<IProfileRepository> CreateMockProfileRepository(string name)

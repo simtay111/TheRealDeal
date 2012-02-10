@@ -59,8 +59,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
         [Test]
         public void CannotSendInvitesIfSenderIsNotSpecified()
         {
-            bool inviteWasSaved = false;
-            _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>())).Callback(() => inviteWasSaved = true);
+            _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>()));
             _inviteFactory.Setup(x => x.CreateInvite(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new Invite());
             CreateInviteSender();
             _inviteSender.SetEventIdForInvites(_eventId);
@@ -72,8 +71,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
         [Test]
         public void CannotSendInvitesIfEventIdIsNotSpecified()
         {
-            bool inviteWasSaved = false;
-            _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>())).Callback(() => inviteWasSaved = true);
+            _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>()));
             _inviteFactory.Setup(x => x.CreateInvite(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new Invite());
             CreateInviteSender();
             _inviteSender.SetSenderId(_senderId);

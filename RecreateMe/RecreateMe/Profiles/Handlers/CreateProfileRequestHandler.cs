@@ -32,17 +32,17 @@ namespace RecreateMe.Profiles.Handlers
             return new CreateProfileResponse(ResponseCodes.Success);
         }
 
-        private bool ProfileNameAlreadyExists(string profileName)
-        {
-            return _profileRepository.ProfileExistsWithName(profileName);    
-        }
-
         private bool AtMaxAmountOfProfiles(string userId)
         {
             var profileCount = _profileRepository.GetByAccount(userId).Count;
 
             if (profileCount < Constants.MaxNumberOfProfilesPerAccount) return false;
             return true;
+        }
+
+        private bool ProfileNameAlreadyExists(string profileName)
+        {
+            return _profileRepository.ProfileExistsWithName(profileName);    
         }
 
         private Profile BuildProfileFromRequest(CreateProfileRequest request)

@@ -34,12 +34,29 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         public void CreateData()
         {
-            var userRepo = new UserRepository();
+            CreateAccounts();
+            CreateProfilesForAccounts();
+        }
 
-            userRepo.CreateUser("Pickles@Moo.com", "password");
-            userRepo.CreateUser("Cows@Moo.com", "password");
-            userRepo.CreateUser("Simtay111@Gmail.com", "password");
+        private void CreateProfilesForAccounts()
+        {
+            CreateProfileForAccount1();
+            CreateProfileForAccount2();
+        }
 
+        public  void CreateProfileForAccount2()
+        {
+            var profileRepo = new ProfileRepository();
+
+            profileRepo.Save(new Profile()
+                                 {
+                                     AccountId = "Cows@Moo.com",
+                                     ProfileId = "Profile1"
+                                 });
+        }
+
+        public  void CreateProfileForAccount1()
+        {
             var profileRepo = new ProfileRepository();
 
             profileRepo.Save(new Profile()
@@ -47,6 +64,29 @@ namespace TheRealDealTests.DataTests.DataBuilder
                                      AccountId = "Simtay111@Gmail.com",
                                      ProfileId = "Simtay111"
                                  });
+        }
+
+        public  void CreateAccounts()
+        {
+            CreateAccount1();
+            CreateAccount2();
+            CreateAccount3();
+        }
+
+        public  void CreateAccount1()
+        {
+            var userRepo = new UserRepository();
+            userRepo.CreateUser("Simtay111@Gmail.com", "password");
+        }
+        public  void CreateAccount2()
+        {
+            var userRepo = new UserRepository();
+            userRepo.CreateUser("Cows@Moo.com", "password");
+        }
+        public  void CreateAccount3()
+        {
+            var userRepo = new UserRepository();
+            userRepo.CreateUser("Pickles@Moo.com", "password");
         }
     }
 
