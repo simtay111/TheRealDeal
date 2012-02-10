@@ -12,7 +12,7 @@ namespace TheRealDealTests.DataTests
         private readonly SampleDataBuilder _data = new SampleDataBuilder();
         private ProfileRepository _repo;
         private const string ProfileId = "MyProfile";
-        private const string Profile1Name = "Simtay111";
+        private const string Profile1Id = "Simtay111";
 
         [SetUp]
         public void SetUp()
@@ -24,7 +24,8 @@ namespace TheRealDealTests.DataTests
         [Test]
         public void CanGetByAccount()
         {
-            _data.CreateData();
+            _data.CreateAccount1();
+            _data.CreateProfileForAccount1();
 
             const string accountId = AccountId;
             var profiles = _repo.GetByAccount(accountId);
@@ -35,11 +36,11 @@ namespace TheRealDealTests.DataTests
         [Test]
         public void CanSaveProfiles()
         {
-            _data.CreateData();
-            var profile = new Profile()
+            _data.CreateAccount1();
+            var profile = new Profile
                               {
                                   AccountId = AccountId,
-                                  ProfileId = ProfileId
+                                  ProfileId = Profile1Id
                               };
 
             var wasSuccessful = _repo.Save(profile);
@@ -55,7 +56,7 @@ namespace TheRealDealTests.DataTests
             _data.CreateAccount1();
             _data.CreateProfileForAccount1();
 
-            Assert.True(_repo.ProfileExistsWithName(Profile1Name));
+            Assert.True(_repo.ProfileExistsWithName(Profile1Id));
             Assert.False(_repo.ProfileExistsWithName(ProfileId));
         }
     }
