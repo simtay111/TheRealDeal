@@ -38,6 +38,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateAccounts();
             CreateProfilesForAccounts();
             CreateSports();
+            CreateLocations();
+        }
+
+        private void CreateLocations()
+        {
+            CreateLocationBend();
         }
 
         private void CreateSports()
@@ -114,6 +120,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var sportRepo = new SportRepository();
             sportRepo.CreateSport("Football");
+        }
+
+        public void CreateLocationBend()
+        {
+            var locRepo = new LocationRepository();
+            locRepo.CreateLocation("Bend");
         }
     }
 

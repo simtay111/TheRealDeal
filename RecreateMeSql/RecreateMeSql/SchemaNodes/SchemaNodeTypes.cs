@@ -2,6 +2,7 @@
 {
     public enum SchemaNodeTypes
     {
-        SportBase
+        SportBase,
+        LocationBase
     }
 }

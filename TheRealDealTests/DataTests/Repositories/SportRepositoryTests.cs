@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMeSql;
+using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.Repositories;
 using RecreateMeSql.SchemaNodes;
@@ -51,7 +52,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _repo.CreateSport("Soccer");
 
-            var gc = CreateGraphClient();
+            var gc = GraphClientFactory.Create();
             var nodes = gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString());
             Assert.True(nodes.Any());
@@ -69,14 +70,6 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(sports[0], Is.EqualTo("Basketball"));
             Assert.That(sports[1], Is.EqualTo("Football"));
             Assert.That(sports[2], Is.EqualTo("Soccer"));
-        }
-
-        private GraphClient CreateGraphClient()
-        {
-            var graphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
-
-            graphClient.Connect();
-            return graphClient;
         }
     }
 }

@@ -43,8 +43,6 @@ namespace RecreateMeSql.Repositories
 
         public void CreateSport(string sportName)
         {
-
-
             var sport = new Sport(sportName);
 
             if (!SportBaseNodeExists())

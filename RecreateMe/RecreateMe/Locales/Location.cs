@@ -7,6 +7,8 @@ namespace RecreateMe.Locales
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public Location(){}
+
         public Location(int id)
         {
             Id = id;

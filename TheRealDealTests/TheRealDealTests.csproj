@@ -52,11 +52,12 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTests\Connection\GraphClientFactory.cs" />
+    <Compile Include="DataTests\Connection\GraphClientFactoryTests.cs" />
     <Compile Include="DataTests\DataBuilder\DataBuilderTests.cs" />
     <Compile Include="DataTests\DataBuilder\DataTestHelper.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
     <Compile Include="DataTests\Mappers\ProfileMapperTests.cs" />
+    <Compile Include="DataTests\Repositories\LocationRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\ProfileRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\SportRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\UserRepositoryTests.cs" />
