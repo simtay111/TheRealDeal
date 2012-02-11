@@ -4,10 +4,12 @@ using NUnit.Framework;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMeSql;
+using RecreateMeSql.Relationships;
+using RecreateMeSql.Repositories;
 using RecreateMeSql.SchemaNodes;
 using TheRealDealTests.DataTests.DataBuilder;
 
-namespace TheRealDealTests.DataTests
+namespace TheRealDealTests.DataTests.Repositories
 {
     [TestFixture]
     [Category("Integration")]

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using RecreateMe.Teams;
-using TheRealDealTests.DomainTests;
 
-namespace RecreateMeSql
+namespace RecreateMeSql.Repositories
 {
     public class TeamRepository : ITeamRepository
     {

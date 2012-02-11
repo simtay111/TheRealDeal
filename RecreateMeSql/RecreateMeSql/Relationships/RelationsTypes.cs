@@ -1,4 +1,4 @@
-﻿namespace RecreateMeSql
+namespace RecreateMeSql.Relationships
 {
     public enum RelationsTypes
     {

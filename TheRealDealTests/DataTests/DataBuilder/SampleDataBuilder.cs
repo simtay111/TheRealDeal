@@ -4,6 +4,7 @@ using System.Linq;
 using Neo4jClient;
 using RecreateMe.Profiles;
 using RecreateMeSql;
+using RecreateMeSql.Repositories;
 
 namespace TheRealDealTests.DataTests.DataBuilder
 {

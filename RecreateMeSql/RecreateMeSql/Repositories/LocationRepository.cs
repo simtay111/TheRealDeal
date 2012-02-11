@@ -1,7 +1,6 @@
 using RecreateMe.Locales;
-using TheRealDealTests.DomainTests;
 
-namespace RecreateMeSql
+namespace RecreateMeSql.Repositories
 {
     public class LocationRepository : ILocationRepository
     {

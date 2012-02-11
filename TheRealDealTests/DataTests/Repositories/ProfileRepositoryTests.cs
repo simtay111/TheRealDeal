@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using RecreateMe.Profiles;
-using RecreateMeSql;
+using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
 
-namespace TheRealDealTests.DataTests
+namespace TheRealDealTests.DataTests.Repositories
 {
     [TestFixture]
     [Category("Integration")]

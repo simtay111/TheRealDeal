@@ -9,6 +9,7 @@ using RecreateMe.ProfileSetup.Handlers;
 using RecreateMe.Profiles.Handlers;
 using RecreateMe.Sports;
 using RecreateMeSql;
+using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Setup;
 
 namespace TheRealDeal.Controllers

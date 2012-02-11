@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using RecreateMe.Friends.Handlers;
 using RecreateMe.Friends.Search;
 using RecreateMeSql;
+using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Friend;
 
 namespace TheRealDeal.Controllers

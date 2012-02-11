@@ -3,6 +3,7 @@ using System.Web.Security;
 using RecreateMe;
 using RecreateMe.Login.Handlers;
 using RecreateMeSql;
+using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Account;
 
 namespace TheRealDeal.Controllers

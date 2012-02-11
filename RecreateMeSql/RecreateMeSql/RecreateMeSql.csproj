@@ -46,10 +46,12 @@
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocationRepository.cs" />
+    <Compile Include="Connection\GraphClientFactory.cs" />
+    <Compile Include="Relationships\RelationsTypes.cs" />
+    <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
-    <Compile Include="ProfileRepository.cs" />
+    <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships\AccountRelationship.cs" />
     <Compile Include="Relationships\BaseNodeRelationship.cs" />
@@ -57,11 +59,10 @@
     <Compile Include="Relationships\HasProfileRelationship.cs" />
     <Compile Include="SchemaNodes\SchemaNode.cs" />
     <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
-    <Compile Include="SportRepository.cs" />
-    <Compile Include="TeamRepository.cs" />
+    <Compile Include="Repositories\SportRepository.cs" />
+    <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="TestData.cs" />
-    <Compile Include="RelationsTypes.cs" />
-    <Compile Include="UserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RecreateMe\RecreateMe\RecreateMe.csproj">

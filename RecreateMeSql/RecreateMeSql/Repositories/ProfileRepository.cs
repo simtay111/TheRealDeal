@@ -7,14 +7,25 @@ using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
-using TheRealDealTests.DomainTests;
 
-namespace RecreateMeSql
+namespace RecreateMeSql.Repositories
 {
     public class ProfileRepository : IProfileRepository
     {
+        private GraphClient _graphClient;
+
+        public ProfileRepository(GraphClient graphClient)
+        {
+            _graphClient = graphClient;
+        }
+
+        public ProfileRepository() : this(GraphClientFactory.Create())
+        {
+        }
+
         public Profile GetByProfileId(string profileId)
         {
             return TestData.MockProfile1();
@@ -22,15 +33,13 @@ namespace RecreateMeSql
 
         public bool Save(Profile profile)
         {
-            var gc = CreateGraphClient();
-
             var accountNode =
-                gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == profile.AccountId).Single();
+                _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == profile.AccountId).Single();
                     //.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
 
-            var profileNode = gc.Create(profile);
+            var profileNode = _graphClient.Create(profile);
 
-            gc.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
+            _graphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
 
             return true;
         }
@@ -67,9 +76,7 @@ namespace RecreateMeSql
 
         public IList<Profile> GetByAccount(string accountId)
         {
-            var gc = CreateGraphClient();
-
-            var accountNode = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == accountId);
+            var accountNode = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == accountId);
             var profileNodes = accountNode.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
 
             var profileMapper = new ProfileMapper();
@@ -93,20 +100,10 @@ namespace RecreateMeSql
 
         public bool ProfileExistsWithName(string profileName)
         {
-            var gc = CreateGraphClient();
-
-            var nodes = gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
+            var nodes = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
                 .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileName);
 
             return nodes.Any();
-        }
-
-        private GraphClient CreateGraphClient()
-        {
-            var graphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
-
-            graphClient.Connect();
-            return graphClient;
         }
     }
 }

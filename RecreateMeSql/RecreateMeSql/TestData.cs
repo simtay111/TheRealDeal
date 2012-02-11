@@ -5,7 +5,7 @@ using RecreateMe.Profiles;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
 
-namespace TheRealDealTests.DomainTests
+namespace RecreateMeSql
 {
     public static class TestData
     {

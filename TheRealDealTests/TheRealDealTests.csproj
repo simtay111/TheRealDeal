@@ -52,13 +52,14 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTests\Connection\GraphClientFactory.cs" />
     <Compile Include="DataTests\DataBuilder\DataBuilderTests.cs" />
     <Compile Include="DataTests\DataBuilder\DataTestHelper.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
     <Compile Include="DataTests\Mappers\ProfileMapperTests.cs" />
-    <Compile Include="DataTests\ProfileRepositoryTests.cs" />
-    <Compile Include="DataTests\SportRepositoryTests.cs" />
-    <Compile Include="DataTests\UserRepositoryTests.cs" />
+    <Compile Include="DataTests\Repositories\ProfileRepositoryTests.cs" />
+    <Compile Include="DataTests\Repositories\SportRepositoryTests.cs" />
+    <Compile Include="DataTests\Repositories\UserRepositoryTests.cs" />
     <Compile Include="DeliveryTests\AccountControllerTests.cs" />
     <Compile Include="DeliveryTests\TeamsControllerTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
@@ -115,6 +116,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
