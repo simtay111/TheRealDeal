@@ -18,7 +18,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         {
             _factory = new GameFactory();
             _sport = new Sport("Soccer");
-            _location = new Location(1);
+            _location = new Location("Bend");
         }
 
         [Test]
@@ -42,17 +42,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         {
             const bool isPrivate = true;
             Game game = _factory.CreateGameWithOutTeams(DateTime.Now, _sport, _location, isPrivate);
-            Assert.That((object) game.IsPrivate, Is.True);
+            Assert.That(game.IsPrivate, Is.True);
             game = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location, isPrivate);
-            Assert.That((object) game.IsPrivate, Is.True);
+            Assert.That(game.IsPrivate, Is.True);
 
         }
 
-        private static void AssertGameWasCreatedAndDataLinesUp(Game game)
+        private void AssertGameWasCreatedAndDataLinesUp(Game game)
         {
             Assert.NotNull(game);
-            Assert.That((object) game.Sport.Name, Is.EqualTo("Soccer"));
-            Assert.That((object) game.Location.Id, Is.EqualTo(1));
+            Assert.That(game.Sport.Name, Is.EqualTo("Soccer"));
+            Assert.That(game.Location.Name, Is.EqualTo(_location.Name));
         }
     }
 }

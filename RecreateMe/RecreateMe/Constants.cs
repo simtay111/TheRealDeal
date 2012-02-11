@@ -5,7 +5,6 @@
         public const int MaxNumberOfProfilesPerAccount = 3;
         public const int MaxAmountOfTeamsPerGame = 2;
         public const string DefaultTeamName = "My Team";
-        public const int DefaultLocationId = 0;
         public const string DefaultLocationName = "Not Specified";
         public const int DefaultMinNumberOfPlayers = 2;
         public const int DefaultSkillLevel = 3 ;

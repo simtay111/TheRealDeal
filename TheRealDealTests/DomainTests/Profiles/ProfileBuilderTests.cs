@@ -31,15 +31,15 @@ namespace TheRealDealTests.DomainTests.Profiles
         [Test]
         public void WithNameSetsNameOnProfile()
         {
-            var profileId = "Myname";
+            const string profileId = "Myname";
             var builder = _builder.WithProfileId(profileId);
-            Assert.That((object) builder.ProfileId, Is.EqualTo(profileId));
+            Assert.That(builder.ProfileId, Is.EqualTo(profileId));
         }
 
         [Test]
         public void WithLocationSetsLocationOnProfile()
         {
-            var location = new Mock<Location>(1).Object;
+            var location = new Mock<Location>("Bend").Object;
             var builder = _builder.WithLocation(location);
             Assert.NotNull(builder.Location);
         }
@@ -47,7 +47,7 @@ namespace TheRealDealTests.DomainTests.Profiles
         [Test]
         public void CreatingLocationWithNullAssignsDefaultLocation()
         {
-            var profileId = "Myname";
+            const string profileId = "Myname";
             var profile = _builder
                 .WithLocation(null)
                 .WithProfileId(profileId)
@@ -82,7 +82,7 @@ namespace TheRealDealTests.DomainTests.Profiles
             _builder = CreateAMockBuilder().Object;
             _builder.WithSport(null);
             var person = _builder.Build();
-            Assert.That((object) person.SportsPlayed.Count, Is.EqualTo(0));
+            Assert.That(person.SportsPlayed.Count, Is.EqualTo(0));
         }
 
         [Test]
@@ -97,9 +97,9 @@ namespace TheRealDealTests.DomainTests.Profiles
 
         private Mock<ProfileBuilder> CreateAMockBuilder()
         {
-            var builder = new Mock<ProfileBuilder>() {CallBase = true};
+            var builder = new Mock<ProfileBuilder> {CallBase = true};
             builder.Setup(x => x.ProfileId).Returns(string.Empty);
-            builder.Setup(x => x.Location).Returns(new Mock<Location>(1).Object);
+            builder.Setup(x => x.Location).Returns(new Mock<Location>("Bend").Object);
             return builder;
         }
     }

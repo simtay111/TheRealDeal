@@ -30,12 +30,12 @@ namespace RecreateMeSql.Repositories
             var locNode = locBaseNode.OutE(RelationsTypes.Location.ToString())
                 .InV<Location>(n => n.Name == name).FirstOrDefault();
 
-            return locNode != null ? new Location(locNode.Data.Id, locNode.Data.Name) : null;
+            return locNode != null ? new Location(locNode.Data.Name) : null;
         }
 
         public void CreateLocation(string locationName)
         {
-            var location = new Location(97702, locationName);
+            var location = new Location(locationName);
 
             if (!LocationBaseNodeExists())
                 CreateLocationBaseNode();

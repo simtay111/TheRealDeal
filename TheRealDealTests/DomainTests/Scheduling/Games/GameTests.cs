@@ -23,7 +23,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         public void HasDateTimeForEvent()
         {
             Assert.NotNull(_game.DateTime);
-            Trace.Write((object) _game.DateTime);
+            Trace.Write(_game.DateTime);
         }
 
         [Test]
@@ -31,15 +31,15 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         {
             var sport = new Mock<Sport>().Object;
             _game.Sport = sport;
-            Assert.That((object) _game.Sport, Is.InstanceOf<Sport>());
+            Assert.That(_game.Sport, Is.InstanceOf<Sport>());
         }
 
         [Test]
         public void HasALocation()
         {
-            var location = new Mock<Location>(1).Object;
+            var location = new Mock<Location>().Object;
             _game.Location = location;
-            Assert.That((object) _game.Location, Is.InstanceOf<Location>());
+            Assert.That(_game.Location, Is.InstanceOf<Location>());
         }
 
         [Test]

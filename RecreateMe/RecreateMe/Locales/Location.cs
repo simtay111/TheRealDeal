@@ -4,17 +4,11 @@ namespace RecreateMe.Locales
 {
     public class Location
     {
-        public int Id { get; set; }
         public string Name { get; set; }
 
         public Location(){}
 
-        public Location(int id)
-        {
-            Id = id;
-        }
-
-        public Location(int id, string name) : this(id)
+        public Location( string name)
         {
             Name = name;
         }
@@ -23,7 +17,7 @@ namespace RecreateMe.Locales
         {
             get
             {
-                return new Location(Constants.DefaultLocationId, Constants.DefaultLocationName);
+                return new Location(Constants.DefaultLocationName);
             }
         }
     }

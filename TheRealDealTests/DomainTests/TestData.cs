@@ -80,21 +80,21 @@ namespace TheRealDealTests.DomainTests
 
         public static Location CreateLocation3()
         {
-            return new Location(123, "Else");
+            return new Location("Else");
         }
         public static Location CreateLocation1()
         {
-            return new Location(1234, "Somewhere");
+            return new Location("Somewhere");
         }
         public static Location CreateLocation2()
         {
-            return new Location(1235, "Bend");
+            return new Location("Bend");
         }
 
         public static Sport CreateSoccerGame()
         {
-            _soccer = new Sport()
-                       {
+            _soccer = new Sport
+                          {
                            Name = "Soccer"
                        };
             return _soccer;
@@ -133,12 +133,12 @@ namespace TheRealDealTests.DomainTests
 
         public static Location CreateLocationBend()
         {
-            _location1 = new Location(1, "Bend");
+            _location1 = new Location("Bend");
             return _location1;
         }
         public static Location CreateLocationHamsterville()
         {
-            _location2 = new Location(2, "Hamsterville");
+            _location2 = new Location("Hamsterville");
             return _location2;
         }
 

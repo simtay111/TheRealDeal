@@ -27,7 +27,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void SetUp()
         {
             _sport = new Sport { Name = SoccerName };
-            _location = new Location(1) { Name = LocationName };
+            _location = new Location { Name = LocationName };
             _gameWithTeams = new GameWithTeams(DateTime.Now, _sport, _location);
         }
 
@@ -51,7 +51,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             _mockGameRepo.Verify(x => x.SaveOrUpdate(_gameWithTeams), Times.AtLeastOnce());
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.CouldNotParseDate));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.CouldNotParseDate));
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.DateNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.DateNotSpecified));
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
         }
 
         [Test]
@@ -161,7 +161,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.SportNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.SportNotSpecified));
         }
 
         [Test]
@@ -190,7 +190,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
             Assert.True(theRightTypeOfGameWasReturned);
         }
 

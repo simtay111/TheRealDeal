@@ -32,7 +32,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var handler = CreateProfileRequestHandler();
             var response = handler.Handle(request);
             Assert.NotNull(response);
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.NameNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.NameNotSpecified));
         }
 
         [Test]
@@ -67,23 +67,23 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             handler.Handle(request);
 
-            Assert.That((object) _profile.AccountId, Is.EqualTo("AccountId"));
+            Assert.That(_profile.AccountId, Is.EqualTo("AccountId"));
         }
 
         [Test]
         public void ReturnsIfAccountAlreadyHasMaxProfiles()
         {
             CreateMockRepositories();
-            var accountName = "NoProfiles";
+            const string accountName = "NoProfiles";
             _mockProfileRepo.Setup(x => x.GetByAccount(accountName))
-                .Returns(new List<Profile>(){ new Profile(), new Profile(), new Profile()});
+                .Returns(new List<Profile> { new Profile(), new Profile(), new Profile()});
 
             var request = new CreateProfileRequest(accountName, "MyAccount");
             var handler = CreateProfileRequestHandler();
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.MaxProfilesReached));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.MaxProfilesReached));
         }
 
         [Test]
@@ -112,13 +112,13 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private void CreateMockRepositories()
         {
             _mockLocationRepo = new Mock<ILocationRepository>();
-            _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(new Location(5));
+            _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(new Location("Bend"));
             _mockSportRepo = new Mock<ISportRepository>();
             _mockSportRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(new Sport());
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.Save(It.IsAny<Profile>())).Returns(true);
-            _mockProfileRepo.Setup(x => x.GetByAccount(It.IsAny<string>())).Returns(new List<Profile>(){ new Profile()});
-            _mockProfileBuilder = new Mock<ProfileBuilder>() {CallBase = true};
+            _mockProfileRepo.Setup(x => x.GetByAccount(It.IsAny<string>())).Returns(new List<Profile> { new Profile()});
+            _mockProfileBuilder = new Mock<ProfileBuilder> {CallBase = true};
             _mockProfileBuilder.Setup(x => x.Build()).Returns(_profile);
         }
     }

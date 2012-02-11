@@ -81,7 +81,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         private void CreateMockProfileAndLocationRepos(string profileId, string location)
         {
             _mockLocationRepo = new Mock<ILocationRepository>();
-            _mockLocationRepo.Setup(x => x.FindByName(It.Is<string>(d => d == location))).Returns(new Location(1));
+            _mockLocationRepo.Setup(x => x.FindByName(It.Is<string>(d => d == location))).Returns(new Location("Bend"));
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(It.Is<string>(d => d == profileId))).Returns(_profile);
             _mockProfileRepo.Setup(x => x.AddLocationToProfile(It.IsAny<Profile>(), It.IsAny<Location>())).Callback(() => _profileWasSavedSuccessfully = true);
