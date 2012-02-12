@@ -56,6 +56,17 @@ namespace TheRealDealTests.DataTests.Repositories
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
             Assert.True(nodes.Any());
         }
+
+        [Test]
+        public void WillNotCreateLocationIfItAlreadyExists()
+        {
+            const string locationName = "Bend";
+            _repo.CreateLocation(locationName);
+
+            var wasSuccessful =  _repo.CreateLocation(locationName);
+
+            Assert.False(wasSuccessful);
+        }
          
     }
 }

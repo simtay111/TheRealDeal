@@ -33,12 +33,15 @@ namespace RecreateMeSql.Repositories
             return locNode != null ? new Location(locNode.Data.Name) : null;
         }
 
-        public void CreateLocation(string locationName)
+        public bool CreateLocation(string locationName)
         {
             var location = new Location(locationName);
 
             if (!LocationBaseNodeExists())
                 CreateLocationBaseNode();
+
+            if (LocationExists(locationName))
+                return false;
 
             var locationBaseNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString()).Single();
@@ -46,6 +49,19 @@ namespace RecreateMeSql.Repositories
             var locationNode = _graphClient.Create(location);
 
             _graphClient.CreateRelationship(locationBaseNode.Reference, new LocationRelationship(locationNode));
+
+            return true;
+        }
+
+        private bool LocationExists(string locationName)
+        {
+            var locationBase = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
+
+            var locNode = locationBase.OutE(RelationsTypes.Location.ToString())
+                .InV<Location>(n => n.Name == locationName);
+
+            return (locNode.Any());
         }
 
         private void CreateLocationBaseNode()
