@@ -10,6 +10,7 @@ using RecreateMe.Sports;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
+using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
 {
@@ -33,13 +34,22 @@ namespace RecreateMeSql.Repositories
 
         public bool Save(Profile profile)
         {
-            var accountNode =
-                _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == profile.AccountId).Single();
-                    //.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>().ToList();
+            var accountNode = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == profile.AccountId).Single();
 
             var profileNode = _graphClient.Create(profile);
 
             _graphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
+
+            foreach (var location in profile.Locations)
+            {
+                var locNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+                    .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                    .OutE(RelationsTypes.Location.ToString()).InV<Location>(y => y.Name == location.Name).FirstOrDefault();
+
+                if (locNode == null) continue;
+
+                _graphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
+            }
 
             return true;
         }
@@ -87,6 +97,8 @@ namespace RecreateMeSql.Repositories
             {
                 listOfProfiles.Add(profileMapper.Map(node));
             }
+
+
 
             return listOfProfiles;
         }

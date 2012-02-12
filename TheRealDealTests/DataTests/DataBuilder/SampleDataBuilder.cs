@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
+using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMeSql;
 using RecreateMeSql.Repositories;
@@ -36,9 +37,9 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public void CreateData()
         {
             CreateAccounts();
-            CreateProfilesForAccounts();
-            CreateSports();
             CreateLocations();
+            CreateSports();
+            CreateProfilesForAccounts();
         }
 
         private void CreateLocations()
@@ -59,46 +60,52 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateProfileForAccount2();
         }
 
-        public  void CreateProfileForAccount2()
+        public Profile CreateProfileForAccount2()
         {
             var profileRepo = new ProfileRepository();
 
-            profileRepo.Save(new Profile()
-                                 {
-                                     AccountId = "Cows@Moo.com",
-                                     ProfileId = "Profile1"
-                                 });
+            var profile = new Profile()
+                              {
+                                  AccountId = "Cows@Moo.com",
+                                  ProfileId = "Profile1",
+                                  Locations = new List<Location>() { new Location("Bend") }
+                              };
+            profileRepo.Save(profile);
+            return profile;
         }
 
-        public  void CreateProfileForAccount1()
+        public Profile CreateProfileForAccount1()
         {
             var profileRepo = new ProfileRepository();
 
-            profileRepo.Save(new Profile()
-                                 {
-                                     AccountId = "Simtay111@Gmail.com",
-                                     ProfileId = "Simtay111"
-                                 });
+            var profile = new Profile
+                              {
+                                  AccountId = "Simtay111@Gmail.com",
+                                  ProfileId = "Simtay111",
+                                  Locations = new List<Location>() { new Location("Bend") }
+                              };
+            profileRepo.Save(profile);
+            return profile;
         }
 
-        public  void CreateAccounts()
+        public void CreateAccounts()
         {
             CreateAccount1();
             CreateAccount2();
             CreateAccount3();
         }
 
-        public  void CreateAccount1()
+        public void CreateAccount1()
         {
             var userRepo = new UserRepository();
             userRepo.CreateUser("Simtay111@Gmail.com", "password");
         }
-        public  void CreateAccount2()
+        public void CreateAccount2()
         {
             var userRepo = new UserRepository();
             userRepo.CreateUser("Cows@Moo.com", "password");
         }
-        public  void CreateAccount3()
+        public void CreateAccount3()
         {
             var userRepo = new UserRepository();
             userRepo.CreateUser("Pickles@Moo.com", "password");

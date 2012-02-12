@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
+using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
@@ -38,17 +41,39 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanSaveProfiles()
         {
             _data.CreateAccount1();
+            _data.CreateLocationBend();
             var profile = new Profile
                               {
                                   AccountId = AccountId,
-                                  ProfileId = Profile1Id
+                                  ProfileId = Profile1Id,
+                                  Locations = new List<Location>(){ new Location("Bend")},
                               };
 
             var wasSuccessful = _repo.Save(profile);
 
-            var profiles = _repo.GetByAccount(profile.AccountId);
+            var returnedProfiles = _repo.GetByAccount(profile.AccountId);
             Assert.True(wasSuccessful);
-            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
+            Assert.That(returnedProfiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
+            Assert.That(returnedProfiles[0].Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
+        }
+
+        [Test]
+        public void DoesNotThrowOrAddToLocationsIfLocationDoesNotExist()
+        {
+            _data.CreateAccount1();
+            _data.CreateLocationBend();
+            var profile = new Profile
+            {
+                AccountId = AccountId,
+                ProfileId = Profile1Id,
+                Locations = new List<Location>() { new Location("Bend"), new Location("NonExisten") },
+            };
+
+            _repo.Save(profile);
+
+            var returnedProfile = _repo.GetByAccount(profile.AccountId).First();
+            Assert.That(returnedProfile.Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
+            Assert.That(returnedProfile.Locations.Count, Is.EqualTo(1));
         }
 
         [Test]

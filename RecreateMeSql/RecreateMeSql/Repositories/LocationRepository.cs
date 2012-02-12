@@ -39,8 +39,7 @@ namespace RecreateMeSql.Repositories
 
             if (!LocationBaseNodeExists())
                 CreateLocationBaseNode();
-
-            if (LocationExists(locationName))
+            else if (LocationExists(locationName))
                 return false;
 
             var locationBaseNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
