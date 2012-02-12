@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
-using Neo4jClient.Gremlin;
 using RecreateMe.Sports;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
@@ -12,33 +10,26 @@ namespace RecreateMeSql.Repositories
 {
     public class SportRepository : ISportRepository
     {
-        private GraphClient _graphClient;
+        private readonly GraphClient _graphClient;
 
         public SportRepository(GraphClient graphClient)
         {
             _graphClient = graphClient;
         }
 
-        public SportRepository(): this(GraphClientFactory.Create())
-        {
-        }
+        public SportRepository()
+            : this(GraphClientFactory.Create()) { }
 
         public Sport FindByName(string name)
         {
-            var sport = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
-                .OutE(RelationsTypes.Sport.ToString()).InV<Sport>(n => n.Name == name).FirstOrDefault();
+            var sport = _graphClient.SportWithName(name).FirstOrDefault();
 
             return sport == null ? null : new Sport(sport.Data.Name);
         }
 
         public IList<string> GetNamesOfAllSports()
         {
-            var sports = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
-                .OutE(RelationsTypes.Sport.ToString()).InV<Sport>().ToList();
-
-            return sports.Select(sport => sport.Data.Name).ToList();
+            return _graphClient.AllSportNodes().Select(sport => sport.Data.Name).ToList();
         }
 
         public void CreateSport(string sportName)
@@ -48,9 +39,7 @@ namespace RecreateMeSql.Repositories
             if (!SportBaseNodeExists())
                 CreateSportBaseNode();
 
-            var sportBaseNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString()).Single();
-
+            var sportBaseNode = _graphClient.SportBaseNode().Single();
             var sportNode = _graphClient.Create(sport);
 
             _graphClient.CreateRelationship(sportBaseNode.Reference, new SportRelationship(sportNode));
@@ -67,8 +56,7 @@ namespace RecreateMeSql.Repositories
 
         private bool SportBaseNodeExists()
         {
-            return _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString()).Any();
+            return _graphClient.SportBaseNode().Any();
         }
     }
 }

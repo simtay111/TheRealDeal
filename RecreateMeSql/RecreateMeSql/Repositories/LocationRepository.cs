@@ -18,17 +18,11 @@ namespace RecreateMeSql.Repositories
         }
 
         public LocationRepository()
-            : this(GraphClientFactory.Create())
-        {
-        }
+            : this(GraphClientFactory.Create()) { }
 
         public Location FindByName(string name)
         {
-            var locBaseNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
-
-            var locNode = locBaseNode.OutE(RelationsTypes.Location.ToString())
-                .InV<Location>(n => n.Name == name).FirstOrDefault();
+            var locNode = _graphClient.LocationWithName(name).FirstOrDefault();
 
             return locNode != null ? new Location(locNode.Data.Name) : null;
         }
@@ -42,25 +36,13 @@ namespace RecreateMeSql.Repositories
             else if (LocationExists(locationName))
                 return false;
 
-            var locationBaseNode = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString()).Single();
+            var locationBaseNode = _graphClient.LocationBaseNode().Single();
 
             var locationNode = _graphClient.Create(location);
 
             _graphClient.CreateRelationship(locationBaseNode.Reference, new LocationRelationship(locationNode));
 
             return true;
-        }
-
-        private bool LocationExists(string locationName)
-        {
-            var locationBase = _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
-
-            var locNode = locationBase.OutE(RelationsTypes.Location.ToString())
-                .InV<Location>(n => n.Name == locationName);
-
-            return (locNode.Any());
         }
 
         private void CreateLocationBaseNode()
@@ -72,10 +54,14 @@ namespace RecreateMeSql.Repositories
             _graphClient.CreateRelationship(rootNode, new BaseNodeRelationship(locationBaseNode));
         }
 
+        private bool LocationExists(string locationName)
+        {
+            return _graphClient.LocationWithName(locationName).Any();
+        }
+
         private bool LocationBaseNodeExists()
         {
-            return _graphClient.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString()).Any();
+            return _graphClient.LocationBaseNode().Any();
         }
     }
 }
