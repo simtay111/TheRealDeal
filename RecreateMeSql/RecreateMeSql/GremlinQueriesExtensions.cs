@@ -68,5 +68,11 @@ namespace RecreateMeSql
         {
             return gc.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>();
         }
+
+        public static IGremlinNodeQuery<Profile> ProfileWithId(this GraphClient gc, string profileId)
+        {
+            return gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
+                .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileId);
+        }
     }
 }

@@ -53,7 +53,6 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var uniqueId = "MyId";
             _request = new AddSportToProfileRequest()
             {
-                SkillLevel = 3,
                 Sport = "Soccer",
                 UniqueId = uniqueId
             };

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Helpers;
 using Neo4jClient;
-using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
-using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
 using RecreateMeSql.Connection;
@@ -41,6 +40,7 @@ namespace RecreateMeSql.Repositories
             _graphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
 
             CreateLocationRelationships(profile, profileNode);
+            CreateSportRelationships(profile, profileNode);
 
             return true;
         }
@@ -91,8 +91,7 @@ namespace RecreateMeSql.Repositories
 
         public bool ProfileExistsWithName(string profileName)
         {
-            var nodes = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
-                .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileName);
+            var nodes = _graphClient.ProfileWithId(profileName);
 
             return nodes.Any();
         }
@@ -104,6 +103,19 @@ namespace RecreateMeSql.Repositories
                 var locNode = _graphClient.LocationWithName(location.Name).FirstOrDefault();
                 if (locNode == null) continue;
                 _graphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
+            }
+        }
+
+        private void CreateSportRelationships(Profile profile, NodeReference<Profile> profileNode)
+        {
+
+            foreach (var sport in profile.SportsPlayed)
+            {
+                var sportNode = _graphClient.SportWithName(sport.Name).FirstOrDefault();
+                if (sportNode == null) continue;
+                var profileToSportRelationship = new ProfileToSportRelationship(sportNode.Reference, sport.SkillLevel);
+                _graphClient.CreateRelationship(profileNode,
+                                                profileToSportRelationship);
             }
         }
     }

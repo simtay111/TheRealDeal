@@ -14,7 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\build.proj = Scripts\build.proj
 		Scripts\CreateLoginsTable.sql = Scripts\CreateLoginsTable.sql
 		Scripts\Data.bat = Scripts\Data.bat
-		Scripts\Data.ps1 = Scripts\Data.ps1
 		Scripts\Tests.bat = Scripts\Tests.bat
 	EndProjectSection
 EndProject

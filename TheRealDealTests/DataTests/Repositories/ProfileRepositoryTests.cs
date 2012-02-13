@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
+using RecreateMe.Sports;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
 
@@ -42,11 +43,19 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _data.CreateAccount1();
             _data.CreateLocationBend();
+            _data.CreateSoccerSport();
             var profile = new Profile
                               {
                                   AccountId = AccountId,
                                   ProfileId = Profile1Id,
-                                  Locations = new List<Location>(){ new Location("Bend")},
+                                  Locations = new List<Location> { new Location("Bend") },
+                                  SportsPlayed = new List<SportWithSkillLevel>
+                                                     { new SportWithSkillLevel
+                                                           {
+                                                            Name = "Soccer",
+                                                            SkillLevel = new SkillLevel(1)
+                                                        }
+                                                     }
                               };
 
             var wasSuccessful = _repo.Save(profile);
@@ -55,6 +64,8 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.True(wasSuccessful);
             Assert.That(returnedProfiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
             Assert.That(returnedProfiles[0].Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
+            Assert.That(returnedProfiles[0].SportsPlayed[0].Name, Is.EqualTo(profile.SportsPlayed[0].Name));
+            Assert.That(returnedProfiles[0].SportsPlayed[0].SkillLevel.Level, Is.EqualTo(profile.SportsPlayed[0].SkillLevel.Level));
         }
 
         [Test]

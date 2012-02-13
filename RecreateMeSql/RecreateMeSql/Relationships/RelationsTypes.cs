@@ -7,6 +7,7 @@ namespace RecreateMeSql.Relationships
         BaseNode,
         Sport,
         Location,
-        ProfileLocation
+        ProfileLocation,
+        ProfileSport
     }
 }

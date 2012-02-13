@@ -3,6 +3,7 @@ using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
+using RecreateMe.Sports;
 using RecreateMeSql.Relationships;
 
 namespace RecreateMeSql.Mappers
@@ -14,8 +15,23 @@ namespace RecreateMeSql.Mappers
             var profile = CreateProfileAndMapId(profileNode);
 
             MapLocations(profileNode, profile);
+            MapSports(profileNode, profile);
 
             return profile;
+        }
+        
+        private void MapSports(Node<Profile> profileNode, Profile profile)
+        {
+            var sportEdges = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport.ToString());
+            var sportEdgesList = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport.ToString()).ToList();
+            var sportNodes = sportEdges.InV<Sport>().ToList();
+
+
+            for(int i = 0; i < sportEdges.Count(); i++)
+            {
+                var skillLevel = sportEdgesList[0].Data.Level;
+                 profile.SportsPlayed.Add(new SportWithSkillLevel {Name = sportNodes[i].Data.Name, SkillLevel = new SkillLevel(skillLevel)});
+            }
         }
 
         private Profile CreateProfileAndMapId(Node<Profile> profileNode)

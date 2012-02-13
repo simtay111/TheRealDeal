@@ -1,6 +1,5 @@
 using System.Linq;
 using Neo4jClient;
-using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;

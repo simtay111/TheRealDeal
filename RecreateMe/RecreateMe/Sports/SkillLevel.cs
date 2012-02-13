@@ -1,5 +1,8 @@
+using System;
+
 namespace RecreateMe.Sports
 {
+    [Serializable]
     public class SkillLevel
     {
         public SkillLevel(int level)
