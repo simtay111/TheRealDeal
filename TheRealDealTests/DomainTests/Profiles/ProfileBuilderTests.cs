@@ -66,6 +66,21 @@ namespace TheRealDealTests.DomainTests.Profiles
         }
 
         [Test]
+        public void BuildingWithASportUsesSport()
+        {
+            CreateAMockBuilder();
+            const string expectedSport = "Soccer";
+            const int skillLevel = 6;
+            _builder.Sport = new Sport(expectedSport);
+            _builder.LevelOfSkill = new SkillLevel(skillLevel);
+
+            var profile = _builder.Build();
+
+            Assert.That(profile.SportsPlayed[0].Name, Is.EqualTo(expectedSport));
+            Assert.That(profile.SportsPlayed[0].SkillLevel.Level, Is.EqualTo(skillLevel));
+        }
+
+        [Test]
         public void CanCreateWithSkillLevel()
         {
             var builder =  CreateAMockBuilder();

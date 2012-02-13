@@ -34,7 +34,7 @@ namespace RecreateMe.Profiles
         {
             if (Sport != null)
             {
-                var sportWithSkillLevel = new SportWithSkillLevel();
+                var sportWithSkillLevel = new SportWithSkillLevel {Name = Sport.Name};
                 CreateSkillLevel(sportWithSkillLevel);
                 _profile.SportsPlayed.Add(sportWithSkillLevel);
             }
