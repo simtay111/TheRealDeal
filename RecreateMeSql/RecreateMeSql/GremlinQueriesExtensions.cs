@@ -74,5 +74,10 @@ namespace RecreateMeSql
             return gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
                 .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileId);
         }
+
+        public static IGremlinNodeQuery<Profile> Friends(this IGremlinQuery gc)
+        {
+            return gc.OutE(RelationsTypes.Friend.ToString()).InV<Profile>();
+        }
     }
 }

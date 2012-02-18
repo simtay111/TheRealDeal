@@ -11,7 +11,7 @@ namespace RecreateMe.Profiles
         bool Save(Profile profile);
         bool AddSportToProfile(Profile profile, SportWithSkillLevel sport);
         bool AddLocationToProfile(Profile profile, Location location);
-        bool AddFriendToProfile(Profile profile, Profile friend);
+        bool AddFriendToProfile(string profileId, string friendId);
         IList<Profile> FindAllByName(string name);
         IList<Profile> FindAllBySport(string sport);
         IList<Profile> FindAllByLocation(string location);

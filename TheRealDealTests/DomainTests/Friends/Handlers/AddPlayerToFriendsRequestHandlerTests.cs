@@ -23,7 +23,7 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.FriendId)).Returns(friendProfile);
-            _mockProfileRepo.Setup(x => x.AddFriendToProfile(profile, friendProfile)).Callback(() => profileWasSaved = true);
+            _mockProfileRepo.Setup(x => x.AddFriendToProfile(profile.ProfileId, friendProfile.ProfileId)).Callback(() => profileWasSaved = true);
 
             var handler = new AddPlayerToFriendsRequestHandler(_mockProfileRepo.Object);
 

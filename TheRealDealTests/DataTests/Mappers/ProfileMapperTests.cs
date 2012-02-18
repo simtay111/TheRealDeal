@@ -15,7 +15,7 @@ namespace TheRealDealTests.DataTests.Mappers
     [TestFixture]
     public class ProfileMapperTests
     {
-        SampleDataBuilder _data = new SampleDataBuilder(); 
+        readonly SampleDataBuilder _data = new SampleDataBuilder(); 
 
          [Test]
          public void CanMapAProfile()
@@ -24,7 +24,10 @@ namespace TheRealDealTests.DataTests.Mappers
              _data.CreateBasketballSport();
              _data.CreateLocationBend();
              _data.CreateAccount1();
+             _data.CreateAccount2();
              var profile = _data.CreateProfileForAccount1();
+             var profile2 = _data.CreateProfileForAccount2();
+             _data.CreateFriendshipForProfile1And2();
 
              var profileMapper = new ProfileMapper();
 
@@ -40,6 +43,7 @@ namespace TheRealDealTests.DataTests.Mappers
              Assert.That(finalizedProfile.Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
              Assert.That(finalizedProfile.SportsPlayed[0].Name, Is.EqualTo(profile.SportsPlayed[0].Name));
              Assert.That(finalizedProfile.SportsPlayed[0].SkillLevel.Level, Is.EqualTo(profile.SportsPlayed[0].SkillLevel.Level));
+             Assert.That(finalizedProfile.FriendsIds[0], Is.EqualTo(profile2.ProfileId));
          }
     }
 }

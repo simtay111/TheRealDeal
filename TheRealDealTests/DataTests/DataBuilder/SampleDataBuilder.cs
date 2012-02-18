@@ -153,6 +153,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var locRepo = new LocationRepository();
             locRepo.CreateLocation("Portland");
         }
+
+        public void CreateFriendshipForProfile1And2()
+        {
+            var profileRepo = new ProfileRepository();
+
+            profileRepo.AddFriendToProfile("Simtay111", "Profile1");
+        }
     }
 
     internal class GenericNodeType

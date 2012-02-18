@@ -8,6 +8,7 @@ namespace RecreateMeSql.Relationships
         Sport,
         Location,
         ProfileLocation,
-        ProfileSport
+        ProfileSport,
+        Friend
     }
 }

@@ -19,7 +19,7 @@ namespace RecreateMe.Profiles
         public string AccountId { get; set; }
 
         [JsonIgnore]
-        public IList<string> FriendsIds;
+        public IList<string> FriendsIds { get; private set; }
 
         [JsonIgnore]
         public IList<Location> Locations { get; set; }

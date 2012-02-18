@@ -16,10 +16,17 @@ namespace RecreateMeSql.Mappers
 
             MapLocations(profileNode, profile);
             MapSports(profileNode, profile);
+            MapFriends(profileNode, profile);
 
             return profile;
         }
-        
+
+        private void MapFriends(Node<Profile> profileNode, Profile profile)
+        {
+            var friendNodes = profileNode.Friends().ToList();
+            friendNodes.ForEach(x => profile.FriendsIds.Add(x.Data.ProfileId));
+        }
+
         private void MapSports(Node<Profile> profileNode, Profile profile)
         {
             var sportEdges = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport.ToString());

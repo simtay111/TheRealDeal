@@ -77,7 +77,7 @@ namespace TheRealDealTests.DataTests.Repositories
             {
                 AccountId = AccountId,
                 ProfileId = Profile1Id,
-                Locations = new List<Location>() { new Location("Bend"), new Location("NonExisten") },
+                Locations = new List<Location> { new Location("Bend"), new Location("NonExisten") },
             };
 
             _repo.Save(profile);
@@ -135,10 +135,30 @@ namespace TheRealDealTests.DataTests.Repositories
             var profile = _data.CreateProfileForAccount1();
             const string location = "Portland";
 
-            _repo.AddLocationToProfile(profile, new Location() { Name = location });
+            _repo.AddLocationToProfile(profile, new Location { Name = location });
 
             var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
             Assert.That(updatedProfile.Locations[1].Name, Is.EqualTo(location));
+        }
+
+        [Test]
+        public void CanAddFriendsToProfile()
+        {
+            _data.CreateAccount1();
+            var myProfile = _data.CreateProfileForAccount1();
+
+            _data.CreateAccount2();
+            var friendProf = _data.CreateProfileForAccount2();
+
+            _repo.AddFriendToProfile(myProfile.ProfileId, friendProf.ProfileId);
+
+            var updatedMyProfile = _repo.GetByProfileId(myProfile.ProfileId);
+            var updatedFriendProf = _repo.GetByProfileId(friendProf.ProfileId);
+
+            Assert.That(updatedFriendProf.FriendsIds.Count, Is.EqualTo(0));
+            Assert.That(updatedMyProfile.FriendsIds.Count, Is.EqualTo(1));
+
+            Assert.That(updatedMyProfile.FriendsIds[0], Is.EqualTo(updatedFriendProf.ProfileId));
         }
     }
 }

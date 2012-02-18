@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Helpers;
 using Neo4jClient;
+using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
@@ -65,8 +66,14 @@ namespace RecreateMeSql.Repositories
             return true;
         }
 
-        public bool AddFriendToProfile(Profile profile, Profile friend)
+        public bool AddFriendToProfile(string profileId, string friendId)
         {
+
+            var profileNode = _graphClient.ProfileWithId(profileId).Single();
+            var friendNode = _graphClient.ProfileWithId(friendId).Single();
+
+            CreateFriendRelationship(profileNode, friendNode);
+
             return true;
         }
 
@@ -112,6 +119,11 @@ namespace RecreateMeSql.Repositories
             {
                 CreateSingleLocationRelationship(profileNode, location);
             }
+        }
+
+        private void CreateFriendRelationship(Node<Profile> profileNode, Node<Profile> friendNode)
+        {
+            _graphClient.CreateRelationship(profileNode.Reference, new FriendRelationship(friendNode.Reference));
         }
 
         private void CreateSingleLocationRelationship(NodeReference<Profile> profileNode, Location location)
