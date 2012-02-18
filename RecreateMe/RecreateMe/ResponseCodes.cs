@@ -23,7 +23,8 @@ namespace RecreateMe
         MaxProfilesReached,
         LocationNotFound,
         ProfileNameAlreadyExists,
-        SportAlreadyPlayed
+        SportAlreadyPlayed,
+        LocationAlreadyInProfile
     }
 
     public static class ResponseCodeExtensions
@@ -51,6 +52,10 @@ namespace RecreateMe
                     return "You have reached your maximum amount of profiles for this account";
                 case(ResponseCodes.NameNotSpecified):
                     return "You must specify a name for the account";
+                case (ResponseCodes.LocationNotFound):
+                    return "The location you specified does not exist. Boo!";
+                case (ResponseCodes.LocationAlreadyInProfile):
+                    return "You already have this location in your profile dummy...";
             }
 
             return message;

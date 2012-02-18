@@ -1,3 +1,4 @@
+using System.Linq;
 using RecreateMe.Exceptions;
 using RecreateMe.Locales;
 
@@ -22,6 +23,9 @@ namespace RecreateMe.Profiles.Handlers
             var location = _locationRepository.FindByName(request.Location);
 
             if (location == null) return new AddLocationToProfileResponse(ResponseCodes.LocationNotFound);
+
+            if (profile.Locations.Any(x => x.Name == request.Location))
+                return new AddLocationToProfileResponse(ResponseCodes.LocationAlreadyInProfile);
 
             profile.Locations.Add(location);
 

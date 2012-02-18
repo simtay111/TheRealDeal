@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using RecreateMe;
@@ -28,8 +29,8 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             const string profileId = "123";
             _profile = new Profile
                            {
-                                  ProfileId = profileId
-                              };
+                               ProfileId = profileId
+                           };
             var request = new AddLocationToProfileRequest
                               {
                                   Location = location,
@@ -48,7 +49,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         [Test]
         public void ThrowsExceptionIfLocationWasNotSpeicified()
         {
-            var request = new AddLocationToProfileRequest()
+            var request = new AddLocationToProfileRequest
                               {
                                   Location = null
                               };
@@ -64,8 +65,8 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         [Test]
         public void ReturnsLocationNotFoundStatusIfTheLocationSpecifiedCouldNotBeFound()
         {
-            var request = new AddLocationToProfileRequest()
-            {
+            var request = new AddLocationToProfileRequest
+                              {
                 Location = "Hamsterton"
             };
             CreateMockProfileAndLocationRepos("Moo", request.Location);
@@ -78,12 +79,32 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             Assert.False(_profileWasSavedSuccessfully);
         }
 
+        [Test]
+        public void ReturnsLocationAlreadyInProfileIfTheLocationSpecifiedIsAlreadyAttachedToThePRofile()
+        {
+            const string profileId = "profId";
+            var request = new AddLocationToProfileRequest
+                              {
+                                  Location = "Bend",
+                                  ProfileId = profileId
+                              };
+            _profile = new Profile();
+            _profile.Locations.Add(new Location("Bend"));
+            CreateMockProfileAndLocationRepos(profileId, request.Location);
+            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationAlreadyInProfile));
+            Assert.That(_profile.Locations.Count, Is.EqualTo(1));
+        }
+
         private void CreateMockProfileAndLocationRepos(string profileId, string location)
         {
             _mockLocationRepo = new Mock<ILocationRepository>();
-            _mockLocationRepo.Setup(x => x.FindByName(It.Is<string>(d => d == location))).Returns(new Location("Bend"));
+            _mockLocationRepo.Setup(x => x.FindByName(location)).Returns(new Location("Bend"));
             _mockProfileRepo = new Mock<IProfileRepository>();
-            _mockProfileRepo.Setup(x => x.GetByProfileId(It.Is<string>(d => d == profileId))).Returns(_profile);
+            _mockProfileRepo.Setup(x => x.GetByProfileId(profileId)).Returns(_profile);
             _mockProfileRepo.Setup(x => x.AddLocationToProfile(It.IsAny<Profile>(), It.IsAny<Location>())).Callback(() => _profileWasSavedSuccessfully = true);
         }
     }

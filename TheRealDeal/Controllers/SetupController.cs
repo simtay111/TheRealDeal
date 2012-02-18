@@ -87,7 +87,7 @@ namespace TheRealDeal.Controllers
                 return View(model);
             }
 
-            var request = new AddLocationToProfileRequest()
+            var request = new AddLocationToProfileRequest
                               {
                                   Location = model.LocationToAdd,
                                   ProfileId = GetProfileFromCookie()
@@ -104,6 +104,8 @@ namespace TheRealDeal.Controllers
 
             var errorMessage = response.Status.GetMessage();
             ModelState.AddModelError("", errorMessage);
+
+            model = CreateLocationsModel();
 
             return View(model);
         }
