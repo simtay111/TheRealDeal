@@ -25,9 +25,9 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         [Test]
         public void CanAddSportToProfileViaUniqueIdOfPerson()
         {
-            var skillLevel = 5;
-            var uniqueId = "MyId";
-            _request = new AddSportToProfileRequest()
+            const int skillLevel = 5;
+            const string uniqueId = "MyId";
+            _request = new AddSportToProfileRequest
                            {
                                SkillLevel = skillLevel,
                                Sport = "Soccer",
@@ -36,34 +36,52 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _profile = new Profile();
 
             SetUpMockProfileUpdaterAndSportRepo(uniqueId);
-            _mockIProfileUpdater.Setup(x => x.AddSportToProfile(It.Is<Profile>(d => d == _profile), It.IsAny<Sport>())).
+            _mockIProfileUpdater.Setup(x => x.AddSportToProfile(It.Is<Profile>(d => d == _profile), It.IsAny<SportWithSkillLevel>())).
                 Callback(() => _profileWasSavedSuccessfully = true);
 
             var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
             var response = handler.Handle(_request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.AreEqual(_profile.SportsPlayed.Count, 1);
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
             Assert.True(_profileWasSavedSuccessfully);
+        }
+
+        [Test]
+        public void WillNotAddSportIfItAlreadyIsInProfile()
+        {
+            _profile = TestData.MockProfile1();
+            _request = new AddSportToProfileRequest
+                           {
+                               SkillLevel = 1,
+                               Sport = "Soccer",
+                               UniqueId = _profile.ProfileId
+                           };
+            SetUpMockProfileUpdaterAndSportRepo(_profile.ProfileId);
+            _mockSportRepo.Setup(x => x.FindByName(_request.Sport)).Returns(new Sport {Name = "Soccer"});
+            var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+
+            var response = handler.Handle(_request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.SportAlreadyPlayed));
         }
 
         [Test]
         public void CreatesADefaultSkillLevelIfNoneIsSpecified()
         {
-            var uniqueId = "MyId";
-            _request = new AddSportToProfileRequest()
-            {
+            const string uniqueId = "MyId";
+            _request = new AddSportToProfileRequest
+                           {
                 Sport = "Soccer",
                 UniqueId = uniqueId
             };
             _profile = new Profile();
-
             SetUpMockProfileUpdaterAndSportRepo(uniqueId);
-
-
             var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+
             handler.Handle(_request);
-            Assert.AreEqual(_profile.SportsPlayed[0].SkillLevel.Level, Constants.DefaultSkillLevel);
+
+            _mockIProfileUpdater.Verify(x => x.AddSportToProfile(_profile,
+                It.Is<SportWithSkillLevel>(n => n.SkillLevel.Level ==Constants.DefaultSkillLevel)));
         }
         
         [Test]
@@ -74,7 +92,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             var response = handler.Handle(request);
             
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.SportNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.SportNotSpecified));
         }
 
         private void SetUpMockProfileUpdaterAndSportRepo(string uniqueId)

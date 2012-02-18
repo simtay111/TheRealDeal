@@ -22,7 +22,8 @@ namespace RecreateMe
         PasswordsDontMatch,
         MaxProfilesReached,
         LocationNotFound,
-        ProfileNameAlreadyExists
+        ProfileNameAlreadyExists,
+        SportAlreadyPlayed
     }
 
     public static class ResponseCodeExtensions

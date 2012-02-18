@@ -28,7 +28,9 @@ namespace RecreateMeSql.Repositories
 
         public Profile GetByProfileId(string profileId)
         {
-            return TestData.MockProfile1();
+            var profile = _graphClient.ProfileWithId(profileId).Single();
+
+            return _profileMapper.Map(profile);
         }
 
         public bool Save(Profile profile)
@@ -40,18 +42,26 @@ namespace RecreateMeSql.Repositories
             _graphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
 
             CreateLocationRelationships(profile, profileNode);
-            CreateSportRelationships(profile, profileNode);
+            CreateSportRelationshipsForNewProfile(profile, profileNode);
 
             return true;
         }
 
-        public bool AddSportToProfile(Profile profile, Sport sport)
+        public bool AddSportToProfile(Profile profile, SportWithSkillLevel sport)
         {
+            var profileNode = _graphClient.ProfileWithId(profile.ProfileId).Single();
+
+            CreateSingleSportRelationship(profileNode.Reference, sport);
+
             return true;
         }
 
         public bool AddLocationToProfile(Profile profile, Location location)
         {
+            var profileNode = _graphClient.ProfileWithId(profile.ProfileId).Single();
+
+            CreateSingleLocationRelationship(profileNode.Reference, location);
+
             return true;
         }
 
@@ -100,23 +110,33 @@ namespace RecreateMeSql.Repositories
         {
             foreach (var location in profile.Locations)
             {
-                var locNode = _graphClient.LocationWithName(location.Name).FirstOrDefault();
-                if (locNode == null) continue;
-                _graphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
+                CreateSingleLocationRelationship(profileNode, location);
             }
         }
 
-        private void CreateSportRelationships(Profile profile, NodeReference<Profile> profileNode)
+        private void CreateSingleLocationRelationship(NodeReference<Profile> profileNode, Location location)
+        {
+            var locNode = _graphClient.LocationWithName(location.Name).FirstOrDefault();
+            if (locNode == null) return;
+            _graphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
+        }
+
+        private void CreateSportRelationshipsForNewProfile(Profile profile, NodeReference<Profile> profileNode)
         {
 
             foreach (var sport in profile.SportsPlayed)
             {
-                var sportNode = _graphClient.SportWithName(sport.Name).FirstOrDefault();
-                if (sportNode == null) continue;
-                var profileToSportRelationship = new ProfileToSportRelationship(sportNode.Reference, sport.SkillLevel);
-                _graphClient.CreateRelationship(profileNode,
-                                                profileToSportRelationship);
+                CreateSingleSportRelationship(profileNode, sport);
             }
+        }
+
+        private void CreateSingleSportRelationship(NodeReference<Profile> profileNode, SportWithSkillLevel sport)
+        {
+            var sportNode = _graphClient.SportWithName(sport.Name).FirstOrDefault();
+            if (sportNode == null) return;
+            var profileToSportRelationship = new ProfileToSportRelationship(sportNode.Reference, sport.SkillLevel);
+            _graphClient.CreateRelationship(profileNode,
+                                            profileToSportRelationship);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace RecreateMe.Profiles
     {
         Profile GetByProfileId(string profileId);
         bool Save(Profile profile);
-        bool AddSportToProfile(Profile profile, Sport sport);
+        bool AddSportToProfile(Profile profile, SportWithSkillLevel sport);
         bool AddLocationToProfile(Profile profile, Location location);
         bool AddFriendToProfile(Profile profile, Profile friend);
         IList<Profile> FindAllByName(string name);

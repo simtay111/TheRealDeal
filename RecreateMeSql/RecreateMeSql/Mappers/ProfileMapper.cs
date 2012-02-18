@@ -29,7 +29,7 @@ namespace RecreateMeSql.Mappers
 
             for(int i = 0; i < sportEdges.Count(); i++)
             {
-                var skillLevel = sportEdgesList[0].Data.Level;
+                var skillLevel = sportEdgesList[i].Data.Level;
                  profile.SportsPlayed.Add(new SportWithSkillLevel {Name = sportNodes[i].Data.Name, SkillLevel = new SkillLevel(skillLevel)});
             }
         }

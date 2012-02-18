@@ -1,3 +1,4 @@
+using System.Linq;
 using RecreateMe.Exceptions;
 using RecreateMe.Sports;
 
@@ -23,7 +24,8 @@ namespace RecreateMe.Profiles.Handlers
 
             var sport = CreateSportWithSkillLevelFromRequest(request);
 
-            profile.SportsPlayed.Add(sport);
+            if (profile.SportsPlayed.Any(x => x.Name == sport.Name))
+                return new AddSportToProfileResponse(ResponseCodes.SportAlreadyPlayed);
 
             _profileRepository.AddSportToProfile(profile, sport);
 

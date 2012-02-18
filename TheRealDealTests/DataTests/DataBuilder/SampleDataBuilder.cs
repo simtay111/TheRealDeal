@@ -46,6 +46,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         private void CreateLocations()
         {
             CreateLocationBend();
+            CreateLocationPortland();
         }
 
         private void CreateSports()
@@ -69,12 +70,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
                               {
                                   AccountId = "Cows@Moo.com",
                                   ProfileId = "Profile1",
-                                  Locations = new List<Location>() { new Location("Bend") },
-                                  SportsPlayed = new List<SportWithSkillLevel>() {new SportWithSkillLevel()
-                                                                                      {
-                                                                                          Name = "Soccer",
-                                                                                          SkillLevel = new SkillLevel(5)
-                                                                                      }}
+                                  Locations = new List<Location> { new Location("Bend") },
+                                  SportsPlayed = new List<SportWithSkillLevel>
+                                                     {new SportWithSkillLevel
+                                                          {
+                                                            Name = "Soccer",
+                                                            SkillLevel = new SkillLevel(5)
+                                                        }}
                               };
             profileRepo.Save(profile);
             return profile;
@@ -89,7 +91,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
                                   AccountId = "Simtay111@Gmail.com",
                                   ProfileId = "Simtay111",
                                   Locations = new List<Location>() { new Location("Bend") },
-                                  SportsPlayed = new List<SportWithSkillLevel>() {new SportWithSkillLevel()
+                                  SportsPlayed = new List<SportWithSkillLevel>() {new SportWithSkillLevel
                                                                                       {
                                                                                           Name = "Basketball",
                                                                                           SkillLevel = new SkillLevel(3)
@@ -144,6 +146,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var locRepo = new LocationRepository();
             locRepo.CreateLocation("Bend");
+        }
+
+        public void CreateLocationPortland()
+        {
+            var locRepo = new LocationRepository();
+            locRepo.CreateLocation("Portland");
         }
     }
 

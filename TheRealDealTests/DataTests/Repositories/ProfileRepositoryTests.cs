@@ -96,5 +96,49 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.True(_repo.ProfileExistsWithName(Profile1Id));
             Assert.False(_repo.ProfileExistsWithName(ProfileId));
         }
+
+        [Test]
+        public void CanAddSportsToProfile()
+        {
+            _data.CreateAccount1();
+            _data.CreateSoccerSport();
+            _data.CreateBasketballSport();
+            var profile = _data.CreateProfileForAccount1();
+            const string sport = "Soccer";
+
+            _repo.AddSportToProfile(profile, new SportWithSkillLevel {Name = sport});
+
+            var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
+            Assert.That(updatedProfile.SportsPlayed[1].Name, Is.EqualTo(sport));
+        }
+
+        [Test]
+        public void CanGetByProfileId()
+        {
+            _data.CreateAccount1();
+            var profile = _data.CreateProfileForAccount1();
+
+            var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
+
+            Assert.That(profile.ProfileId, Is.EqualTo(updatedProfile.ProfileId));
+            Assert.That(profile.SportsPlayed.Count, Is.EqualTo(1));
+            Assert.That(profile.Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
+        }
+
+        [Test]
+        public void CanAddLocationsToProfile()
+        {
+            _data.CreateAccount1();
+            _data.CreateSoccerSport();
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
+            var profile = _data.CreateProfileForAccount1();
+            const string location = "Portland";
+
+            _repo.AddLocationToProfile(profile, new Location() { Name = location });
+
+            var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
+            Assert.That(updatedProfile.Locations[1].Name, Is.EqualTo(location));
+        }
     }
 }
