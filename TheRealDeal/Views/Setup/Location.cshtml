@@ -1,6 +1,4 @@
-﻿@using RecreateMe.Locales
-@using TheRealDeal
-@using TheRealDeal.Models.Setup
+﻿@using TheRealDeal.Models.Setup
 @model AddLocationModel
 
 @{
@@ -13,12 +11,12 @@
 
 <div>  Your current locations:
 <ul>
-@foreach (var location in (IList<Location>)ViewData[ViewDataConstants.CurrentLocations])
-{
-    <li>
-    @Html.Label("CurrentLocations", location.Name)
-    </li>
-}
+    @foreach (var location in Model.CurrentLocations)
+    {
+        <li>
+            @Html.Label("CurrentLocations", location.Name)
+        </li>
+    }
 </ul>
 </div>
 
@@ -35,5 +33,6 @@
     <div>
     <button type="submit">Add this location!</button>
     </div>
+    @Html.ValidationMessageFor(x => x.LocationToAdd)
 }
 </div>

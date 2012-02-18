@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using RecreateMe;
 using RecreateMe.Configuration;
 using RecreateMe.ProfileSetup.Handlers;
 using RecreateMe.Profiles.Handlers;
 using RecreateMe.Sports;
-using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Setup;
 
@@ -33,32 +30,24 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Sports()
         {
-            var profileId = GetProfileFromCookie();
+            var model = CreateSportsModel();
 
-            var sportsForProfile = GetSportsForProfile(profileId);
-
-            var sportRepo = new SportRepository();
-
-            var sports = sportRepo.GetNamesOfAllSports();
-
-            var leftOverSportsToPotentiallyAdd =
-                sports.Where(x => sportsForProfile.FirstOrDefault(y => y.Name == x) == null).ToList();
-
-
-            ViewData[ViewDataConstants.SkillLevels] = new SelectList(new SkillLevelProvider()
-                .GetListOfAvailableSkillLevels());
-            ViewData[ViewDataConstants.AvailableSports] = new SelectList(leftOverSportsToPotentiallyAdd);
-            ViewData[ViewDataConstants.SportsForProfile] = sportsForProfile;
-
-            return View();
+            return View(model);
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Sports(AddSportModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                model = CreateSportsModel();
+
+                return View(model);
+            }
+
             var profile = GetProfileFromCookie();
-            var request = new AddSportToProfileRequest()
+            var request = new AddSportToProfileRequest
                               {
                                   SkillLevel = int.Parse(model.ChosenSkillLevel),
                                   Sport = model.ChosenSport, 
@@ -83,19 +72,21 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Location()
         {
-            var repo = new ProfileRepository();
+            var model = CreateLocationsModel();
 
-            var profile = repo.GetByProfileId(GetProfileFromCookie());
-
-            ViewData[ViewDataConstants.CurrentLocations] = profile.Locations;
-
-            return View();
+            return View(model);
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Location(AddLocationModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                model = CreateLocationsModel();
+                return View(model);
+            }
+
             var request = new AddLocationToProfileRequest()
                               {
                                   Location = model.LocationToAdd,
@@ -117,6 +108,29 @@ namespace TheRealDeal.Controllers
             return View(model);
         }
 
+        private AddSportModel CreateSportsModel()
+        {
+            var profileId = GetProfileFromCookie();
+
+            var sportsForProfile = GetSportsForProfile(profileId);
+
+            var sportRepo = new SportRepository();
+
+            var sports = sportRepo.GetNamesOfAllSports();
+
+            var leftOverSportsToPotentiallyAdd =
+                sports.Where(x => sportsForProfile.FirstOrDefault(y => y.Name == x) == null).ToList();
+
+
+            var model = new AddSportModel
+                            {
+                                AvailableSports = new SelectList(leftOverSportsToPotentiallyAdd),
+                                SportsForProfile = sportsForProfile,
+                                SkillLevels = new SelectList(new SkillLevelProvider().GetListOfAvailableSkillLevels())
+                            };
+            return model;
+        }
+
         private string GetProfileFromCookie()
         {
             var cookie = HttpContext.Request.Cookies[Constants.CookieName];
@@ -133,6 +147,19 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
             return response.SportsForProfile;
+        }
+
+        private AddLocationModel CreateLocationsModel()
+        {
+            var repo = new ProfileRepository();
+
+            var profile = repo.GetByProfileId(GetProfileFromCookie());
+
+            var model = new AddLocationModel
+                            {
+                                CurrentLocations = profile.Locations
+                            };
+            return model;
         }
     }
 }
