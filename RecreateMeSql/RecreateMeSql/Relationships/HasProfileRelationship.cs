@@ -1,6 +1,5 @@
 ﻿using Neo4jClient;
 using RecreateMe.Login;
-using RecreateMe.Profiles;
 
 namespace RecreateMeSql.Relationships
 {
@@ -18,7 +17,7 @@ namespace RecreateMeSql.Relationships
 
         public override string RelationshipTypeKey
         {
-            get { return RelationsTypes.HasProfile.ToString(); }
+            get { return RelationsTypes.HasProfile; }
         }
     }
 }

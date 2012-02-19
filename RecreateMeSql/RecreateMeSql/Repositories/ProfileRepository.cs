@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Helpers;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
@@ -95,7 +94,7 @@ namespace RecreateMeSql.Repositories
         {
             var sportNode = _graphClient.SportWithName(sport);
 
-            var profileNodes = sportNode.InE(RelationsTypes.ProfileSport.ToString()).OutV<Profile>().ToList();
+            var profileNodes = sportNode.InE(RelationsTypes.ProfileSport).OutV<Profile>().ToList();
 
             var profiles = new List<Profile>();
             profileNodes.ForEach(node => profiles.Add(_profileMapper.Map(node)));
@@ -107,7 +106,7 @@ namespace RecreateMeSql.Repositories
         {
             var locationNode = _graphClient.LocationWithName(location);
 
-            var profileNodes = locationNode.InE(RelationsTypes.ProfileLocation.ToString()).OutV<Profile>().ToList();
+            var profileNodes = locationNode.InE(RelationsTypes.ProfileLocation).OutV<Profile>().ToList();
 
             var profiles = new List<Profile>();
             profileNodes.ForEach(node => profiles.Add(_profileMapper.Map(node)));

@@ -6,7 +6,7 @@ namespace RecreateMeSql.Mappers
     {
         public Account Map(Neo4jClient.Node<Account> accountNode  )
         {
-            return new Account()
+            return new Account
                        {
                            Password = accountNode.Data.Password,
                            AccountName = accountNode.Data.AccountName

@@ -13,60 +13,60 @@ namespace RecreateMeSql
     {
         public static IGremlinNodeQuery<Sport> AllSportNodes(this GraphClient gc)
         {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
-                .OutE(RelationsTypes.Sport.ToString()).InV<Sport>();
+                .OutE(RelationsTypes.Sport).InV<Sport>();
         }
 
         public static IGremlinNodeQuery<SchemaNode> LocationBaseNode(this GraphClient gc)
         {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
         }
 
          public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
          {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+             return gc.RootNode.OutE(RelationsTypes.BaseNode)
                  .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location.ToString());
+                 .OutE(RelationsTypes.Location);
          }
 
          public static IGremlinNodeQuery<Location> LocationWithName(this GraphClient gc, string locName)
          {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+             return gc.RootNode.OutE(RelationsTypes.BaseNode)
                  .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location.ToString()).InV<Location>(y => y.Name == locName);
+                 .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
          }
 
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)
         {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString());
         }
 
          public static IGremlinRelationshipQuery SportEdges(this GraphClient gc)
          {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+             return gc.RootNode.OutE(RelationsTypes.BaseNode)
                  .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location.ToString());
+                 .OutE(RelationsTypes.Location);
          }
 
          public static IGremlinNodeQuery<Sport> SportWithName(this GraphClient gc, string sportName)
          {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
+             return gc.RootNode.OutE(RelationsTypes.BaseNode)
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
-                .OutE(RelationsTypes.Sport.ToString()).InV<Sport>(n => n.Name == sportName);
+                .OutE(RelationsTypes.Sport).InV<Sport>(n => n.Name == sportName);
          }
 
          public static IGremlinNodeQuery<Account> AccountWithId(this GraphClient gc, string accountId)
          {
-             return gc.RootNode.OutE(RelationsTypes.Account.ToString())
+             return gc.RootNode.OutE(RelationsTypes.Account)
                  .InV<Account>(n => n.AccountName == accountId);
          }
 
         public static IGremlinNodeQuery<Profile> Profiles(this IGremlinQuery gc)
         {
-            return gc.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>();
+            return gc.OutE(RelationsTypes.HasProfile).InV<Profile>();
         }
 
         //public static IGremlinNodeQuery<Profile> ProfileIdsContaining(this IGremlinQuery gc, string name)
@@ -76,18 +76,18 @@ namespace RecreateMeSql
 
         public static IGremlinNodeQuery<Profile> ProfileWithId(this GraphClient gc, string profileId)
         {
-            return gc.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>()
-                .OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(n => n.ProfileId == profileId);
+            return gc.RootNode.OutE(RelationsTypes.Account).InV<Account>()
+                .OutE(RelationsTypes.HasProfile).InV<Profile>(n => n.ProfileId == profileId);
         }
 
         public static IGremlinNodeQuery<Profile> Friends(this IGremlinQuery gc)
         {
-            return gc.OutE(RelationsTypes.Friend.ToString()).InV<Profile>();
+            return gc.OutE(RelationsTypes.Friend).InV<Profile>();
         }
 
         public static IGremlinNodeQuery<Account> Accounts(this GraphClient gc)
         {
-            return gc.RootNode.OutE(RelationsTypes.Account.ToString())
+            return gc.RootNode.OutE(RelationsTypes.Account)
                  .InV<Account>();
         }
     }

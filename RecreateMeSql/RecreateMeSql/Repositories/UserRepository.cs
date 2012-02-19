@@ -22,7 +22,7 @@ namespace RecreateMeSql.Repositories
 
         public void CreateUser(string userName, string password)
         {
-            var account = new Account() { Password = password, AccountName = userName };
+            var account = new Account { Password = password, AccountName = userName };
 
             var rootnode = _graphClient.Get(new RootNode());
 
@@ -33,14 +33,14 @@ namespace RecreateMeSql.Repositories
 
         public bool AlreadyExists(string username)
         {
-            var nodes = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => n.AccountName == username);
+            var nodes = _graphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => n.AccountName == username);
 
             return nodes.Any();
         }
 
         public bool FoundUserByNameAndPassword(string username, string password)
         {
-            var accountNode = _graphClient.RootNode.OutE(RelationsTypes.Account.ToString()).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
+            var accountNode = _graphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
 
             if (accountNode == null)
                 return false;

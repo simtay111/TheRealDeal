@@ -29,8 +29,8 @@ namespace RecreateMeSql.Mappers
 
         private void MapSports(Node<Profile> profileNode, Profile profile)
         {
-            var sportEdges = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport.ToString());
-            var sportEdgesList = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport.ToString()).ToList();
+            var sportEdges = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport);
+            var sportEdgesList = profileNode.OutE<SkillLevel>(RelationsTypes.ProfileSport).ToList();
             var sportNodes = sportEdges.InV<Sport>().ToList();
 
             for(int i = 0; i < sportEdges.Count(); i++)
@@ -47,7 +47,7 @@ namespace RecreateMeSql.Mappers
 
         private void MapLocations(Node<Profile> profileNode, Profile profile)
         {
-            var locations = profileNode.OutE(RelationsTypes.ProfileLocation.ToString())
+            var locations = profileNode.OutE(RelationsTypes.ProfileLocation)
                 .InV<Location>();
 
             foreach (var createdLoc in locations.Select(location => new Location(location.Data.Name)))

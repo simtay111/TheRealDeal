@@ -29,8 +29,8 @@ namespace RecreateMeSql
 
         public static Profile MockProfile1()
         {
-            _profile1 = new Profile()
-            {
+            _profile1 = new Profile
+                            {
                 ProfileId = "ProfileOne",
                 SportsPlayed = { CreateSoccerWithSkillLevel() },
                 Locations = { CreateLocation1() }
@@ -40,8 +40,8 @@ namespace RecreateMeSql
 
         public static Profile MockProfile2()
         {
-            _profile2 = new Profile()
-            {
+            _profile2 = new Profile
+                            {
                 ProfileId = "ProfileTwo",
                 SportsPlayed = { CreateSoccerWithSkillLevel() },
                 Locations = { CreateLocation2() }
@@ -51,8 +51,8 @@ namespace RecreateMeSql
 
         public static Profile MockProfile3()
         {
-            _profile3 = new Profile()
-            {
+            _profile3 = new Profile
+                            {
                 ProfileId = "ProfileThree",
                 SportsPlayed = { CreateBasketballWithSkillLevel() },
                 Locations = { CreateLocation3() }
@@ -62,8 +62,8 @@ namespace RecreateMeSql
 
         public static SportWithSkillLevel CreateSoccerWithSkillLevel()
         {
-            var sport = new SportWithSkillLevel()
-            {
+            var sport = new SportWithSkillLevel
+                            {
                 Name = "Soccer",
                 SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
             };
@@ -72,8 +72,8 @@ namespace RecreateMeSql
 
         public static SportWithSkillLevel CreateBasketballWithSkillLevel()
         {
-            var sport = new SportWithSkillLevel()
-            {
+            var sport = new SportWithSkillLevel
+                            {
                 Name = "Basketball",
                 SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
             };
@@ -95,16 +95,16 @@ namespace RecreateMeSql
 
         public static Sport CreateSoccerGame()
         {
-            _soccer = new Sport()
-            {
+            _soccer = new Sport
+                          {
                 Name = "Soccer"
             };
             return _soccer;
         }
         public static Sport CreateBasketballGame()
         {
-            _basketball = new Sport()
-            {
+            _basketball = new Sport
+                              {
                 Name = "Basketball"
             };
             return _basketball;
@@ -112,8 +112,8 @@ namespace RecreateMeSql
 
         public static Team CreateTeam1()
         {
-            return new Team()
-            {
+            return new Team
+                       {
                 MaxSize = 6,
                 Name = "Super team",
                 Players = GetListOfMockedProfiles()
@@ -125,8 +125,8 @@ namespace RecreateMeSql
             var profiles = GetListOfMockedProfiles();
             profiles.RemoveAt(0);
 
-            return new Team()
-            {
+            return new Team
+                       {
                 MaxSize = 12,
                 Name = "Mega team",
                 Players = profiles

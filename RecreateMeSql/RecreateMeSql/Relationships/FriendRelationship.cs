@@ -17,7 +17,7 @@ namespace RecreateMeSql.Relationships
 
         public override string RelationshipTypeKey
         {
-            get { return RelationsTypes.Friend.ToString(); }
+            get { return RelationsTypes.Friend; }
         }
     }
 }
