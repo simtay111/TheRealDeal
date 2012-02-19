@@ -41,6 +41,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateLocations();
             CreateSports();
             CreateProfilesForAccounts();
+            CreateFriendship();
+        }
+
+        private void CreateFriendship()
+        {
+            CreateFriendshipForProfile1And2();
         }
 
         private void CreateLocations()
@@ -70,11 +76,16 @@ namespace TheRealDealTests.DataTests.DataBuilder
                               {
                                   AccountId = "Cows@Moo.com",
                                   ProfileId = "Profile1",
-                                  Locations = new List<Location> { new Location("Bend") },
+                                  Locations = new List<Location> { new Location("Bend"), new Location("Portland") },
                                   SportsPlayed = new List<SportWithSkillLevel>
                                                      {new SportWithSkillLevel
                                                           {
                                                             Name = "Soccer",
+                                                            SkillLevel = new SkillLevel(5)
+                                                        },
+                                                     new SportWithSkillLevel
+                                                          {
+                                                            Name = "Basketball",
                                                             SkillLevel = new SkillLevel(5)
                                                         }}
                               };

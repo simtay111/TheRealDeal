@@ -106,7 +106,7 @@ namespace TheRealDealTests.DataTests.Repositories
             var profile = _data.CreateProfileForAccount1();
             const string sport = "Soccer";
 
-            _repo.AddSportToProfile(profile, new SportWithSkillLevel {Name = sport});
+            _repo.AddSportToProfile(profile, new SportWithSkillLevel { Name = sport });
 
             var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
             Assert.That(updatedProfile.SportsPlayed[1].Name, Is.EqualTo(sport));
@@ -159,6 +159,78 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(updatedMyProfile.FriendsIds.Count, Is.EqualTo(1));
 
             Assert.That(updatedMyProfile.FriendsIds[0], Is.EqualTo(updatedFriendProf.ProfileId));
+        }
+
+        [Test]
+        public void CanFindAllByName()
+        {
+            _data.CreateAccount1();
+            var profile = _data.CreateProfileForAccount1();
+            _data.CreateAccount2();
+            var profile2 = _data.CreateProfileForAccount2();
+
+            var profiles = _repo.FindAllByName("i");
+
+            Assert.That(profiles.Count, Is.EqualTo(2));
+            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
+            Assert.That(profiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+        }
+
+        [Test]
+        public void CanFindAllByNameExcludesProfileIdsWithoutMatches()
+        {
+            _data.CreateAccount1();
+            var profile = _data.CreateProfileForAccount1();
+            _data.CreateAccount2();
+            _data.CreateProfileForAccount2();
+
+            var profiles = _repo.FindAllByName("S");
+
+            Assert.That(profiles.Count, Is.EqualTo(1));
+            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
+        }
+
+        [Test]
+        public void CanFindAllBySports()
+        {
+            _data.CreateSoccerSport();
+            _data.CreateBasketballSport();
+            _data.CreateAccount1();
+            var profile1 = _data.CreateProfileForAccount1();
+            _data.CreateAccount2();
+            var profile2 = _data.CreateProfileForAccount2();
+
+            var soccerProfiles = _repo.FindAllBySport("Soccer");
+            var basketballProfiles = _repo.FindAllBySport("Basketball");
+
+            Assert.That(soccerProfiles.Count, Is.EqualTo(1));
+            Assert.That(basketballProfiles.Count, Is.EqualTo(2));
+            Assert.That(soccerProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.That(basketballProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
+            Assert.That(basketballProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+        }
+
+        [Test]
+        public void CanFindAllByLocation()
+        {
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
+            _data.CreateAccount1();
+            _data.CreateAccount2();
+            var profile1 = _data.CreateProfileForAccount1();
+            var profile2 = _data.CreateProfileForAccount2();
+
+            var bendProfiles = _repo.FindAllByLocation("Bend");
+            var portlandProfiles = _repo.FindAllByLocation("Portland");
+
+            Assert.That(portlandProfiles.Count, Is.EqualTo(1));
+            Assert.That(bendProfiles.Count, Is.EqualTo(2));
+            Assert.That(portlandProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.That(bendProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
+            Assert.That(bendProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+
+
+
         }
     }
 }

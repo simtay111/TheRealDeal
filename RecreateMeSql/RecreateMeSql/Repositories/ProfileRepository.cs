@@ -23,7 +23,8 @@ namespace RecreateMeSql.Repositories
             _profileMapper = profileMapper;
         }
 
-        public ProfileRepository() : this(GraphClientFactory.Create(), new ProfileMapper())
+        public ProfileRepository()
+            : this(GraphClientFactory.Create(), new ProfileMapper())
         {
         }
 
@@ -79,17 +80,39 @@ namespace RecreateMeSql.Repositories
 
         public IList<Profile> FindAllByName(string name)
         {
-            return TestData.GetListOfMockedProfiles();
+            var profileNodes = _graphClient.Accounts().Profiles().ToList();
+
+            profileNodes = profileNodes.Where(x => x.Data.ProfileId.Contains(name)).ToList();
+
+            var profiles = new List<Profile>();
+
+            profileNodes.ForEach(x => profiles.Add(_profileMapper.Map(x)));
+
+            return profiles;
         }
 
         public IList<Profile> FindAllBySport(string sport)
         {
-            return TestData.GetListOfMockedProfiles();
+            var sportNode = _graphClient.SportWithName(sport);
+
+            var profileNodes = sportNode.InE(RelationsTypes.ProfileSport.ToString()).OutV<Profile>().ToList();
+
+            var profiles = new List<Profile>();
+            profileNodes.ForEach(node => profiles.Add(_profileMapper.Map(node)));
+
+            return profiles;
         }
 
         public IList<Profile> FindAllByLocation(string location)
         {
-            return TestData.GetListOfMockedProfiles();
+            var locationNode = _graphClient.LocationWithName(location);
+
+            var profileNodes = locationNode.InE(RelationsTypes.ProfileLocation.ToString()).OutV<Profile>().ToList();
+
+            var profiles = new List<Profile>();
+            profileNodes.ForEach(node => profiles.Add(_profileMapper.Map(node)));
+
+            return profiles;
         }
 
         public IList<Profile> GetByAccount(string accountId)
@@ -103,7 +126,7 @@ namespace RecreateMeSql.Repositories
         {
             var friend1 = TestData.MockProfile2();
             var friend2 = TestData.MockProfile3();
-            return new Dictionary<string, string> {{friend1.ProfileId, friend1.ProfileId}, {friend2.ProfileId, friend2.ProfileId}};
+            return new Dictionary<string, string> { { friend1.ProfileId, friend1.ProfileId }, { friend2.ProfileId, friend2.ProfileId } };
         }
 
         public bool ProfileExistsWithName(string profileName)
