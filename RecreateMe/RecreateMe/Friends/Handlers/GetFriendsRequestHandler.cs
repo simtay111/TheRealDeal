@@ -14,7 +14,7 @@ namespace RecreateMe.Friends.Handlers
 
         public GetFriendsRequestHandlerResponse Handle(GetFriendsRequestHandlerRequest request)
         {
-            var friendsList = _profileRepository.GetFriendIdAndNameListForProfile(request.ProfileId);
+            var friendsList = _profileRepository.GetFriendsProfileNameList(request.ProfileId);
 
             return new GetFriendsRequestHandlerResponse {FriendsNamesAndIds = friendsList};
         }
@@ -27,6 +27,6 @@ namespace RecreateMe.Friends.Handlers
 
     public class GetFriendsRequestHandlerResponse
     {
-        public Dictionary<string, string> FriendsNamesAndIds { get; set; }
+        public IList<string> FriendsNamesAndIds { get; set; }
     }
 }

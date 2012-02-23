@@ -229,5 +229,20 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(bendProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
             Assert.That(bendProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
         }
+
+        [Test]
+        public void GetListOfFriendsProfileIdsForFriendList()
+        {
+            _data.CreateAccount1();
+            _data.CreateAccount2();
+            var profile1 = _data.CreateProfileForAccount1();
+            var profile2 = _data.CreateProfileForAccount2();
+            _data.CreateFriendshipForProfile1And2();
+
+            var friendsNames = _repo.GetFriendsProfileNameList(profile1.ProfileId);
+
+            Assert.That(friendsNames.Count, Is.EqualTo(1));
+            Assert.That(friendsNames[0], Is.EqualTo(profile2.ProfileId));
+        }
     }
 }

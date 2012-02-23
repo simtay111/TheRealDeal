@@ -1,6 +1,7 @@
 ﻿@using RecreateMe.Profiles
 @using TheRealDeal
-@model object
+@using TheRealDeal.Models.Friend
+@model FriendsListModel
 
 @{
     ViewBag.Title = "title";
@@ -9,11 +10,11 @@
 
 <h2>Here are your friends!</h2>
 
-<ul>
-@foreach (var friend in (Dictionary<string, string>)ViewData[ViewDataConstants.FriendsDictionary])
+<ul> 
+@foreach (var friend in Model.FriendsProfileIds)
 {
     <li>
-    @Html.Label(friend.Key, friend.Value)
+    @Html.Label(friend)
     </li>
 }
 </ul>

@@ -14,11 +14,11 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult FriendList()
         {
-            var friends = new ProfileRepository().GetFriendIdAndNameListForProfile(GetProfileFromCookie());
+            var friends = new ProfileRepository().GetFriendsProfileNameList(GetProfileFromCookie());
 
-            ViewData[ViewDataConstants.FriendsDictionary] = friends;
+            var model = new FriendsListModel() {FriendsProfileIds = friends};
 
-            return View();
+            return View(model);
         }
 
         [Authorize]

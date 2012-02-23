@@ -121,11 +121,13 @@ namespace RecreateMeSql.Repositories
             return profileNodes.Select(node => _profileMapper.Map(node)).ToList();
         }
 
-        public Dictionary<string, string> GetFriendIdAndNameListForProfile(string profileId)
+        public IList<string> GetFriendsProfileNameList(string profileId)
         {
-            var friend1 = TestData.MockProfile2();
-            var friend2 = TestData.MockProfile3();
-            return new Dictionary<string, string> { { friend1.ProfileId, friend1.ProfileId }, { friend2.ProfileId, friend2.ProfileId } };
+            var profileNode = _graphClient.ProfileWithId(profileId);
+
+            var friendNodes = profileNode.OutE(RelationsTypes.Friend).InV<Profile>().ToList();
+
+            return friendNodes.Select(x => x.Data.ProfileId).ToList();
         }
 
         public bool ProfileExistsWithName(string profileName)
