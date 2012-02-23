@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <Target Name="Tests">
-    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /exclude=Integration"></Exec>
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /exclude=Integration,Data"></Exec>
   </Target> 
   <Target Name="AllTests">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels"></Exec>

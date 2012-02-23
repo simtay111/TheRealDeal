@@ -33,5 +33,26 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile.ProfileId));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
+
+        [Test]
+        public void WontAddPlayerIfTheyAreAlreadyAFriend()
+        {
+            var request = new AddPlayerToFriendsRequest() { FriendId = "SomeId", ProfileId = "ProfId" };
+
+            var profile = new Profile();
+            var friendProfile = new Profile() {ProfileId = request.FriendId};
+            profile.FriendsIds.Add(friendProfile.ProfileId);
+
+            _mockProfileRepo = new Mock<IProfileRepository>();
+            _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);
+            //_mockProfileRepo.Setup(x => x.GetByProfileId(request.FriendId)).Returns(friendProfile);
+            //_mockProfileRepo.Setup(x => x.AddFriendToProfile(profile.ProfileId, friendProfile.ProfileId)).Callback(() => profileWasSaved = true);
+
+            var handler = new AddPlayerToFriendsRequestHandler(_mockProfileRepo.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyFriend));
+        }
     }
 }

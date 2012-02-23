@@ -1,3 +1,4 @@
+using System.Linq;
 using RecreateMe.Profiles;
 
 namespace RecreateMe.Friends.Handlers
@@ -14,6 +15,9 @@ namespace RecreateMe.Friends.Handlers
         public AddPlayerToFriendsResponse Handle(AddPlayerToFriendsRequest request)
         {
             var profile = _profileRepository.GetByProfileId(request.ProfileId);
+            if (profile.FriendsIds.Any(x => x == request.FriendId))
+                return new AddPlayerToFriendsResponse(ResponseCodes.AlreadyFriend);
+
             var friendProfile = _profileRepository.GetByProfileId(request.FriendId);
 
             profile.FriendsIds.Add(friendProfile.ProfileId);

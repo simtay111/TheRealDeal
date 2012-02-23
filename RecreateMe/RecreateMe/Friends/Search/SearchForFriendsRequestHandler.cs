@@ -16,7 +16,7 @@ namespace RecreateMe.Friends.Search
 
         public SearchForFriendsResponse Handle(SearchForFriendsRequest request)
         {
-            IList<Profile> results = PullProfilesFromDatabaseForFirstFieldSpecified(request);
+            var results = PullProfilesFromDatabaseForFirstFieldSpecified(request);
 
             if (results.Count == 0)
             {
@@ -28,6 +28,10 @@ namespace RecreateMe.Friends.Search
 
             if (!String.IsNullOrEmpty(request.Location))   
                 results = results.Where(x => (x.Locations.Where(y => y.Name == request.Location)).Count() > 0).ToList();
+
+            var selfProfile = results.FirstOrDefault(x => x.ProfileId == request.MyProfile);
+            if (selfProfile != null)
+                results.Remove(selfProfile);
 
             return new SearchForFriendsResponse(results);
         }
@@ -57,6 +61,7 @@ namespace RecreateMe.Friends.Search
         public string ProfileName { get; set; }
         public string Sport { get; set; }
         public string Location { get; set; }
+        public string MyProfile { get; set; }
     }
 
     public class SearchForFriendsResponse

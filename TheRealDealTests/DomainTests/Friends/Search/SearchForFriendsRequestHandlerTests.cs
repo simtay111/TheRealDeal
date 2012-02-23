@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -22,6 +23,25 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         }
 
         [Test]
+        public void DoesNotFindSelf()
+        {
+            var request = new SearchForFriendsRequest { ProfileName = Name1, Sport = "", Location = "", MyProfile = "MyProfile" };
+            var profile = new Profile {ProfileId = request.MyProfile};
+            var friendProfile = new Profile {ProfileId = Name1};
+            var listOfProfiles = new List<Profile> {profile, friendProfile};
+
+            var mockProfileRepo = new Mock<IProfileRepository>();
+            mockProfileRepo.Setup(x => x.FindAllByName(request.ProfileName)).Returns(listOfProfiles);
+
+            var handler = new SearchForFriendsRequestHandler(mockProfileRepo.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Results.Count, Is.EqualTo(1));
+            Assert.That(response.Results[0], Is.SameAs(friendProfile));
+        }
+
+        [Test]
         public void CanSearchByName()
         {
             var request = new SearchForFriendsRequest {ProfileName = Name1, Sport = "", Location = ""};
@@ -32,7 +52,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Results.Count, Is.EqualTo(3));
+            Assert.That(response.Results.Count, Is.EqualTo(3));
         }
 
         [Test]

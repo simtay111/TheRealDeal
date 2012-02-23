@@ -13,6 +13,7 @@ using TheRealDealTests.DomainTests;
 namespace TheRealDealTests.DataTests.Mappers
 {
     [TestFixture]
+    [Category("Integration")]
     public class ProfileMapperTests
     {
         readonly SampleDataBuilder _data = new SampleDataBuilder(); 
