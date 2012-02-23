@@ -228,9 +228,6 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(portlandProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
             Assert.That(bendProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
             Assert.That(bendProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
-
-
-
         }
     }
 }

@@ -72,7 +72,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var profileRepo = new ProfileRepository();
 
-            var profile = new Profile()
+            var profile = new Profile
                               {
                                   AccountId = "Cows@Moo.com",
                                   ProfileId = "Profile1",
@@ -101,12 +101,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
                               {
                                   AccountId = "Simtay111@Gmail.com",
                                   ProfileId = "Simtay111",
-                                  Locations = new List<Location>() { new Location("Bend") },
-                                  SportsPlayed = new List<SportWithSkillLevel>() {new SportWithSkillLevel
-                                                                                      {
-                                                                                          Name = "Basketball",
-                                                                                          SkillLevel = new SkillLevel(3)
-                                                                                      }}
+                                  Locations = new List<Location> { new Location("Bend") },
+                                  SportsPlayed = new List<SportWithSkillLevel>
+                                                     {new SportWithSkillLevel
+                                                            {
+                                                                Name = "Basketball",
+                                                                SkillLevel = new SkillLevel(3)
+                                                            }}
                               };
             profileRepo.Save(profile);
             return profile;
