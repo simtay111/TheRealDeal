@@ -1,8 +1,9 @@
 ﻿namespace RecreateMeSql.SchemaNodes
 {
-    public enum SchemaNodeTypes
+    public static class SchemaNodeTypes
     {
-        SportBase,
-        LocationBase
+        public const string SportBase = "SportBase";
+        public const string LocationBase = "LocationBase";
+        public const string TeamBase = "TeamBase";
     }
 }

@@ -16,7 +16,7 @@ namespace TheRealDeal.Controllers
         {
             var friends = new ProfileRepository().GetFriendsProfileNameList(GetProfileFromCookie());
 
-            var model = new FriendsListModel() {FriendsProfileIds = friends};
+            var model = new FriendsListModel {FriendsProfileIds = friends};
 
             return View(model);
         }
@@ -35,7 +35,8 @@ namespace TheRealDeal.Controllers
                               {
                 Location = model.Location,
                 ProfileName = model.ProfileName,
-                Sport = model.Sport
+                Sport = model.Sport,
+                MyProfile = GetProfileFromCookie()
             };
 
             var handler = new SearchForFriendsRequestHandler(new ProfileRepository());
@@ -49,7 +50,7 @@ namespace TheRealDeal.Controllers
 
         public ActionResult Add(string friendId)
         {
-            var request = new AddPlayerToFriendsRequest()
+            var request = new AddPlayerToFriendsRequest
                               {
                                   FriendId = friendId,
                                   ProfileId = GetProfileFromCookie()

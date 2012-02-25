@@ -4,6 +4,7 @@ using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMe.Teams;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.SchemaNodes;
 
@@ -41,7 +42,13 @@ namespace RecreateMeSql
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)
         {
             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString());
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase);
+        }
+
+        public static IGremlinNodeQuery<SchemaNode> TeamBaseNode(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.TeamBase);
         }
 
          public static IGremlinRelationshipQuery SportEdges(this GraphClient gc)
@@ -63,6 +70,11 @@ namespace RecreateMeSql
              return gc.RootNode.OutE(RelationsTypes.Account)
                  .InV<Account>(n => n.AccountName == accountId);
          }
+
+        public static IGremlinNodeQuery<Team> TeamWithId(this GraphClient gc, string teamId)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode).InV<SchemaNode>(n => n.Type == SchemaNodeTypes.TeamBase).OutE(RelationsTypes.BaseTeam).InV<Team>(x => x.Id == teamId);
+        }
 
         public static IGremlinNodeQuery<Profile> Profiles(this IGremlinQuery gc)
         {

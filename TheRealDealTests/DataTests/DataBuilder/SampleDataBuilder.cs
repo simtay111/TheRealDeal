@@ -5,6 +5,7 @@ using Neo4jClient;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMe.Teams;
 using RecreateMeSql;
 using RecreateMeSql.Repositories;
 
@@ -171,6 +172,19 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var profileRepo = new ProfileRepository();
 
             profileRepo.AddFriendToProfile("Simtay111", "Profile1");
+        }
+
+        public Team CreateTeam1()
+        {
+            var teamRepo = new TeamRepository();
+            var team = new Team
+                           {
+                               MaxSize = 14,
+                               Name = "Team1"
+                           };
+
+            teamRepo.Save(team);
+            return team;
         }
     }
 

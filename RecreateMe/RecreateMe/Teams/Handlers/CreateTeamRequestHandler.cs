@@ -22,7 +22,7 @@ namespace RecreateMe.Teams.Handlers
                                Name = request.Name
                            };
 
-            _teamRepository.SaveOrUpdate(team);
+            _teamRepository.Save(team);
 
             return new CreateTeamResponse(ResponseCodes.Success);
         }

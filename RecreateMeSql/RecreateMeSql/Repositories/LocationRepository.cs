@@ -46,7 +46,7 @@ namespace RecreateMeSql.Repositories
 
         private void CreateLocationBaseNode()
         {
-            var locationBaseNode = _graphClient.Create(new SchemaNode { Type = SchemaNodeTypes.LocationBase.ToString() });
+            var locationBaseNode = _graphClient.Create(new SchemaNode { Type = SchemaNodeTypes.LocationBase });
 
             var rootNode = _graphClient.RootNode;
 

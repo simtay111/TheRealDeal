@@ -4,7 +4,7 @@ namespace RecreateMe.Teams
 {
     public interface ITeamRepository
     {
-        bool SaveOrUpdate(Team team);
+        bool Save(Team team);
         Team GetById(string id);
         IList<Team> GetTeamsForProfile(string id);
     }

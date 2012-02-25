@@ -22,7 +22,7 @@ namespace TheRealDealTests.DomainTests.Teams
                               };
 
             var teamRepository = new Mock<ITeamRepository>();
-            teamRepository.Setup(x => x.SaveOrUpdate(It.Is<Team>(d => d.Name == teamName
+            teamRepository.Setup(x => x.Save(It.Is<Team>(d => d.Name == teamName
                                                                       && d.MaxSize == maxSize))).Returns(true);
 
             var handler = new CreateTeamRequestHandler(teamRepository.Object);
@@ -62,7 +62,7 @@ namespace TheRealDealTests.DomainTests.Teams
             };
 
             var teamRepository = new Mock<ITeamRepository>();
-            teamRepository.Setup(x => x.SaveOrUpdate(It.Is<Team>(d => d.Name == teamName
+            teamRepository.Setup(x => x.Save(It.Is<Team>(d => d.Name == teamName
                                                                       && d.MaxSize == Constants.DefaultTeamSize))).Returns(true);
 
             var handler = new CreateTeamRequestHandler(teamRepository.Object);
