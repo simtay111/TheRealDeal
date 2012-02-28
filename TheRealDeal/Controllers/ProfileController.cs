@@ -47,16 +47,7 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult CreateProfile()
         {
-            var sports = new SportRepository().GetNamesOfAllSports();
-            
-            var selectList = new SelectList(sports);
-
-            var viewModel = new CreateProfileModel()
-                                {
-                                    SportsList = selectList
-                                };
-
-            return View(viewModel);
+            return View(CreateViewModel());
         }
 
         [Authorize]
@@ -65,16 +56,7 @@ namespace TheRealDeal.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var sports = new SportRepository().GetNamesOfAllSports();
-
-                var selectList = new SelectList(sports);
-
-                var viewModel = new CreateProfileModel()
-                                    {
-                                        SportsList = selectList
-                                    };
-
-                return View(viewModel);
+                return View(CreateViewModel());
             }
 
             var request = new CreateProfileRequest(User.Identity.Name, model.Name, model.Location, model.Sports,
@@ -94,6 +76,19 @@ namespace TheRealDeal.Controllers
             ModelState.AddModelError("", errorMessage);
 
             return View(model);
+        }
+
+        private CreateProfileModel CreateViewModel()
+        {
+            var sports = new SportRepository().GetNamesOfAllSports();
+
+            var selectList = new SelectList(sports);
+
+            var viewModel = new CreateProfileModel()
+                                {
+                                    SportsList = selectList
+                                };
+            return viewModel;
         }
     }
 }

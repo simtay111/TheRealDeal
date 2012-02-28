@@ -1,0 +1,46 @@
+﻿@using TheRealDeal.Models.Games
+@model CreateGameModel
+
+@{
+    ViewBag.Title = "Create Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Game</h2>
+
+@using (Html.BeginForm()){
+    <div>
+    @Html.LabelFor(x => x.Sport)
+    @Html.DropDownListFor(x => x.Sport, new SelectList(Model.AvailableSports))
+    </div>
+    <div>
+    @Html.LabelFor(x => x.Location)
+    @Html.DropDownListFor(x => x.Location, new SelectList(Model.AvailableLocations))
+    </div>
+
+    <div>
+    @Html.LabelFor(x => x.HasTeams)
+    @Html.CheckBoxFor(x => x.HasTeams)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.IsPrivate)
+    @Html.CheckBoxFor(x => x.IsPrivate)
+    </div>
+    <div>
+    @Html.ValidationMessageFor(x => x.MaxPlayers)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.MaxPlayers)
+    @Html.TextBoxFor(x => x.MaxPlayers)
+    </div>
+    <div>
+    @Html.ValidationMessageFor(x => x.MinPlayers)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.MinPlayers)
+    @Html.TextBoxFor(x => x.MinPlayers)
+    </div>
+
+    <button type="submit">Create this team!</button>
+    
+}
