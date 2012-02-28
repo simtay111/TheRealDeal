@@ -2,6 +2,7 @@ namespace RecreateMeSql.Relationships
 {
     public static class RelationsTypes
     {
+        public const string PartOfTeam = "PartOfTeam";
         public const string BaseTeam = "BaseTeam";
         public const string Account = "Account";
         public const string HasProfile = "HasProfile";

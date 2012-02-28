@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
@@ -29,8 +30,8 @@ namespace TheRealDealTests.DomainTests
 
         public static Profile MockProfile1()
         {
-            _profile1 = new Profile()
-                           {
+            _profile1 = new Profile
+                            {
                                ProfileId = "ProfileOne",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
                                Locations = {CreateLocation1()}
@@ -40,8 +41,8 @@ namespace TheRealDealTests.DomainTests
 
         public static Profile MockProfile2()
         {
-            _profile2 = new Profile()
-                           {
+            _profile2 = new Profile
+                            {
                                ProfileId = "ProfileTwo",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
                                Locations = {CreateLocation2()}
@@ -51,8 +52,8 @@ namespace TheRealDealTests.DomainTests
 
         public static Profile MockProfile3()
         {
-            _profile3 = new Profile()
-                           {
+            _profile3 = new Profile
+                            {
                                ProfileId = "ProfileThree",
                                SportsPlayed = { CreateBasketballWithSkillLevel() },
                                Locations = {CreateLocation3()}
@@ -61,7 +62,7 @@ namespace TheRealDealTests.DomainTests
         }
 
         public static SportWithSkillLevel CreateSoccerWithSkillLevel(){
-            var sport = new SportWithSkillLevel()
+            var sport = new SportWithSkillLevel
                             {
                                 Name = "Soccer",
                                 SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
@@ -70,7 +71,7 @@ namespace TheRealDealTests.DomainTests
         }
 
         public static SportWithSkillLevel CreateBasketballWithSkillLevel(){
-            var sport = new SportWithSkillLevel()
+            var sport = new SportWithSkillLevel
                             {
                                 Name = "Basketball",
                                 SkillLevel = new SkillLevel(Constants.DefaultSkillLevel)
@@ -110,11 +111,11 @@ namespace TheRealDealTests.DomainTests
 
         public static Team CreateTeam1()
         {
-            return new Team()
+            return new Team
                        {
                            MaxSize = 6,
                            Name = "Super team",
-                           Players = GetListOfMockedProfiles()
+                           PlayersIds = GetListOfMockedProfiles().Select(x => x.ProfileId).ToList()
                        };
         }
 
@@ -127,7 +128,7 @@ namespace TheRealDealTests.DomainTests
                        {
                            MaxSize = 12,
                            Name = "Mega team",
-                           Players = profiles
+                           PlayersIds = profiles.Select(x => x.ProfileId).ToList()
                        };
         }
 

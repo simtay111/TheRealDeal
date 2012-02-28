@@ -73,7 +73,12 @@ namespace RecreateMeSql
 
         public static IGremlinNodeQuery<Team> TeamWithId(this GraphClient gc, string teamId)
         {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode).InV<SchemaNode>(n => n.Type == SchemaNodeTypes.TeamBase).OutE(RelationsTypes.BaseTeam).InV<Team>(x => x.Id == teamId);
+            return gc.TeamBaseNode().OutE(RelationsTypes.BaseTeam).InV<Team>(x => x.Id == teamId);
+        }
+
+        public static IGremlinNodeQuery<Profile> ProfilesWithTeam(this GraphClient gc, string teamId)
+        {
+            return gc.TeamWithId(teamId).InE(RelationsTypes.PartOfTeam).OutV<Profile>();
         }
 
         public static IGremlinNodeQuery<Profile> Profiles(this IGremlinQuery gc)

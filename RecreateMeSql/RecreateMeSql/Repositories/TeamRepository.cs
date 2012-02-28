@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
+using Neo4jClient.Gremlin;
 using RecreateMe.Teams;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
@@ -31,7 +33,26 @@ namespace RecreateMeSql.Repositories
 
             _graphClient.CreateRelationship(teamBaseNode.Reference, new BaseTeamRelationship(teamNode));
 
+            foreach (var profileId in team.PlayersIds)
+            {
+                var profile = _graphClient.ProfileWithId(profileId).Single();
+                _graphClient.CreateRelationship(profile.Reference, new PartOfTeamRelationship(teamNode));
+            }
+
             return true;
+        }
+
+        public Team GetById(string id)
+        {
+            var teamNode = _graphClient.TeamWithId(id).Single();
+            return MapTeam(teamNode);
+        }
+
+        public IList<Team> GetTeamsForProfile(string id)
+        {
+            var teamNodes = _graphClient.ProfileWithId(id).OutE(RelationsTypes.PartOfTeam).InV<Team>();
+
+            return teamNodes.Select(MapTeam).ToList();
         }
 
         private void CreateTeamBaseNode()
@@ -42,17 +63,12 @@ namespace RecreateMeSql.Repositories
             _graphClient.CreateRelationship(root, new BaseNodeRelationship(teamBaseNode));
         }
 
-        public Team GetById(string id)
+        private Team MapTeam(Node<Team> teamNode)
         {
-            var teamNode = _graphClient.TeamWithId(id).Single();
             var team = new Team(teamNode.Data.Id) {MaxSize = teamNode.Data.MaxSize, Name = teamNode.Data.Name};
 
+            team.PlayersIds = _graphClient.ProfilesWithTeam(team.Id).Select(x => x.Data.ProfileId).ToList();
             return team;
-        }
-
-        public IList<Team> GetTeamsForProfile(string id)
-        {
-            return new List<Team>{TestData.CreateTeam1(), TestData.CreateTeam2()};
         }
 
         private bool TeamBaseNodeExists()
@@ -60,4 +76,5 @@ namespace RecreateMeSql.Repositories
             return _graphClient.TeamBaseNode().Any();
         }
     }
+
 }

@@ -10,7 +10,7 @@ namespace RecreateMe.Teams
         public string Id { get; private set; }
         public int? MaxSize { get; set; }
         [JsonIgnore]
-        public IList<Profile> Players { get; set; }
+        public IList<string> PlayersIds { get; set; }
         public string Name { get; set; }
 
         public Team()
@@ -19,7 +19,7 @@ namespace RecreateMe.Teams
                 Id = Guid.NewGuid().ToString();
             MaxSize = Constants.DefaultTeamSize;
             Name = Constants.DefaultTeamName;
-            Players = new List<Profile>();
+            PlayersIds = new List<string>();
         }
 
         public Team(string id) : this()

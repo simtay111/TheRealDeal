@@ -11,16 +11,16 @@ namespace TheRealDealTests.DomainTests.Teams
         public void HoldAMaxSizeAndDefaultsToOne()
         {
             var team = new Team();
-            Assert.AreEqual((object) Constants.DefaultTeamSize, team.MaxSize);
+            Assert.AreEqual(Constants.DefaultTeamSize, team.MaxSize);
             team.MaxSize = 5;
-            Assert.AreEqual((object) 5, team.MaxSize);
+            Assert.AreEqual(5, team.MaxSize);
         }
 
         [Test]
         public void HoldsAListOfPlayers()
         {
             var team = new Team();
-            Assert.NotNull(team.Players);
+            Assert.NotNull(team.PlayersIds);
         }
          
         [Test]
@@ -30,7 +30,7 @@ namespace TheRealDealTests.DomainTests.Teams
             var team = new Team {Name = name};
             Assert.AreEqual(name, team.Name);
             team = new Team();
-            Assert.AreEqual((object) Constants.DefaultTeamName, team.Name);
+            Assert.AreEqual(Constants.DefaultTeamName, team.Name);
         }
 
         [Test]

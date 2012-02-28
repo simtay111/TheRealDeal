@@ -49,6 +49,7 @@
     <Compile Include="Connection\GraphClientFactory.cs" />
     <Compile Include="GremlinQueriesExtensions.cs" />
     <Compile Include="Relationships\BaseTeamRelationship.cs" />
+    <Compile Include="Relationships\PartOfTeamRelationship.cs" />
     <Compile Include="Relationships\FriendRelationship.cs" />
     <Compile Include="Relationships\ProfileToSportRelationship.cs" />
     <Compile Include="Relationships\ProfileToLocationRelationship.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
     <Compile Include="Repositories\TeamRepository.cs" />
-    <Compile Include="TestData.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
