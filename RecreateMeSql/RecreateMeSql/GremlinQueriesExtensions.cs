@@ -3,6 +3,7 @@ using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
+using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
 using RecreateMeSql.Relationships;
@@ -22,7 +23,13 @@ namespace RecreateMeSql
         public static IGremlinNodeQuery<SchemaNode> LocationBaseNode(this GraphClient gc)
         {
             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase);
+        }
+
+        public static IGremlinNodeQuery<SchemaNode> GameBaseNode(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.GameBase);
         }
 
          public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
@@ -37,6 +44,11 @@ namespace RecreateMeSql
              return gc.RootNode.OutE(RelationsTypes.BaseNode)
                  .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
                  .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
+         }     
+        
+        public static IGremlinNodeQuery<GameWithoutTeams> GameNodeWithId(this GraphClient gc, string id)
+         {
+             return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<GameWithoutTeams>(y => y.Id == id);
          }
 
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)

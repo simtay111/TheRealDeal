@@ -49,12 +49,16 @@
     <Compile Include="Connection\GraphClientFactory.cs" />
     <Compile Include="GremlinQueriesExtensions.cs" />
     <Compile Include="Relationships\BaseTeamRelationship.cs" />
+    <Compile Include="Relationships\GameToSportRelationship.cs" />
+    <Compile Include="Relationships\GameToLocationRelationship.cs" />
+    <Compile Include="Relationships\GameRelationship.cs" />
     <Compile Include="Relationships\PartOfTeamRelationship.cs" />
     <Compile Include="Relationships\FriendRelationship.cs" />
     <Compile Include="Relationships\ProfileToSportRelationship.cs" />
     <Compile Include="Relationships\ProfileToLocationRelationship.cs" />
     <Compile Include="Relationships\LocationRelationship.cs" />
     <Compile Include="Relationships\RelationsTypes.cs" />
+    <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
