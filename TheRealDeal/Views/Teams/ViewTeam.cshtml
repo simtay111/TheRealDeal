@@ -1,0 +1,22 @@
+﻿@using TheRealDeal.Models.Teams
+@model ViewTeamModel
+
+@{
+    ViewBag.Title = Model.Team.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+@Html.Label("Name: "  + Model.Team.Name)
+</div>
+<div>
+@Html.Label("Max size: "  + Model.Team.MaxSize)
+</div>
+<div>
+@foreach(var profile in Model.Team.PlayersIds)
+{
+    <div>
+    @Html.Label("Player: " + profile)
+    </div>
+}
+</div>

@@ -43,6 +43,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateSports();
             CreateProfilesForAccounts();
             CreateFriendship();
+            CreateTeams();
+        }
+
+        private void CreateTeams()
+        {
+            CreateTeam1();
+            CreateTeam2();
         }
 
         private void CreateFriendship()
@@ -126,11 +133,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var userRepo = new UserRepository();
             userRepo.CreateUser("Simtay111@Gmail.com", "password");
         }
+
         public void CreateAccount2()
         {
             var userRepo = new UserRepository();
             userRepo.CreateUser("Cows@Moo.com", "password");
         }
+
         public void CreateAccount3()
         {
             var userRepo = new UserRepository();
@@ -182,6 +191,20 @@ namespace TheRealDealTests.DataTests.DataBuilder
                                MaxSize = 14,
                                Name = "Team1"
                            };
+
+            teamRepo.Save(team);
+            return team;
+        }
+
+        private Team CreateTeam2()
+        {
+            var teamRepo = new TeamRepository();
+            var team = new Team
+            {
+                MaxSize = 3,
+                Name = "Team2",
+                PlayersIds = new List<string>() { "Simtay111", "Profile1"}
+            };
 
             teamRepo.Save(team);
             return team;

@@ -96,6 +96,7 @@
     <Compile Include="DomainTests\Teams\CreateTeamRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Teams\GetTeamsForProfileHandlerTests.cs" />
     <Compile Include="DomainTests\Teams\TeamTests.cs" />
+    <Compile Include="DomainTests\Teams\ViewTeamRequestHandlerTests.cs" />
     <Compile Include="DomainTests\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

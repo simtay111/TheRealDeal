@@ -12,7 +12,7 @@
 @foreach (var team in Model.Teams)
 {
     <li>
-        @Html.Label(team.Name)
+        @Html.ActionLink(team.Name, "ViewTeam", "Teams", new {teamId = team.Id}, null)
     </li>
 }
 </ul>

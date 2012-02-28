@@ -23,15 +23,27 @@ namespace TheRealDeal.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult ViewTeam(string teamId)
+        {
+            var request = new ViewTeamRequest() {TeamId = teamId};
+
+            var handler = new ViewTeamRequestHandler(new TeamRepository());
+
+            var response = handler.Handle(request);
+
+            return View(new ViewTeamModel(){ Team = response.Team});
+        }
+
         private TeamsViewModel GetTeamsForCurrentProfileAndBuildModel()
         {
             var profileId = GetProfileFromCookie();
 
-            var request = new GetTeamsForProfileRequest() {ProfileId = profileId};
+            var request = new GetTeamsForProfileRequest {ProfileId = profileId};
 
             var response = new GetTeamsForProfileHandler(new TeamRepository()).Handle(request);
 
-            var model = new TeamsViewModel() {Teams = response.Teams};
+            var model = new TeamsViewModel {Teams = response.Teams};
             return model;
         }
 
