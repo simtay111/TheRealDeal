@@ -1,3 +1,4 @@
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using RecreateMe;
@@ -14,11 +15,14 @@ namespace TheRealDealTests.DomainTests.Teams
         {
             const int maxSize = 5;
             const string teamName = "TeamName";
+            const string profileName = "profile1";
+
 
             var request = new CreateTeamRequest
                               {
                                   MaxSize = maxSize,
-                                  Name = teamName
+                                  Name = teamName,
+                                  ProfileId = profileName
                               };
 
             var teamRepository = new Mock<ITeamRepository>();
@@ -28,7 +32,7 @@ namespace TheRealDealTests.DomainTests.Teams
             var handler = new CreateTeamRequestHandler(teamRepository.Object);
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -36,29 +40,32 @@ namespace TheRealDealTests.DomainTests.Teams
         {
             const int maxSize = 5;
 
-            var request = new CreateTeamRequest()
-            {
-                MaxSize = maxSize,
-                Name = null
-            };
+            var request = new CreateTeamRequest
+                              {
+                                  MaxSize = maxSize,
+                                  Name = null
+                              };
 
             var teamRepository = new Mock<ITeamRepository>().Object;
             var handler = new CreateTeamRequestHandler(teamRepository);
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.NameNotSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.NameNotSpecified));
         }
 
         [Test]
         public void UsesADefaultTeamSizeIfItIsSentInAsEmptyString()
         {
             const string teamName = "TeamName";
+            const string profileName = "profile1";
+
 
             var request = new CreateTeamRequest()
             {
                 MaxSize = 0,
-                Name = teamName
+                Name = teamName,
+                ProfileId = profileName
             };
 
             var teamRepository = new Mock<ITeamRepository>();
@@ -68,7 +75,53 @@ namespace TheRealDealTests.DomainTests.Teams
             var handler = new CreateTeamRequestHandler(teamRepository.Object);
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+        }
+
+        [Test]
+        public void MustHaveAProfileToCreateATeam()
+        {
+            const int maxSize = 5;
+            const string teamName = "TeamName";
+            const string profileName = "profile1";
+
+            var request = new CreateTeamRequest
+            {
+                MaxSize = maxSize,
+                Name = teamName,
+                ProfileId = profileName
+            };
+
+            var teamRepository = new Mock<ITeamRepository>();
+            teamRepository.Setup(x => x.Save(It.Is<Team>(d => d.Name == teamName
+                                                                      && d.MaxSize == maxSize
+                                                                      && d.PlayersIds.Any(y => y == profileName)))).Returns(true);
+
+            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            var response = handler.Handle(request);
+
+            teamRepository.Verify(x => x.Save(It.Is<Team>(d => d.Name == teamName
+                                                               && d.MaxSize == maxSize
+                                                               && d.PlayersIds.Any(y => y == profileName))));
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+        }
+
+        [Test]
+        public void ReturnsEarlyIfProfileIdNotSpecified()
+        {
+            const string teamName = "TeamName";
+
+            var request = new CreateTeamRequest
+            {
+                MaxSize = 5,
+                Name = teamName,
+            };
+
+            var handler = new CreateTeamRequestHandler(new Mock<ITeamRepository>().Object);
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileIdRequired));
         }
     }
 }

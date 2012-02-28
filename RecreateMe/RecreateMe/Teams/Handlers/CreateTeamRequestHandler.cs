@@ -15,12 +15,16 @@ namespace RecreateMe.Teams.Handlers
         {
             if (request.Name == null)
                 return new CreateTeamResponse(ResponseCodes.NameNotSpecified);
+            if (request.ProfileId == null)
+                return new CreateTeamResponse(ResponseCodes.ProfileIdRequired);
 
             var team = new Team
                            {
                                MaxSize = request.MaxSize == 0 ? Constants.DefaultTeamSize : request.MaxSize,
                                Name = request.Name
                            };
+
+            team.PlayersIds.Add(request.ProfileId);
 
             _teamRepository.Save(team);
 
@@ -32,6 +36,8 @@ namespace RecreateMe.Teams.Handlers
     {
         public int MaxSize { get; set; }
         public string Name { get; set; }
+
+        public string ProfileId { get; set; }
     }
 
     public class CreateTeamResponse

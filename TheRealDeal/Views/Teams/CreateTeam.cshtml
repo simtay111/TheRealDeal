@@ -1,8 +1,24 @@
-﻿@model object
+﻿@using TheRealDeal.Models.Teams
+@model CreateTeamModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Create A Team!";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create Your Team</h2>
+
+@using (Html.BeginForm())
+{
+<div>
+@Html.LabelFor(x => x.MaxSize)
+@Html.TextBoxFor(x => x.MaxSize)
+</div>
+<div>
+@Html.LabelFor(x => x.Name)
+@Html.TextBoxFor(x => x.Name)
+</div>
+
+<div>
+    <button type="submit">Create Team</button>
+</div>
+}

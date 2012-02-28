@@ -25,7 +25,8 @@ namespace RecreateMe
         ProfileNameAlreadyExists,
         SportAlreadyPlayed,
         LocationAlreadyInProfile,
-        AlreadyFriend
+        AlreadyFriend,
+        ProfileIdRequired
     }
 
     public static class ResponseCodeExtensions

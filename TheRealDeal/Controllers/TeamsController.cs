@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-using RecreateMe.Teams;
+﻿using System;
+using System.Web.Mvc;
+using RecreateMe;
 using RecreateMe.Teams.Handlers;
-using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Teams;
 
@@ -24,16 +24,39 @@ namespace TheRealDeal.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        public ActionResult CreateTeam(CreateTeamModel model)
+        {
+            var request = new CreateTeamRequest
+                              {
+                                  MaxSize = model.MaxSize,
+                                  Name = model.Name,
+                                  ProfileId = GetProfileFromCookie()
+                              };
+
+            var handler = new CreateTeamRequestHandler(new TeamRepository());
+
+            var response = handler.Handle(request);
+
+            if (response.Status != ResponseCodes.Success)
+                throw new NotImplementedException();
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
         public ActionResult ViewTeam(string teamId)
         {
-            var request = new ViewTeamRequest() {TeamId = teamId};
+            var request = new ViewTeamRequest {TeamId = teamId};
 
             var handler = new ViewTeamRequestHandler(new TeamRepository());
 
             var response = handler.Handle(request);
 
-            return View(new ViewTeamModel(){ Team = response.Team});
+            return View(new ViewTeamModel { Team = response.Team});
         }
+
+
 
         private TeamsViewModel GetTeamsForCurrentProfileAndBuildModel()
         {
