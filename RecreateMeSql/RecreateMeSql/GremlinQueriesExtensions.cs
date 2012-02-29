@@ -1,4 +1,5 @@
-﻿using Neo4jClient;
+﻿using System;
+using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Login;
@@ -32,28 +33,33 @@ namespace RecreateMeSql
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.GameBase);
         }
 
-         public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
-         {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location);
-         }
+        public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                .OutE(RelationsTypes.Location);
+        }
 
-         public static IGremlinNodeQuery<Location> LocationWithName(this GraphClient gc, string locName)
-         {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
-         }     
-        
-        public static IGremlinNodeQuery<GameWithoutTeams> GameNodeWithId(this GraphClient gc, string id)
-         {
-             return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<GameWithoutTeams>(y => y.Id == id);
-         }
+        public static IGremlinNodeQuery<Location> LocationWithName(this GraphClient gc, string locName)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
+        }
 
-        public static IGremlinNodeQuery<Profile> PlayersForGame(this IGremlinNodeQuery<GameWithoutTeams> gc)
+        public static IGremlinNodeQuery<RetrievedGame> GameWithoutTeamsWithId(this GraphClient gc, string id)
+        {
+            return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<RetrievedGame>(y => y.Id == id);
+        }
+
+        public static IGremlinNodeQuery<Profile> PlayersForGame(this IGremlinNodeQuery<RetrievedGame> gc)
         {
             return gc.InE(RelationsTypes.PlaysInGame).OutV<Profile>();
+        }
+
+        public static IGremlinNodeQuery<Team> TeamsForGame(this IGremlinNodeQuery<RetrievedGame> gc)
+        {
+            return gc.InE(RelationsTypes.TeamInGame).OutV<Team>();
         }
 
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)
@@ -68,25 +74,25 @@ namespace RecreateMeSql
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.TeamBase);
         }
 
-         public static IGremlinRelationshipQuery SportEdges(this GraphClient gc)
-         {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                 .OutE(RelationsTypes.Location);
-         }
+        public static IGremlinRelationshipQuery SportEdges(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                .OutE(RelationsTypes.Location);
+        }
 
-         public static IGremlinNodeQuery<Sport> SportWithName(this GraphClient gc, string sportName)
-         {
-             return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
-                .OutE(RelationsTypes.Sport).InV<Sport>(n => n.Name == sportName);
-         }
+        public static IGremlinNodeQuery<Sport> SportWithName(this GraphClient gc, string sportName)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+               .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString())
+               .OutE(RelationsTypes.Sport).InV<Sport>(n => n.Name == sportName);
+        }
 
-         public static IGremlinNodeQuery<Account> AccountWithId(this GraphClient gc, string accountId)
-         {
-             return gc.RootNode.OutE(RelationsTypes.Account)
-                 .InV<Account>(n => n.AccountName == accountId);
-         }
+        public static IGremlinNodeQuery<Account> AccountWithId(this GraphClient gc, string accountId)
+        {
+            return gc.RootNode.OutE(RelationsTypes.Account)
+                .InV<Account>(n => n.AccountName == accountId);
+        }
 
         public static IGremlinNodeQuery<Team> TeamWithId(this GraphClient gc, string teamId)
         {
@@ -124,5 +130,17 @@ namespace RecreateMeSql
             return gc.RootNode.OutE(RelationsTypes.Account)
                  .InV<Account>();
         }
+    }
+
+    public class RetrievedGame : IGame
+    {
+        public string Id { get; set; }
+        public DateTimeOffset DateTime { get; set; }
+        public Sport Sport { get; set; }
+        public Location Location { get; set; }
+        public int? MinPlayers { get; set; }
+        public int? MaxPlayers { get; set; }
+        public bool IsPrivate { get; set; }
+        public bool HasTeams { get; set; }
     }
 }

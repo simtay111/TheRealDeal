@@ -49,6 +49,7 @@
     <Compile Include="Connection\GraphClientFactory.cs" />
     <Compile Include="GremlinQueriesExtensions.cs" />
     <Compile Include="Relationships\BaseTeamRelationship.cs" />
+    <Compile Include="Relationships\TeamInGameRelationship.cs" />
     <Compile Include="Relationships\PlaysInGameRelationship.cs" />
     <Compile Include="Relationships\GameToSportRelationship.cs" />
     <Compile Include="Relationships\GameToLocationRelationship.cs" />

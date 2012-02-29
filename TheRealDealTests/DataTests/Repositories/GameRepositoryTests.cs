@@ -24,22 +24,6 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
-        public void CanSave()
-        {
-            _data.CreateAccount1();
-            _data.CreateProfileForAccount1();
-            _data.CreateLocationBend();
-            _data.CreateSoccerSport();
-            var game = new GameWithoutTeams(DateTime.Now, new Sport("Soccer"), new Location("Bend"));
-
-            _repo.SaveOrUpdate(game);
-
-            var retrievedGame = _repo.GetById(game.Id);
-
-            Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
-        }
-
-        [Test]
         public void CanSaveAndGetGamesWithoutTeams()
         {
             _data.CreateAccount1();
@@ -72,8 +56,6 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanSaveAndGetGamesWithTeams()
         {
-            _data.CreateAccount1();
-            var profile = _data.CreateProfileForAccount1();
             _data.CreateLocationBend();
             _data.CreateSoccerSport();
             var team = _data.CreateTeam1();
@@ -88,7 +70,7 @@ namespace TheRealDealTests.DataTests.Repositories
 
             _repo.SaveOrUpdate(game);
 
-            var retrievedGame = _repo.GetById(game.Id);
+            var retrievedGame = _repo.GetById(game.Id) as GameWithTeams;
 
             Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
             Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
@@ -97,7 +79,7 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
             Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
             Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
+            Assert.That(retrievedGame.TeamsIds[0], Is.EqualTo(team.Id));
         }
-         
     }
 }
