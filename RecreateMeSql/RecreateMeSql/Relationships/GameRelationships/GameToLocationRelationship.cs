@@ -1,7 +1,7 @@
 ﻿using Neo4jClient;
 using RecreateMe.Scheduling.Handlers.Games;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.GameRelationships
 {
     public class GameToLocationRelationship
         : Relationship, IRelationshipAllowingSourceNode<Game>

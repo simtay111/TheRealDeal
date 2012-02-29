@@ -1,7 +1,7 @@
 ﻿using Neo4jClient;
 using RecreateMeSql.SchemaNodes;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.BaseNode
 {
     public class LocationRelationship : Relationship, IRelationshipAllowingSourceNode<SchemaNode>
     {

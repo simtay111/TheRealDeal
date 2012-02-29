@@ -8,6 +8,8 @@ using RecreateMe.Sports;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
+using RecreateMeSql.Relationships.AccountRelationships;
+using RecreateMeSql.Relationships.ProfileRelationships;
 
 namespace RecreateMeSql.Repositories
 {

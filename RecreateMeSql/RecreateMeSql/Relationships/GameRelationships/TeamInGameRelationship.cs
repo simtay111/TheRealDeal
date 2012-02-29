@@ -1,9 +1,7 @@
 ﻿using Neo4jClient;
-using RecreateMe.Profiles;
 using RecreateMe.Teams;
-using RecreateMeSql.SchemaNodes;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.GameRelationships
 {
     public class TeamInGameRelationship
         : Relationship, IRelationshipAllowingSourceNode<Team>

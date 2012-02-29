@@ -6,6 +6,8 @@ using Neo4jClient.Gremlin;
 using RecreateMe.Teams;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
+using RecreateMeSql.Relationships.BaseNode;
+using RecreateMeSql.Relationships.ProfileRelationships;
 using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories

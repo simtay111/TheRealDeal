@@ -1,7 +1,7 @@
 ﻿using Neo4jClient;
 using RecreateMe.Login;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.AccountRelationships
 {
     public class HasProfileRelationship : Relationship, IRelationshipAllowingSourceNode<Account>
     {

@@ -4,6 +4,7 @@ using Neo4jClient.Gremlin;
 using RecreateMe.Login;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
+using RecreateMeSql.Relationships.AccountRelationships;
 
 namespace RecreateMeSql.Repositories
 {

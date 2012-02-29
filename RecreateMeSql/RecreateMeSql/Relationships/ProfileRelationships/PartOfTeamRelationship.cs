@@ -1,8 +1,7 @@
 ﻿using Neo4jClient;
 using RecreateMe.Profiles;
-using RecreateMeSql.SchemaNodes;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.ProfileRelationships
 {
     public class PartOfTeamRelationship : Relationship, IRelationshipAllowingSourceNode<Profile>
     {

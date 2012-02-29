@@ -3,6 +3,7 @@ using Neo4jClient;
 using RecreateMe.Locales;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
+using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories

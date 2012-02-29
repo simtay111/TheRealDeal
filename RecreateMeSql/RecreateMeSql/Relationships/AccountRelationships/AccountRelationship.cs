@@ -1,6 +1,6 @@
 ﻿using Neo4jClient;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.AccountRelationships
 {
     public class AccountRelationship : Relationship, IRelationshipAllowingSourceNode<RootNode>
     {

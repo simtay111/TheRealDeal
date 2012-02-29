@@ -1,7 +1,7 @@
 ﻿using Neo4jClient;
 using RecreateMe.Profiles;
 
-namespace RecreateMeSql.Relationships
+namespace RecreateMeSql.Relationships.ProfileRelationships
 {
     public class FriendRelationship : Relationship, IRelationshipAllowingSourceNode<Profile>, IRelationshipAllowingTargetNode<Profile>
     {
