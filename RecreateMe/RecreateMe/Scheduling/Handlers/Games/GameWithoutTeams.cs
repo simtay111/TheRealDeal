@@ -12,7 +12,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
     public class GameWithoutTeams : Game
     {
         [JsonIgnore]
-        public IList<Profile> Players = new List<Profile>();
+        public IList<string> PlayersIds = new List<string>();
 
         public GameWithoutTeams(DateTimeOffset dateTime, Sport sport, Location location) : base(dateTime, sport, location)
         {
@@ -23,13 +23,13 @@ namespace RecreateMe.Scheduling.Handlers.Games
         {
         }
 
-        public void AddPlayer(Profile profile)
+        public void AddPlayer(string profileId)
         {
-            if (Players.Count == MaxPlayers)
+            if (PlayersIds.Count == MaxPlayers)
             {
                 throw new CannotJoinGameException("The game is already at capacity.");
             }
-            Players.Add(profile);
+            PlayersIds.Add(profileId);
         }
     }
 }

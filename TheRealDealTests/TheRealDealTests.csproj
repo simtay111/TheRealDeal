@@ -85,7 +85,7 @@
     <Compile Include="DomainTests\Scheduling\Games\GameFactoryTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameWithoutTeamsTests.cs" />
-    <Compile Include="DomainTests\Scheduling\Games\GameWithTeamTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\GameWithTeamsTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\AddTeamToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\CreateGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\JoinGameRequestHandlerTests.cs" />

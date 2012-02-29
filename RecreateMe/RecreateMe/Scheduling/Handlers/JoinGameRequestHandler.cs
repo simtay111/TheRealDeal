@@ -1,6 +1,5 @@
 using RecreateMe.Exceptions;
 using RecreateMe.Exceptions.Scheduling;
-using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMe.Scheduling.Handlers
@@ -8,12 +7,10 @@ namespace RecreateMe.Scheduling.Handlers
     public class JoinGameRequestHandler: IHandler<JoinGameRequest, JoinGameResponse>
     {
         private readonly IGameRepository _gameRepository;
-        private readonly IProfileRepository _profileRepository;
 
-        public JoinGameRequestHandler(IGameRepository gameRepository, IProfileRepository profileRepository)
+        public JoinGameRequestHandler(IGameRepository gameRepository)
         {
             _gameRepository = gameRepository;
-            _profileRepository = profileRepository;
         }
 
         public JoinGameResponse Handle(JoinGameRequest request)
@@ -21,9 +18,7 @@ namespace RecreateMe.Scheduling.Handlers
             var game = GetValidGame(request.GameId);
             if (game == null) return new JoinGameResponse(ResponseCodes.OnlyTeamsCanJoin);
 
-            var profileToAdd = _profileRepository.GetByProfileId(request.GameId);
-
-            game.Players.Add(profileToAdd);
+            game.PlayersIds.Add(request.ProfileId);
 
             _gameRepository.SaveOrUpdate(game);
              

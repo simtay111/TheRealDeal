@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using RecreateMe.Exceptions;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
@@ -9,17 +10,19 @@ namespace RecreateMe.Scheduling.Handlers.Games
 {
     public class GameWithTeams : Game
     {
-        public IList<Team> Teams = new List<Team>();
+        [JsonIgnore]
+        public IList<string> TeamsIds = new List<string>();
 
-        public GameWithTeams(DateTime dateTime, Sport sport, Location location) : base(dateTime, sport, location)
+        public GameWithTeams(DateTimeOffset dateTime, Sport sport, Location location) : base(dateTime, sport, location)
         {
+            HasTeams = true;
         }
 
-        public void AddTeam(Team team)
+        public void AddTeam(string teamId)
         {
-            if (Teams.Count == Constants.MaxAmountOfTeamsPerGame)
+            if (TeamsIds.Count == Constants.MaxAmountOfTeamsPerGame)
                 throw new CannotAddItemException("Could not add team to game, game is full.");
-            Teams.Add(team);
+            TeamsIds.Add(teamId);
         }
     }
 }

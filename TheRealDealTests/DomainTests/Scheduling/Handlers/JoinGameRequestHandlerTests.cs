@@ -13,13 +13,11 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
     public class JoinGameRequestHandlerTests
     {
         private Mock<IGameRepository> _mockGameRepo;
-        private Mock<IProfileRepository> _mockProfileRepo   ;
 
         [SetUp]
         public void SetUp()
         {
             _mockGameRepo = new Mock<IGameRepository>();
-            _mockProfileRepo = new Mock<IProfileRepository>();
         }
 
         [Test]
@@ -31,14 +29,11 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
             _mockGameRepo.Setup(x => x.SaveOrUpdate(game)).Returns(true);
 
-            _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(new Profile());
-
-
-            var handler = new JoinGameRequestHandler(_mockGameRepo.Object, _mockProfileRepo.Object);
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That(game.Players.Count, Is.Not.EqualTo(0));
+            Assert.That(game.PlayersIds.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -50,7 +45,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
             _mockGameRepo.Setup(x => x.SaveOrUpdate(game)).Returns(true);
 
-            var handler = new JoinGameRequestHandler(_mockGameRepo.Object, _mockProfileRepo.Object);
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
 
             var response = handler.Handle(request);
 

@@ -2,6 +2,7 @@ namespace RecreateMeSql.Relationships
 {
     public static class RelationsTypes
     {
+        public const string PlaysInGame = "PlaysInGame";
         public const string GameToSport = "GameToSport";
         public const string GameToLocation = "GameToLocation";
         public const string Game = "Game";

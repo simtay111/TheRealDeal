@@ -15,8 +15,18 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
              var game = new GameWithoutTeams(DateTime.Now, null, null);
              game.MaxPlayers = 0;
 
-             var exception = Assert.Throws(typeof (CannotJoinGameException), () => game.AddPlayer(new Profile()));
+             var exception = Assert.Throws(typeof (CannotJoinGameException), () => game.AddPlayer("Profile1"));
              Assert.AreEqual(exception.Message, "The game is already at capacity.");
          }
+
+        [Test]
+        public void SetsBaseGameTypeWhenCreatedToNoTeams()
+        {
+            var game = new GameWithoutTeams(DateTime.Now, null, null);
+
+            var baseGame = game as Game;
+
+            Assert.That(baseGame.HasTeams, Is.False);
+        }
     }
 }

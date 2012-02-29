@@ -32,10 +32,10 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             CreateMockRepositoriesThatReturn(_game, _team);
 
-            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object, _teamRepository.Object);
+            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
 
              var response = handler.Handle(_request);
-             Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
          }
 
         [Test]
@@ -44,20 +44,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             SetUpRequest();
             _game = new GameWithoutTeams(DateTime.Now, null, null);
            CreateMockRepositoriesThatReturn(_game, _team);
-            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object, _teamRepository.Object);
+            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
 
             var response = handler.Handle(_request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.CannotHaveTeams));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.CannotHaveTeams));
         }
 
         private void CreateMockRepositoriesThatReturn(Game game, Team team)
         {
-            _teamRepository = new Mock<ITeamRepository>();
-            _teamRepository.Setup(x => x.GetById(It.Is<string>(d => d == team.Id))).Returns(team);
-
             _gameRepository = new Mock<IGameRepository>();
-            _gameRepository.Setup(x => x.SaveOrUpdate(It.Is<GameWithTeams>(d => d.Teams[0].Id == team.Id))).Returns(true);
+            _gameRepository.Setup(x => x.SaveOrUpdate(It.Is<GameWithTeams>(d => d.TeamsIds[0] == team.Id))).Returns(true);
             _gameRepository.Setup(x => x.GetById(It.Is<string>(d => d == game.Id))).Returns(game);
         }
 

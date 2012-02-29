@@ -4,6 +4,7 @@ using System.Linq;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
+using RecreateMe.Profiles;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
@@ -27,6 +28,8 @@ namespace RecreateMeSql.Repositories
 
         public bool SaveOrUpdate(Game game)
         {
+            var gameWithoutTeams = game as GameWithoutTeams;
+
             if (!GameBaseNodeExists())
                 CreateGameBaseNode();
 
@@ -43,6 +46,13 @@ namespace RecreateMeSql.Repositories
             var locationNode = _graphClient.LocationWithName(game.Location.Name).Single();
 
             _graphClient.CreateRelationship(gameNode, new GameToLocationRelationship(locationNode.Reference));
+
+            foreach (var profileId in gameWithoutTeams.PlayersIds)
+            {
+                var profileNode = _graphClient.ProfileWithId(profileId).Single();
+
+                _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
+            }
 
             return true;
         }
@@ -66,11 +76,9 @@ namespace RecreateMeSql.Repositories
                                IsPrivate = gameNode.IsPrivate
                            };
 
-
+            game.PlayersIds = gameQuery.PlayersForGame().Select(x => x.Data.ProfileId).ToList();
 
             return game;
-
-
         }
 
 

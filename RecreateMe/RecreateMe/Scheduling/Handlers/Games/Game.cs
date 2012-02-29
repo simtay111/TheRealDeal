@@ -19,6 +19,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
         public int? MaxPlayers { get; set; }
 
         public bool IsPrivate { get; set; }
+        public bool HasTeams { get; set; }
 
         public Game(DateTimeOffset dateTime, Sport sport, Location location)
         {

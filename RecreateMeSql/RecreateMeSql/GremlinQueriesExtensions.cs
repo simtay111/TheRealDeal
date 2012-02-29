@@ -51,6 +51,11 @@ namespace RecreateMeSql
              return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<GameWithoutTeams>(y => y.Id == id);
          }
 
+        public static IGremlinNodeQuery<Profile> PlayersForGame(this IGremlinNodeQuery<GameWithoutTeams> gc)
+        {
+            return gc.InE(RelationsTypes.PlaysInGame).OutV<Profile>();
+        }
+
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)
         {
             return gc.RootNode.OutE(RelationsTypes.BaseNode)
