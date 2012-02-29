@@ -1,10 +1,8 @@
-﻿using System;
-using Neo4jClient;
+﻿using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
 using RecreateMeSql.Relationships;
@@ -21,30 +19,10 @@ namespace RecreateMeSql
                 .OutE(RelationsTypes.Sport).InV<Sport>();
         }
 
-        public static IGremlinNodeQuery<SchemaNode> LocationBaseNode(this GraphClient gc)
-        {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase);
-        }
-
         public static IGremlinNodeQuery<SchemaNode> GameBaseNode(this GraphClient gc)
         {
             return gc.RootNode.OutE(RelationsTypes.BaseNode)
                 .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.GameBase);
-        }
-
-        public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
-        {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                .OutE(RelationsTypes.Location);
-        }
-
-        public static IGremlinNodeQuery<Location> LocationWithName(this GraphClient gc, string locName)
-        {
-            return gc.RootNode.OutE(RelationsTypes.BaseNode)
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
-                .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
         }
 
         public static IGremlinNodeQuery<RetrievedGame> GameWithId(this GraphClient gc, string id)
@@ -60,6 +38,26 @@ namespace RecreateMeSql
         public static IGremlinNodeQuery<Team> TeamsForGame(this IGremlinNodeQuery<RetrievedGame> gc)
         {
             return gc.InE(RelationsTypes.TeamInGame).OutV<Team>();
+        }
+
+        public static IGremlinNodeQuery<SchemaNode> LocationBaseNode(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase);
+        }
+
+        public static IGremlinRelationshipQuery LocationEdges(this GraphClient gc)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                .OutE(RelationsTypes.Location);
+        }
+
+        public static IGremlinNodeQuery<Location> LocationWithName(this GraphClient gc, string locName)
+        {
+            return gc.RootNode.OutE(RelationsTypes.BaseNode)
+                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString())
+                .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
         }
 
         public static IGremlinNodeQuery<SchemaNode> SportBaseNode(this GraphClient gc)
@@ -109,11 +107,6 @@ namespace RecreateMeSql
             return gc.OutE(RelationsTypes.HasProfile).InV<Profile>();
         }
 
-        //public static IGremlinNodeQuery<Profile> ProfileIdsContaining(this IGremlinQuery gc, string name)
-        //{
-        //    return gc.OutE(RelationsTypes.HasProfile.ToString()).InV<Profile>(x => x.ProfileId.Contains(name));
-        //}
-
         public static IGremlinNodeQuery<Profile> ProfileWithId(this GraphClient gc, string profileId)
         {
             return gc.RootNode.OutE(RelationsTypes.Account).InV<Account>()
@@ -130,17 +123,5 @@ namespace RecreateMeSql
             return gc.RootNode.OutE(RelationsTypes.Account)
                  .InV<Account>();
         }
-    }
-
-    public class RetrievedGame : IGame
-    {
-        public string Id { get; set; }
-        public DateTimeOffset DateTime { get; set; }
-        public Sport Sport { get; set; }
-        public Location Location { get; set; }
-        public int? MinPlayers { get; set; }
-        public int? MaxPlayers { get; set; }
-        public bool IsPrivate { get; set; }
-        public bool HasTeams { get; set; }
     }
 }

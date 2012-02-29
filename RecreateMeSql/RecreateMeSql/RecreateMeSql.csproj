@@ -71,6 +71,7 @@
     <Compile Include="Relationships\BaseNodeRelationship.cs" />
     <Compile Include="Relationships\SportRelationship.cs" />
     <Compile Include="Relationships\HasProfileRelationship.cs" />
+    <Compile Include="RetrievedGame.cs" />
     <Compile Include="SchemaNodes\SchemaNode.cs" />
     <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
     <Compile Include="Repositories\SportRepository.cs" />

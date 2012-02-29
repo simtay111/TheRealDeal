@@ -4,6 +4,7 @@ using System.Linq;
 using Neo4jClient;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
+using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
 using RecreateMeSql;
@@ -13,6 +14,18 @@ namespace TheRealDealTests.DataTests.DataBuilder
 {
     public class SampleDataBuilder
     {
+        private string _teamId2;
+        private string _teamId1;
+        private const string LocationPortland = "Portland";
+        private const string Profile2Id = "Profile1";
+        private const string SoccerName = "Soccer";
+        private const string LocationBendName = "Bend";
+        private const string TeamName1 = "Team1";
+        private const string TeamName2 = "Team2";
+        private const string Profile1Id = "Simtay111";
+        private const string FootballName = "Football";
+        private const string Basketballname = "Basketball";
+
         public void DeleteAllData()
         {
             var graphClient = BuildGraphClient();
@@ -44,6 +57,13 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateProfilesForAccounts();
             CreateFriendship();
             CreateTeams();
+            CreateGames();
+        }
+
+        private void CreateGames()
+        {
+            CreateGameWithProfile1();
+            CreateGameWithTeams1And2();
         }
 
         private void CreateTeams()
@@ -83,17 +103,17 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var profile = new Profile
                               {
                                   AccountId = "Cows@Moo.com",
-                                  ProfileId = "Profile1",
-                                  Locations = new List<Location> { new Location("Bend"), new Location("Portland") },
+                                  ProfileId = Profile2Id,
+                                  Locations = new List<Location> { new Location(LocationBendName), new Location(LocationPortland) },
                                   SportsPlayed = new List<SportWithSkillLevel>
                                                      {new SportWithSkillLevel
                                                           {
-                                                            Name = "Soccer",
+                                                            Name = SoccerName,
                                                             SkillLevel = new SkillLevel(5)
                                                         },
                                                      new SportWithSkillLevel
                                                           {
-                                                            Name = "Basketball",
+                                                            Name = Basketballname,
                                                             SkillLevel = new SkillLevel(5)
                                                         }}
                               };
@@ -108,12 +128,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var profile = new Profile
                               {
                                   AccountId = "Simtay111@Gmail.com",
-                                  ProfileId = "Simtay111",
-                                  Locations = new List<Location> { new Location("Bend") },
+                                  ProfileId = Profile1Id,
+                                  Locations = new List<Location> { new Location(LocationBendName) },
                                   SportsPlayed = new List<SportWithSkillLevel>
                                                      {new SportWithSkillLevel
                                                             {
-                                                                Name = "Basketball",
+                                                                Name = Basketballname,
                                                                 SkillLevel = new SkillLevel(3)
                                                             }}
                               };
@@ -149,38 +169,38 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public void CreateSoccerSport()
         {
             var sportRepo = new SportRepository();
-            sportRepo.CreateSport("Soccer");
+            sportRepo.CreateSport(SoccerName);
         }
 
         public void CreateBasketballSport()
         {
             var sportRepo = new SportRepository();
-            sportRepo.CreateSport("Basketball");
+            sportRepo.CreateSport(Basketballname);
         }
 
         public void CreateFootballSport()
         {
             var sportRepo = new SportRepository();
-            sportRepo.CreateSport("Football");
+            sportRepo.CreateSport(FootballName);
         }
 
         public void CreateLocationBend()
         {
             var locRepo = new LocationRepository();
-            locRepo.CreateLocation("Bend");
+            locRepo.CreateLocation(LocationBendName);
         }
 
         public void CreateLocationPortland()
         {
             var locRepo = new LocationRepository();
-            locRepo.CreateLocation("Portland");
+            locRepo.CreateLocation(LocationPortland);
         }
 
         public void CreateFriendshipForProfile1And2()
         {
             var profileRepo = new ProfileRepository();
 
-            profileRepo.AddFriendToProfile("Simtay111", "Profile1");
+            profileRepo.AddFriendToProfile(Profile1Id, Profile2Id);
         }
 
         public Team CreateTeam1()
@@ -189,26 +209,60 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var team = new Team
                            {
                                MaxSize = 14,
-                               Name = "Team1"
+                               Name = TeamName1
                            };
+            _teamId1 = team.Id;
 
             teamRepo.Save(team);
             return team;
         }
 
-        private Team CreateTeam2()
+        public Team CreateTeam2()
         {
             var teamRepo = new TeamRepository();
             var team = new Team
             {
                 MaxSize = 3,
-                Name = "Team2",
-                PlayersIds = new List<string>() { "Simtay111", "Profile1"}
+                Name = TeamName2,
+                PlayersIds = new List<string>() { Profile1Id, Profile2Id}
             };
+
+            _teamId2 = team.Id;
 
             teamRepo.Save(team);
             return team;
         }
+
+        public GameWithoutTeams CreateGameWithProfile1()
+        {
+            var game = new GameWithoutTeams(DateTimeOffset.Now, new Sport(), new Location());
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = new Sport(SoccerName);
+            game.Location = new Location(LocationBendName);
+            game.AddPlayer(Profile1Id);
+
+            new GameRepository().Save(game);
+            return game;
+        }
+
+        public GameWithTeams CreateGameWithTeams1And2()
+        {
+            var game = new GameWithTeams(DateTimeOffset.Now, new Sport(), new Location());
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = new Sport(SoccerName);
+            game.Location = new Location(LocationBendName);
+            game.AddTeam(_teamId1);
+            game.AddTeam(_teamId2);
+
+            new GameRepository().Save(game);
+            return game;
+        }
+
+
     }
 
     internal class GenericNodeType
