@@ -27,7 +27,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var game = new GameWithoutTeams(DateTime.Now, null, null);
             
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
-            _mockGameRepo.Setup(x => x.SaveOrUpdate(game)).Returns(true);
+            _mockGameRepo.Setup(x => x.Save(game)).Returns(true);
 
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
@@ -43,7 +43,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var game = new GameWithTeams(DateTime.Now, null, null);
             
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
-            _mockGameRepo.Setup(x => x.SaveOrUpdate(game)).Returns(true);
+            _mockGameRepo.Setup(x => x.Save(game)).Returns(true);
 
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
 

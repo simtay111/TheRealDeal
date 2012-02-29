@@ -39,7 +39,7 @@ namespace TheRealDealTests.DataTests.Repositories
             game.Location = new Location("Bend");
             game.AddPlayer(profile.ProfileId);
 
-            _repo.SaveOrUpdate(game);
+            _repo.Save(game);
 
             var retrievedGame = _repo.GetById(game.Id) as GameWithoutTeams;
 
@@ -68,7 +68,7 @@ namespace TheRealDealTests.DataTests.Repositories
             game.Location = new Location("Bend");
             game.AddTeam(team.Id);
 
-            _repo.SaveOrUpdate(game);
+            _repo.Save(game);
 
             var retrievedGame = _repo.GetById(game.Id) as GameWithTeams;
 

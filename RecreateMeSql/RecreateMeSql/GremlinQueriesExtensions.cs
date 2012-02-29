@@ -47,7 +47,7 @@ namespace RecreateMeSql
                 .OutE(RelationsTypes.Location).InV<Location>(y => y.Name == locName);
         }
 
-        public static IGremlinNodeQuery<RetrievedGame> GameWithoutTeamsWithId(this GraphClient gc, string id)
+        public static IGremlinNodeQuery<RetrievedGame> GameWithId(this GraphClient gc, string id)
         {
             return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<RetrievedGame>(y => y.Id == id);
         }

@@ -67,7 +67,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                 _gameWithTeams);
             _mockGameFactory.Setup(x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), false)).Returns(
                 nonPrivateGame);
-            _mockGameRepo.Setup(x => x.SaveOrUpdate(It.IsAny<GameWithTeams>())).Verifiable();
+            _mockGameRepo.Setup(x => x.Save(It.IsAny<GameWithTeams>())).Verifiable();
             
             const string location = LocationName;
 
@@ -85,7 +85,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            _mockGameRepo.Verify(x => x.SaveOrUpdate(_gameWithTeams), Times.AtLeastOnce());
+            _mockGameRepo.Verify(x => x.Save(_gameWithTeams), Times.AtLeastOnce());
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
@@ -183,7 +183,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                     , It.Is<Sport>(d => d == _sport), It.Is<Location>(d => d == _location), It.IsAny<bool>())).Returns(
                     gameWithoutTeams);
             var theRightTypeOfGameWasReturned = false;
-            _mockGameRepo.Setup(x => x.SaveOrUpdate(It.Is<Game>(d => d == gameWithoutTeams)))
+            _mockGameRepo.Setup(x => x.Save(It.Is<Game>(d => d == gameWithoutTeams)))
                 .Callback(() => theRightTypeOfGameWasReturned = true);
 
             var handler = CreateHandler();
@@ -207,7 +207,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockLocationRepo = new Mock<ILocationRepository>();
             _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_location);
             _mockGameRepo = new Mock<IGameRepository>();
-            _mockGameRepo.Setup(x => x.SaveOrUpdate(It.IsAny<Game>())).Returns(true);
+            _mockGameRepo.Setup(x => x.Save(It.IsAny<Game>())).Returns(true);
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(
                 x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), It.IsAny<bool>())).Returns(

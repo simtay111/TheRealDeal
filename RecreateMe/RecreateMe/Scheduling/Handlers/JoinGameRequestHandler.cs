@@ -20,7 +20,7 @@ namespace RecreateMe.Scheduling.Handlers
 
             game.PlayersIds.Add(request.ProfileId);
 
-            _gameRepository.SaveOrUpdate(game);
+            _gameRepository.Save(game);
              
             return new JoinGameResponse(ResponseCodes.Success);
         }

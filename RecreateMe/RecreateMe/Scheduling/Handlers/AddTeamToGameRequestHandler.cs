@@ -18,7 +18,7 @@ namespace RecreateMe.Scheduling.Handlers
 
             game.AddTeam(request.TeamId);
 
-            _gameRepository.SaveOrUpdate(game);
+            _gameRepository.Save(game);
 
             return new AddTeamToGameResponse(ResponseCodes.Success);
         }

@@ -2,12 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
-using Neo4jClient.Gremlin;
-using RecreateMe.Locales;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
-using RecreateMe.Sports;
 using RecreateMeSql.Connection;
+using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.SchemaNodes;
 
@@ -16,20 +14,56 @@ namespace RecreateMeSql.Repositories
     public class GameRepository : IGameRepository
     {
         private readonly GraphClient _graphClient;
+        private readonly GameMapper _gameMapper;
 
-        public GameRepository(GraphClient graphClient)
+        public GameRepository(GraphClient graphClient, GameMapper gameMapper)
         {
             _graphClient = graphClient;
+            _gameMapper = gameMapper;
         }
 
         public GameRepository()
-            : this(GraphClientFactory.Create()) { }
+            : this(GraphClientFactory.Create(), new GameMapper()) { }
 
-        public bool SaveOrUpdate(Game game)
+        public bool Save(Game game)
         {
             if (!GameBaseNodeExists())
                 CreateGameBaseNode();
 
+            var gameNode = CreateGameNodeAndSaveGenericData(game);
+
+            if (!game.HasTeams)
+            {
+                return SaveGameWithoutTeamData(game, gameNode);
+            }
+
+            return SaveGameWithTeamData(game, gameNode);
+        }
+
+        private bool SaveGameWithTeamData(Game game, NodeReference gameNode)
+        {
+            var gameWithTeams = game as GameWithTeams;
+            foreach (var teamId in gameWithTeams.TeamsIds)
+            {
+                var teamNode = _graphClient.TeamWithId(teamId).Single();
+                _graphClient.CreateRelationship(teamNode.Reference, new TeamInGameRelationship(gameNode));
+            }
+            return true;
+        }
+
+        private bool SaveGameWithoutTeamData(Game game, NodeReference gameNode)
+        {
+            var gameWithoutTeams = game as GameWithoutTeams;
+            foreach (var profileId in gameWithoutTeams.PlayersIds)
+            {
+                var profileNode = _graphClient.ProfileWithId(profileId).Single();
+                _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
+            }
+            return true;
+        }
+
+        private NodeReference<Game> CreateGameNodeAndSaveGenericData(Game game)
+        {
             var gameBaseNode = _graphClient.GameBaseNode().Single();
 
             var gameNode = _graphClient.Create(game);
@@ -43,79 +77,15 @@ namespace RecreateMeSql.Repositories
             var locationNode = _graphClient.LocationWithName(game.Location.Name).Single();
 
             _graphClient.CreateRelationship(gameNode, new GameToLocationRelationship(locationNode.Reference));
-
-            if (!game.HasTeams)
-            {
-                var gameWithoutTeams = game as GameWithoutTeams;
-                foreach (var profileId in gameWithoutTeams.PlayersIds)
-                {
-                    var profileNode = _graphClient.ProfileWithId(profileId).Single();
-                    _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
-                }
-                return true;
-            }
-
-            var gameWithTeams = game as GameWithTeams;
-            foreach (var teamId in gameWithTeams.TeamsIds)
-            {
-                var teamNode = _graphClient.TeamWithId(teamId).Single();
-                _graphClient.CreateRelationship(teamNode.Reference, new TeamInGameRelationship(gameNode));
-            }
-
-            return true;
+            return gameNode;
         }
 
         public Game GetById(string id)
         {
-            var gameQuery = _graphClient.GameWithoutTeamsWithId(id);
-
-            var locationForGame = gameQuery.OutE(RelationsTypes.GameToLocation).InV<Location>().Single().Data.Name;
-            var sportForGame = gameQuery.OutE(RelationsTypes.GameToSport).InV<Sport>().Single().Data.Name;
-
-            var gameData = _graphClient.GameWithoutTeamsWithId(id).Single().Data;
-
-            if (!gameData.HasTeams)
-            {
-                return MapGameWithoutTeams(gameData, gameQuery, sportForGame, locationForGame);
-            }
-
-            return MapGameWithTeams(gameData, gameQuery, sportForGame, locationForGame);
+            var gameQuery = _graphClient.GameWithId(id);
+           
+            return _gameMapper.Map(gameQuery);
         }
-
-        private static GameWithTeams MapGameWithTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery, string sportForGame,
-                                                      string locationForGame)
-        {
-            var gameWTeams = MapGenericGameData((x, y, z) => new GameWithTeams(x, y, z), locationForGame, gameData, sportForGame);
-
-            gameWTeams.TeamsIds = gameQuery.TeamsForGame().Select(x => x.Data.Id).ToList();
-            return gameWTeams;
-        }
-
-        private static GameWithoutTeams MapGameWithoutTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery,
-                                                            string sportForGame, string locationForGame)
-        {
-            var gameWoTeams = MapGenericGameData((x, y, z) => new GameWithoutTeams(x, y, z), locationForGame, gameData,
-                                                 sportForGame);
-
-            gameWoTeams.PlayersIds = gameQuery.PlayersForGame().Select(x => x.Data.ProfileId).ToList();
-            return gameWoTeams;
-        }
-
-        private static T MapGenericGameData<T>(Func<DateTimeOffset, Sport, Location, T> createGame, string locationForGame, RetrievedGame gameData, string sportForGame) where T : IGame
-        {
-            var gameWoTeams = createGame(gameData.DateTime,
-                                         new Sport(sportForGame),
-                                         new Location(locationForGame));
-
-            gameWoTeams.Id = gameData.Id;
-            gameWoTeams.MinPlayers = gameData.MinPlayers;
-            gameWoTeams.MaxPlayers = gameData.MaxPlayers;
-            gameWoTeams.IsPrivate = gameData.IsPrivate;
-
-
-            return gameWoTeams;
-        }
-
 
         public IList<Game> FindByLocation(string location)
         {

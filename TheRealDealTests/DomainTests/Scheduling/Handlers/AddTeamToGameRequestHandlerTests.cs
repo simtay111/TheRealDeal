@@ -54,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         private void CreateMockRepositoriesThatReturn(Game game, Team team)
         {
             _gameRepository = new Mock<IGameRepository>();
-            _gameRepository.Setup(x => x.SaveOrUpdate(It.Is<GameWithTeams>(d => d.TeamsIds[0] == team.Id))).Returns(true);
+            _gameRepository.Setup(x => x.Save(It.Is<GameWithTeams>(d => d.TeamsIds[0] == team.Id))).Returns(true);
             _gameRepository.Setup(x => x.GetById(It.Is<string>(d => d == game.Id))).Returns(game);
         }
 

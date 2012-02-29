@@ -39,7 +39,7 @@ namespace RecreateMe.Scheduling.Handlers
             game.MaxPlayers = request.MaxPlayers;
             game.MinPlayers = request.MinPlayers;
 
-            _gameRepository.SaveOrUpdate(game);
+            _gameRepository.Save(game);
 
             return new CreateGameResponse(ResponseCodes.Success);
         }

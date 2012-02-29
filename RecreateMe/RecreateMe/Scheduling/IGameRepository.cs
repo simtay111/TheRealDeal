@@ -5,7 +5,7 @@ namespace RecreateMe.Scheduling
 {
     public interface IGameRepository
     {
-        bool SaveOrUpdate(Game game);
+        bool Save(Game game);
         Game GetById(string id);
         IList<Game> FindByLocation(string location);
     }
