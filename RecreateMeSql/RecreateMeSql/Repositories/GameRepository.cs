@@ -95,6 +95,24 @@ namespace RecreateMeSql.Repositories
             throw new NotImplementedException();
         }
 
+        public IList<Game> GetForProfile(string profileId)
+        {
+            var gamesWithTeams = _graphClient.ProfileWithId(profileId).GamesWithTeamsForProfile().Select(x => x.Data.Id).ToList();
+            var gamesWithoutTeams = _graphClient.ProfileWithId(profileId).GamesWithoutTeamsForProfile().Select(x => x.Data.Id).ToList();
+
+            var gameIds = new List<string>();
+            gameIds.AddRange(gamesWithTeams);
+            gameIds.AddRange(gamesWithoutTeams);
+
+            var games = new List<Game>();
+            foreach (var game in gameIds)
+            {
+                games.Add(_gameMapper.Map(_graphClient.GameWithId(game)));
+            }
+
+            return games;
+        }
+
         public void CreateGame(string sportName)
         {
             if (!GameBaseNodeExists())

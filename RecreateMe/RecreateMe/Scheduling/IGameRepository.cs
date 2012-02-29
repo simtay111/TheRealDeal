@@ -8,5 +8,6 @@ namespace RecreateMe.Scheduling
         bool Save(Game game);
         Game GetById(string id);
         IList<Game> FindByLocation(string location);
+        IList<Game> GetForProfile(string profileId);
     }
 }

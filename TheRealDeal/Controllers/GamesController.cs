@@ -15,7 +15,13 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            var request = new GetGamesForProfileRequest() { ProfileId = GetProfileFromCookie() };
+            var handler = new GetGamesForProfileRequestHandler(new GameRepository());
+            var response = handler.Handle(request);
+
+            var model = new ListOfGamesModel() { Games = response.Games };
+
+            return View(model);
         }
 
         [Authorize]
@@ -63,7 +69,7 @@ namespace TheRealDeal.Controllers
 
         private CreateGameModel CreateViewModel()
         {
-            var model = new CreateGameModel {AvailableSports = new SportRepository().GetNamesOfAllSports()};
+            var model = new CreateGameModel { AvailableSports = new SportRepository().GetNamesOfAllSports() };
             var profile = new ProfileRepository().GetByProfileId(GetProfileFromCookie());
             model.AvailableLocations = profile.Locations.Select(x => x.Name).ToList();
             return model;

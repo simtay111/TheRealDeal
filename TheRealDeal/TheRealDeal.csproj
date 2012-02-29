@@ -74,6 +74,7 @@
     <Compile Include="Models\Friend\FriendsListModel.cs" />
     <Compile Include="Models\Friend\SearchForFriendModel.cs" />
     <Compile Include="Models\Games\CreateGameModel.cs" />
+    <Compile Include="Models\Games\ListOfGamesModel.cs" />
     <Compile Include="Models\Setup\AddLocationModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />

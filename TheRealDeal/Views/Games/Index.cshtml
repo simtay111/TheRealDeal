@@ -1,4 +1,6 @@
-﻿@model object
+﻿@using RecreateMe.Scheduling.Handlers.Games
+@using TheRealDeal.Models.Games
+@model ListOfGamesModel
 
 @{
     ViewBag.Title = "Games";
@@ -6,5 +8,23 @@
 }
 
 <h2>Games</h2>
+
+@foreach (var game in Model.Games)
+{
+    <div>
+    @Html.Label(game.DateTime.ToLocalTime().ToString())
+    @Html.Label(" " + game.Location.Name)
+    @Html.Label(" " + game.Sport.Name)
+    @Html.Label( " MaxPlayers: " + game.MaxPlayers)
+    @Html.Label( " MinPlayers: " + game.MinPlayers)
+    @if (game.HasTeams)
+    {
+        @Html.Label("Teams: " + ((GameWithTeams)game).TeamsIds.Count)
+        continue;
+    }
+    @Html.Label("Players: " + ((GameWithoutTeams)game).PlayersIds.Count)
+
+    </div>
+}
 
 <button type="button" onclick="location.href = '/Games/CreateGame/'">I wanna create a game!</button>

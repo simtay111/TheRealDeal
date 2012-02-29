@@ -81,5 +81,15 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
             Assert.That(retrievedGame.TeamsIds[0], Is.EqualTo(team.Id));
         }
+
+        [Test]
+        public void CanGetListOfGamesThatProfileIsPartOfIncludingTeams()
+        {
+            _data.CreateData();
+
+            var games = _repo.GetForProfile("Simtay111");
+
+            Assert.That(games.Count, Is.EqualTo(2));
+        }
     }
 }

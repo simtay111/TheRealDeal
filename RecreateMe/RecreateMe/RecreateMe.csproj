@@ -92,6 +92,7 @@
     <Compile Include="Scheduling\Handlers\Games\GameWithoutTeams.cs" />
     <Compile Include="Scheduling\Handlers\Games\GameWithTeams.cs" />
     <Compile Include="Scheduling\Handlers\Games\IGameFactory.cs" />
+    <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForGameRequestHandler.cs" />
     <Compile Include="Scheduling\IGameRepository.cs" />

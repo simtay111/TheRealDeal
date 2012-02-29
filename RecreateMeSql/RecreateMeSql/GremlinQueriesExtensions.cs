@@ -30,6 +30,16 @@ namespace RecreateMeSql
             return gc.GameBaseNode().OutE(RelationsTypes.Game).InV<RetrievedGame>(y => y.Id == id);
         }
 
+        public static IGremlinNodeQuery<RetrievedGame> GamesWithoutTeamsForProfile(this IGremlinNodeQuery<Profile> gc)
+        {
+            return gc.OutE(RelationsTypes.PlaysInGame).InV<RetrievedGame>();
+        }
+
+        public static IGremlinNodeQuery<RetrievedGame> GamesWithTeamsForProfile(this IGremlinNodeQuery<Profile> gc)
+        {
+            return gc.OutE(RelationsTypes.PartOfTeam).InV<Team>().OutE(RelationsTypes.TeamInGame).InV<RetrievedGame>();
+        }
+
         public static IGremlinNodeQuery<Profile> PlayersForGame(this IGremlinNodeQuery<RetrievedGame> gc)
         {
             return gc.InE(RelationsTypes.PlaysInGame).OutV<Profile>();
