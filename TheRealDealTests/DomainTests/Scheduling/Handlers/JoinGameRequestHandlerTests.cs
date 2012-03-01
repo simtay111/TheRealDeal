@@ -21,29 +21,42 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
-        public void CanJoinGame()
+        public void CannotJoinGameAlreadyAPartOf()
         {
-            var request = new JoinGameRequest {GameId = "1"};
+            var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
             var game = new GameWithoutTeams(DateTime.Now, null, null);
-            
+            game.PlayersIds.Add("123");
+
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
-            _mockGameRepo.Setup(x => x.Save(game)).Returns(true);
 
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
 
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyInGame));
+        }
+
+        [Test]
+        public void CanJoinGame()
+        {
+            var request = new JoinGameRequest {GameId = "1", ProfileId = "123"};
+            var game = new GameWithoutTeams(DateTime.Now, null, null);
+            
+            _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
+
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
+            var response = handler.Handle(request);
+
+            _mockGameRepo.Verify(x => x.AddPlayerToGame(game.Id, request.ProfileId));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That(game.PlayersIds.Count, Is.EqualTo(1));
         }
 
         [Test]
         public void ThrowsAnExceptionWhenTryingToAddPlayersToAGameOfOnlyTeams()
         {
-            var request = new JoinGameRequest { GameId = "1" };
+            var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
             var game = new GameWithTeams(DateTime.Now, null, null);
             
             _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
-            _mockGameRepo.Setup(x => x.Save(game)).Returns(true);
 
             var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
 

@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using RecreateMe;
-using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMeSql.Repositories;
@@ -15,11 +15,32 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var request = new GetGamesForProfileRequest() { ProfileId = GetProfileFromCookie() };
+            var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
             var handler = new GetGamesForProfileRequestHandler(new GameRepository());
             var response = handler.Handle(request);
 
-            var model = new ListOfGamesModel() { Games = response.Games };
+            var model = new ListOfGamesModel { Games = response.Games };
+
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult SearchForGame()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult SearchForGame(SearchForGameModel model)
+        {
+            var request = new SearchForGameRequest {Location = model.Location, Sport = model.Sport};
+
+            var handler = new SearchForGameRequestHandler(new GameRepository());
+
+            var response = handler.Handle(request);
+
+            model.Results = response.GamesFound;
 
             return View(model);
         }
@@ -58,6 +79,24 @@ namespace TheRealDeal.Controllers
                 throw new NotImplementedException();
 
             return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult JoinGame(string gameId)
+        {
+            var request = new JoinGameRequest {GameId = gameId, ProfileId = GetProfileFromCookie()};
+
+            var handler = new JoinGameRequestHandler(new GameRepository());
+
+            var response = handler.Handle(request);
+
+            if (response.Status == ResponseCodes.Success)
+                return RedirectToAction("Index");
+
+            var errorMessage = response.Status.GetMessage();
+            ModelState.AddModelError("", errorMessage);
+
+            return RedirectToAction("SearchForGame");
         }
 
         private string GetProfileFromCookie()

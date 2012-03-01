@@ -59,8 +59,7 @@ namespace RecreateMeSql.Repositories
             var gameWithoutTeams = game as GameWithoutTeams;
             foreach (var profileId in gameWithoutTeams.PlayersIds)
             {
-                var profileNode = _graphClient.ProfileWithId(profileId).Single();
-                _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
+                CreatePlaysInGameRelationship(gameNode, profileId);
             }
             return true;
         }
@@ -92,7 +91,8 @@ namespace RecreateMeSql.Repositories
 
         public IList<Game> FindByLocation(string location)
         {
-            throw new NotImplementedException();
+            var games = _graphClient.GamesAtLocation(location).Select(x => x.Data.Id).ToList();
+            return games.Select(x => _gameMapper.Map(_graphClient.GameWithId(x))).ToList();
         }
 
         public IList<Game> GetForProfile(string profileId)
@@ -104,13 +104,19 @@ namespace RecreateMeSql.Repositories
             gameIds.AddRange(gamesWithTeams);
             gameIds.AddRange(gamesWithoutTeams);
 
-            var games = new List<Game>();
-            foreach (var game in gameIds)
-            {
-                games.Add(_gameMapper.Map(_graphClient.GameWithId(game)));
-            }
+            return gameIds.Select(game => _gameMapper.Map(_graphClient.GameWithId(game))).ToList();
+        }
 
-            return games;
+        public void AddPlayerToGame(string gameId, string profileId)
+        {
+            var gameNode = _graphClient.GameWithId(gameId).Single();
+            CreatePlaysInGameRelationship(gameNode.Reference, profileId);
+        }
+
+        private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)
+        {
+            var profileNode = _graphClient.ProfileWithId(profileId).Single();
+            _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
         }
 
         public void CreateGame(string sportName)

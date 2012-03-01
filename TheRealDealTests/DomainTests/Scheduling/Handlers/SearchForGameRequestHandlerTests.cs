@@ -57,5 +57,29 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.LocationNotSpecified));
         }
+
+        [Test]
+        public void IfNoSportWasSpecifiedItDoesNotFilter()
+        {
+            var soccer = TestData.CreateSoccerGame();
+            var location1 = TestData.CreateLocationBend();
+
+            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
+            var listOfGames = new List<Game> { soccerGame1};
+
+            var request = new SearchForGameRequest { Location = location1.Name, Sport = string.Empty };
+
+            _gameRepository = new Mock<IGameRepository>();
+            _gameRepository.Setup(x => x.FindByLocation(It.Is<string>(d => d == location1.Name)))
+                .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
+
+            var handler = new SearchForGameRequestHandler(_gameRepository.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.GamesFound.Count, Is.EqualTo(1));
+            Assert.That(response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
+            Assert.That(response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
+        }        
     }
 }

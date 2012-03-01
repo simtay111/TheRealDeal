@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;
@@ -91,5 +92,29 @@ namespace TheRealDealTests.DataTests.Repositories
 
             Assert.That(games.Count, Is.EqualTo(2));
         }
+
+        [Test]
+        public void CanGetByLocation()
+        {
+            _data.CreateData();
+
+            var games = _repo.FindByLocation("Bend");
+
+            Assert.That(games.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void CanAddProfilesToGame()
+        {
+            _data.CreateData();
+
+            const string profileId = "Profile1";
+            _repo.AddPlayerToGame(_data.GameWithoutTeams.Id, profileId);
+
+            var game = _repo.GetById(_data.GameWithoutTeams.Id) as GameWithoutTeams;
+
+            Assert.That(game.PlayersIds.Any(x => x == profileId));
+        }
+
     }
 }

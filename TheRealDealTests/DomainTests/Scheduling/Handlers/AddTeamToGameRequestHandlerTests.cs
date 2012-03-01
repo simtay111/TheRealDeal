@@ -13,7 +13,6 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
     public class AddTeamToGameRequestHandlerTests
     {
         private Mock<IGameRepository> _gameRepository;
-        private Mock<ITeamRepository> _teamRepository;
         private AddTeamToGameRequest _request;
         private Team _team;
         private Game _game;

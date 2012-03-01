@@ -1,0 +1,21 @@
+﻿@using TheRealDeal.Models.Games
+@model SearchForGameModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search for a game</h2>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.Location);
+    @Html.TextBoxFor(x => x.Location);
+    @Html.LabelFor(x => x.Sport);
+    @Html.TextBoxFor(x => x.Sport);
+    <button type="submit">Search</button>
+}
+
+@Html.ValidationSummary()
+
+@Html.Partial("GameSearchResults")

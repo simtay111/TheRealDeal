@@ -1,0 +1,25 @@
+﻿@using TheRealDeal.Models.Games
+@model SearchForGameModel
+   
+   
+        
+<div>
+@if (Model != null){
+    if (Model.Results != null){
+        if (Model.Results.Count != 0){
+            <h2>We found you some Games!</h2>
+            foreach (var game in Model.Results)
+            {
+                <div>
+                @Html.ActionLink("Join: " + game.Id, "JoinGame", "Games", new {gameId = game.Id}, null)
+                </div>
+            }
+        }
+        else
+        {
+        <h2>No games found that matched your criteria! Try a broader search.</h2>
+        }
+    }
+}
+</div>           
+

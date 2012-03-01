@@ -18,11 +18,15 @@ namespace RecreateMe.Scheduling.Handlers
         public SearchForGameResponse Handle(SearchForGameRequest request)
         {
             if (String.IsNullOrEmpty(request.Location)) return new SearchForGameResponse(ResponseCodes.LocationNotSpecified);
-            var gamesByLocation = _gameRepository.FindByLocation(request.Location);
 
-            var games = gamesByLocation.Where(x => x.Sport.Name == request.Sport).ToList();
+            var results = new List<Game>();
 
-            return new SearchForGameResponse(games);
+            results.AddRange(_gameRepository.FindByLocation(request.Location));
+
+            if (!string.IsNullOrEmpty(request.Sport))
+               results = results.Where(x => x.Sport.Name == request.Sport).ToList();
+
+            return new SearchForGameResponse(results);
         }
     }
 

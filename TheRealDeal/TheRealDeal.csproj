@@ -75,6 +75,7 @@
     <Compile Include="Models\Friend\SearchForFriendModel.cs" />
     <Compile Include="Models\Games\CreateGameModel.cs" />
     <Compile Include="Models\Games\ListOfGamesModel.cs" />
+    <Compile Include="Models\Games\SearchForGameModel.cs" />
     <Compile Include="Models\Setup\AddLocationModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -227,6 +228,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Games\CreateGame.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Games\SearchForGame.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Games\GameSearchResults.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

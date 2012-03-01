@@ -3,7 +3,7 @@
 
 <div>
 @if (Model != null){
-    if (Model.Results != null){
+    if (Model.Results.Count != 0){
         <h2>We found you some friends!</h2>
         foreach (var friend in Model.Results)
         {

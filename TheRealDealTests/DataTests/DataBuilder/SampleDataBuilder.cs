@@ -16,6 +16,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
     {
         private string _teamId2;
         private string _teamId1;
+        public GameWithoutTeams GameWithoutTeams;
         private const string LocationPortland = "Portland";
         private const string Profile2Id = "Profile1";
         private const string SoccerName = "Soccer";
@@ -244,6 +245,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.AddPlayer(Profile1Id);
 
             new GameRepository().Save(game);
+            GameWithoutTeams = game;
             return game;
         }
 

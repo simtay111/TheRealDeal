@@ -26,7 +26,8 @@ namespace RecreateMe
         SportAlreadyPlayed,
         LocationAlreadyInProfile,
         AlreadyFriend,
-        ProfileIdRequired
+        ProfileIdRequired,
+        AlreadyInGame
     }
 
     public static class ResponseCodeExtensions
@@ -58,6 +59,8 @@ namespace RecreateMe
                     return "The location you specified does not exist. Boo!";
                 case (ResponseCodes.LocationAlreadyInProfile):
                     return "You already have this location in your profile dummy...";
+                case (ResponseCodes.AlreadyInGame):
+                    return "You already are a part of this game dummy...";
             }
 
             return message;

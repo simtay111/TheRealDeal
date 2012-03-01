@@ -1,3 +1,4 @@
+using System.Linq;
 using RecreateMe.Exceptions;
 using RecreateMe.Exceptions.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
@@ -18,9 +19,10 @@ namespace RecreateMe.Scheduling.Handlers
             var game = GetValidGame(request.GameId);
             if (game == null) return new JoinGameResponse(ResponseCodes.OnlyTeamsCanJoin);
 
-            game.PlayersIds.Add(request.ProfileId);
+            if (game.PlayersIds.Any(x => x == request.ProfileId))
+                return new JoinGameResponse(ResponseCodes.AlreadyInGame);
 
-            _gameRepository.Save(game);
+            _gameRepository.AddPlayerToGame(game.Id, request.ProfileId);
              
             return new JoinGameResponse(ResponseCodes.Success);
         }
