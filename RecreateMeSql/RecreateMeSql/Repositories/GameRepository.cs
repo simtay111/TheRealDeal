@@ -48,8 +48,7 @@ namespace RecreateMeSql.Repositories
             var gameWithTeams = game as GameWithTeams;
             foreach (var teamId in gameWithTeams.TeamsIds)
             {
-                var teamNode = _graphClient.TeamWithId(teamId).Single();
-                _graphClient.CreateRelationship(teamNode.Reference, new TeamInGameRelationship(gameNode));
+                CreateTeamInGameRelationship(gameNode, teamId);
             }
             return true;
         }
@@ -111,6 +110,18 @@ namespace RecreateMeSql.Repositories
         {
             var gameNode = _graphClient.GameWithId(gameId).Single();
             CreatePlaysInGameRelationship(gameNode.Reference, profileId);
+        }
+
+        public void AddTeamToGame(string teamid, string gameId)
+        {
+            var gameNode = _graphClient.GameWithId(gameId).Single();
+            CreateTeamInGameRelationship(gameNode.Reference, teamid);
+        }
+
+        private void CreateTeamInGameRelationship(NodeReference gameNode, string teamId)
+        {
+            var teamNode = _graphClient.TeamWithId(teamId).Single();
+            _graphClient.CreateRelationship(teamNode.Reference, new TeamInGameRelationship(gameNode));
         }
 
         private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)

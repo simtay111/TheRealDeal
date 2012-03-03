@@ -10,5 +10,6 @@ namespace RecreateMe.Scheduling
         IList<Game> FindByLocation(string location);
         IList<Game> GetForProfile(string profileId);
         void AddPlayerToGame(string gameId, string profileId);
+        void AddTeamToGame(string teamid, string gameId);
     }
 }

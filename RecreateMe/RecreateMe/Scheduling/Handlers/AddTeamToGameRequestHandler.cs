@@ -16,9 +16,7 @@ namespace RecreateMe.Scheduling.Handlers
             var game = _gameRepository.GetById(request.GameId) as GameWithTeams;
             if (game == null) return new AddTeamToGameResponse(ResponseCodes.CannotHaveTeams);
 
-            game.AddTeam(request.TeamId);
-
-            _gameRepository.Save(game);
+            _gameRepository.AddTeamToGame(request.TeamId, request.GameId);
 
             return new AddTeamToGameResponse(ResponseCodes.Success);
         }

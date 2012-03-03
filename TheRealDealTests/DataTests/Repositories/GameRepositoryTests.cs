@@ -90,7 +90,7 @@ namespace TheRealDealTests.DataTests.Repositories
 
             var games = _repo.GetForProfile("Simtay111");
 
-            Assert.That(games.Count, Is.EqualTo(2));
+            Assert.That(games.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -114,6 +114,19 @@ namespace TheRealDealTests.DataTests.Repositories
             var game = _repo.GetById(_data.GameWithoutTeams.Id) as GameWithoutTeams;
 
             Assert.That(game.PlayersIds.Any(x => x == profileId));
+        }
+
+        [Test]
+        public void CanAddTeamsToGame()
+        {
+            _data.CreateData();
+
+           _repo.AddTeamToGame(_data.TeamId2, _data.GameWithTeamsId);
+
+            var game = _repo.GetById(_data.GameWithTeamsId) as GameWithTeams;
+
+            Assert.That(game.TeamsIds.Count, Is.EqualTo(2));
+            Assert.True(game.TeamsIds.Single(x => x == _data.TeamId2).Any());
         }
 
     }

@@ -7,25 +7,25 @@ using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
-using RecreateMeSql;
 using RecreateMeSql.Repositories;
 
 namespace TheRealDealTests.DataTests.DataBuilder
 {
     public class SampleDataBuilder
     {
-        private string _teamId2;
-        private string _teamId1;
+        public string TeamId2;
+        public string TeamId1;
         public GameWithoutTeams GameWithoutTeams;
-        private const string LocationPortland = "Portland";
-        private const string Profile2Id = "Profile1";
-        private const string SoccerName = "Soccer";
-        private const string LocationBendName = "Bend";
-        private const string TeamName1 = "Team1";
-        private const string TeamName2 = "Team2";
-        private const string Profile1Id = "Simtay111";
-        private const string FootballName = "Football";
-        private const string Basketballname = "Basketball";
+        public string GameWithTeamsId;
+        public const string LocationPortland = "Portland";
+        public const string Profile2Id = "Profile1";
+        public const string SoccerName = "Soccer";
+        public const string LocationBendName = "Bend";
+        public const string TeamName1 = "Team1";
+        public const string TeamName2 = "Team2";
+        public const string Profile1Id = "Simtay111";
+        public const string FootballName = "Football";
+        public const string Basketballname = "Basketball";
 
         public void DeleteAllData()
         {
@@ -212,7 +212,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
                                MaxSize = 14,
                                Name = TeamName1
                            };
-            _teamId1 = team.Id;
+            TeamId1 = team.Id;
 
             teamRepo.Save(team);
             return team;
@@ -225,10 +225,10 @@ namespace TheRealDealTests.DataTests.DataBuilder
             {
                 MaxSize = 3,
                 Name = TeamName2,
-                PlayersIds = new List<string>() { Profile1Id, Profile2Id}
+                PlayersIds = new List<string> { Profile1Id, Profile2Id}
             };
 
-            _teamId2 = team.Id;
+            TeamId2 = team.Id;
 
             teamRepo.Save(team);
             return team;
@@ -257,10 +257,10 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.IsPrivate = true;
             game.Sport = new Sport(SoccerName);
             game.Location = new Location(LocationBendName);
-            game.AddTeam(_teamId1);
-            game.AddTeam(_teamId2);
+            game.AddTeam(TeamId1);
 
             new GameRepository().Save(game);
+            GameWithTeamsId = game.Id;
             return game;
         }
 
