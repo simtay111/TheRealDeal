@@ -55,6 +55,30 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void ResponseReturnsWithGameIdOfCreatedGame()
+        {
+            SetupMockSportLocationAndGameRepos();
+            _mockGameRepo = new Mock<IGameRepository>();
+            const string location = LocationName;
+
+            var request = new CreateGameRequest
+            {
+                DateTime = "03/03/03 12:00",
+                Location = location,
+                MaxPlayers = 5,
+                MinPlayers = 3,
+                Sport = SoccerName
+            };
+
+            var handler = CreateHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.GameId, Is.EqualTo(_gameWithTeams.Id));
+        }
+
+        [Test]
         public void CanCreateAGameThatIsPrivate()
         {
             var date = DateTime.Now;

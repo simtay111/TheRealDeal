@@ -20,9 +20,14 @@ namespace RecreateMe.Scheduling.Handlers.Games
 
         public void AddTeam(string teamId)
         {
-            if (TeamsIds.Count == Constants.MaxAmountOfTeamsPerGame)
+            if (IsFull())
                 throw new CannotAddItemException("Could not add team to game, game is full.");
             TeamsIds.Add(teamId);
+        }
+
+        public override bool IsFull()
+        {
+            return (TeamsIds.Count == Constants.MaxAmountOfTeamsPerGame);
         }
     }
 }

@@ -5,23 +5,6 @@ using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers.Games
 {
-    public interface IGame
-    {
-        string Id { get; set; }
-        DateTimeOffset DateTime { get; set; }
-
-        [JsonIgnore]
-        Sport Sport { get; set; }
-
-        [JsonIgnore]
-        Location Location { get; set; }
-
-        int? MinPlayers { get; set; }
-        int? MaxPlayers { get; set; }
-        bool IsPrivate { get; set; }
-        bool HasTeams { get; set; }
-    }
-
     public abstract class Game : IGame
     {
         public string Id { get; set; }
@@ -47,6 +30,8 @@ namespace RecreateMe.Scheduling.Handlers.Games
         }
 
         public Game() : this(DateTimeOffset.Now, null, null){}
-        
+
+        public abstract bool IsFull();
+
     }
 }

@@ -65,5 +65,10 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         public TestableGame(DateTime dateTime, Sport sport, Location location) : base(dateTime, sport, location)
         {
         }
+
+        public override bool IsFull()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

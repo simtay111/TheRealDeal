@@ -1,6 +1,4 @@
 using System.Linq;
-using RecreateMe.Exceptions;
-using RecreateMe.Exceptions.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMe.Scheduling.Handlers
@@ -18,6 +16,7 @@ namespace RecreateMe.Scheduling.Handlers
         {
             var game = GetValidGame(request.GameId);
             if (game == null) return new JoinGameResponse(ResponseCodes.OnlyTeamsCanJoin);
+            if (game.IsFull()) return new JoinGameResponse(ResponseCodes.GameIsFull);
 
             if (game.PlayersIds.Any(x => x == request.ProfileId))
                 return new JoinGameResponse(ResponseCodes.AlreadyInGame);

@@ -45,5 +45,15 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
 
             Assert.That(baseGame.HasTeams, Is.True);
         }
+
+        [Test]
+        public void CanCheckIfGameIsFull()
+        {
+            var game = new GameWithTeams(DateTime.Now, null, null);
+            game.TeamsIds.Add("123");
+            game.TeamsIds.Add("123");
+
+            Assert.True(game.IsFull());
+        }
     }
 }

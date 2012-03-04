@@ -25,11 +25,16 @@ namespace RecreateMe.Scheduling.Handlers.Games
 
         public void AddPlayer(string profileId)
         {
-            if (PlayersIds.Count == MaxPlayers)
+            if (IsFull())
             {
                 throw new CannotJoinGameException("The game is already at capacity.");
             }
             PlayersIds.Add(profileId);
+        }
+
+        public override bool IsFull()
+        {
+            return (PlayersIds.Count >= MaxPlayers);
         }
     }
 }

@@ -28,5 +28,14 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
 
             Assert.That(baseGame.HasTeams, Is.False);
         }
+
+        [Test]
+        public void CanCheckToSeeIfGameIsFull()
+        {
+            var game = new GameWithoutTeams(DateTime.Now, null, null);
+            game.MaxPlayers = 0;
+
+            Assert.True(game.IsFull());
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace RecreateMe.Scheduling.Handlers
 
             _gameRepository.Save(game);
 
-            return new CreateGameResponse(ResponseCodes.Success);
+            return new CreateGameResponse(ResponseCodes.Success) {GameId = game.Id} ;
         }
 
         private ResponseCodes CheckForNullsAndBadDateTimes(CreateGameRequest request)
@@ -71,12 +71,14 @@ namespace RecreateMe.Scheduling.Handlers
         public int? MinPlayers { get; set; }
         public int? MaxPlayers { get; set; }
         public bool HasTeams = true;
-        public bool IsPrivate = false;
+        public bool IsPrivate;
     }
 
     public class CreateGameResponse
     {
         public ResponseCodes Status { get; set; }
+
+        public string GameId { get; set; }
 
         public CreateGameResponse(ResponseCodes status)
         {

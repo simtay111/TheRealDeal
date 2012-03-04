@@ -15,7 +15,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         private Mock<IGameRepository> _gameRepository;
         private AddTeamToGameRequest _request;
         private Team _team;
-        private Game _game;
+        private GameWithTeams _game;
 
         [SetUp]
         public void SetUp()
@@ -39,11 +39,26 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
          }
 
         [Test]
+        public void CannotAddTeamIfGameAlreadyHasMaxAmountOfTeams()
+        {
+            SetUpRequest();
+            _game.TeamsIds.Add("123");
+            _game.TeamsIds.Add("1234");
+
+            CreateMockRepositoriesThatReturn(_game);
+
+            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
+
+            var response = handler.Handle(_request);
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.GameIsFull));
+        }
+
+        [Test]
         public void ThrowsAnExceptionIfTheGameCantHaveTeams()
         {
             SetUpRequest();
-            _game = new GameWithoutTeams(DateTime.Now, null, null);
-           CreateMockRepositoriesThatReturn(_game);
+            var game  = new GameWithoutTeams(DateTime.Now, null, null);
+            CreateMockRepositoriesThatReturn(game);
             var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
 
             var response = handler.Handle(_request);

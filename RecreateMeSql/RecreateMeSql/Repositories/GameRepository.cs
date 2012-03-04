@@ -43,44 +43,6 @@ namespace RecreateMeSql.Repositories
             return SaveGameWithTeamData(game, gameNode);
         }
 
-        private bool SaveGameWithTeamData(Game game, NodeReference gameNode)
-        {
-            var gameWithTeams = game as GameWithTeams;
-            foreach (var teamId in gameWithTeams.TeamsIds)
-            {
-                CreateTeamInGameRelationship(gameNode, teamId);
-            }
-            return true;
-        }
-
-        private bool SaveGameWithoutTeamData(Game game, NodeReference gameNode)
-        {
-            var gameWithoutTeams = game as GameWithoutTeams;
-            foreach (var profileId in gameWithoutTeams.PlayersIds)
-            {
-                CreatePlaysInGameRelationship(gameNode, profileId);
-            }
-            return true;
-        }
-
-        private NodeReference<Game> CreateGameNodeAndSaveGenericData(Game game)
-        {
-            var gameBaseNode = _graphClient.GameBaseNode().Single();
-
-            var gameNode = _graphClient.Create(game);
-
-            _graphClient.CreateRelationship(gameBaseNode.Reference, new GameRelationship(gameNode));
-
-            var sportNode = _graphClient.SportWithName(game.Sport.Name).Single();
-
-            _graphClient.CreateRelationship(gameNode, new GameToSportRelationship(sportNode.Reference));
-
-            var locationNode = _graphClient.LocationWithName(game.Location.Name).Single();
-
-            _graphClient.CreateRelationship(gameNode, new GameToLocationRelationship(locationNode.Reference));
-            return gameNode;
-        }
-
         public Game GetById(string id)
         {
             var gameQuery = _graphClient.GameWithId(id);
@@ -118,6 +80,12 @@ namespace RecreateMeSql.Repositories
             CreateTeamInGameRelationship(gameNode.Reference, teamid);
         }
 
+        public void CreateGame(string sportName)
+        {
+            if (!GameBaseNodeExists())
+                CreateGameBaseNode();
+        }
+
         private void CreateTeamInGameRelationship(NodeReference gameNode, string teamId)
         {
             var teamNode = _graphClient.TeamWithId(teamId).Single();
@@ -130,10 +98,24 @@ namespace RecreateMeSql.Repositories
             _graphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
         }
 
-        public void CreateGame(string sportName)
+        private bool SaveGameWithTeamData(Game game, NodeReference gameNode)
         {
-            if (!GameBaseNodeExists())
-                CreateGameBaseNode();
+            var gameWithTeams = game as GameWithTeams;
+            foreach (var teamId in gameWithTeams.TeamsIds)
+            {
+                CreateTeamInGameRelationship(gameNode, teamId);
+            }
+            return true;
+        }
+
+        private bool SaveGameWithoutTeamData(Game game, NodeReference gameNode)
+        {
+            var gameWithoutTeams = game as GameWithoutTeams;
+            foreach (var profileId in gameWithoutTeams.PlayersIds)
+            {
+                CreatePlaysInGameRelationship(gameNode, profileId);
+            }
+            return true;
         }
 
         private void CreateGameBaseNode()
@@ -148,6 +130,24 @@ namespace RecreateMeSql.Repositories
         private bool GameBaseNodeExists()
         {
             return _graphClient.GameBaseNode().Any();
+        }
+
+        private NodeReference<Game> CreateGameNodeAndSaveGenericData(Game game)
+        {
+            var gameBaseNode = _graphClient.GameBaseNode().Single();
+
+            var gameNode = _graphClient.Create(game);
+
+            _graphClient.CreateRelationship(gameBaseNode.Reference, new GameRelationship(gameNode));
+
+            var sportNode = _graphClient.SportWithName(game.Sport.Name).Single();
+
+            _graphClient.CreateRelationship(gameNode, new GameToSportRelationship(sportNode.Reference));
+
+            var locationNode = _graphClient.LocationWithName(game.Location.Name).Single();
+
+            _graphClient.CreateRelationship(gameNode, new GameToLocationRelationship(locationNode.Reference));
+            return gameNode;
         }
     }
 }

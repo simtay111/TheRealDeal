@@ -36,6 +36,20 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void CannotJoinGameIfFull()
+        {
+            var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
+            var game = new GameWithoutTeams(DateTime.Now, null, null) {MaxPlayers = 0};
+
+            _mockGameRepo.Setup(x => x.GetById(request.GameId)).Returns(game);
+
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.GameIsFull));
+        }
+
+        [Test]
         public void CanJoinGame()
         {
             var request = new JoinGameRequest {GameId = "1", ProfileId = "123"};

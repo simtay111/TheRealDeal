@@ -55,6 +55,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -73,6 +74,7 @@
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Models\Friend\FriendsListModel.cs" />
     <Compile Include="Models\Friend\SearchForFriendModel.cs" />
+    <Compile Include="Models\Games\AddTeamToGameModel.cs" />
     <Compile Include="Models\Games\CreateGameModel.cs" />
     <Compile Include="Models\Games\ListOfGamesModel.cs" />
     <Compile Include="Models\Games\SearchForGameModel.cs" />
@@ -234,6 +236,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Games\GameSearchResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Games\AddTeamToGame.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

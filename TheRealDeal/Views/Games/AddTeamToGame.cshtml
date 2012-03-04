@@ -1,0 +1,31 @@
+﻿@using TheRealDeal.Models.Games
+@model AddTeamToGameModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a team to your game or it will be DESTROYED!!!</title>
+</head>
+<body>
+<h2>Please add a team to your game......... </h2>
+    <div>
+        @using (Html.BeginForm())
+        {
+            foreach (var team in Model.TeamsForProfile)
+            {
+            <div>
+                @Html.RadioButtonFor(x => x.TeamId, team.Id)
+                @Html.Label(team.Name)
+            </div>
+            }
+                 
+            <div>
+            <button type="submit">
+                Submit it FOOL</button>
+                </div>
+        }
+    </div>
+</body>
+</html>

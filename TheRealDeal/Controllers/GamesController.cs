@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Windows.Forms;
 using RecreateMe;
 using RecreateMe.Scheduling.Handlers;
 using RecreateMe.Scheduling.Handlers.Games;
@@ -78,8 +78,45 @@ namespace TheRealDeal.Controllers
             if (response.Status != ResponseCodes.Success)
                 throw new NotImplementedException();
 
+            if (!request.HasTeams)
+            {
+                var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
+
+                var joinHandler = new JoinGameRequestHandler(new GameRepository());
+
+                var joinResponse = joinHandler.Handle(joinRequest);
+
+                if (joinResponse.Status != ResponseCodes.Success)
+                    throw new NotImplementedException();
+
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("AddTeamToGame", response.GameId);
+
+
+        }
+
+        [Authorize]
+        public ActionResult AddTeamToGame(string gameId)
+        {
+            var teams = new TeamRepository().GetTeamsForProfile(GetProfileFromCookie());
+
+            var model = new AddTeamToGameModel {TeamsForProfile = teams};
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddTeamToGame(AddTeamToGameModel model)
+        {
+
+            MessageBox.Show(model.GameId + "GameId");
             return RedirectToAction("Index");
         }
+
+
 
         [Authorize]
         public ActionResult JoinGame(string gameId)
