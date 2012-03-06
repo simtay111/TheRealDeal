@@ -92,7 +92,7 @@ namespace TheRealDeal.Controllers
                 return RedirectToAction("Index");
             }
 
-            return RedirectToAction("AddTeamToGame", response.GameId);
+            return RedirectToAction("AddTeamToGame", "Games", new {gameId = response.GameId});
 
 
         }
@@ -102,7 +102,7 @@ namespace TheRealDeal.Controllers
         {
             var teams = new TeamRepository().GetTeamsForProfile(GetProfileFromCookie());
 
-            var model = new AddTeamToGameModel {TeamsForProfile = teams};
+            var model = new AddTeamToGameModel {TeamsForProfile = teams, GameId = gameId};
 
             return View(model);
         }
@@ -111,8 +111,15 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult AddTeamToGame(AddTeamToGameModel model)
         {
+            var request = new AddTeamToGameRequest() {GameId = model.GameId, TeamId = model.TeamId};
 
-            MessageBox.Show(model.GameId + "GameId");
+            var handler = new AddTeamToGameRequestHandler(new GameRepository());
+
+            var response = handler.Handle(request);
+
+            if (response.Status != ResponseCodes.Success)
+                throw new NotImplementedException();
+            
             return RedirectToAction("Index");
         }
 
