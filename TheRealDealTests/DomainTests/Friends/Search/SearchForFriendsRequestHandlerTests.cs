@@ -94,7 +94,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Results.Count, Is.EqualTo(2));
+            Assert.That(response.Results.Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -108,7 +108,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Results.Count, Is.EqualTo(1));
+            Assert.That(response.Results.Count, Is.EqualTo(1));
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.NoCriteriaSpecified));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.NoCriteriaSpecified));
         }
 
         private void SetupProfileRepoToReturnThreeProfilesForName()

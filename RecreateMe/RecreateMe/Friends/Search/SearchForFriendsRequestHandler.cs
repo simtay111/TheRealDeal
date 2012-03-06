@@ -71,6 +71,7 @@ namespace RecreateMe.Friends.Search
 
         public SearchForFriendsResponse(ResponseCodes status)
         {
+            Results = new List<Profile>();
             Status = status;
         }
 

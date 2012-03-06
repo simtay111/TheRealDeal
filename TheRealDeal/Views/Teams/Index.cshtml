@@ -1,4 +1,5 @@
-﻿@using TheRealDeal.Models.Teams
+﻿@using TheRealDeal
+@using TheRealDeal.Models.Teams
 @model TeamsViewModel
 
 @{
@@ -8,11 +9,24 @@
 
 <h2>Your Teams</h2>
 
+<h3>The ones you are a part of:</h3>
 <ul>
 @foreach (var team in Model.Teams)
 {
     <li>
         @Html.ActionLink(team.Name, "ViewTeam", "Teams", new {teamId = team.Id}, null)
+    </li>
+}
+</ul>
+
+
+@{var currentProfileId = HttpContext.Current.Request.Cookies[Constants.CookieName].Values[Constants.CurrentProfileCookieField];}
+<h3>The ones you created</h3>
+<ul>
+@foreach (var team in Model.Teams.Where(x => x.Creator == currentProfileId))
+{
+    <li>
+        @Html.Label(team.Name)
     </li>
 }
 </ul>
