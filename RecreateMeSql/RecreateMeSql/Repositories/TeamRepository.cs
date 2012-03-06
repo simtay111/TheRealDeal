@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
+using RecreateMe.Profiles;
 using RecreateMe.Teams;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
+using RecreateMeSql.Relationships.GameRelationships;
 using RecreateMeSql.Relationships.ProfileRelationships;
 using RecreateMeSql.SchemaNodes;
 
@@ -38,6 +40,8 @@ namespace RecreateMeSql.Repositories
             foreach (var profileId in team.PlayersIds)
             {
                 var profile = _graphClient.ProfileWithId(profileId).Single();
+                if (profileId == team.Creator)
+                    _graphClient.CreateRelationship(profile.Reference, new CreatedByRelationship(teamNode));
                 _graphClient.CreateRelationship(profile.Reference, new PartOfTeamRelationship(teamNode));
             }
 
@@ -70,6 +74,7 @@ namespace RecreateMeSql.Repositories
             var team = new Team(teamNode.Data.Id) {MaxSize = teamNode.Data.MaxSize, Name = teamNode.Data.Name};
 
             team.PlayersIds = _graphClient.ProfilesWithTeam(team.Id).Select(x => x.Data.ProfileId).ToList();
+            team.Creator = teamNode.Creator().Single().Data.ProfileId;
             return team;
         }
 

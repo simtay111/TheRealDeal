@@ -147,6 +147,10 @@ namespace RecreateMeSql.Repositories
             var locationNode = _graphClient.LocationWithName(game.Location.Name).Single();
 
             _graphClient.CreateRelationship(gameNode, new GameToLocationRelationship(locationNode.Reference));
+
+            var profileNode = _graphClient.ProfileWithId(game.Creator).Single();
+
+            _graphClient.CreateRelationship(profileNode.Reference, new CreatedByRelationship(gameNode));
             return gameNode;
         }
     }

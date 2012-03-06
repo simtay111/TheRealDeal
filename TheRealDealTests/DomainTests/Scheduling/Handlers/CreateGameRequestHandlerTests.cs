@@ -55,6 +55,32 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void SavesWhichProfileCreatedTheGame()
+        {
+            SetupMockSportLocationAndGameRepos();
+            _mockGameRepo = new Mock<IGameRepository>();
+            const string location = LocationName;
+            const string profile1 = "Profile1";
+
+            var request = new CreateGameRequest
+                              {
+                                  DateTime = "03/03/03 12:00",
+                                  Location = location,
+                                  MaxPlayers = 5,
+                                  MinPlayers = 3,
+                                  Sport = SoccerName,
+                                  Creator = profile1
+                              };
+
+            var handler = CreateHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _mockGameRepo.Verify(x => x.Save(It.Is<Game>(y => y.Creator == profile1)));
+        }
+
+        [Test]
         public void ResponseReturnsWithGameIdOfCreatedGame()
         {
             SetupMockSportLocationAndGameRepos();

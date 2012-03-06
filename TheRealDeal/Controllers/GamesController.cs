@@ -19,7 +19,7 @@ namespace TheRealDeal.Controllers
             var handler = new GetGamesForProfileRequestHandler(new GameRepository());
             var response = handler.Handle(request);
 
-            var model = new ListOfGamesModel { Games = response.Games };
+            var model = new ListOfGamesModel { Games = response.Games, CurrentProfile = GetProfileFromCookie() };
 
             return View(model);
         }
@@ -68,7 +68,8 @@ namespace TheRealDeal.Controllers
                                   Location = model.Location,
                                   MaxPlayers = model.MaxPlayers,
                                   MinPlayers = model.MinPlayers,
-                                  Sport = model.Sport
+                                  Sport = model.Sport,
+                                  Creator = GetProfileFromCookie()
                               };
 
             var handler = new CreateGameRequestHandler(new SportRepository(), new LocationRepository(),

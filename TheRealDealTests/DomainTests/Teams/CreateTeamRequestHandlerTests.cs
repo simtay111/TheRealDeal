@@ -123,5 +123,27 @@ namespace TheRealDealTests.DomainTests.Teams
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileIdRequired));
         }
+
+        [Test]
+        public void UsesProfileAsCreatorForTeam()
+        {
+            const int maxSize = 5;
+            const string teamName = "TeamName";
+            const string profileName = "profile1";
+
+            var request = new CreateTeamRequest
+            {
+                MaxSize = maxSize,
+                Name = teamName,
+                ProfileId = profileName
+            };
+
+            var teamRepository = new Mock<ITeamRepository>();
+
+            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            handler.Handle(request);
+
+            teamRepository.Verify(x => x.Save(It.Is<Team>(d => d.Creator == profileName)));
+        }
     }
 }

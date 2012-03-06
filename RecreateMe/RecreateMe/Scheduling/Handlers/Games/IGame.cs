@@ -20,5 +20,6 @@ namespace RecreateMe.Scheduling.Handlers.Games
         int? MaxPlayers { get; set; }
         bool IsPrivate { get; set; }
         bool HasTeams { get; set; }
+        string Creator { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
+using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 using RecreateMeSql.Relationships;
@@ -10,10 +11,13 @@ namespace RecreateMeSql.Mappers
 {
     public class GameMapper
     {
+        private string _gameCreator;
+
         public Game Map(IGremlinNodeQuery<RetrievedGame> gameQuery)
         {
             var location = gameQuery.OutE(RelationsTypes.GameToLocation).InV<Location>().Single().Data.Name;
             var sport = gameQuery.OutE(RelationsTypes.GameToSport).InV<Sport>().Single().Data.Name;
+            _gameCreator = gameQuery.InE(RelationsTypes.CreatedBy).OutV<Profile>().Single().Data.ProfileId;
             var genericGameData = gameQuery.Single().Data;
 
             if (!genericGameData.HasTeams)
@@ -24,7 +28,7 @@ namespace RecreateMeSql.Mappers
             return MapGameWithTeams(genericGameData, gameQuery, sport, location);
         }
 
-        private static GameWithTeams MapGameWithTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery, string sportForGame,
+        private GameWithTeams MapGameWithTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery, string sportForGame,
                                                       string locationForGame)
         {
             var gameWTeams = MapGenericGameData((x, y, z) => new GameWithTeams(x, y, z), locationForGame, gameData, sportForGame);
@@ -33,7 +37,7 @@ namespace RecreateMeSql.Mappers
             return gameWTeams;
         }
 
-        private static GameWithoutTeams MapGameWithoutTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery,
+        private GameWithoutTeams MapGameWithoutTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery,
                                                             string sportForGame, string locationForGame)
         {
             var gameWoTeams = MapGenericGameData((x, y, z) => new GameWithoutTeams(x, y, z), locationForGame, gameData,
@@ -43,19 +47,19 @@ namespace RecreateMeSql.Mappers
             return gameWoTeams;
         }
 
-        private static T MapGenericGameData<T>(Func<DateTimeOffset, Sport, Location, T> createGame, string locationForGame, RetrievedGame gameData, string sportForGame) where T : IGame
+        private T MapGenericGameData<T>(Func<DateTimeOffset, Sport, Location, T> createGame, string locationForGame, RetrievedGame gameData, string sportForGame) where T : IGame
         {
-            var gameWoTeams = createGame(gameData.DateTime,
+            var game = createGame(gameData.DateTime,
                                          new Sport(sportForGame),
                                          new Location(locationForGame));
 
-            gameWoTeams.Id = gameData.Id;
-            gameWoTeams.MinPlayers = gameData.MinPlayers;
-            gameWoTeams.MaxPlayers = gameData.MaxPlayers;
-            gameWoTeams.IsPrivate = gameData.IsPrivate;
+            game.Id = gameData.Id;
+            game.MinPlayers = gameData.MinPlayers;
+            game.MaxPlayers = gameData.MaxPlayers;
+            game.IsPrivate = gameData.IsPrivate;
+            game.Creator = _gameCreator;
 
-
-            return gameWoTeams;
+            return game;
         }
     }
 }

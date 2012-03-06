@@ -11,10 +11,10 @@ namespace TheRealDeal.Models.Games
 
         public string Location { get; set; }
 
-        [RegularExpression("[0-100]", ErrorMessage = "Must be a number")]
+        [RegularExpression("[0-9]{0,2}", ErrorMessage = "Must be a number")]
         public int? MaxPlayers { get; set; }
 
-        [RegularExpression("[0-100]", ErrorMessage = "Must be a number")]
+        [RegularExpression("[0-9]{0,2}", ErrorMessage = "Must be a number")]
         public int? MinPlayers { get; set; }
 
         public string Sport { get; set; }

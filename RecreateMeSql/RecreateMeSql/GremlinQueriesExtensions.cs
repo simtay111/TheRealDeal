@@ -117,6 +117,11 @@ namespace RecreateMeSql
             return gc.TeamWithId(teamId).InE(RelationsTypes.PartOfTeam).OutV<Profile>();
         }
 
+        public static IGremlinNodeQuery<Profile> Creator(this Node<Team> teamNode )
+        {
+            return teamNode.InE(RelationsTypes.CreatedBy).OutV<Profile>();
+        }
+
         public static IGremlinNodeQuery<Profile> Profiles(this IGremlinQuery gc)
         {
             return gc.OutE(RelationsTypes.HasProfile).InV<Profile>();

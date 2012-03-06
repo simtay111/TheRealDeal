@@ -142,6 +142,18 @@ namespace TheRealDealTests.DataTests.DataBuilder
             return profile;
         }
 
+        public Profile CreateAccountWithProfile1()
+        {
+            CreateAccount1();
+            return CreateProfileForAccount1();
+        }
+
+        public Profile CreateAccountWithProfile2()
+        {
+            CreateAccount2();
+            return CreateProfileForAccount2();
+        }
+
         public void CreateAccounts()
         {
             CreateAccount1();
@@ -210,7 +222,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var team = new Team
                            {
                                MaxSize = 14,
-                               Name = TeamName1
+                               Name = TeamName1,
                            };
             TeamId1 = team.Id;
 
@@ -225,7 +237,8 @@ namespace TheRealDealTests.DataTests.DataBuilder
             {
                 MaxSize = 3,
                 Name = TeamName2,
-                PlayersIds = new List<string> { Profile1Id, Profile2Id}
+                PlayersIds = new List<string> { Profile1Id, Profile2Id},
+                Creator = Profile1Id
             };
 
             TeamId2 = team.Id;
@@ -243,6 +256,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.Sport = new Sport(SoccerName);
             game.Location = new Location(LocationBendName);
             game.AddPlayer(Profile1Id);
+            game.Creator = Profile1Id;
 
             new GameRepository().Save(game);
             GameWithoutTeams = game;
@@ -258,6 +272,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.Sport = new Sport(SoccerName);
             game.Location = new Location(LocationBendName);
             game.AddTeam(TeamId1);
+            game.Creator = Profile2Id;
 
             new GameRepository().Save(game);
             GameWithTeamsId = game.Id;

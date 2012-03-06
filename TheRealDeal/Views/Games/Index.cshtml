@@ -1,4 +1,5 @@
 ﻿@using RecreateMe.Scheduling.Handlers.Games
+@using TheRealDeal
 @using TheRealDeal.Models.Games
 @model ListOfGamesModel
 
@@ -9,20 +10,44 @@
 
 <h2>Games</h2>
 
+<h3>Games I am a part of.</h3>
 @foreach (var game in Model.Games)
 {
     <div>
     @Html.Label(game.DateTime.ToLocalTime().ToString())
     @Html.Label(" " + game.Location.Name)
     @Html.Label(" " + game.Sport.Name)
-    @Html.Label( " MaxPlayers: " + game.MaxPlayers)
-    @Html.Label( " MinPlayers: " + game.MinPlayers)
+    @Html.Label(" MaxPlayers: " + game.MaxPlayers)
+    @Html.Label(" MinPlayers: " + game.MinPlayers)
     @if (game.HasTeams)
     {
         @Html.Label("Teams: " + ((GameWithTeams)game).TeamsIds.Count)
         continue;
     }
     @Html.Label("Players: " + ((GameWithoutTeams)game).PlayersIds.Count)
+
+    </div>
+}
+
+<h3>Games I Created</h3>
+
+
+
+@{var currentProfileId = HttpContext.Current.Request.Cookies[Constants.CookieName].Values[Constants.CurrentProfileCookieField];}
+@foreach (var myCreatedGames in Model.Games.Where(x => x.Creator == currentProfileId))
+{
+    <div>
+        @Html.Label(myCreatedGames.DateTime.ToLocalTime().ToString())
+        @Html.Label(" " + myCreatedGames.Location.Name)
+        @Html.Label(" " + myCreatedGames.Sport.Name)
+        @Html.Label(" MaxPlayers: " + myCreatedGames.MaxPlayers)
+        @Html.Label(" MinPlayers: " + myCreatedGames.MinPlayers)
+        @if (myCreatedGames.HasTeams)
+        {
+            @Html.Label("Teams: " + ((GameWithTeams)myCreatedGames).TeamsIds.Count)
+            continue;
+        }
+        @Html.Label("Players: " + ((GameWithoutTeams)myCreatedGames).PlayersIds.Count)
 
     </div>
 }

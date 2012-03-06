@@ -24,7 +24,9 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanGetById()
         {
-            var team = _data.CreateTeam1();
+            _data.CreateAccountWithProfile1();
+            _data.CreateAccountWithProfile2();
+            var team = _data.CreateTeam2();
 
             var retrievedTeam = _repo.GetById(team.Id);
             Assert.That(retrievedTeam.MaxSize, Is.EqualTo(team.MaxSize));
@@ -44,7 +46,8 @@ namespace TheRealDealTests.DataTests.Repositories
                            {
                                MaxSize = 14,
                                Name = "MyBestTeam",
-                               PlayersIds = new List<string> {profile1.ProfileId, profile2.ProfileId}
+                               PlayersIds = new List<string> {profile1.ProfileId, profile2.ProfileId},
+                               Creator = profile1.ProfileId
                            };
 
             var saved = _repo.Save(team);
@@ -56,6 +59,7 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedTeam.PlayersIds.Count, Is.EqualTo(2));
             Assert.That(retrievedTeam.PlayersIds[0], Is.EqualTo(profile1.ProfileId));
             Assert.That(retrievedTeam.PlayersIds[1], Is.EqualTo(profile2.ProfileId));
+            Assert.That(retrievedTeam.Creator, Is.EqualTo(profile1.ProfileId));
         }
 
         [Test]
@@ -67,7 +71,8 @@ namespace TheRealDealTests.DataTests.Repositories
             {
                 MaxSize = 14,
                 Name = "MyBestTeam",
-                PlayersIds = new List<string> { profile.ProfileId }
+                PlayersIds = new List<string> { profile.ProfileId },
+                Creator = profile.ProfileId
             };
             _repo.Save(team);
 

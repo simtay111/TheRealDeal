@@ -38,6 +38,7 @@ namespace RecreateMe.Scheduling.Handlers
                              Game;
             game.MaxPlayers = request.MaxPlayers;
             game.MinPlayers = request.MinPlayers;
+            game.Creator = request.Creator;
 
             _gameRepository.Save(game);
 
@@ -70,6 +71,8 @@ namespace RecreateMe.Scheduling.Handlers
         public string Location { get; set; }
         public int? MinPlayers { get; set; }
         public int? MaxPlayers { get; set; }
+        public string Creator { get; set; }
+
         public bool HasTeams = true;
         public bool IsPrivate;
     }

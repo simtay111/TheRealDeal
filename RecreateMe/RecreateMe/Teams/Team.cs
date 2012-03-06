@@ -13,6 +13,9 @@ namespace RecreateMe.Teams
         public IList<string> PlayersIds { get; set; }
         public string Name { get; set; }
 
+        [JsonIgnore]
+        public string Creator { get; set; }
+
         public Team()
         {
             if (Id == null)

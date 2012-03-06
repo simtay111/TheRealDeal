@@ -21,7 +21,8 @@ namespace RecreateMe.Teams.Handlers
             var team = new Team
                            {
                                MaxSize = request.MaxSize == 0 ? Constants.DefaultTeamSize : request.MaxSize,
-                               Name = request.Name
+                               Name = request.Name,
+                               Creator = request.ProfileId
                            };
 
             team.PlayersIds.Add(request.ProfileId);

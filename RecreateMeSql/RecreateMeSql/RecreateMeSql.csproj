@@ -50,6 +50,7 @@
     <Compile Include="GremlinQueriesExtensions.cs" />
     <Compile Include="Mappers\GameMapper.cs" />
     <Compile Include="Relationships\BaseNode\BaseTeamRelationship.cs" />
+    <Compile Include="Relationships\GameRelationships\CreatedByRelationship.cs" />
     <Compile Include="Relationships\GameRelationships\TeamInGameRelationship.cs" />
     <Compile Include="Relationships\ProfileRelationships\PlaysInGameRelationship.cs" />
     <Compile Include="Relationships\GameRelationships\GameToSportRelationship.cs" />

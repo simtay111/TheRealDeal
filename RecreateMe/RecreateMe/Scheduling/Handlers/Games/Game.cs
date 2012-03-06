@@ -11,14 +11,19 @@ namespace RecreateMe.Scheduling.Handlers.Games
         public DateTimeOffset DateTime { get; set; }
         [JsonIgnore]
         public Sport Sport { get; set; }
+
+        [JsonIgnore]
+        public string Creator { get; set; }
+
         [JsonIgnore]
         public Location Location { get; set; }
 
-
         public int? MinPlayers { get; set; }
+
         public int? MaxPlayers { get; set; }
 
         public bool IsPrivate { get; set; }
+
         public bool HasTeams { get; set; }
 
         public Game(DateTimeOffset dateTime, Sport sport, Location location)
