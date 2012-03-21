@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\Autofac\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Neo4jClient">
       <HintPath>..\..\packages\Neo4jClient.1.0.0.272\lib\Neo4jClient.dll</HintPath>
     </Reference>
@@ -49,11 +52,7 @@
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Exceptions\CannotAddItemException.cs" />
-    <Compile Include="Exceptions\Formatting\BadFormatException.cs" />
-    <Compile Include="Exceptions\NotEnoughInfoException.cs" />
-    <Compile Include="Exceptions\Profiling\CouldNotFindProfileException.cs" />
-    <Compile Include="Exceptions\Scheduling\CannotJoinGameException.cs" />
+    <Compile Include="DomainModules\DomainModule.cs" />
     <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandler.cs" />
     <Compile Include="Friends\Handlers\GetFriendsRequestHandler.cs" />
     <Compile Include="Friends\Invites\IInviteFactory.cs" />

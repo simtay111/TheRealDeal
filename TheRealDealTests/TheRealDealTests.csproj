@@ -82,6 +82,7 @@
     <Compile Include="DomainTests\Profiles\ProfileTests.cs" />
     <Compile Include="DomainTests\Profiles\ProfileBuilderTests.cs" />
     <Compile Include="DomainTests\Profiles\Search\Handlers\SearchForProfileRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\RequestExecutor\RequestExecutorTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameFactoryTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameWithoutTeamsTests.cs" />

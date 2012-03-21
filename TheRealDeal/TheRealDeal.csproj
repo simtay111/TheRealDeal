@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\Autofac\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -93,6 +96,7 @@
     <Compile Include="Models\Teams\CreateTeamModel.cs" />
     <Compile Include="Models\Teams\ViewTeamModel.cs" />
     <Compile Include="Models\Teams\TeamsViewModel.cs" />
+    <Compile Include="Modules\DataModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewDataConstants.cs" />
   </ItemGroup>

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using RecreateMe.Exceptions;
-using RecreateMe.Exceptions.Profiling;
 
 namespace RecreateMe.Profiles.Search.Handlers
 {

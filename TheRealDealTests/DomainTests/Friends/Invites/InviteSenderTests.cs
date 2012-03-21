@@ -1,6 +1,7 @@
+using System;
 using Moq;
 using NUnit.Framework;
-using RecreateMe.Exceptions;
+
 using RecreateMe.Friends.Invites;
 
 namespace TheRealDealTests.DomainTests.Friends.Invites
@@ -8,10 +9,10 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
     [TestFixture]
     public class InviteSenderTests
     {
-        private string _senderId = "senderId";
-        private string _eventId = "gameId";
+        private const string SenderId = "senderId";
+        private const string EventId = "gameId";
         private InviteSender _inviteSender;
-        private string _friendId = "recipeintId";
+        private const string FriendId = "recipeintId";
         private Mock<IInviteRepository> _inviteRepository;
         private Mock<IInviteFactory> _inviteFactory;
 
@@ -26,32 +27,32 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
         public void CanSetGameId()
          {
             CreateInviteSender();
-             _inviteSender.SetEventIdForInvites(_eventId);
+             _inviteSender.SetEventIdForInvites(EventId);
 
-             Assert.That((object) _inviteSender.EventId, Is.EqualTo(_eventId));
+             Assert.That(_inviteSender.EventId, Is.EqualTo(EventId));
          }
 
         [Test]
         public void CanSetSenderId()
         {
             CreateInviteSender();
-            _inviteSender.SetSenderId(_senderId);
+            _inviteSender.SetSenderId(SenderId);
 
-            Assert.That((object) _inviteSender.SenderId, Is.EqualTo(_senderId));
+            Assert.That(_inviteSender.SenderId, Is.EqualTo(SenderId));
         }
         
         [Test]
         public void CanSendAnInvite()
         {
             bool inviteWasSaved = false;
-            var invite = new Invite {EventId = _eventId, RecepientId = _friendId, SenderId = _senderId};
+            var invite = new Invite {EventId = EventId, RecepientId = FriendId, SenderId = SenderId};
             _inviteRepository.Setup(x => x.Save(invite)).Callback(() => inviteWasSaved = true);
-            _inviteFactory.Setup(x => x.CreateInvite(_eventId, _senderId, _friendId)).Returns(invite); 
+            _inviteFactory.Setup(x => x.CreateInvite(EventId, SenderId, FriendId)).Returns(invite); 
             CreateInviteSender();
-            _inviteSender.SetSenderId(_senderId);
-            _inviteSender.SetEventIdForInvites(_eventId);
+            _inviteSender.SetSenderId(SenderId);
+            _inviteSender.SetEventIdForInvites(EventId);
 
-            _inviteSender.SendInviteTo(_friendId);
+            _inviteSender.SendInviteTo(FriendId);
 
             Assert.True(inviteWasSaved);
         }
@@ -62,9 +63,9 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
             _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>()));
             _inviteFactory.Setup(x => x.CreateInvite(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new Invite());
             CreateInviteSender();
-            _inviteSender.SetEventIdForInvites(_eventId);
+            _inviteSender.SetEventIdForInvites(EventId);
 
-            var exception = Assert.Throws(typeof(NotEnoughInfoException), () => _inviteSender.SendInviteTo(_friendId));
+            var exception = Assert.Throws(typeof(Exception), () => _inviteSender.SendInviteTo(FriendId));
             Assert.That(exception.Message, Is.EqualTo("Both Sender Id and Event Id is required to send invites"));
         }
 
@@ -74,9 +75,9 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
             _inviteRepository.Setup(x => x.Save(It.IsAny<Invite>()));
             _inviteFactory.Setup(x => x.CreateInvite(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new Invite());
             CreateInviteSender();
-            _inviteSender.SetSenderId(_senderId);
+            _inviteSender.SetSenderId(SenderId);
 
-            var exception = Assert.Throws(typeof(NotEnoughInfoException), () => _inviteSender.SendInviteTo(_friendId));
+            var exception = Assert.Throws(typeof(Exception), () => _inviteSender.SendInviteTo(FriendId));
             Assert.That(exception.Message, Is.EqualTo("Both Sender Id and Event Id is required to send invites"));
         }
 

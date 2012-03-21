@@ -1,5 +1,5 @@
 using System.Linq;
-using RecreateMe.Exceptions;
+
 using RecreateMe.Sports;
 
 namespace RecreateMe.Profiles.Handlers

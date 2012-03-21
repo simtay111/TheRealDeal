@@ -1,7 +1,5 @@
 using System;
 using NUnit.Framework;
-using RecreateMe.Exceptions.Scheduling;
-using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Handlers.Games;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games
@@ -15,7 +13,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
              var game = new GameWithoutTeams(DateTime.Now, null, null);
              game.MaxPlayers = 0;
 
-             var exception = Assert.Throws(typeof (CannotJoinGameException), () => game.AddPlayer("Profile1"));
+             var exception = Assert.Throws(typeof (Exception), () => game.AddPlayer("Profile1"));
              Assert.AreEqual(exception.Message, "The game is already at capacity.");
          }
 

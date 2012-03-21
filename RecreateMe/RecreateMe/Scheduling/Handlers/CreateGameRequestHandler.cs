@@ -1,6 +1,4 @@
 using System;
-using RecreateMe.Exceptions;
-using RecreateMe.Exceptions.Formatting;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;

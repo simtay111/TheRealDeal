@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using RecreateMe.Exceptions;
-using RecreateMe.Exceptions.Scheduling;
 using RecreateMe.Locales;
-using RecreateMe.Profiles;
 using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers.Games
@@ -27,7 +24,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
         {
             if (IsFull())
             {
-                throw new CannotJoinGameException("The game is already at capacity.");
+                throw new Exception("The game is already at capacity.");
             }
             PlayersIds.Add(profileId);
         }

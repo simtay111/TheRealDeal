@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using RecreateMe.Exceptions;
+
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
@@ -21,7 +21,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
         public void AddTeam(string teamId)
         {
             if (IsFull())
-                throw new CannotAddItemException("Could not add team to game, game is full.");
+                throw new Exception("Could not add team to game, game is full.");
             TeamsIds.Add(teamId);
         }
 

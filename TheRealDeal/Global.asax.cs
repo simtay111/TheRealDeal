@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Autofac;
 using RecreateMe.Login;
 
 
@@ -29,6 +30,17 @@ namespace TheRealDeal
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
+            BuildContainer();
+
+        }
+
+        private static void BuildContainer()
+        {
+            var containerbuilder = new ContainerBuilder();
+
+            containerbuilder.RegisterAssemblyTypes();
+
+            var container = containerbuilder.Build();
         }
 
         protected void Application_Start()

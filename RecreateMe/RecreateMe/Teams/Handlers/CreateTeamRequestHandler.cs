@@ -1,4 +1,3 @@
-using RecreateMe.Exceptions;
 
 namespace RecreateMe.Teams.Handlers
 {

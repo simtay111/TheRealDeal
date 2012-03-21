@@ -1,4 +1,7 @@
-using RecreateMe.Exceptions;
+using System;
+using Autofac;
+using Autofac.Builder;
+using Autofac.Core;
 
 namespace RecreateMe.Friends.Invites
 {
@@ -19,7 +22,7 @@ namespace RecreateMe.Friends.Invites
         public void SendInviteTo(string friendId)
         {
             if (SenderId == null || EventId == null)
-                throw new NotEnoughInfoException("Both Sender Id and Event Id is required to send invites");
+                throw new Exception("Both Sender Id and Event Id is required to send invites");
 
             var invite = _inviteFactory.CreateInvite(EventId, SenderId, friendId);
 

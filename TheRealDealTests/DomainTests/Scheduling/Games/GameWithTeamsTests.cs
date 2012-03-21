@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using RecreateMe.Exceptions;
+
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Teams;
 
@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
             _gameWithTeams.AddTeam("Team1");
             _gameWithTeams.AddTeam("Team2");
 
-            var exception = Assert.Throws(typeof(CannotAddItemException), (TestDelegate) (() => _gameWithTeams.AddTeam("Team3")),
+            var exception = Assert.Throws(typeof(Exception), () => _gameWithTeams.AddTeam("Team3"),
                                           "Exception should have been thrown");
             Assert.That(exception.Message, Is.EqualTo("Could not add team to game, game is full."));
         }

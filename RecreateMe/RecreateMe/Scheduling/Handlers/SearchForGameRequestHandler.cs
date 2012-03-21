@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RecreateMe.Exceptions;
+
 using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMe.Scheduling.Handlers
