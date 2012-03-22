@@ -63,6 +63,7 @@
     <Compile Include="Relationships\BaseNode\LocationRelationship.cs" />
     <Compile Include="Relationships\RelationsTypes.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Repositories\InviteRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />

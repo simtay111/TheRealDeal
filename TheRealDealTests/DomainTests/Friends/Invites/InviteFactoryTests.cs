@@ -21,6 +21,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites
              Assert.AreEqual(invite.EventId, EventId);
              Assert.AreEqual(invite.SenderId, SenderId);
              Assert.AreEqual(invite.RecepientId, RepicientId);
+             Assert.That(invite.Id, Is.Not.Null.Or.Empty);
          }
     }
 }

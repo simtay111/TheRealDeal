@@ -9,15 +9,14 @@ namespace RecreateMe.Friends.Invites
     {
         private readonly IInviteRepository _inviteRepository;
         private readonly IInviteFactory _inviteFactory;
+        public string EventId { get; set; }
+        public string SenderId { get; set; }
 
         public InviteSender(IInviteRepository inviteRepository, IInviteFactory inviteFactory)
         {
             _inviteRepository = inviteRepository;
             _inviteFactory = inviteFactory;
         }
-
-        public string EventId { get; set; }
-        public string SenderId { get; set; }
 
         public void SendInviteTo(string friendId)
         {

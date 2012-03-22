@@ -52,9 +52,10 @@
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="DomainModules\DomainModule.cs" />
     <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandler.cs" />
     <Compile Include="Friends\Handlers\GetFriendsRequestHandler.cs" />
+    <Compile Include="Friends\Invites\Handlers\AcceptGameInviteRequestHandler.cs" />
+    <Compile Include="Friends\Invites\Handlers\GetCurrentGameInviteHandler.cs" />
     <Compile Include="Friends\Invites\IInviteFactory.cs" />
     <Compile Include="Friends\Invites\IInviteRepository.cs" />
     <Compile Include="Friends\Invites\IInviteSender.cs" />

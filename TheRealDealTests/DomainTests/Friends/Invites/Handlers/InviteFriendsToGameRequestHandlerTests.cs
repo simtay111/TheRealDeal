@@ -27,7 +27,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
              var response = handler.Handle(request);
 
             _mockInviteSender.VerifyAll();
-             Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
          }
     }
 }

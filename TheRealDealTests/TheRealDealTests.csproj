@@ -66,6 +66,8 @@
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\GetFriendsRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Friends\Invites\Handlers\AcceptGameInviteRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Friends\Invites\Handlers\GetCurrentGameInviteHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\Handlers\InviteFriendsToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />

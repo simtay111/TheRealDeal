@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TheRealDeal.Models.Games
@@ -22,5 +23,7 @@ namespace TheRealDeal.Models.Games
         public IList<string> AvailableSports { get; set; }
 
         public IList<string> AvailableLocations { get; set; }
+
+        public DateTime DateTimeOfEvent{ get; set; }
     }
 }
