@@ -9,7 +9,7 @@ using RecreateMe.Scheduling.Handlers.Games;
 namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
 {
     [TestFixture]
-    public class GetCurrentGameInviteHandlerTests
+    public class GetCurrentPickUpGameInviteHandlerTests
     {
         [Test]
         public void CanGetCurrentInvitesToOtherGames()
@@ -21,10 +21,10 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
                               {
                                   ProfileId = "123"
                               };
-            var invite = new Invite {EventId = "1234"};
-            inviteRepo.Setup(x => x.GetInvitesToProfile(request.ProfileId)).Returns(new List<Invite> {invite});
-            var gameWithoutTeams = new GameWithoutTeams();
-            gameRepo.Setup(x => x.GetById(invite.EventId)).Returns(gameWithoutTeams);
+            var invite = new Invite { EventId = "1234" };
+            inviteRepo.Setup(x => x.GetInvitesToProfile(request.ProfileId)).Returns(new List<Invite> { invite });
+            var gameWithoutTeams = new PickUpGame();
+            gameRepo.Setup(x => x.GetPickUpGameById(invite.EventId)).Returns(gameWithoutTeams);
 
             var handler = new GetCurrentGameInviteHandler(inviteRepo.Object, gameRepo.Object);
 

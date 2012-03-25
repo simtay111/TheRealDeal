@@ -25,14 +25,14 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
         public void CanAcceptGameInvite()
         {
             var request = CreateAcceptGameRequest();
-            var gameWithoutTeams = new GameWithoutTeams {MaxPlayers = 1};
-            _gameRepo.Setup(x => x.GetById(request.GameId)).Returns(gameWithoutTeams);
-            var handler = new AcceptGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
+            var gameWithoutTeams = new PickUpGame { MaxPlayers = 1 };
+            _gameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(gameWithoutTeams);
+            var handler = new AcceptPickupGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
 
             var response = handler.Handle(request);
 
             Assert.That(response.Status == ResponseCodes.Success);
-            _gameRepo.Verify(x => x.GetById(request.GameId));
+            _gameRepo.Verify(x => x.GetPickUpGameById(request.GameId));
             _gameRepo.Verify(x => x.AddPlayerToGame(request.GameId, request.ProfileId));
             _inviteRepo.Verify(x => x.Delete(request.InviteId));
         }
@@ -41,22 +41,22 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
         public void ReturnsEarlyIfGameIsNowFull()
         {
             var request = CreateAcceptGameRequest();
-            var gameWithoutTeams = new GameWithoutTeams { MaxPlayers = 0 };
-            _gameRepo.Setup(x => x.GetById(request.GameId)).Returns(gameWithoutTeams);
-            var handler = new AcceptGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
+            var gameWithoutTeams = new PickUpGame { MaxPlayers = 0 };
+            _gameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(gameWithoutTeams);
+            var handler = new AcceptPickupGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
 
             var response = handler.Handle(request);
 
             Assert.That(response.Status == ResponseCodes.GameIsFull);
-            _gameRepo.Verify(x => x.GetById(request.GameId));
+            _gameRepo.Verify(x => x.GetPickUpGameById(request.GameId));
             _inviteRepo.Verify(x => x.Delete(request.InviteId), Times.Once());
             _gameRepo.Verify(x => x.AddPlayerToGame(request.GameId, request.ProfileId), Times.Never());
         }
 
 
-        private static AcceptGameInviteRequest CreateAcceptGameRequest()
+        private static AcceptPickupGameRequest CreateAcceptGameRequest()
         {
-            var request = new AcceptGameInviteRequest
+            var request = new AcceptPickupGameRequest
                               {
                                   GameId = "123",
                                   ProfileId = "541",

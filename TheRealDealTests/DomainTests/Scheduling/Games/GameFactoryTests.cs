@@ -26,29 +26,36 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         {
             GameWithTeams game = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location);
 
-            AssertGameWasCreatedAndDataLinesUp(game);
+            AssertGameWithTeamsWasCreatedAndDataLinesUp(game);
         }
 
         [Test]
         public void CanCreateGameWithoutTeams()
         {
-            GameWithoutTeams game = _factory.CreateGameWithOutTeams(DateTime.Now, _sport, _location);
+            PickUpGame pickUpGame = _factory.CreatePickUpGame(DateTime.Now, _sport, _location);
 
-            AssertGameWasCreatedAndDataLinesUp(game);
+            AssertGameWithTeamsWasCreatedAndDataLinesUp(pickUpGame);
         }
 
         [Test]
         public void CanCreateAGameThatIsPrivate()
         {
             const bool isPrivate = true;
-            Game game = _factory.CreateGameWithOutTeams(DateTime.Now, _sport, _location, isPrivate);
+            var game = _factory.CreatePickUpGame(DateTime.Now, _sport, _location, isPrivate);
             Assert.That(game.IsPrivate, Is.True);
-            game = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location, isPrivate);
-            Assert.That(game.IsPrivate, Is.True);
-
+            var teamGame = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location, isPrivate);
+            Assert.That(teamGame.IsPrivate, Is.True);
         }
 
-        private void AssertGameWasCreatedAndDataLinesUp(Game game)
+        private void AssertGameWithTeamsWasCreatedAndDataLinesUp(GameWithTeams game)
+        {
+            Assert.NotNull(game);
+            Assert.That(game.Sport.Name, Is.EqualTo("Soccer"));
+            Assert.That(game.Location.Name, Is.EqualTo(_location.Name));
+        }
+
+
+        private void AssertGameWithTeamsWasCreatedAndDataLinesUp(PickUpGame game)
         {
             Assert.NotNull(game);
             Assert.That(game.Sport.Name, Is.EqualTo("Soccer"));

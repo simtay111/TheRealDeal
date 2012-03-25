@@ -15,13 +15,14 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
-            var handler = new GetGamesForProfileRequestHandler(new GameRepository());
-            var response = handler.Handle(request);
+            //var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
+            //var handler = new GetGamesForProfileRequestHandler(new GameRepository());
+            //var response = handler.Handle(request);
 
-            var model = new ListOfGamesModel { Games = response.Games, CurrentProfile = GetProfileFromCookie() };
+            //var model = new ListOfGamesModel { Games = response.TeamGames, CurrentProfile = GetProfileFromCookie() };
 
-            return View(model);
+            //return View(model);
+            throw new NotImplementedException();
         }
 
         [Authorize]
@@ -34,13 +35,13 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult SearchForGame(SearchForGameModel model)
         {
-            var request = new SearchForGameRequest {Location = model.Location, Sport = model.Sport};
+            var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport};
 
             var handler = new SearchForGameRequestHandler(new GameRepository());
 
             var response = handler.Handle(request);
 
-            model.Results = response.GamesFound;
+            //model.Results = response.GamesFound;
 
             return View(model);
         }
@@ -60,10 +61,9 @@ namespace TheRealDeal.Controllers
                 return View(CreateViewModel());
             }
 
-            var request = new CreateGameRequest
+            var request = new CreatePickupGameRequest
                               {
                                   DateTime = DateTime.Now.ToString(),
-                                  HasTeams = model.HasTeams,
                                   IsPrivate = model.IsPrivate,
                                   Location = model.Location,
                                   MaxPlayers = model.MaxPlayers,
@@ -72,15 +72,13 @@ namespace TheRealDeal.Controllers
                                   Creator = GetProfileFromCookie()
                               };
 
-            var handler = new CreateGameRequestHandler(new SportRepository(), new LocationRepository(),
+            var handler = new CreatePickupGameRequestHandler(new SportRepository(), new LocationRepository(),
                                                        new GameRepository(), new GameFactory());
 
             var response = handler.Handle(request);
             if (response.Status != ResponseCodes.Success)
                 throw new NotImplementedException();
 
-            if (!request.HasTeams)
-            {
                 var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
 
                 var joinHandler = new JoinGameRequestHandler(new GameRepository());
@@ -91,11 +89,6 @@ namespace TheRealDeal.Controllers
                     throw new NotImplementedException();
 
                 return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("AddTeamToGame", "Games", new {gameId = response.GameId});
-
-
         }
 
         [Authorize]

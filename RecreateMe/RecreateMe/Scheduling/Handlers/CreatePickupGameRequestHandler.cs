@@ -5,14 +5,14 @@ using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers
 {
-    public class CreateGameRequestHandler : IHandler<CreateGameRequest, CreateGameResponse>
+    public class CreatePickupGameRequestHandler : IHandler<CreatePickupGameRequest, CreatePickupGameResponse>
     {
         private readonly ILocationRepository _locationRepository;
         private readonly IGameRepository _gameRepository;
         private readonly IGameFactory _gameFactory;
         private readonly ISportRepository _sportRepository;
 
-        public CreateGameRequestHandler(ISportRepository sportRepository, ILocationRepository locationRepository, IGameRepository gameRepository, IGameFactory gameFactory)
+        public CreatePickupGameRequestHandler(ISportRepository sportRepository, ILocationRepository locationRepository, IGameRepository gameRepository, IGameFactory gameFactory)
         {
             _sportRepository = sportRepository;
             _locationRepository = locationRepository;
@@ -20,30 +20,28 @@ namespace RecreateMe.Scheduling.Handlers
             _gameFactory = gameFactory;
         }
 
-        public CreateGameResponse Handle(CreateGameRequest request)
+        public CreatePickupGameResponse Handle(CreatePickupGameRequest request)
         {
             var status = CheckForNullsAndBadDateTimes(request);
             if (status != ResponseCodes.Success)
-                return new CreateGameResponse(status);
+                return new CreatePickupGameResponse(status);
 
             var sport = _sportRepository.FindByName(request.Sport);
             var location = _locationRepository.FindByName(request.Location);
             var dateTime = DateTime.Parse(request.DateTime);
 
-            var game = request.HasTeams
-                           ? _gameFactory.CreateGameWithTeams(dateTime, sport, location, request.IsPrivate)
-                           : _gameFactory.CreateGameWithOutTeams(dateTime, sport, location, request.IsPrivate) as
-                             Game;
+            var game = _gameFactory.CreatePickUpGame(dateTime, sport, location, request.IsPrivate);
             game.MaxPlayers = request.MaxPlayers;
             game.MinPlayers = request.MinPlayers;
             game.Creator = request.Creator;
 
-            _gameRepository.Save(game);
 
-            return new CreateGameResponse(ResponseCodes.Success) {GameId = game.Id} ;
+            _gameRepository.SavePickUpGame(game);
+
+            return new CreatePickupGameResponse(ResponseCodes.Success) { GameId = game.Id };
         }
 
-        private ResponseCodes CheckForNullsAndBadDateTimes(CreateGameRequest request)
+        private ResponseCodes CheckForNullsAndBadDateTimes(CreatePickupGameRequest request)
         {
             if (request.Sport == null)
                 return ResponseCodes.SportNotSpecified;
@@ -62,7 +60,7 @@ namespace RecreateMe.Scheduling.Handlers
         }
     }
 
-    public class CreateGameRequest
+    public class CreatePickupGameRequest
     {
         public string DateTime { get; set; }
         public string Sport { get; set; }
@@ -71,17 +69,16 @@ namespace RecreateMe.Scheduling.Handlers
         public int? MaxPlayers { get; set; }
         public string Creator { get; set; }
 
-        public bool HasTeams = true;
         public bool IsPrivate;
     }
 
-    public class CreateGameResponse
+    public class CreatePickupGameResponse
     {
         public ResponseCodes Status { get; set; }
 
         public string GameId { get; set; }
 
-        public CreateGameResponse(ResponseCodes status)
+        public CreatePickupGameResponse(ResponseCodes status)
         {
             Status = status;
         }

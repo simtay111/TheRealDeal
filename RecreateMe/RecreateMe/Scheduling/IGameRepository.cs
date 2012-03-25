@@ -6,9 +6,12 @@ namespace RecreateMe.Scheduling
     public interface IGameRepository
     {
         bool Save(Game game);
-        Game GetById(string id);
-        IList<Game> FindByLocation(string location);
-        IList<Game> GetForProfile(string profileId);
+        void SavePickUpGame(PickUpGame game);
+        GameWithTeams GetTeamGameById(string id);
+        PickUpGame GetPickUpGameById(string id);
+        IList<PickUpGame> FindPickUpGameByLocation(string location);
+        IList<PickUpGame> GetPickupGamesForProfile(string profileId);
+        IList<GameWithTeams> GetTeamGamesForProfile(string profileId);
         void AddPlayerToGame(string gameId, string profileId);
         void AddTeamToGame(string teamid, string gameId);
     }

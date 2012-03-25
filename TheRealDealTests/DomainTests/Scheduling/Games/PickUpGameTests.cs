@@ -5,19 +5,18 @@ using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
-using RecreateMe.Teams;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games
 {
     [TestFixture]
-    public class GameWithTeamsTests
+    public class PickUpGameTests
     {
-        private GameWithTeams _game;
+        private PickUpGame _game;
 
         [SetUp]
         public void SetUp()
         {
-            _game = new GameWithTeams(DateTime.Now, null, null);
+            _game = new PickUpGame(DateTime.Now, null, null);
         }
 
         [Test]
@@ -33,6 +32,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
             _game.IsPrivate = false;
             Assert.False(_game.IsPrivate);
         }
+
 
         [Test]
         public void HasDateTimeForEvent()
@@ -64,8 +64,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
             Assert.Null(_game.MaxPlayers);
             _game.MinPlayers = 3;
             _game.MaxPlayers = 5;
-            Assert.NotNull(_game.MinPlayers);
-            Assert.NotNull(_game.MaxPlayers);
+            Assert.That(_game.MinPlayers, Is.EqualTo(3));
+            Assert.That(_game.MaxPlayers, Is.EqualTo(5));
         }
 
         [Test]
@@ -74,30 +74,21 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
             Assert.NotNull(_game.Id);
         }
 
-        [Test]
-        public void CanAddTeamsToGame()
-        {
-            _game.AddTeam("team1");
-            Assert.AreEqual(_game.TeamsIds.Count, 1);
-        }
+         [Test]
+        public void CannotAddPlayerToGameIfAtMaxCapacity()
+         {
+             var game = new PickUpGame(DateTime.Now, null, null);
+             game.MaxPlayers = 0;
+
+             var exception = Assert.Throws(typeof (Exception), () => game.AddPlayer("Profile1"));
+             Assert.AreEqual(exception.Message, "The game is already at capacity.");
+         }
 
         [Test]
-        public void ThrowsCannotAddItemExceptionIfAtCapacity()
+        public void CanCheckToSeeIfGameIsFull()
         {
-            _game.AddTeam("Team1");
-            _game.AddTeam("Team2");
-
-            var exception = Assert.Throws(typeof(Exception), () => _game.AddTeam("Team3"),
-                                          "Exception should have been thrown");
-            Assert.That(exception.Message, Is.EqualTo("Could not add team to game, game is full."));
-        }
-
-        [Test]
-        public void CanCheckIfGameIsFull()
-        {
-            var game = new GameWithTeams(DateTime.Now, null, null);
-            game.TeamsIds.Add("123");
-            game.TeamsIds.Add("123");
+            var game = new PickUpGame(DateTime.Now, null, null);
+            game.MaxPlayers = 0;
 
             Assert.True(game.IsFull());
         }

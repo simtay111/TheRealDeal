@@ -13,8 +13,7 @@ namespace RecreateMe.Scheduling.Handlers
 
         public AddTeamToGameResponse Handle(AddTeamToGameRequest request)
         {
-            var game = _gameRepository.GetById(request.GameId) as GameWithTeams;
-            if (game == null) return new AddTeamToGameResponse(ResponseCodes.CannotHaveTeams);
+            var game = _gameRepository.GetTeamGameById(request.GameId);
             if (game.IsFull()) return new AddTeamToGameResponse(ResponseCodes.GameIsFull);
 
             _gameRepository.AddTeamToGame(request.TeamId, request.GameId);

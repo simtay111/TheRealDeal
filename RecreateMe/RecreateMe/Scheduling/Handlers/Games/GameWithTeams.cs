@@ -8,15 +8,34 @@ using RecreateMe.Teams;
 
 namespace RecreateMe.Scheduling.Handlers.Games
 {
-    public class GameWithTeams : Game
+    public class GameWithTeams : IAmAGame
     {
         [JsonIgnore]
         public IList<string> TeamsIds = new List<string>();
 
-        public GameWithTeams(DateTimeOffset dateTime, Sport sport, Location location) : base(dateTime, sport, location)
+        public GameWithTeams(DateTimeOffset dateTime, Sport sport, Location location)
         {
-            HasTeams = true;
+            DateTime = dateTime;
+            Sport = sport;
+            Location = location;
+            Id = Guid.NewGuid().ToString();
         }
+
+        public DateTimeOffset DateTime { get; set; }
+
+        public Sport Sport { get; set; }
+
+        public Location Location { get; set; }
+
+        public int? MinPlayers { get; set; }
+
+        public int? MaxPlayers { get; set; }
+
+        public string Id { get; set; }
+
+        public bool IsPrivate { get; set; }
+
+        public string Creator { get; set; }
 
         public void AddTeam(string teamId)
         {
@@ -25,7 +44,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
             TeamsIds.Add(teamId);
         }
 
-        public override bool IsFull()
+        public bool IsFull()
         {
             return (TeamsIds.Count == Constants.MaxAmountOfTeamsPerGame);
         }

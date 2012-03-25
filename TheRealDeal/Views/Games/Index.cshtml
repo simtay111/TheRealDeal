@@ -24,7 +24,7 @@
         @Html.Label("Teams: " + ((GameWithTeams)game).TeamsIds.Count)
         continue;
     }
-    @Html.Label("Players: " + ((GameWithoutTeams)game).PlayersIds.Count)
+    @Html.Label("Players: " + ((PickUpGame)game).PlayersIds.Count)
 
     </div>
 }
@@ -47,7 +47,7 @@
             @Html.Label("Teams: " + ((GameWithTeams)myCreatedGames).TeamsIds.Count)
             continue;
         }
-        @Html.Label("Players: " + ((GameWithoutTeams)myCreatedGames).PlayersIds.Count)
+        @Html.Label("Players: " + ((PickUpGame)myCreatedGames).PlayersIds.Count)
 
     </div>
 }

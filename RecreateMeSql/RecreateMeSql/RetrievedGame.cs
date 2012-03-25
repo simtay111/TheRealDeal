@@ -6,7 +6,7 @@ using RecreateMe.Sports;
 namespace RecreateMeSql
 {
     //Used b/c graphClient can't handle the abstract game class
-    public class RetrievedGame : IGame
+    public class RetrievedGame
     {
         public string Id { get; set; }
         public DateTimeOffset DateTime { get; set; }

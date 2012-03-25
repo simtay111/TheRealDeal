@@ -5,10 +5,11 @@ using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers.Games
 {
-    public abstract class Game : IGame
+    public abstract class Game
     {
         public string Id { get; set; }
         public DateTimeOffset DateTime { get; set; }
+        
         [JsonIgnore]
         public Sport Sport { get; set; }
 

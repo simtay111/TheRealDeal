@@ -54,7 +54,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandler.cs" />
     <Compile Include="Friends\Handlers\GetFriendsRequestHandler.cs" />
-    <Compile Include="Friends\Invites\Handlers\AcceptGameInviteRequestHandler.cs" />
+    <Compile Include="Friends\Invites\Handlers\AcceptPickupGameInviteRequestHandler.cs" />
     <Compile Include="Friends\Invites\Handlers\GetCurrentGameInviteHandler.cs" />
     <Compile Include="Friends\Invites\IInviteFactory.cs" />
     <Compile Include="Friends\Invites\IInviteRepository.cs" />
@@ -86,12 +86,12 @@
     <Compile Include="ResponseCodes.cs" />
     <Compile Include="ResponseCodesStrings.cs" />
     <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandler.cs" />
-    <Compile Include="Scheduling\Handlers\CreateGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\Games\Game.cs" />
     <Compile Include="Scheduling\Handlers\Games\GameFactory.cs" />
-    <Compile Include="Scheduling\Handlers\Games\GameWithoutTeams.cs" />
+    <Compile Include="Scheduling\Handlers\Games\IAmAGame.cs" />
+    <Compile Include="Scheduling\Handlers\Games\PickUpGame.cs" />
     <Compile Include="Scheduling\Handlers\Games\GameWithTeams.cs" />
-    <Compile Include="Scheduling\Handlers\Games\IGame.cs" />
     <Compile Include="Scheduling\Handlers\Games\IGameFactory.cs" />
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />

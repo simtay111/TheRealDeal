@@ -26,17 +26,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
         [Test]
         public void CanAddATeamToAGame()
-         {
-             SetUpRequest();
+        {
+            SetUpRequest();
 
             CreateMockRepositoriesThatReturn(_game);
 
             var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
 
-             var response = handler.Handle(_request);
-             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-             _gameRepository.Verify(x => x.AddTeamToGame(_team.Id, _game.Id));
-         }
+            var response = handler.Handle(_request);
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _gameRepository.Verify(x => x.AddTeamToGame(_team.Id, _game.Id));
+        }
 
         [Test]
         public void CannotAddTeamIfGameAlreadyHasMaxAmountOfTeams()
@@ -53,23 +53,10 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.GameIsFull));
         }
 
-        [Test]
-        public void ThrowsAnExceptionIfTheGameCantHaveTeams()
-        {
-            SetUpRequest();
-            var game  = new GameWithoutTeams(DateTime.Now, null, null);
-            CreateMockRepositoriesThatReturn(game);
-            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
-
-            var response = handler.Handle(_request);
-
-            Assert.That(response.Status, Is.EqualTo(ResponseCodes.CannotHaveTeams));
-        }
-
-        private void CreateMockRepositoriesThatReturn(Game game)
+        private void CreateMockRepositoriesThatReturn(GameWithTeams game)
         {
             _gameRepository = new Mock<IGameRepository>();
-            _gameRepository.Setup(x => x.GetById(game.Id)).Returns(game);
+            _gameRepository.Setup(x => x.GetTeamGameById(game.Id)).Returns(game);
         }
 
         private void SetUpRequest()

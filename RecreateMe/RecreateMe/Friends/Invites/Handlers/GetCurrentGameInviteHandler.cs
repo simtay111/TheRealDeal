@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
@@ -20,9 +21,9 @@ namespace RecreateMe.Friends.Invites.Handlers
         {
             var invites = _inviteRepository.GetInvitesToProfile(request.ProfileId);
 
-            var games = invites.Select(x => (_gameRepository.GetById(x.EventId) as GameWithoutTeams)).ToList();
+            var games = invites.Select(x => _gameRepository.GetPickUpGameById(x.EventId)).ToList();
 
-            return new GetCurrentGameInvitesResponse {GamesWithoutTeams = games};
+            return new GetCurrentGameInvitesResponse { GamesWithoutTeams = games };
         }
     }
 
@@ -33,6 +34,6 @@ namespace RecreateMe.Friends.Invites.Handlers
 
     public class GetCurrentGameInvitesResponse
     {
-        public List<GameWithoutTeams> GamesWithoutTeams { get; set; }
+        public List<PickUpGame> GamesWithoutTeams { get; set; }
     }
 }

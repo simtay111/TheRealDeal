@@ -23,15 +23,16 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var location1 = TestData.CreateLocationBend();
             var location2 = TestData.CreateLocationHamsterville();
 
-            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
-            var soccerGame2 = new GameWithTeams(DateTime.Now, soccer, location2);
-            var basketballGame = new GameWithTeams(DateTime.Now, basketball, location1);
-            var listOfGames = new List<Game> {soccerGame1, soccerGame2, basketballGame};
+            var soccerGame1 = new PickUpGame(DateTime.Now, soccer, location1);
+            var soccerGame2 = new PickUpGame(DateTime.Now, soccer, location2);
+            var basketballGame = new PickUpGame(DateTime.Now, basketball, location1);
 
-            var request = new SearchForGameRequest {Location = location1.Name, Sport = soccer.Name};
+            var listOfGames = new List<PickUpGame> { soccerGame1, soccerGame2, basketballGame };
+
+            var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = soccer.Name };
 
             _gameRepository = new Mock<IGameRepository>();
-            _gameRepository.Setup(x => x.FindByLocation(It.Is<string>(d => d == location1.Name)))
+            _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 
             var handler = new SearchForGameRequestHandler(_gameRepository.Object);
@@ -47,7 +48,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void ThrowsExceptionWhenLocationIsNotSpecified()
         {
 
-            var request = new SearchForGameRequest { Location = null, Sport = "Soccer" };
+            var request = new SearchForPickupGameRequest { Location = null, Sport = "Soccer" };
 
             _gameRepository = new Mock<IGameRepository>();
 
@@ -64,13 +65,13 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var soccer = TestData.CreateSoccerGame();
             var location1 = TestData.CreateLocationBend();
 
-            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
-            var listOfGames = new List<Game> { soccerGame1};
+            var soccerGame1 = new PickUpGame(DateTime.Now, soccer, location1);
+            var listOfGames = new List<PickUpGame> { soccerGame1 };
 
-            var request = new SearchForGameRequest { Location = location1.Name, Sport = string.Empty };
+            var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = string.Empty };
 
             _gameRepository = new Mock<IGameRepository>();
-            _gameRepository.Setup(x => x.FindByLocation(It.Is<string>(d => d == location1.Name)))
+            _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 
             var handler = new SearchForGameRequestHandler(_gameRepository.Object);

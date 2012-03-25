@@ -11,9 +11,9 @@ namespace RecreateMe.Scheduling.Handlers.Games
             return new GameWithTeams(dateTime, sport, location) {IsPrivate = isPrivate};
         }
 
-        public GameWithoutTeams CreateGameWithOutTeams(DateTime dateTime, Sport sport, Location location, bool isPrivate = false)
+        public PickUpGame CreatePickUpGame(DateTime dateTime, Sport sport, Location location, bool isPrivate = false)
         {
-            return new GameWithoutTeams(dateTime, sport, location) { IsPrivate = isPrivate };
+            return new PickUpGame(dateTime, sport, location) { IsPrivate = isPrivate };
         }
     }
 }

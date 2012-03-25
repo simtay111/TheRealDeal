@@ -15,20 +15,23 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CanGetGamesForProfile()
         {
             var profileId = "1234";
-            var game = new GameWithTeams(DateTimeOffset.Now, null, null);
-            var gameREpo = new Mock<IGameRepository>();
-            gameREpo.Setup(x => x.GetForProfile(profileId)).Returns(new List<Game>{game});
+            var pickUpGame = new PickUpGame(DateTimeOffset.Now, null, null);
+            var gameWithTeams = new GameWithTeams(DateTimeOffset.Now, null, null);
+            var gameRepo = new Mock<IGameRepository>();
+            gameRepo.Setup(x => x.GetPickupGamesForProfile(profileId)).Returns(new List<PickUpGame> { pickUpGame });
+            gameRepo.Setup(x => x.GetTeamGamesForProfile(profileId)).Returns(new List<GameWithTeams> { gameWithTeams });
 
             var request = new GetGamesForProfileRequest
                               {
                                   ProfileId = profileId
                               };
 
-            var handler = new GetGamesForProfileRequestHandler(gameREpo.Object);
+            var handler = new GetGamesForProfileRequestHandler(gameRepo.Object);
 
             var response = handler.Handle(request);
 
-            Assert.That(response.Games[0], Is.SameAs(game));
+            Assert.That(response.TeamGames[0], Is.SameAs(gameWithTeams));
+            Assert.That(response.PickupGames[0], Is.SameAs(pickUpGame));
         }
          
     }

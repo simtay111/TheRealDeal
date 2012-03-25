@@ -43,20 +43,42 @@ namespace RecreateMeSql.Repositories
             return SaveGameWithTeamData(game, gameNode);
         }
 
-        public Game GetById(string id)
+        public void SavePickUpGame(PickUpGame game)
         {
-            var gameQuery = _graphClient.GameWithId(id);
+            throw new NotImplementedException();
+        }
+
+        public GameWithTeams GetTeamGameById(string id)
+        {
+            //var gameQuery = _graphClient.GameWithId(id);
            
-            return _gameMapper.Map(gameQuery);
+            //return _gameMapper.Map(gameQuery);
+            throw new NotImplementedException();
         }
 
-        public IList<Game> FindByLocation(string location)
+        public PickUpGame GetPickUpGameById(string id)
         {
-            var games = _graphClient.GamesAtLocation(location).Select(x => x.Data.Id).ToList();
-            return games.Select(x => _gameMapper.Map(_graphClient.GameWithId(x))).ToList();
+            throw new NotImplementedException();
         }
 
-        public IList<Game> GetForProfile(string profileId)
+        public IList<PickUpGame> FindPickUpGameByLocation(string location)
+        {
+            //var games = _graphClient.GamesAtLocation(location).Select(x => x.Data.Id).ToList();
+            //return games.Select(x => _gameMapper.Map(_graphClient.GameWithId(x))).ToList();
+            return new List<PickUpGame>();
+        }
+
+        IList<PickUpGame> IGameRepository.GetPickupGamesForProfile(string profileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<GameWithTeams> GetTeamGamesForProfile(string profileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Game> GetPickupGamesForProfile(string profileId)
         {
             var gamesWithTeams = _graphClient.ProfileWithId(profileId).GamesWithTeamsForProfile().Select(x => x.Data.Id).ToList();
             var gamesWithoutTeams = _graphClient.ProfileWithId(profileId).GamesWithoutTeamsForProfile().Select(x => x.Data.Id).ToList();
@@ -100,21 +122,21 @@ namespace RecreateMeSql.Repositories
 
         private bool SaveGameWithTeamData(Game game, NodeReference gameNode)
         {
-            var gameWithTeams = game as GameWithTeams;
-            foreach (var teamId in gameWithTeams.TeamsIds)
-            {
-                CreateTeamInGameRelationship(gameNode, teamId);
-            }
+            //var gameWithTeams = game as GameWithTeams;
+            //foreach (var teamId in gameWithTeams.TeamsIds)
+            //{
+            //    CreateTeamInGameRelationship(gameNode, teamId);
+            //}
             return true;
         }
 
         private bool SaveGameWithoutTeamData(Game game, NodeReference gameNode)
         {
-            var gameWithoutTeams = game as GameWithoutTeams;
-            foreach (var profileId in gameWithoutTeams.PlayersIds)
-            {
-                CreatePlaysInGameRelationship(gameNode, profileId);
-            }
+            //var gameWithoutTeams = game as PickUpGame;
+            //foreach (var profileId in gameWithoutTeams.PlayersIds)
+            //{
+            //    CreatePlaysInGameRelationship(gameNode, profileId);
+            //}
             return true;
         }
 

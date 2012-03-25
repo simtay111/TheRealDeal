@@ -27,33 +27,34 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanSaveAndGetGamesWithoutTeams()
         {
-            _data.CreateAccount1();
-            var profile = _data.CreateProfileForAccount1();
-            _data.CreateLocationBend();
-            _data.CreateSoccerSport();
+            //_data.CreateAccount1();
+            //var profile = _data.CreateProfileForAccount1();
+            //_data.CreateLocationBend();
+            //_data.CreateSoccerSport();
 
-            var game = new GameWithoutTeams(DateTimeOffset.Now, new Sport(), new Location());
-            game.MaxPlayers = 5;
-            game.MinPlayers = 3;
-            game.IsPrivate = true;
-            game.Sport = new Sport("Soccer");
-            game.Location = new Location("Bend");
-            game.AddPlayer(profile.ProfileId);
-            game.Creator = profile.ProfileId;
+            //var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            //game.MaxPlayers = 5;
+            //game.MinPlayers = 3;
+            //game.IsPrivate = true;
+            //game.Sport = new Sport("Soccer");
+            //game.Location = new Location("Bend");
+            //game.AddPlayer(profile.ProfileId);
+            //game.Creator = profile.ProfileId;
 
-            _repo.Save(game);
+            //_repo.Save(game);
 
-            var retrievedGame = _repo.GetById(game.Id) as GameWithoutTeams;
+            //var retrievedGame = _repo.GetById(game.Id) as PickUpGame;
 
-            Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
-            Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
-            Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
-            Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
-            Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
-            Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
-            Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
-            Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(profile.ProfileId));
-            Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
+            //Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
+            //Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
+            //Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
+            //Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
+            //Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
+            //Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
+            //Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
+            //Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(profile.ProfileId));
+            //Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
+            Assert.Fail();
         }
 
         [Test]
@@ -74,19 +75,21 @@ namespace TheRealDealTests.DataTests.Repositories
             game.AddTeam(team.Id);
             game.Creator = profile.ProfileId;
 
-            _repo.Save(game);
+            Assert.Fail();
 
-            var retrievedGame = _repo.GetById(game.Id) as GameWithTeams;
+            //_repo.Save(game);
 
-            Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
-            Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
-            Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
-            Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
-            Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
-            Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
-            Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
-            Assert.That(retrievedGame.TeamsIds[0], Is.EqualTo(team.Id));
-            Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
+            //var retrievedGame = _repo.GetById(game.Id) as GameWithTeams;
+
+            //Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
+            //Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
+            //Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
+            //Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
+            //Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
+            //Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
+            //Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
+            //Assert.That(retrievedGame.TeamsIds[0], Is.EqualTo(team.Id));
+            //Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
         }
 
         [Test]
@@ -94,7 +97,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _data.CreateData();
 
-            var games = _repo.GetForProfile("Simtay111");
+            var games = _repo.GetPickupGamesForProfile("Simtay111");
 
             Assert.That(games.Count, Is.EqualTo(1));
         }
@@ -104,7 +107,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _data.CreateData();
 
-            var games = _repo.FindByLocation("Bend");
+            var games = _repo.FindPickUpGameByLocation("Bend");
 
             Assert.That(games.Count, Is.EqualTo(2));
         }
@@ -112,27 +115,29 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanAddProfilesToGame()
         {
-            _data.CreateData();
+            //_data.CreateData();
 
-            const string profileId = "Profile1";
-            _repo.AddPlayerToGame(_data.GameWithoutTeams.Id, profileId);
+            //const string profileId = "Profile1";
+            //_repo.AddPlayerToGame(_data.PickUpGame.Id, profileId);
 
-            var game = _repo.GetById(_data.GameWithoutTeams.Id) as GameWithoutTeams;
+            //var game = _repo.GetById(_data.PickUpGame.Id) as PickUpGame;
 
-            Assert.That(game.PlayersIds.Any(x => x == profileId));
+            //Assert.That(game.PlayersIds.Any(x => x == profileId));
+            Assert.Fail();
         }
 
         [Test]
         public void CanAddTeamsToGame()
         {
-            _data.CreateData();
+           // _data.CreateData();
 
-           _repo.AddTeamToGame(_data.TeamId2, _data.GameWithTeamsId);
+           //_repo.AddTeamToGame(_data.TeamId2, _data.GameWithTeamsId);
 
-            var game = _repo.GetById(_data.GameWithTeamsId) as GameWithTeams;
+           // var game = _repo.GetById(_data.GameWithTeamsId) as GameWithTeams;
 
-            Assert.That(game.TeamsIds.Count, Is.EqualTo(2));
-            Assert.True(game.TeamsIds.Single(x => x == _data.TeamId2).Any());
+           // Assert.That(game.TeamsIds.Count, Is.EqualTo(2));
+           // Assert.True(game.TeamsIds.Single(x => x == _data.TeamId2).Any());
+            Assert.Fail();
         }
     }
 }

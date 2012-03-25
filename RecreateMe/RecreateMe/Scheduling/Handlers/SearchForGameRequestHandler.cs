@@ -6,7 +6,7 @@ using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMe.Scheduling.Handlers
 {
-    public class SearchForGameRequestHandler : IHandler<SearchForGameRequest, SearchForGameResponse>
+    public class SearchForGameRequestHandler : IHandler<SearchForPickupGameRequest, SearchForPickUpGameResponse>
     {
         private readonly IGameRepository _gameRepository;
 
@@ -15,39 +15,39 @@ namespace RecreateMe.Scheduling.Handlers
             _gameRepository = gameRepository;
         }
 
-        public SearchForGameResponse Handle(SearchForGameRequest request)
+        public SearchForPickUpGameResponse Handle(SearchForPickupGameRequest request)
         {
-            if (String.IsNullOrEmpty(request.Location)) return new SearchForGameResponse(ResponseCodes.LocationNotSpecified);
+            if (String.IsNullOrEmpty(request.Location)) return new SearchForPickUpGameResponse(ResponseCodes.LocationNotSpecified);
 
-            var results = new List<Game>();
+            var results = new List<PickUpGame>();
 
-            results.AddRange(_gameRepository.FindByLocation(request.Location));
+            results.AddRange(_gameRepository.FindPickUpGameByLocation(request.Location));
 
             if (!string.IsNullOrEmpty(request.Sport))
                results = results.Where(x => x.Sport.Name == request.Sport).ToList();
 
-            return new SearchForGameResponse(results);
+            return new SearchForPickUpGameResponse(results);
         }
     }
 
-    public class SearchForGameRequest
+    public class SearchForPickupGameRequest
     {
         public string Location { get; set; }
         public string Sport { get; set; }
     }
 
-    public class SearchForGameResponse
+    public class SearchForPickUpGameResponse
     {
-        public IList<Game> GamesFound;
+        public IList<PickUpGame> GamesFound;
         public ResponseCodes Status { get; set; }
 
-        public SearchForGameResponse(IList<Game> gamesFound)
+        public SearchForPickUpGameResponse(IList<PickUpGame> gamesFound)
         {
             GamesFound = gamesFound;
             Status = ResponseCodes.Success;
         }
 
-        public SearchForGameResponse(ResponseCodes status)
+        public SearchForPickUpGameResponse(ResponseCodes status)
         {
             Status = status;
         }
