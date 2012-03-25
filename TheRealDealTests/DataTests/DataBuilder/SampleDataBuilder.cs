@@ -250,32 +250,32 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public PickUpGame CreateGameWithProfile1()
         {
             var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
-            //game.MaxPlayers = 5;
-            //game.MinPlayers = 3;
-            //game.IsPrivate = true;
-            //game.Sport = new Sport(SoccerName);
-            //game.Location = new Location(LocationBendName);
-            //game.AddPlayer(Profile1Id);
-            //game.Creator = Profile1Id;
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = new Sport(SoccerName);
+            game.Location = new Location(LocationBendName);
+            game.AddPlayer(Profile1Id);
+            game.Creator = Profile1Id;
 
-            //new GameRepository().Save(game);
-            //PickUpGame = game;
+            new GameRepository().SavePickUpGame(game);
+            PickUpGame = game;
             return game;
         }
 
         public GameWithTeams CreateGameWithTeams1And2()
         {
             var game = new GameWithTeams(DateTimeOffset.Now, new Sport(), new Location());
-            //game.MaxPlayers = 5;
-            //game.MinPlayers = 3;
-            //game.IsPrivate = true;
-            //game.Sport = new Sport(SoccerName);
-            //game.Location = new Location(LocationBendName);
-            //game.AddTeam(TeamId1);
-            //game.Creator = Profile2Id;
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = new Sport(SoccerName);
+            game.Location = new Location(LocationBendName);
+            game.AddTeam(TeamId1);
+            game.Creator = Profile2Id;
 
-            //new GameRepository().Save(game);
-            //GameWithTeamsId = game.Id;
+            new GameRepository().SaveTeamGame(game);
+            GameWithTeamsId = game.Id;
             return game;
         }
 

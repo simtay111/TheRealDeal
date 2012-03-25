@@ -1,10 +1,11 @@
 ﻿using Neo4jClient;
+using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMeSql.Relationships.GameRelationships
 {
     public class GameToLocationRelationship
-        : Relationship, IRelationshipAllowingSourceNode<Game>
+        : Relationship, IRelationshipAllowingSourceNode<Location>
     {
         public GameToLocationRelationship(NodeReference targetNode)
             : base(targetNode)

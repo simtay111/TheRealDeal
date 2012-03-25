@@ -40,15 +40,15 @@ namespace RecreateMe.Scheduling.Handlers.Games
         public int? MaxPlayers { get; set; }
 
         public int? MinPlayers { get; set; }
-
+        [JsonIgnore]
         public Location Location { get; set; }
-
+        [JsonIgnore]
         public Sport Sport { get; set; }
 
         public DateTimeOffset DateTime { get; set; }
 
         public string Id { get; set; }
-
+        [JsonIgnore]
         public string Creator { get; set; }
 
         public bool IsPrivate { get; set; }

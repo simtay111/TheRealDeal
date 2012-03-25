@@ -7,6 +7,7 @@ namespace RecreateMe.Scheduling
     {
         bool Save(Game game);
         void SavePickUpGame(PickUpGame game);
+        void SaveTeamGame(GameWithTeams game);
         GameWithTeams GetTeamGameById(string id);
         PickUpGame GetPickUpGameById(string id);
         IList<PickUpGame> FindPickUpGameByLocation(string location);

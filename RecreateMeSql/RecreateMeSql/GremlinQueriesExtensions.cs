@@ -40,9 +40,9 @@ namespace RecreateMeSql
             return gc.OutE(RelationsTypes.PartOfTeam).InV<Team>().OutE(RelationsTypes.TeamInGame).InV<RetrievedGame>();
         }
 
-        public static IGremlinNodeQuery<RetrievedGame> GamesAtLocation(this GraphClient gc, string location)
+        public static IGremlinNodeQuery<RetrievedGame> PickUpGamesAtLocation(this GraphClient gc, string location)
         {
-            return gc.LocationWithName(location).InE(RelationsTypes.GameToLocation).OutV<RetrievedGame>();
+            return gc.LocationWithName(location).OutE(RelationsTypes.GameToLocation).InV<RetrievedGame>();
         }
 
         public static IGremlinNodeQuery<Profile> PlayersForGame(this IGremlinNodeQuery<RetrievedGame> gc)
