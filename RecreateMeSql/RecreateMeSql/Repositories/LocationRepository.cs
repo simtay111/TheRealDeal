@@ -8,13 +8,10 @@ using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
 {
-    public class LocationRepository : ILocationRepository
+    public class LocationRepository : BaseRepository, ILocationRepository
     {
-        private readonly GraphClient _graphClient;
-
-        public LocationRepository(GraphClient graphClient)
+        public LocationRepository(GraphClient graphClient) : base(graphClient)
         {
-            _graphClient = graphClient;
         }
 
         public LocationRepository()
@@ -22,7 +19,7 @@ namespace RecreateMeSql.Repositories
 
         public Location FindByName(string name)
         {
-            var locNode = _graphClient.LocationWithName(name).FirstOrDefault();
+            var locNode = GraphClient.LocationWithName(name).FirstOrDefault();
 
             return locNode != null ? new Location(locNode.Data.Name) : null;
         }
@@ -36,32 +33,32 @@ namespace RecreateMeSql.Repositories
             else if (LocationExists(locationName))
                 return false;
 
-            var locationBaseNode = _graphClient.LocationBaseNode().Single();
+            var locationBaseNode = GraphClient.LocationBaseNode().Single();
 
-            var locationNode = _graphClient.Create(location);
+            var locationNode = GraphClient.Create(location);
 
-            _graphClient.CreateRelationship(locationBaseNode.Reference, new LocationRelationship(locationNode));
+            GraphClient.CreateRelationship(locationBaseNode.Reference, new LocationRelationship(locationNode));
 
             return true;
         }
 
         private void CreateLocationBaseNode()
         {
-            var locationBaseNode = _graphClient.Create(new SchemaNode { Type = SchemaNodeTypes.LocationBase });
+            var locationBaseNode = GraphClient.Create(new SchemaNode { Type = SchemaNodeTypes.LocationBase });
 
-            var rootNode = _graphClient.RootNode;
+            var rootNode = GraphClient.RootNode;
 
-            _graphClient.CreateRelationship(rootNode, new BaseNodeRelationship(locationBaseNode));
-        }
-
-        private bool LocationExists(string locationName)
-        {
-            return _graphClient.LocationWithName(locationName).Any();
+            GraphClient.CreateRelationship(rootNode, new BaseNodeRelationship(locationBaseNode));
         }
 
         private bool LocationBaseNodeExists()
         {
-            return _graphClient.LocationBaseNode().Any();
+            return GraphClient.LocationBaseNode().Any();
+        }
+
+        private bool LocationExists(string locationName)
+        {
+            return GraphClient.LocationWithName(locationName).Any();
         }
     }
 }

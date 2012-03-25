@@ -253,7 +253,6 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockLocationRepo = new Mock<ILocationRepository>();
             _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_location);
             _mockGameRepo = new Mock<IPickUpGameRepository>();
-            _mockGameRepo.Setup(x => x.Save(It.IsAny<Game>())).Returns(true);
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(
                 x => x.CreatePickUpGame(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), It.IsAny<bool>())).Returns(

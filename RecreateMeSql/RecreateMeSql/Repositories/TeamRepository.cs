@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
-using RecreateMe.Profiles;
 using RecreateMe.Teams;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
@@ -14,16 +12,13 @@ using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
 {
-    public class TeamRepository : ITeamRepository
+    public class TeamRepository : BaseRepository, ITeamRepository
     {
-        private readonly GraphClient _graphClient;
-
         public TeamRepository() : this(GraphClientFactory.Create())
         {}
 
-        public TeamRepository(GraphClient graphClient)
+        public TeamRepository(GraphClient graphClient) : base (graphClient)
         {
-            _graphClient = graphClient;
         }
 
 
@@ -32,17 +27,17 @@ namespace RecreateMeSql.Repositories
             if (!TeamBaseNodeExists())
                 CreateTeamBaseNode();
 
-            var teamBaseNode = _graphClient.TeamBaseNode().Single();
-            var teamNode = _graphClient.Create(team);
+            var teamBaseNode = GraphClient.TeamBaseNode().Single();
+            var teamNode = GraphClient.Create(team);
 
-            _graphClient.CreateRelationship(teamBaseNode.Reference, new BaseTeamRelationship(teamNode));
+            GraphClient.CreateRelationship(teamBaseNode.Reference, new BaseTeamRelationship(teamNode));
 
             foreach (var profileId in team.PlayersIds)
             {
-                var profile = _graphClient.ProfileWithId(profileId).Single();
+                var profile = GraphClient.ProfileWithId(profileId).Single();
                 if (profileId == team.Creator)
-                    _graphClient.CreateRelationship(profile.Reference, new CreatedByRelationship(teamNode));
-                _graphClient.CreateRelationship(profile.Reference, new PartOfTeamRelationship(teamNode));
+                    GraphClient.CreateRelationship(profile.Reference, new CreatedByRelationship(teamNode));
+                GraphClient.CreateRelationship(profile.Reference, new PartOfTeamRelationship(teamNode));
             }
 
             return true;
@@ -50,37 +45,37 @@ namespace RecreateMeSql.Repositories
 
         public Team GetById(string id)
         {
-            var teamNode = _graphClient.TeamWithId(id).Single();
+            var teamNode = GraphClient.TeamWithId(id).Single();
             return MapTeam(teamNode);
         }
 
         public IList<Team> GetTeamsForProfile(string id)
         {
-            var teamNodes = _graphClient.ProfileWithId(id).OutE(RelationsTypes.PartOfTeam).InV<Team>();
+            var teamNodes = GraphClient.ProfileWithId(id).OutE(RelationsTypes.PartOfTeam).InV<Team>();
 
             return teamNodes.Select(MapTeam).ToList();
         }
 
         private void CreateTeamBaseNode()
         {
-            var teamBaseNode = _graphClient.Create(new SchemaNode { Type = SchemaNodeTypes.TeamBase });
-            var root = _graphClient.RootNode;
+            var teamBaseNode = GraphClient.Create(new SchemaNode { Type = SchemaNodeTypes.TeamBase });
+            var root = GraphClient.RootNode;
 
-            _graphClient.CreateRelationship(root, new BaseNodeRelationship(teamBaseNode));
+            GraphClient.CreateRelationship(root, new BaseNodeRelationship(teamBaseNode));
         }
 
         private Team MapTeam(Node<Team> teamNode)
         {
             var team = new Team(teamNode.Data.Id) {MaxSize = teamNode.Data.MaxSize, Name = teamNode.Data.Name};
 
-            team.PlayersIds = _graphClient.ProfilesWithTeam(team.Id).Select(x => x.Data.ProfileId).ToList();
+            team.PlayersIds = GraphClient.ProfilesWithTeam(team.Id).Select(x => x.Data.ProfileId).ToList();
             team.Creator = teamNode.Creator().Single().Data.ProfileId;
             return team;
         }
 
         private bool TeamBaseNodeExists()
         {
-            return _graphClient.TeamBaseNode().Any();
+            return GraphClient.TeamBaseNode().Any();
         }
     }
 

@@ -13,14 +13,12 @@ using RecreateMeSql.Relationships.ProfileRelationships;
 
 namespace RecreateMeSql.Repositories
 {
-    public class ProfileRepository : IProfileRepository
+    public class ProfileRepository : BaseRepository, IProfileRepository
     {
-        private readonly GraphClient _graphClient;
         private readonly ProfileMapper _profileMapper;
 
-        public ProfileRepository(GraphClient graphClient, ProfileMapper profileMapper)
+        public ProfileRepository(GraphClient graphClient, ProfileMapper profileMapper) : base(graphClient)
         {
-            _graphClient = graphClient;
             _profileMapper = profileMapper;
         }
 
@@ -31,18 +29,18 @@ namespace RecreateMeSql.Repositories
 
         public Profile GetByProfileId(string profileId)
         {
-            var profile = _graphClient.ProfileWithId(profileId).Single();
+            var profile = GraphClient.ProfileWithId(profileId).Single();
 
             return _profileMapper.Map(profile);
         }
 
         public bool Save(Profile profile)
         {
-            var accountNode = _graphClient.AccountWithId(profile.AccountId).Single();
+            var accountNode = GraphClient.AccountWithId(profile.AccountId).Single();
 
-            var profileNode = _graphClient.Create(profile);
+            var profileNode = GraphClient.Create(profile);
 
-            _graphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
+            GraphClient.CreateRelationship(accountNode.Reference, new HasProfileRelationship(profileNode));
 
             CreateLocationRelationships(profile, profileNode);
             CreateSportRelationshipsForNewProfile(profile, profileNode);
@@ -52,7 +50,7 @@ namespace RecreateMeSql.Repositories
 
         public bool AddSportToProfile(Profile profile, SportWithSkillLevel sport)
         {
-            var profileNode = _graphClient.ProfileWithId(profile.ProfileId).Single();
+            var profileNode = GraphClient.ProfileWithId(profile.ProfileId).Single();
 
             CreateSingleSportRelationship(profileNode.Reference, sport);
 
@@ -61,7 +59,7 @@ namespace RecreateMeSql.Repositories
 
         public bool AddLocationToProfile(Profile profile, Location location)
         {
-            var profileNode = _graphClient.ProfileWithId(profile.ProfileId).Single();
+            var profileNode = GraphClient.ProfileWithId(profile.ProfileId).Single();
 
             CreateSingleLocationRelationship(profileNode.Reference, location);
 
@@ -71,8 +69,8 @@ namespace RecreateMeSql.Repositories
         public bool AddFriendToProfile(string profileId, string friendId)
         {
 
-            var profileNode = _graphClient.ProfileWithId(profileId).Single();
-            var friendNode = _graphClient.ProfileWithId(friendId).Single();
+            var profileNode = GraphClient.ProfileWithId(profileId).Single();
+            var friendNode = GraphClient.ProfileWithId(friendId).Single();
 
             CreateFriendRelationship(profileNode, friendNode);
 
@@ -81,7 +79,7 @@ namespace RecreateMeSql.Repositories
 
         public IList<Profile> FindAllByName(string name)
         {
-            var profileNodes = _graphClient.Accounts().Profiles().ToList();
+            var profileNodes = GraphClient.Accounts().Profiles().ToList();
 
             profileNodes = profileNodes.Where(x => x.Data.ProfileId.Contains(name)).ToList();
 
@@ -94,7 +92,7 @@ namespace RecreateMeSql.Repositories
 
         public IList<Profile> FindAllBySport(string sport)
         {
-            var sportNode = _graphClient.SportWithName(sport);
+            var sportNode = GraphClient.SportWithName(sport);
 
             var profileNodes = sportNode.InE(RelationsTypes.ProfileSport).OutV<Profile>().ToList();
 
@@ -106,7 +104,7 @@ namespace RecreateMeSql.Repositories
 
         public IList<Profile> FindAllByLocation(string location)
         {
-            var locationNode = _graphClient.LocationWithName(location);
+            var locationNode = GraphClient.LocationWithName(location);
 
             var profileNodes = locationNode.InE(RelationsTypes.ProfileLocation).OutV<Profile>().ToList();
 
@@ -118,14 +116,14 @@ namespace RecreateMeSql.Repositories
 
         public IList<Profile> GetByAccount(string accountId)
         {
-            var profileNodes = _graphClient.AccountWithId(accountId).Profiles().ToList();
+            var profileNodes = GraphClient.AccountWithId(accountId).Profiles().ToList();
 
             return profileNodes.Select(node => _profileMapper.Map(node)).ToList();
         }
 
         public IList<string> GetFriendsProfileNameList(string profileId)
         {
-            var profileNode = _graphClient.ProfileWithId(profileId);
+            var profileNode = GraphClient.ProfileWithId(profileId);
 
             var friendNodes = profileNode.OutE(RelationsTypes.Friend).InV<Profile>().ToList();
 
@@ -134,7 +132,7 @@ namespace RecreateMeSql.Repositories
 
         public bool ProfileExistsWithName(string profileName)
         {
-            var nodes = _graphClient.ProfileWithId(profileName);
+            var nodes = GraphClient.ProfileWithId(profileName);
 
             return nodes.Any();
         }
@@ -149,14 +147,14 @@ namespace RecreateMeSql.Repositories
 
         private void CreateFriendRelationship(Node<Profile> profileNode, Node<Profile> friendNode)
         {
-            _graphClient.CreateRelationship(profileNode.Reference, new FriendRelationship(friendNode.Reference));
+            GraphClient.CreateRelationship(profileNode.Reference, new FriendRelationship(friendNode.Reference));
         }
 
         private void CreateSingleLocationRelationship(NodeReference<Profile> profileNode, Location location)
         {
-            var locNode = _graphClient.LocationWithName(location.Name).FirstOrDefault();
+            var locNode = GraphClient.LocationWithName(location.Name).FirstOrDefault();
             if (locNode == null) return;
-            _graphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
+            GraphClient.CreateRelationship(profileNode, new ProfileToLocationRelationship(locNode.Reference));
         }
 
         private void CreateSportRelationshipsForNewProfile(Profile profile, NodeReference<Profile> profileNode)
@@ -170,10 +168,10 @@ namespace RecreateMeSql.Repositories
 
         private void CreateSingleSportRelationship(NodeReference<Profile> profileNode, SportWithSkillLevel sport)
         {
-            var sportNode = _graphClient.SportWithName(sport.Name).FirstOrDefault();
+            var sportNode = GraphClient.SportWithName(sport.Name).FirstOrDefault();
             if (sportNode == null) return;
             var profileToSportRelationship = new ProfileToSportRelationship(sportNode.Reference, sport.SkillLevel);
-            _graphClient.CreateRelationship(profileNode,
+            GraphClient.CreateRelationship(profileNode,
                                             profileToSportRelationship);
         }
     }

@@ -72,7 +72,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _data.CreateData();
 
-            _repo.AddTeamToGame(_data.TeamId2, _data.GameWithTeamsId);
+            _repo.AddTeamToGame(_data.TeamId3, _data.GameWithTeamsId);
 
             var game = _repo.GetTeamGameById(_data.GameWithTeamsId);
 

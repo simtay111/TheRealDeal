@@ -13,13 +13,13 @@ namespace TheRealDealTests.DataTests.Repositories
     [Category("Integration")]
     public class PickUpGameRepositoryTests
     {
-        private PickUpPickUpGameRepository _repo;
+        private PickUpGameRepository _repo;
         private SampleDataBuilder _data;
 
         [SetUp]
         public void SetUp()
         {
-            _repo = new PickUpPickUpGameRepository();
+            _repo = new PickUpGameRepository();
             _data = new SampleDataBuilder();
             _data.DeleteAllData();
         }

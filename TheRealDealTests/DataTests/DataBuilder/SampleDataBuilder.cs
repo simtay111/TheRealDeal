@@ -15,6 +15,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
     {
         public string TeamId2;
         public string TeamId1;
+        public string TeamId3;
         public PickUpGame PickUpGame;
         public string GameWithTeamsId;
         public const string LocationPortland = "Portland";
@@ -23,6 +24,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public const string LocationBendName = "Bend";
         public const string TeamName1 = "Team1";
         public const string TeamName2 = "Team2";
+        public const string TeamName3 = "Team3";
         public const string Profile1Id = "Simtay111";
         public const string FootballName = "Football";
         public const string Basketballname = "Basketball";
@@ -71,6 +73,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             CreateTeam1();
             CreateTeam2();
+            CreateTeam3();
         }
 
         private void CreateFriendship()
@@ -237,11 +240,28 @@ namespace TheRealDealTests.DataTests.DataBuilder
             {
                 MaxSize = 3,
                 Name = TeamName2,
-                PlayersIds = new List<string> { Profile1Id, Profile2Id},
+                PlayersIds = new List<string> { Profile1Id, Profile2Id },
                 Creator = Profile1Id
             };
 
             TeamId2 = team.Id;
+
+            teamRepo.Save(team);
+            return team;
+        }
+
+        public Team CreateTeam3()
+        {
+            var teamRepo = new TeamRepository();
+            var team = new Team
+            {
+                MaxSize = 3,
+                Name = TeamName3,
+                PlayersIds = new List<string>(),
+                Creator = Profile2Id
+            };
+
+            TeamId3 = team.Id;
 
             teamRepo.Save(team);
             return team;
@@ -258,7 +278,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.AddPlayer(Profile1Id);
             game.Creator = Profile1Id;
 
-            new PickUpPickUpGameRepository().SavePickUpGame(game);
+            new PickUpGameRepository().SavePickUpGame(game);
             PickUpGame = game;
             return game;
         }

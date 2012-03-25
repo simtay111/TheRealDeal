@@ -9,6 +9,5 @@ namespace RecreateMe.Scheduling
         GameWithTeams GetTeamGameById(string id);
         IList<GameWithTeams> GetTeamGamesForProfile(string profileId);
         void AddTeamToGame(string teamid, string gameId);
-        void CreateGameBaseNode(string sportName);
     }
 }

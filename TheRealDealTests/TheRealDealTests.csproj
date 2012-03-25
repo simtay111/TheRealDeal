@@ -57,6 +57,7 @@
     <Compile Include="DataTests\DataBuilder\DataTestHelper.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
     <Compile Include="DataTests\Mappers\ProfileMapperTests.cs" />
+    <Compile Include="DataTests\Repositories\BaseRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\TeamGameRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\PickUpGameRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\LocationRepositoryTests.cs" />
