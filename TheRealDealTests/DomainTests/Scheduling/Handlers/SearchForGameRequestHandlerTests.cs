@@ -13,7 +13,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
     [TestFixture]
     public class SearchForGameRequestHandlerTests
     {
-        private Mock<IGameRepository> _gameRepository;
+        private Mock<IPickUpGameRepository> _gameRepository;
 
         [Test]    
         public void CanSearchForGamesViaLocationAndSportType()
@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = soccer.Name };
 
-            _gameRepository = new Mock<IGameRepository>();
+            _gameRepository = new Mock<IPickUpGameRepository>();
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 
@@ -50,7 +50,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var request = new SearchForPickupGameRequest { Location = null, Sport = "Soccer" };
 
-            _gameRepository = new Mock<IGameRepository>();
+            _gameRepository = new Mock<IPickUpGameRepository>();
 
             var handler = new SearchForGameRequestHandler(_gameRepository.Object);
 
@@ -70,7 +70,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = string.Empty };
 
-            _gameRepository = new Mock<IGameRepository>();
+            _gameRepository = new Mock<IPickUpGameRepository>();
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 

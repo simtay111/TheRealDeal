@@ -17,7 +17,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         private const string LocationName = "myLoc";
         private Mock<ISportRepository> _mockSportRepo;
         private Mock<ILocationRepository> _mockLocationRepo;
-        private Mock<IGameRepository> _mockGameRepo;
+        private Mock<IPickUpGameRepository> _mockGameRepo;
         private Mock<IGameFactory> _mockGameFactory;
         private Sport _sport;
         private Location _location;
@@ -35,7 +35,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CanHandleRequest()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
             const string location = LocationName;
 
             var request = new CreatePickupGameRequest
@@ -58,7 +58,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void SavesWhichProfileCreatedTheGame()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
             const string location = LocationName;
             const string profile1 = "Profile1";
 
@@ -84,7 +84,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void ResponseReturnsWithGameIdOfCreatedGame()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
             const string location = LocationName;
 
             var request = new CreatePickupGameRequest
@@ -109,7 +109,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             var date = DateTime.Now;
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
             _pickUpGame = new PickUpGame(date, _sport, _location) { IsPrivate = true };
             var nonPrivateGame = new PickUpGame(date, _sport, _location);
             _mockGameFactory = new Mock<IGameFactory>();
@@ -252,7 +252,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockSportRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_sport);
             _mockLocationRepo = new Mock<ILocationRepository>();
             _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_location);
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
             _mockGameRepo.Setup(x => x.Save(It.IsAny<Game>())).Returns(true);
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(

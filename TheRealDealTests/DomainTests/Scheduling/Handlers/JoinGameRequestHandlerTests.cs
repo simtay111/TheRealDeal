@@ -12,12 +12,12 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
     [TestFixture]
     public class JoinGameRequestHandlerTests
     {
-        private Mock<IGameRepository> _mockGameRepo;
+        private Mock<IPickUpGameRepository> _mockGameRepo;
 
         [SetUp]
         public void SetUp()
         {
-            _mockGameRepo = new Mock<IGameRepository>();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
         }
 
         [Test]

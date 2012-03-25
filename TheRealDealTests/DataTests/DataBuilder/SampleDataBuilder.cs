@@ -258,7 +258,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.AddPlayer(Profile1Id);
             game.Creator = Profile1Id;
 
-            new GameRepository().SavePickUpGame(game);
+            new PickUpPickUpGameRepository().SavePickUpGame(game);
             PickUpGame = game;
             return game;
         }
@@ -272,9 +272,10 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.Sport = new Sport(SoccerName);
             game.Location = new Location(LocationBendName);
             game.AddTeam(TeamId1);
+            game.AddTeam(TeamId2);
             game.Creator = Profile2Id;
 
-            new GameRepository().SaveTeamGame(game);
+            new TeamGameRepository().SaveTeamGame(game);
             GameWithTeamsId = game.Id;
             return game;
         }

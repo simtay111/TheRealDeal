@@ -94,9 +94,10 @@
     <Compile Include="Scheduling\Handlers\Games\GameWithTeams.cs" />
     <Compile Include="Scheduling\Handlers\Games\IGameFactory.cs" />
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandler.cs" />
+    <Compile Include="Scheduling\ITeamGameRepository.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForGameRequestHandler.cs" />
-    <Compile Include="Scheduling\IGameRepository.cs" />
+    <Compile Include="Scheduling\IPickUpGameRepository.cs" />
     <Compile Include="Sports\ISportRepository.cs" />
     <Compile Include="Sports\SkillLevel.cs" />
     <Compile Include="Sports\SkillLevelProvider.cs" />

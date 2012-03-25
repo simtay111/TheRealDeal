@@ -37,7 +37,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport};
 
-            var handler = new SearchForGameRequestHandler(new GameRepository());
+            var handler = new SearchForGameRequestHandler(new PickUpPickUpGameRepository());
 
             var response = handler.Handle(request);
 
@@ -73,7 +73,7 @@ namespace TheRealDeal.Controllers
                               };
 
             var handler = new CreatePickupGameRequestHandler(new SportRepository(), new LocationRepository(),
-                                                       new GameRepository(), new GameFactory());
+                                                       new PickUpPickUpGameRepository(), new GameFactory());
 
             var response = handler.Handle(request);
             if (response.Status != ResponseCodes.Success)
@@ -81,7 +81,7 @@ namespace TheRealDeal.Controllers
 
                 var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
 
-                var joinHandler = new JoinGameRequestHandler(new GameRepository());
+                var joinHandler = new JoinGameRequestHandler(new PickUpPickUpGameRepository());
 
                 var joinResponse = joinHandler.Handle(joinRequest);
 
@@ -107,7 +107,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new AddTeamToGameRequest() {GameId = model.GameId, TeamId = model.TeamId};
 
-            var handler = new AddTeamToGameRequestHandler(new GameRepository());
+            var handler = new AddTeamToGameRequestHandler(new TeamGameRepository());
 
             var response = handler.Handle(request);
 
@@ -124,7 +124,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new JoinGameRequest {GameId = gameId, ProfileId = GetProfileFromCookie()};
 
-            var handler = new JoinGameRequestHandler(new GameRepository());
+            var handler = new JoinGameRequestHandler(new PickUpPickUpGameRepository());
 
             var response = handler.Handle(request);
 

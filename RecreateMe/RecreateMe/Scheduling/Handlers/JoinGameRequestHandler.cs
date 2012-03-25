@@ -6,11 +6,11 @@ namespace RecreateMe.Scheduling.Handlers
 {
     public class JoinGameRequestHandler: IHandler<JoinGameRequest, JoinGameResponse>
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
 
-        public JoinGameRequestHandler(IGameRepository gameRepository)
+        public JoinGameRequestHandler(IPickUpGameRepository pickUpGameRepository)
         {
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
         }
 
         public JoinGameResponse Handle(JoinGameRequest request)
@@ -21,14 +21,14 @@ namespace RecreateMe.Scheduling.Handlers
             if (game.PlayersIds.Any(x => x == request.ProfileId))
                 return new JoinGameResponse(ResponseCodes.AlreadyInGame);
 
-            _gameRepository.AddPlayerToGame(game.Id, request.ProfileId);
+            _pickUpGameRepository.AddPlayerToGame(game.Id, request.ProfileId);
              
             return new JoinGameResponse(ResponseCodes.Success);
         }
 
         private PickUpGame GetValidGame(string gameId)
         {
-            return _gameRepository.GetPickUpGameById(gameId);
+            return _pickUpGameRepository.GetPickUpGameById(gameId);
         }
     }
 

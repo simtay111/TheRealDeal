@@ -8,15 +8,15 @@ namespace RecreateMe.Scheduling.Handlers
     public class CreatePickupGameRequestHandler : IHandler<CreatePickupGameRequest, CreatePickupGameResponse>
     {
         private readonly ILocationRepository _locationRepository;
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
         private readonly IGameFactory _gameFactory;
         private readonly ISportRepository _sportRepository;
 
-        public CreatePickupGameRequestHandler(ISportRepository sportRepository, ILocationRepository locationRepository, IGameRepository gameRepository, IGameFactory gameFactory)
+        public CreatePickupGameRequestHandler(ISportRepository sportRepository, ILocationRepository locationRepository, IPickUpGameRepository pickUpGameRepository, IGameFactory gameFactory)
         {
             _sportRepository = sportRepository;
             _locationRepository = locationRepository;
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
             _gameFactory = gameFactory;
         }
 
@@ -36,7 +36,7 @@ namespace RecreateMe.Scheduling.Handlers
             game.Creator = request.Creator;
 
 
-            _gameRepository.SavePickUpGame(game);
+            _pickUpGameRepository.SavePickUpGame(game);
 
             return new CreatePickupGameResponse(ResponseCodes.Success) { GameId = game.Id };
         }

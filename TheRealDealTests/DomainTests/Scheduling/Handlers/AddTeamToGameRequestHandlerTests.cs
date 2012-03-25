@@ -12,7 +12,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
     [TestFixture]
     public class AddTeamToGameRequestHandlerTests
     {
-        private Mock<IGameRepository> _gameRepository;
+        private Mock<ITeamGameRepository> _gameRepository;
         private AddTeamToGameRequest _request;
         private Team _team;
         private GameWithTeams _game;
@@ -55,7 +55,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
         private void CreateMockRepositoriesThatReturn(GameWithTeams game)
         {
-            _gameRepository = new Mock<IGameRepository>();
+            _gameRepository = new Mock<ITeamGameRepository>();
             _gameRepository.Setup(x => x.GetTeamGameById(game.Id)).Returns(game);
         }
 

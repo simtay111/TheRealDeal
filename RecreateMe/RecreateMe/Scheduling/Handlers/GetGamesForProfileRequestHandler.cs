@@ -5,17 +5,19 @@ namespace RecreateMe.Scheduling.Handlers
 {
     public class GetGamesForProfileRequestHandler : IHandler<GetGamesForProfileRequest, GetGamesForProfileResponse>
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
+        private readonly ITeamGameRepository _teamGameRepo;
 
-        public GetGamesForProfileRequestHandler(IGameRepository gameRepository)
+        public GetGamesForProfileRequestHandler(IPickUpGameRepository pickUpGameRepository, ITeamGameRepository teamGameRepo)
         {
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
+            _teamGameRepo = teamGameRepo;
         }
 
         public GetGamesForProfileResponse Handle(GetGamesForProfileRequest request)
         {
-            var pickUpGames = _gameRepository.GetPickupGamesForProfile(request.ProfileId);
-            var teamGames = _gameRepository.GetTeamGamesForProfile(request.ProfileId);
+            var pickUpGames = _pickUpGameRepository.GetPickupGamesForProfile(request.ProfileId);
+            var teamGames = _teamGameRepo.GetTeamGamesForProfile(request.ProfileId);
 
             return new GetGamesForProfileResponse {PickupGames = pickUpGames, TeamGames = teamGames};
         }

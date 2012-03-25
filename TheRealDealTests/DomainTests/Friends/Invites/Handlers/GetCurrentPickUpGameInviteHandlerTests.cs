@@ -15,7 +15,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
         public void CanGetCurrentInvitesToOtherGames()
         {
             var inviteRepo = new Mock<IInviteRepository>();
-            var gameRepo = new Mock<IGameRepository>();
+            var gameRepo = new Mock<IPickUpGameRepository>();
 
             var request = new GetCurrentGameInviteRequest
                               {

@@ -6,12 +6,12 @@ namespace RecreateMe.Friends.Invites.Handlers
 {
     public class AcceptPickupGameInviteRequestHandler : IHandler<AcceptPickupGameRequest, AcceptPickupGameResponse>
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
         private readonly IInviteRepository _inviteRepository;
 
-        public AcceptPickupGameInviteRequestHandler(IGameRepository gameRepository, IInviteRepository inviteRepository)
+        public AcceptPickupGameInviteRequestHandler(IPickUpGameRepository pickUpGameRepository, IInviteRepository inviteRepository)
         {
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
             _inviteRepository = inviteRepository;
         }
 
@@ -19,12 +19,12 @@ namespace RecreateMe.Friends.Invites.Handlers
         {
             _inviteRepository.Delete(request.InviteId);
 
-            var game = _gameRepository.GetPickUpGameById(request.GameId);
+            var game = _pickUpGameRepository.GetPickUpGameById(request.GameId);
 
             if (game.IsFull())
                 return new AcceptPickupGameResponse { Status = ResponseCodes.GameIsFull };
 
-            _gameRepository.AddPlayerToGame(request.GameId, request.ProfileId);
+            _pickUpGameRepository.AddPlayerToGame(request.GameId, request.ProfileId);
 
 
             return new AcceptPickupGameResponse { Status = ResponseCodes.Success };

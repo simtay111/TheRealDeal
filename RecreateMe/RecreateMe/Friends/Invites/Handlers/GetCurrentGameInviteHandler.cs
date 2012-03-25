@@ -9,19 +9,19 @@ namespace RecreateMe.Friends.Invites.Handlers
     public class GetCurrentGameInviteHandler : IHandler<GetCurrentGameInviteRequest, GetCurrentGameInvitesResponse>
     {
         private readonly IInviteRepository _inviteRepository;
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
 
-        public GetCurrentGameInviteHandler(IInviteRepository inviteRepository, IGameRepository gameRepository)
+        public GetCurrentGameInviteHandler(IInviteRepository inviteRepository, IPickUpGameRepository pickUpGameRepository)
         {
             _inviteRepository = inviteRepository;
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
         }
 
         public GetCurrentGameInvitesResponse Handle(GetCurrentGameInviteRequest request)
         {
             var invites = _inviteRepository.GetInvitesToProfile(request.ProfileId);
 
-            var games = invites.Select(x => _gameRepository.GetPickUpGameById(x.EventId)).ToList();
+            var games = invites.Select(x => _pickUpGameRepository.GetPickUpGameById(x.EventId)).ToList();
 
             return new GetCurrentGameInvitesResponse { GamesWithoutTeams = games };
         }

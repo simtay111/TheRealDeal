@@ -62,7 +62,7 @@
     <Compile Include="Relationships\ProfileRelationships\ProfileToLocationRelationship.cs" />
     <Compile Include="Relationships\BaseNode\LocationRelationship.cs" />
     <Compile Include="Relationships\RelationsTypes.cs" />
-    <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Repositories\PickUpPickUpGameRepository.cs" />
     <Compile Include="Repositories\InviteRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
     <Compile Include="Mappers\AccountMapper.cs" />
@@ -73,6 +73,7 @@
     <Compile Include="Relationships\BaseNode\BaseNodeRelationship.cs" />
     <Compile Include="Relationships\BaseNode\SportRelationship.cs" />
     <Compile Include="Relationships\AccountRelationships\HasProfileRelationship.cs" />
+    <Compile Include="Repositories\TeamGameRepository.cs" />
     <Compile Include="RetrievedGame.cs" />
     <Compile Include="SchemaNodes\SchemaNode.cs" />
     <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
