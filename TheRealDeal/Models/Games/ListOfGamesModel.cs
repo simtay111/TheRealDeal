@@ -5,7 +5,6 @@ namespace TheRealDeal.Models.Games
 {
     public class ListOfGamesModel
     {
-        public IList<Game> Games { get; set; }
 
         public string CurrentProfile { get; set; }
     }
