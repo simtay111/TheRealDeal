@@ -93,7 +93,7 @@ namespace RecreateMeSql.Repositories
 
         public IList<PickUpGame> GetPickupGamesForProfile(string profileId)
         {
-            var gamesWithTeams = _graphClient.ProfileWithId(profileId).GamesWithTeamsForProfile().Select(x => x.Data.Id).ToList();
+            var gamesWithTeams = _graphClient.ProfileWithId(profileId).GamesWithoutTeamsForProfile().Select(x => x.Data.Id).ToList();
 
             return gamesWithTeams.Select(game => _gameMapper.MapPickupGame(_graphClient.GameWithId(game))).ToList();
         }
