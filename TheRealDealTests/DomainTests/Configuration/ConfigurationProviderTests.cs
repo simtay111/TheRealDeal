@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Configuration;
+using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Configuration;
-using System.Configuration;
 
 namespace TheRealDealTests.DomainTests.Configuration
 {

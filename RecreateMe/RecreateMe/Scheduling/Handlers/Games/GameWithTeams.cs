@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 
 using RecreateMe.Locales;
 using RecreateMe.Sports;
-using RecreateMe.Teams;
 
 namespace RecreateMe.Scheduling.Handlers.Games
 {

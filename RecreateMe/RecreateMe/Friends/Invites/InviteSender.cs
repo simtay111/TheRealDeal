@@ -1,7 +1,4 @@
 using System;
-using Autofac;
-using Autofac.Builder;
-using Autofac.Core;
 
 namespace RecreateMe.Friends.Invites
 {

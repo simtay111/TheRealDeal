@@ -1,6 +1,4 @@
-﻿using System;
-using RecreateMe.Scheduling;
-using RecreateMe.Scheduling.Handlers.Games;
+﻿using RecreateMe.Scheduling;
 
 namespace RecreateMe.Friends.Invites.Handlers
 {
@@ -25,7 +23,6 @@ namespace RecreateMe.Friends.Invites.Handlers
                 return new AcceptPickupGameResponse { Status = ResponseCodes.GameIsFull };
 
             _gameRepository.AddPlayerToGame(request.GameId, request.ProfileId);
-
 
             return new AcceptPickupGameResponse { Status = ResponseCodes.Success };
         }

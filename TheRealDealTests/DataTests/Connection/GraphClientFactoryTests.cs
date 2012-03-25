@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Neo4jClient;
 using RecreateMeSql.Connection;
 
 namespace TheRealDealTests.DataTests.Connection

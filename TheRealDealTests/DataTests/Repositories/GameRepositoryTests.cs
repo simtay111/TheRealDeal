@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;

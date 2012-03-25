@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using RecreateMe.Teams;
+﻿using RecreateMe.Teams;
 
 namespace TheRealDeal.Models.Teams
 {

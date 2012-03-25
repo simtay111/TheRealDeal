@@ -6,7 +6,6 @@ using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
-using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.Relationships.GameRelationships;
 using RecreateMeSql.Relationships.ProfileRelationships;

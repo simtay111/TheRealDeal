@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using RecreateMe.Friends.Handlers;
 using RecreateMe.Profiles;
-using RecreateMeSql;
 
 namespace TheRealDealTests.DomainTests.Friends.Handlers
 {

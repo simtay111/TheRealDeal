@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using RecreateMe;
 using RecreateMe.Profiles;
 using RecreateMe.Profiles.Handlers;
-using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Profile;
 

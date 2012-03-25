@@ -1,14 +1,12 @@
 ﻿using System.Linq;
-using NUnit.Framework;
-using Neo4jClient;
 using Neo4jClient.Gremlin;
+using NUnit.Framework;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships;
 using TheRealDealTests.DataTests.DataBuilder;
-using TheRealDealTests.DomainTests;
 
 namespace TheRealDealTests.DataTests.Mappers
 {

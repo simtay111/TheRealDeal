@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
-using Neo4jClient;
+﻿using System.Linq;
 using Neo4jClient.Gremlin;
-using RecreateMeSql;
+using NUnit.Framework;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.Repositories;

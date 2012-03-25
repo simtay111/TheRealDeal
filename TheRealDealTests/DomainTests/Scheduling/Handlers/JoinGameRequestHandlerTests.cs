@@ -2,7 +2,6 @@ using System;
 using Moq;
 using NUnit.Framework;
 using RecreateMe;
-using RecreateMe.Profiles;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Handlers;
 using RecreateMe.Scheduling.Handlers.Games;

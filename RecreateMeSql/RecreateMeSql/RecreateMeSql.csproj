@@ -34,9 +34,6 @@
     <Reference Include="Neo4jClient">
       <HintPath>..\..\packages\Neo4jClient.1.0.0.272\lib\Neo4jClient.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\DatabaseTests\SepiaGroup-Neo4jRestNet-ac4b5be\Neo4jRestNet\bin\Debug\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\..\packages\RestSharp.101.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>

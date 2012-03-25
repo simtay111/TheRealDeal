@@ -3,7 +3,6 @@ using System.Linq;
 using Neo4jClient;
 using RecreateMe.Sports;
 using RecreateMeSql.Connection;
-using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.SchemaNodes;
 

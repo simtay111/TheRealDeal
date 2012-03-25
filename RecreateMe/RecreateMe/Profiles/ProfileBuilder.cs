@@ -1,4 +1,3 @@
-using System;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 

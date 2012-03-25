@@ -1,6 +1,5 @@
 using System;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 
 namespace RecreateMeSql

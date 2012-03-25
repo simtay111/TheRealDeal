@@ -5,7 +5,6 @@ using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
-using RecreateMe.Teams;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games
 {

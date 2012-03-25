@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Linq;
 using Neo4jClient.Gremlin;
-using RecreateMe.Locales;
-using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Handlers.Games;
-using RecreateMe.Sports;
-using RecreateMeSql.Relationships;
 
 namespace RecreateMeSql.Mappers
 {

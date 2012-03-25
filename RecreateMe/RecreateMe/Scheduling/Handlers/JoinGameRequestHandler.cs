@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using RecreateMe.Scheduling.Handlers.Games;
 
