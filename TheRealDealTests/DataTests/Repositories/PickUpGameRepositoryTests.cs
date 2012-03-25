@@ -57,7 +57,7 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
-        public void CanGetListOfGamesThatProfileIsPartOfIncludingTeams()
+        public void CanGetListOfGamesThatProfileIsPartOf()
         {
             _data.CreateData();
 

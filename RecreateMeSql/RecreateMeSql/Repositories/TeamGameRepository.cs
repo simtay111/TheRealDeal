@@ -24,6 +24,7 @@ namespace RecreateMeSql.Repositories
         public TeamGameRepository()
             : this(GraphClientFactory.Create(), new GameMapper()) { }
 
+
         public void SaveTeamGame(GameWithTeams game)
         {
             CreateGameBaseNode();

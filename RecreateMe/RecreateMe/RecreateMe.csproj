@@ -86,6 +86,7 @@
     <Compile Include="ResponseCodes.cs" />
     <Compile Include="ResponseCodesStrings.cs" />
     <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\Games\Game.cs" />
     <Compile Include="Scheduling\Handlers\Games\GameFactory.cs" />
