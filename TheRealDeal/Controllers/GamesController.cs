@@ -36,7 +36,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport};
 
-            var handler = new SearchForGameRequestHandler(new PickUpGameRepository());
+            var handler = new SearchForPickupGameRequestHandler(new PickUpGameRepository());
 
             var response = handler.Handle(request);
 
