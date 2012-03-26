@@ -6,11 +6,11 @@ using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMe.Scheduling.Handlers
 {
-    public class SearchForGameRequestHandler : IHandler<SearchForPickupGameRequest, SearchForPickUpGameResponse>
+    public class SearchForPickupGameRequestHandler : IHandler<SearchForPickupGameRequest, SearchForPickUpGameResponse>
     {
         private readonly IPickUpGameRepository _pickUpGameRepository;
 
-        public SearchForGameRequestHandler(IPickUpGameRepository pickUpGameRepository)
+        public SearchForPickupGameRequestHandler(IPickUpGameRepository pickUpGameRepository)
         {
             _pickUpGameRepository = pickUpGameRepository;
         }

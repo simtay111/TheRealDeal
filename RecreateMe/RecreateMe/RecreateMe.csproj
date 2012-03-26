@@ -86,6 +86,7 @@
     <Compile Include="ResponseCodes.cs" />
     <Compile Include="ResponseCodesStrings.cs" />
     <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\SearchForTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\Games\GameFactory.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandler.cs" />
     <Compile Include="Scheduling\ITeamGameRepository.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />
-    <Compile Include="Scheduling\Handlers\SearchForGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\SearchForPickupGameRequestHandler.cs" />
     <Compile Include="Scheduling\IPickUpGameRepository.cs" />
     <Compile Include="Sports\ISportRepository.cs" />
     <Compile Include="Sports\SkillLevel.cs" />
