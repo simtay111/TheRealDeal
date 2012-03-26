@@ -54,6 +54,11 @@ namespace RecreateMeSql.Repositories
             CreateTeamInGameRelationship(gameNode.Reference, teamid);
         }
 
+        public IEnumerable<GameWithTeams> FindTeamGameByLocation(string location)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private NodeReference<GameWithTeams> CreateTeamGameNodeAndSaveGenericData(GameWithTeams game)
         {
             var gameBaseNode = GraphClient.GameBaseNode().Single();
