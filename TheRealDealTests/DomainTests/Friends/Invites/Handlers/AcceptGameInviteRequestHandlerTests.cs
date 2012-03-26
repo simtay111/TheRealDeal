@@ -11,14 +11,14 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
     [TestFixture]
     public class AcceptGameInviteRequestHandlerTests
     {
-        private Mock<IGameRepository> _gameRepo;
+        private Mock<IPickUpGameRepository> _gameRepo;
         private Mock<IInviteRepository> _inviteRepo;
 
         [SetUp]
         public void SetUp()
         {
             _inviteRepo = new Mock<IInviteRepository>();
-            _gameRepo = new Mock<IGameRepository>();
+            _gameRepo = new Mock<IPickUpGameRepository>();
         }
 
         [Test]

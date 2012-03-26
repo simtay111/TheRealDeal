@@ -21,9 +21,9 @@ namespace RecreateMe.Scheduling.Handlers.Games
         }
 
         public DateTimeOffset DateTime { get; set; }
-
+        [JsonIgnore]
         public Sport Sport { get; set; }
-
+        [JsonIgnore]
         public Location Location { get; set; }
 
         public int? MinPlayers { get; set; }
@@ -33,7 +33,7 @@ namespace RecreateMe.Scheduling.Handlers.Games
         public string Id { get; set; }
 
         public bool IsPrivate { get; set; }
-
+        [JsonIgnore]
         public string Creator { get; set; }
 
         public void AddTeam(string teamId)

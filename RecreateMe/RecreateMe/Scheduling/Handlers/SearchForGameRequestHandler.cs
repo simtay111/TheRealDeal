@@ -8,11 +8,11 @@ namespace RecreateMe.Scheduling.Handlers
 {
     public class SearchForGameRequestHandler : IHandler<SearchForPickupGameRequest, SearchForPickUpGameResponse>
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly IPickUpGameRepository _pickUpGameRepository;
 
-        public SearchForGameRequestHandler(IGameRepository gameRepository)
+        public SearchForGameRequestHandler(IPickUpGameRepository pickUpGameRepository)
         {
-            _gameRepository = gameRepository;
+            _pickUpGameRepository = pickUpGameRepository;
         }
 
         public SearchForPickUpGameResponse Handle(SearchForPickupGameRequest request)
@@ -21,7 +21,7 @@ namespace RecreateMe.Scheduling.Handlers
 
             var results = new List<PickUpGame>();
 
-            results.AddRange(_gameRepository.FindPickUpGameByLocation(request.Location));
+            results.AddRange(_pickUpGameRepository.FindPickUpGameByLocation(request.Location));
 
             if (!string.IsNullOrEmpty(request.Sport))
                results = results.Where(x => x.Sport.Name == request.Sport).ToList();

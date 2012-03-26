@@ -8,13 +8,10 @@ using RecreateMeSql.Relationships.AccountRelationships;
 
 namespace RecreateMeSql.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly GraphClient _graphClient;
-
-        public UserRepository(GraphClient graphClient)
+        public UserRepository(GraphClient graphClient) : base (graphClient)
         {
-            _graphClient = graphClient;
         }
 
         public UserRepository(): this(GraphClientFactory.Create())
@@ -25,23 +22,23 @@ namespace RecreateMeSql.Repositories
         {
             var account = new Account { Password = password, AccountName = userName };
 
-            var rootnode = _graphClient.Get(new RootNode());
+            var rootnode = GraphClient.Get(new RootNode());
 
-            var accountNode = _graphClient.Create(account);
+            var accountNode = GraphClient.Create(account);
 
-            _graphClient.CreateRelationship(rootnode.Reference, new AccountRelationship(accountNode));
+            GraphClient.CreateRelationship(rootnode.Reference, new AccountRelationship(accountNode));
         }
 
         public bool AlreadyExists(string username)
         {
-            var nodes = _graphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => n.AccountName == username);
+            var nodes = GraphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => n.AccountName == username);
 
             return nodes.Any();
         }
 
         public bool FoundUserByNameAndPassword(string username, string password)
         {
-            var accountNode = _graphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
+            var accountNode = GraphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
 
             if (accountNode == null)
                 return false;

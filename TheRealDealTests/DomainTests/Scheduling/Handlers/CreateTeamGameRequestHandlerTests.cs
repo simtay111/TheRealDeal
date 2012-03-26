@@ -11,34 +11,34 @@ using RecreateMe.Sports;
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 {
     [TestFixture]
-    public class CreatePickupGameRequestHandlerTests
+    public class CreateTeamGameRequestHandlerTests
     {
         private const string SoccerName = "Soccer";
         private const string LocationName = "myLoc";
         private Mock<ISportRepository> _mockSportRepo;
         private Mock<ILocationRepository> _mockLocationRepo;
-        private Mock<IPickUpGameRepository> _mockGameRepo;
+        private Mock<ITeamGameRepository> _mockGameRepo;
         private Mock<IGameFactory> _mockGameFactory;
         private Sport _sport;
         private Location _location;
-        private PickUpGame _pickUpGame;
+        private GameWithTeams _teamGame;
 
         [SetUp]
         public void SetUp()
         {
             _sport = new Sport { Name = SoccerName };
             _location = new Location { Name = LocationName };
-            _pickUpGame = new PickUpGame(DateTime.Now, _sport, _location);
+            _teamGame = new GameWithTeams(DateTime.Now, _sport, _location);
+            _mockGameRepo = new Mock<ITeamGameRepository>();
         }
 
         [Test]
         public void CanHandleRequest()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IPickUpGameRepository>();
             const string location = LocationName;
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   DateTime = "03/03/03 12:00",
                                   Location = location,
@@ -58,11 +58,10 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void SavesWhichProfileCreatedTheGame()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IPickUpGameRepository>();
             const string location = LocationName;
             const string profile1 = "Profile1";
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   DateTime = "03/03/03 12:00",
                                   Location = location,
@@ -77,17 +76,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            _mockGameRepo.Verify(x => x.SavePickUpGame(It.Is<PickUpGame>(y => y.Creator == profile1)));
+            _mockGameRepo.Verify(x => x.SaveTeamGame(It.Is<GameWithTeams>(y => y.Creator == profile1)));
         }
 
         [Test]
         public void ResponseReturnsWithGameIdOfCreatedGame()
         {
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IPickUpGameRepository>();
+            _mockGameRepo = new Mock<ITeamGameRepository>();
             const string location = LocationName;
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
             {
                 DateTime = "03/03/03 12:00",
                 Location = location,
@@ -101,7 +100,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That(response.GameId, Is.EqualTo(_pickUpGame.Id));
+            Assert.That(response.GameId, Is.EqualTo(_teamGame.Id));
         }
 
         [Test]
@@ -109,19 +108,19 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             var date = DateTime.Now;
             SetupMockSportLocationAndGameRepos();
-            _mockGameRepo = new Mock<IPickUpGameRepository>();
-            _pickUpGame = new PickUpGame(date, _sport, _location) { IsPrivate = true };
-            var nonPrivateGame = new PickUpGame(date, _sport, _location);
+            _mockGameRepo = new Mock<ITeamGameRepository>();
+            _teamGame = new GameWithTeams(date, _sport, _location) { IsPrivate = true };
+            var nonPrivateGame = new GameWithTeams(date, _sport, _location);
             _mockGameFactory = new Mock<IGameFactory>();
-            _mockGameFactory.Setup(x => x.CreatePickUpGame(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), true)).Returns(
-                _pickUpGame);
-            _mockGameFactory.Setup(x => x.CreatePickUpGame(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), false)).Returns(
+            _mockGameFactory.Setup(x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), true)).Returns(
+                _teamGame);
+            _mockGameFactory.Setup(x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), false)).Returns(
                 nonPrivateGame);
-            _mockGameRepo.Setup(x => x.SavePickUpGame(It.IsAny<PickUpGame>())).Verifiable();
+            _mockGameRepo.Setup(x => x.SaveTeamGame(It.IsAny<GameWithTeams>())).Verifiable();
 
             const string location = LocationName;
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
             {
                 DateTime = date.ToLongDateString(),
                 Location = location,
@@ -135,7 +134,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            _mockGameRepo.Verify(x => x.SavePickUpGame(_pickUpGame), Times.AtLeastOnce());
+            _mockGameRepo.Verify(x => x.SaveTeamGame(_teamGame), Times.AtLeastOnce());
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
@@ -145,7 +144,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             SetupMockSportLocationAndGameRepos();
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   Location = "Moo",
                                   Sport = SoccerName,
@@ -163,7 +162,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             SetupMockSportLocationAndGameRepos();
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   Location = "Moo",
                                   Sport = SoccerName,
@@ -182,7 +181,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             SetupMockSportLocationAndGameRepos();
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   Location = null,
                                   Sport = SoccerName,
@@ -200,7 +199,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         {
             SetupMockSportLocationAndGameRepos();
 
-            var request = new CreatePickupGameRequest
+            var request = new CreateTeamGameRequest
                               {
                                   Location = "Loc",
                                   Sport = null,
@@ -218,7 +217,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CanCreateAGameWithNoTeams()
         {
             SetupMockSportLocationAndGameRepos();
-            var request = new CreatePickupGameRequest()
+            var request = new CreateTeamGameRequest()
             {
                 DateTime = "03/03/03 12:00",
                 Location = LocationName,
@@ -226,12 +225,12 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                 MinPlayers = 3,
                 Sport = SoccerName
             };
-            var gameWithoutTeams = new PickUpGame(DateTime.Parse(request.DateTime), _sport, _location);
+            var gameWithoutTeams = new GameWithTeams(DateTime.Parse(request.DateTime), _sport, _location);
             _mockGameFactory.Setup(
-                x => x.CreatePickUpGame(It.Is<DateTime>(d => d == DateTime.Parse(request.DateTime))
+                x => x.CreateGameWithTeams(It.Is<DateTime>(d => d == DateTime.Parse(request.DateTime))
                     , It.Is<Sport>(d => d == _sport), It.Is<Location>(d => d == _location), It.IsAny<bool>())).Returns(
                     gameWithoutTeams);
-            _mockGameRepo.Setup(x => x.SavePickUpGame(It.Is<PickUpGame>(d => d == gameWithoutTeams)));
+            _mockGameRepo.Setup(x => x.SaveTeamGame(It.Is<GameWithTeams>(d => d == gameWithoutTeams)));
 
             var handler = CreateHandler();
 
@@ -240,9 +239,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
-        private CreatePickupGameRequestHandler CreateHandler()
+        private CreateTeamGameRequestHandler CreateHandler()
         {
-            return new CreatePickupGameRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
+            return new CreateTeamGameRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
                                                 _mockGameRepo.Object, _mockGameFactory.Object);
         }
 
@@ -252,11 +251,11 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockSportRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_sport);
             _mockLocationRepo = new Mock<ILocationRepository>();
             _mockLocationRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(_location);
-            _mockGameRepo = new Mock<IPickUpGameRepository>();
+            _mockGameRepo = new Mock<ITeamGameRepository>();
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(
-                x => x.CreatePickUpGame(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), It.IsAny<bool>())).Returns(
-                    _pickUpGame);
+                x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), It.IsAny<bool>())).Returns(
+                    _teamGame);
         }
     }
 }

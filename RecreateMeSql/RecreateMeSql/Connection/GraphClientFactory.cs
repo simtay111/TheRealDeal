@@ -5,17 +5,17 @@ namespace RecreateMeSql.Connection
 {
     public class GraphClientFactory
     {
-        private static GraphClient _graphClient;
+        private static GraphClient GraphClient;
 
         public static GraphClient Create()
         {
-            if (_graphClient == null)
+            if (GraphClient == null)
             {
-                _graphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
-                _graphClient.Connect();
+                GraphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
+                GraphClient.Connect();
             }
                 
-            return _graphClient;
+            return GraphClient;
         }
     }
 }

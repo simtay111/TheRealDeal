@@ -17,16 +17,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var profileId = "1234";
             var pickUpGame = new PickUpGame(DateTimeOffset.Now, null, null);
             var gameWithTeams = new GameWithTeams(DateTimeOffset.Now, null, null);
-            var gameRepo = new Mock<IGameRepository>();
+            var gameRepo = new Mock<IPickUpGameRepository>();
+            var teamRepo = new Mock<ITeamGameRepository>();
             gameRepo.Setup(x => x.GetPickupGamesForProfile(profileId)).Returns(new List<PickUpGame> { pickUpGame });
-            gameRepo.Setup(x => x.GetTeamGamesForProfile(profileId)).Returns(new List<GameWithTeams> { gameWithTeams });
+            teamRepo.Setup(x => x.GetTeamGamesForProfile(profileId)).Returns(new List<GameWithTeams> { gameWithTeams });
 
             var request = new GetGamesForProfileRequest
                               {
                                   ProfileId = profileId
                               };
 
-            var handler = new GetGamesForProfileRequestHandler(gameRepo.Object);
+            var handler = new GetGamesForProfileRequestHandler(gameRepo.Object, teamRepo.Object);
 
             var response = handler.Handle(request);
 
