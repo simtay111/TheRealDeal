@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using NUnit.Framework;
 using Neo4jClient;
+using NUnit.Framework;
 using RecreateMeSql;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Repositories;

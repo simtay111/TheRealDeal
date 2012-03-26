@@ -1,5 +1,4 @@
 ﻿using Neo4jClient;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 
 namespace RecreateMeSql.Relationships.GameRelationships

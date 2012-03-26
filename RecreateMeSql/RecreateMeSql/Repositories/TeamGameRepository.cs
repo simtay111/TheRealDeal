@@ -7,7 +7,6 @@ using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.Relationships.GameRelationships;
-using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
 {

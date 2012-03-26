@@ -1,6 +1,5 @@
 ﻿using Neo4jClient;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
 
 namespace RecreateMeSql.Relationships.GameRelationships
 {

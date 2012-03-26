@@ -4,7 +4,6 @@ using Neo4jClient;
 using RecreateMe.Sports;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships.BaseNode;
-using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
 {
