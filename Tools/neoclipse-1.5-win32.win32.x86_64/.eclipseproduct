@@ -1,0 +1,5 @@
+#Eclipse Product File
+#Thu Nov 10 16:00:28 CET 2011
+version=1.5.0
+name=Neoclipse
+id=org.neo4j.neoclipse.neoclipseProduct

@@ -1,0 +1,875 @@
+2012-03-25 20:45:31.234-0700: Creating new db @ D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db\neostore
+2012-03-25 20:45:33.402-0700: Opened [D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1] clean empty log, version=0, lastTxId=1
+2012-03-25 20:45:33.449-0700: Opened [D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] clean empty log, version=0, lastTxId=1
+2012-03-25 20:45:33.465-0700: TM new log: tm_tx_log.1
+2012-03-25 20:45:33.512-0700: --- STARTUP diagnostics START ---
+2012-03-25 20:45:33.512-0700: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId[time:1332733531249, id:-7365477673237321978, store version: 13561656364791302]
+2012-03-25 20:45:33.512-0700: Kernel version: Neo4j - Graph Database Kernel 1.6.1
+2012-03-25 20:45:33.512-0700: Neo4j component versions:
+2012-03-25 20:45:33.512-0700:   Neo4j - Graph Database Kernel 1.6.1
+2012-03-25 20:45:33.512-0700: Diagnostics providers:
+    KernelDiagnostics:Versions
+    org.neo4j.kernel.info.DiagnosticsManager
+    SYSTEM_MEMORY
+    JAVA_MEMORY
+    OPERATING_SYSTEM
+    JAVA_VIRTUAL_MACHINE
+    CLASSPATH
+    LIBRARY_PATH
+    SYSTEM_PROPERTIES
+    org.neo4j.kernel.Config
+    NEO_STORE_VERSIONS
+    NEO_STORE_ID_USAGE
+    KernelDiagnostics:StoreFiles
+2012-03-25 20:45:33.512-0700: System memory information:
+    Total Physical memory: 7.98 GB
+    Free Physical memory: 6.59 GB
+    Committed virtual memory: 63.93 MB
+    Total swap space: 15.96 GB
+    Free swap space: 14.22 GB
+2012-03-25 20:45:33.512-0700: JVM memory information:
+    Free  memory: 4.16 MB
+    Total memory: 9.50 MB
+    Max   memory: 56.94 MB
+    Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+    Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen, PS Perm Gen]
+    Memory Pool: Code Cache (Non-heap memory): committed=2.44 MB, used=545.50 kB, max=48.00 MB, threshold=0.00 B
+    Memory Pool: PS Eden Space (Heap memory): committed=4.69 MB, used=2.28 MB, max=19.44 MB, threshold=?
+    Memory Pool: PS Survivor Space (Heap memory): committed=512.00 kB, used=496.02 kB, max=512.00 kB, threshold=?
+    Memory Pool: PS Old Gen (Heap memory): committed=4.31 MB, used=2.65 MB, max=42.69 MB, threshold=0.00 B
+    Memory Pool: PS Perm Gen (Non-heap memory): committed=20.75 MB, used=7.90 MB, max=82.00 MB, threshold=0.00 B
+2012-03-25 20:45:33.527-0700: Operating system information:
+    Operating System: Windows 7; version: 6.1; arch: amd64; cpus: 8
+    Process id: 4344@cbc-desktop
+    Byte order: LITTLE_ENDIAN
+2012-03-25 20:45:33.527-0700: JVM information:
+    VM Name: Java HotSpot(TM) 64-Bit Server VM
+    VM Vendor: Oracle Corporation
+    VM Version: 22.1-b02
+    JIT compiler: HotSpot 64-Bit Tiered Compilers
+    VM Arguments: [-Dorg.neo4j.server.properties=conf/neo4j-server.properties, -Djava.util.logging.config.file=conf/logging.properties, -Xms3m, -Xmx64m]
+2012-03-25 20:45:33.527-0700: Java classpath:
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-tests.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-jmx-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/mimepull-1.6.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/scala-library-2.9.0-1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/org.apache.servicemix.bundles.jline-0.9.94_1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\resources.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-digester-1.8.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/zipfs.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-community-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/neo4j-gremlin-plugin-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jsse.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/gremlin-groovy-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-beanutils-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/blueprints-core-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/geronimo-jta_1.1_spec-1.1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/log4j-over-slf4j-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/antlr-2.7.7.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/rrd4j-2.0.7.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-static-web.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-graph-matching-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/neo4j-cypher-plugin-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/slf4j-jdk14-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1-tests.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-beanutils-core-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jackson-core-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/asm-tree-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jersey-core-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/gremlin-java-1.4.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jce.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/asm-analysis-3.2.jar
+     [loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jcl-over-slf4j-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jetty-util-6.1.25.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-cypher-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\sunrsasign.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/dnsns.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jansi-1.5.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/server-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-lucene-index-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-configuration-1.6.jar
+     [bootstrap] C:\Program Files\Java\jre7\classes
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jettison-1.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jersey-server-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-lang-2.4.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunmscapi.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/pipes-0.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jackson-jaxrs-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/asm-util-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-collections-3.2.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\rt.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-logging-1.1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/blueprints-neo4j-graph-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-shell-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jetty-6.1.25.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\charsets.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/localedata.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jsr311-api-1.1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/stax-api-1.0.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunjce_provider.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/servlet-api-2.5-20081211.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jersey-multipart-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/jackson-mapper-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/lucene-core-3.5.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/slf4j-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/asm-3.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/groovy-1.8.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/commons-io-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-udc-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/lib/neo4j-graph-algo-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/neo4j-community-1.6.1/system/lib/asm-commons-3.2.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunec.jar
+2012-03-25 20:45:33.543-0700: Library path:
+    C:\Program Files\Java\jre7\bin
+    C:\Windows\Sun\Java\bin
+    C:\Windows\System32
+    C:\Windows
+    C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+    C:\Windows\System32
+    C:\Windows
+    C:\Windows\System32\wbem
+    C:\Windows\System32\WindowsPowerShell\v1.0
+    C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\DTS\Binn
+    C:\Program Files (x86)\Git\cmd
+    C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0
+    D:\Code\TheRealDeal\neo4j-community-1.6.1
+    D:\Code\TheRealDeal\neo4j-community-1.6.1
+2012-03-25 20:45:33.543-0700: System.properties:
+    sun.boot.library.path = C:\Program Files\Java\jre7\bin
+    org.neo4j.server.properties = conf/neo4j-server.properties
+    path.separator = ;
+    file.encoding.pkg = sun.io
+    user.country = US
+    user.script = 
+    sun.java.launcher = SUN_STANDARD
+    sun.os.patch.level = Service Pack 1
+    user.dir = D:\Code\THEREA~1\NEO4J-~1.1
+    user.variant = 
+    sun.jnu.encoding = Cp1252
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    user.home = C:\
+    user.timezone = America/Los_Angeles
+    file.encoding = Cp1252
+    user.name = CBC-DESKTOP$
+    sun.java.command = org.neo4j.server.Bootstrapper
+    sun.arch.data.model = 64
+    user.language = en
+    awt.toolkit = sun.awt.windows.WToolkit
+    file.separator = \
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.cpu.endian = little
+    sun.desktop = windows
+    sun.cpu.isalist = amd64
+2012-03-25 20:45:33.543-0700: Neo4j Kernel properties:
+    store_dir=D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db
+    logical_log=D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log
+    node_auto_indexing=false
+    neostore.relationshipstore.db.mapped_memory=100M
+    keep_logical_logs=true
+    neostore.nodestore.db.mapped_memory=20M
+    use_memory_mapped_buffers=false
+    rebuild_idgenerators_fast=true
+    neostore.propertystore.db.index.keys.mapped_memory=1M
+    neostore.propertystore.db.arrays.mapped_memory=130M
+    neostore.propertystore.db.strings.mapped_memory=130M
+    neo_store=D:\Code\TheRealDeal\neo4j-community-1.6.1\data\graph.db\neostore
+    neostore.propertystore.db.index.mapped_memory=1M
+    create=true
+    enable_remote_shell=true
+    neostore.propertystore.db.mapped_memory=90M
+    relationship_auto_indexing=false
+    neo4j.ext.udc.source=server
+2012-03-25 20:45:33.543-0700: Store versions:
+    NeoStore v0.A.0
+    NodeStore v0.A.0
+    RelationshipStore v0.A.0
+    RelationshipTypeStore v0.A.0
+    PropertyStore v0.A.0
+    PropertyIndexStore v0.A.0
+    StringPropertyStore v0.A.0
+    ArrayPropertyStore v0.A.0
+2012-03-25 20:45:33.543-0700: Id usage:
+    NodeStore: used=1 high=0
+    RelationshipStore: used=0 high=-1
+    RelationshipTypeStore: used=0 high=-1
+    PropertyStore: used=0 high=-1
+    PropertyIndexStore: used=0 high=-1
+    StringPropertyStore: used=1 high=0
+    ArrayPropertyStore: used=1 high=0
+2012-03-25 20:45:33.543-0700: Storage files:
+    active_tx_log: 11.00 B
+    index:
+      lucene-store.db: 40.00 B
+      lucene.log.1: 16.00 B
+      lucene.log.active: 4.00 B
+    - Total: 60.00 B
+    lock: 0.00 B
+    messages.log: 13.25 kB
+    neostore: 54.00 B
+    neostore.id: 9.00 B
+    neostore.nodestore.db: 9.00 B
+    neostore.nodestore.db.id: 9.00 B
+    neostore.propertystore.db: 0.00 B
+    neostore.propertystore.db.arrays: 128.00 B
+    neostore.propertystore.db.arrays.id: 9.00 B
+    neostore.propertystore.db.id: 9.00 B
+    neostore.propertystore.db.index: 0.00 B
+    neostore.propertystore.db.index.id: 9.00 B
+    neostore.propertystore.db.index.keys: 38.00 B
+    neostore.propertystore.db.index.keys.id: 9.00 B
+    neostore.propertystore.db.strings: 128.00 B
+    neostore.propertystore.db.strings.id: 9.00 B
+    neostore.relationshipstore.db: 0.00 B
+    neostore.relationshipstore.db.id: 9.00 B
+    neostore.relationshiptypestore.db: 0.00 B
+    neostore.relationshiptypestore.db.id: 9.00 B
+    neostore.relationshiptypestore.db.names: 38.00 B
+    neostore.relationshiptypestore.db.names.id: 9.00 B
+    nioneo_logical.log.1: 16.00 B
+    nioneo_logical.log.active: 4.00 B
+    tm_tx_log.1: 0.00 B
+2012-03-25 20:45:33.558-0700: --- STARTUP diagnostics END ---
+2012-03-25 20:45:33.621-0700: Extension org.neo4j.kernel.KernelExtension[kernel jmx] loaded ok
+2012-03-25 20:45:33.621-0700: Extension org.neo4j.kernel.KernelExtension[dummy] loaded ok
+2012-03-25 20:45:33.621-0700: Extension org.neo4j.kernel.KernelExtension[other dummy] loaded ok
+2012-03-25 20:45:34.775-0700: Extension org.neo4j.kernel.KernelExtension[shell] loaded ok
+2012-03-25 20:45:34.775-0700: Extension org.neo4j.kernel.KernelExtension[kernel udc] loaded ok
+2012-03-25 20:45:34.791-0700: --- SERVER STARTUP START ---
+2012-03-25 20:45:34.791-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator START ---
+2012-03-25 20:45:34.791-0700: Server configuration:
+    org.neo4j.server.database.location = data/graph.db
+    org.neo4j.server.webserver.http.enabled = true
+    org.neo4j.server.webserver.port = 7474
+    org.neo4j.server.webserver.https.enabled = true
+    org.neo4j.server.webserver.https.port = 7473
+    org.neo4j.server.webserver.https.cert.location = conf/ssl/snakeoil.cert
+    org.neo4j.server.webserver.https.key.location = conf/ssl/snakeoil.key
+    org.neo4j.server.webserver.https.keystore.location = system/keystore
+    org.neo4j.server.webadmin.rrdb.location = data/rrd
+    org.neo4j.server.db.tuning.properties = conf/neo4j.properties
+    org.neo4j.server.webadmin.management.uri = /db/manage/
+    org.neo4j.server.webadmin.data.uri = /db/data/
+2012-03-25 20:45:34.791-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator END ---
+2012-03-25 20:45:34.822-0700: Mounted discovery module (org.neo4j.server.rest.discovery) at: /
+2012-03-25 20:45:34.884-0700: Loaded server plugin "CypherPlugin" (org.neo4j.server.plugin.cypher.CypherPlugin)
+2012-03-25 20:45:34.884-0700:   GraphDatabaseService.execute_query: execute a query
+2012-03-25 20:45:34.884-0700: Loaded server plugin "GremlinPlugin" (org.neo4j.server.plugin.gremlin.GremlinPlugin)
+2012-03-25 20:45:34.900-0700:   GraphDatabaseService.execute_script: execute a Gremlin script with 'g' set to the Neo4jGraph and 'results' containing the results. Only results of one object type is supported.
+2012-03-25 20:45:34.900-0700: Mounted REST API at: /db/data/
+2012-03-25 20:45:34.900-0700: Mounted management API at: /db/manage/
+2012-03-25 20:45:34.931-0700: Mounted webadmin at: /webadmin
+2012-03-25 20:45:36.398-0700: Server started on: http://localhost:7474/
+2012-03-25 20:45:36.398-0700: --- SERVER STARTUP END ---
+2012-03-26 23:32:28.894-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore non clean shutdown detected
+2012-03-26 23:32:28.902-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db non clean shutdown detected
+2012-03-26 23:32:28.904-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db.names non clean shutdown detected
+2012-03-26 23:32:28.911-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db non clean shutdown detected
+2012-03-26 23:32:28.912-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.strings non clean shutdown detected
+2012-03-26 23:32:28.913-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index non clean shutdown detected
+2012-03-26 23:32:28.913-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index.keys non clean shutdown detected
+2012-03-26 23:32:28.914-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.arrays non clean shutdown detected
+2012-03-26 23:32:28.916-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshipstore.db non clean shutdown detected
+2012-03-26 23:32:28.917-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.nodestore.db non clean shutdown detected
+2012-03-26 23:32:28.931-0700: Non clean shutdown detected on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1]. Recovery started ...
+2012-03-26 23:32:28.934-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1] logVersion=0 with committed tx=1
+2012-03-26 23:32:29.360-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1] entries found=7924 lastEntryPos=306827
+2012-03-26 23:32:29.360-0700: Internal recovery completed, scanned 7924 log entries. Recovered 1266 transactions. Last tx recovered: 1267
+2012-03-26 23:32:29.360-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] sorting 1 xids
+2012-03-26 23:32:29.360-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] checkRecoveryComplete 0 xids
+2012-03-26 23:32:29.559-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db.names rebuild id generator, highId=17 defragged count=0
+2012-03-26 23:32:29.669-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index.keys rebuild id generator, highId=13 defragged count=0
+2012-03-26 23:32:29.739-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index rebuild id generator, highId=12 defragged count=0
+2012-03-26 23:32:29.786-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.strings rebuild id generator, highId=1 defragged count=0
+2012-03-26 23:32:29.841-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.arrays rebuild id generator, highId=1 defragged count=0
+2012-03-26 23:32:30.122-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db rebuild id generator, highId=28 defragged count=0
+2012-03-26 23:32:30.286-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshipstore.db rebuild id generator, highId=389 defragged count=0
+2012-03-26 23:32:30.356-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.nodestore.db rebuild id generator, highId=238 defragged count=0
+2012-03-26 23:32:30.409-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore rebuild id generator, highId=6 defragged count=0
+2012-03-26 23:32:30.439-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] recovery completed.
+2012-03-26 23:32:30.439-0700: Recovery on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1] completed.
+2012-03-26 23:32:30.471-0700: Non clean shutdown detected on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1]. Recovery started ...
+2012-03-26 23:32:30.471-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] logVersion=0 with committed tx=1
+2012-03-26 23:32:30.471-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] entries found=0 lastEntryPos=16
+2012-03-26 23:32:30.472-0700: Internal recovery completed, scanned 0 log entries. Recovered 0 transactions. Last tx recovered: -1
+2012-03-26 23:32:30.472-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] sorting 0 xids
+2012-03-26 23:32:30.472-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] checkRecoveryComplete 0 xids
+2012-03-26 23:32:30.472-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] recovery completed.
+2012-03-26 23:32:30.472-0700: Recovery on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] completed.
+2012-03-26 23:32:30.475-0700: TM opening log: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\tm_tx_log.2
+2012-03-26 23:32:30.477-0700: TM non resolved transactions found in D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\tm_tx_log.2
+2012-03-26 23:32:30.482-0700: TM: no match found for in total 1 transaction that should have been rolled back
+2012-03-26 23:32:30.642-0700: Rotating [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.1] @ version=0 to D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.2 from position 306832
+2012-03-26 23:32:30.684-0700: Rotate: old log scanned, newLog @ pos=16
+2012-03-26 23:32:30.716-0700: Log rotated, newLog @ pos=16 and version 1
+2012-03-26 23:32:30.717-0700: Recovery completed, all transactions have been resolved to a consistent state.
+2012-03-26 23:32:30.740-0700: --- STARTUP diagnostics START ---
+2012-03-26 23:32:30.740-0700: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId[time:1332733531249, id:-7365477673237321978, store version: 13561656364791302]
+2012-03-26 23:32:30.741-0700: Kernel version: Neo4j - Graph Database Kernel 1.6.1
+2012-03-26 23:32:30.741-0700: Neo4j component versions:
+2012-03-26 23:32:30.742-0700:   Neo4j - Graph Database Kernel 1.6.1
+2012-03-26 23:32:30.744-0700: Diagnostics providers:
+    KernelDiagnostics:Versions
+    org.neo4j.kernel.info.DiagnosticsManager
+    SYSTEM_MEMORY
+    JAVA_MEMORY
+    OPERATING_SYSTEM
+    JAVA_VIRTUAL_MACHINE
+    CLASSPATH
+    LIBRARY_PATH
+    SYSTEM_PROPERTIES
+    org.neo4j.kernel.Config
+    NEO_STORE_VERSIONS
+    NEO_STORE_ID_USAGE
+    KernelDiagnostics:StoreFiles
+2012-03-26 23:32:30.745-0700: System memory information:
+    Total Physical memory: 7.98 GB
+    Free Physical memory: 6.48 GB
+    Committed virtual memory: 80.31 MB
+    Total swap space: 15.96 GB
+    Free swap space: 13.63 GB
+2012-03-26 23:32:30.747-0700: JVM memory information:
+    Free  memory: 11.99 MB
+    Total memory: 19.81 MB
+    Max   memory: 56.94 MB
+    Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+    Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen, PS Perm Gen]
+    Memory Pool: Code Cache (Non-heap memory): committed=2.44 MB, used=728.19 kB, max=48.00 MB, threshold=0.00 B
+    Memory Pool: PS Eden Space (Heap memory): committed=8.81 MB, used=3.84 MB, max=17.63 MB, threshold=?
+    Memory Pool: PS Survivor Space (Heap memory): committed=512.00 kB, used=288.00 kB, max=512.00 kB, threshold=?
+    Memory Pool: PS Old Gen (Heap memory): committed=10.50 MB, used=3.70 MB, max=42.69 MB, threshold=0.00 B
+    Memory Pool: PS Perm Gen (Non-heap memory): committed=20.75 MB, used=8.17 MB, max=82.00 MB, threshold=0.00 B
+2012-03-26 23:32:30.752-0700: Operating system information:
+    Operating System: Windows 7; version: 6.1; arch: amd64; cpus: 8
+    Process id: 4560@cbc-desktop
+    Byte order: LITTLE_ENDIAN
+2012-03-26 23:32:30.763-0700: JVM information:
+    VM Name: Java HotSpot(TM) 64-Bit Server VM
+    VM Vendor: Oracle Corporation
+    VM Version: 22.1-b02
+    JIT compiler: HotSpot 64-Bit Tiered Compilers
+    VM Arguments: [-Dorg.neo4j.server.properties=conf/neo4j-server.properties, -Djava.util.logging.config.file=conf/logging.properties, -Xms3m, -Xmx64m]
+2012-03-26 23:32:30.764-0700: Java classpath:
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-graph-matching-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\resources.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-tests.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/zipfs.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jsse.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-jmx-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/mimepull-1.6.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/org.apache.servicemix.bundles.jline-0.9.94_1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/slf4j-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-jaxrs-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-community-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/servlet-api-2.5-20081211.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-udc-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-multipart-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/blueprints-neo4j-graph-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-core-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/scala-library-2.9.0-1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/lucene-core-3.5.0.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jce.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/groovy-1.8.4.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\sunrsasign.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/dnsns.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-digester-1.8.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-server-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-cypher-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-beanutils-core-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jansi-1.5.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-util-3.2.jar
+     [bootstrap] C:\Program Files\Java\jre7\classes
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/antlr-2.7.7.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunmscapi.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/rrd4j-2.0.7.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-gremlin-plugin-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-tree-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-cypher-plugin-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-beanutils-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jcl-over-slf4j-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\rt.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/gremlin-java-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-io-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-graph-algo-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/geronimo-jta_1.1_spec-1.1.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\charsets.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/pipes-0.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-shell-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-lucene-index-1.6.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/localedata.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/stax-api-1.0.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-mapper-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-commons-3.2.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunjce_provider.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-collections-3.2.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/log4j-over-slf4j-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-lang-2.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-analysis-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/server-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jettison-1.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/blueprints-core-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jetty-util-6.1.25.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-core-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-3.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jetty-6.1.25.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-logging-1.1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/gremlin-groovy-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-static-web.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1-tests.jar
+     [loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-configuration-1.6.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jsr311-api-1.1.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunec.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/slf4j-jdk14-1.6.1.jar
+2012-03-26 23:32:30.775-0700: Library path:
+    C:\Program Files\Java\jre7\bin
+    C:\Windows\Sun\Java\bin
+    C:\Windows\System32
+    C:\Windows
+    C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+    C:\Windows\System32
+    C:\Windows
+    C:\Windows\System32\wbem
+    C:\Windows\System32\WindowsPowerShell\v1.0
+    C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\DTS\Binn
+    C:\Program Files (x86)\Git\cmd
+    C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0
+    D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1
+    D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1
+2012-03-26 23:32:30.778-0700: System.properties:
+    sun.boot.library.path = C:\Program Files\Java\jre7\bin
+    org.neo4j.server.properties = conf/neo4j-server.properties
+    path.separator = ;
+    file.encoding.pkg = sun.io
+    user.country = US
+    user.script = 
+    sun.java.launcher = SUN_STANDARD
+    sun.os.patch.level = Service Pack 1
+    user.dir = D:\Code\THEREA~1\Tools\NEO4J-~1.1
+    user.variant = 
+    sun.jnu.encoding = Cp1252
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    user.home = C:\
+    user.timezone = America/Los_Angeles
+    file.encoding = Cp1252
+    user.name = CBC-DESKTOP$
+    sun.java.command = org.neo4j.server.Bootstrapper
+    sun.arch.data.model = 64
+    user.language = en
+    awt.toolkit = sun.awt.windows.WToolkit
+    file.separator = \
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.cpu.endian = little
+    sun.desktop = windows
+    sun.cpu.isalist = amd64
+2012-03-26 23:32:30.780-0700: Neo4j Kernel properties:
+    store_dir=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db
+    logical_log=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log
+    node_auto_indexing=false
+    neostore.relationshipstore.db.mapped_memory=100M
+    keep_logical_logs=true
+    neostore.nodestore.db.mapped_memory=20M
+    use_memory_mapped_buffers=false
+    rebuild_idgenerators_fast=true
+    neostore.propertystore.db.index.keys.mapped_memory=1M
+    neostore.propertystore.db.arrays.mapped_memory=130M
+    neostore.propertystore.db.strings.mapped_memory=130M
+    neo_store=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore
+    neostore.propertystore.db.index.mapped_memory=1M
+    create=true
+    enable_remote_shell=true
+    neostore.propertystore.db.mapped_memory=90M
+    relationship_auto_indexing=false
+    neo4j.ext.udc.source=server
+2012-03-26 23:32:30.780-0700: Store versions:
+    NeoStore v0.A.0
+    NodeStore v0.A.0
+    RelationshipStore v0.A.0
+    RelationshipTypeStore v0.A.0
+    PropertyStore v0.A.0
+    PropertyIndexStore v0.A.0
+    StringPropertyStore v0.A.0
+    ArrayPropertyStore v0.A.0
+2012-03-26 23:32:30.780-0700: Id usage:
+    NodeStore: used=238 high=237
+    RelationshipStore: used=389 high=388
+    RelationshipTypeStore: used=16 high=15
+    PropertyStore: used=28 high=27
+    PropertyIndexStore: used=12 high=11
+    StringPropertyStore: used=1 high=0
+    ArrayPropertyStore: used=1 high=0
+2012-03-26 23:32:30.781-0700: Storage files:
+    active_tx_log: 11.00 B
+    index:
+      lucene-store.db: 40.00 B
+      lucene.log.1: 16.00 B
+      lucene.log.active: 4.00 B
+    - Total: 60.00 B
+    lock: 0.00 B
+    messages.log: 36.30 kB
+    neostore: 54.00 B
+    neostore.id: 9.00 B
+    neostore.nodestore.db: 20.48 kB
+    neostore.nodestore.db.id: 9.00 B
+    neostore.propertystore.db: 921.58 kB
+    neostore.propertystore.db.arrays: 128.00 B
+    neostore.propertystore.db.arrays.id: 9.00 B
+    neostore.propertystore.db.id: 9.00 B
+    neostore.propertystore.db.index: 10.24 kB
+    neostore.propertystore.db.index.id: 9.00 B
+    neostore.propertystore.db.index.keys: 1.00 kB
+    neostore.propertystore.db.index.keys.id: 9.00 B
+    neostore.propertystore.db.strings: 128.00 B
+    neostore.propertystore.db.strings.id: 9.00 B
+    neostore.relationshipstore.db: 1024.00 kB
+    neostore.relationshipstore.db.id: 9.00 B
+    neostore.relationshiptypestore.db: 80.00 B
+    neostore.relationshiptypestore.db.id: 9.00 B
+    neostore.relationshiptypestore.db.names: 646.00 B
+    neostore.relationshiptypestore.db.names.id: 9.00 B
+    nioneo_logical.log.2: 16.00 B
+    nioneo_logical.log.active: 4.00 B
+    nioneo_logical.log.v0: 299.64 kB
+    tm_tx_log.1: 28.68 kB
+    tm_tx_log.2: 0.00 B
+2012-03-26 23:32:30.785-0700: --- STARTUP diagnostics END ---
+2012-03-26 23:32:30.866-0700: Extension org.neo4j.kernel.KernelExtension[kernel jmx] loaded ok
+2012-03-26 23:32:30.867-0700: Extension org.neo4j.kernel.KernelExtension[dummy] loaded ok
+2012-03-26 23:32:30.867-0700: Extension org.neo4j.kernel.KernelExtension[other dummy] loaded ok
+2012-03-26 23:32:31.993-0700: Extension org.neo4j.kernel.KernelExtension[shell] loaded ok
+2012-03-26 23:32:31.995-0700: Extension org.neo4j.kernel.KernelExtension[kernel udc] loaded ok
+2012-03-26 23:32:31.996-0700: --- SERVER STARTUP START ---
+2012-03-26 23:32:31.996-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator START ---
+2012-03-26 23:32:31.999-0700: Server configuration:
+    org.neo4j.server.database.location = data/graph.db
+    org.neo4j.server.webserver.http.enabled = true
+    org.neo4j.server.webserver.port = 7474
+    org.neo4j.server.webserver.https.enabled = true
+    org.neo4j.server.webserver.https.port = 7473
+    org.neo4j.server.webserver.https.cert.location = conf/ssl/snakeoil.cert
+    org.neo4j.server.webserver.https.key.location = conf/ssl/snakeoil.key
+    org.neo4j.server.webserver.https.keystore.location = system/keystore
+    org.neo4j.server.webadmin.rrdb.location = data/rrd
+    org.neo4j.server.db.tuning.properties = conf/neo4j.properties
+    org.neo4j.server.webadmin.management.uri = /db/manage/
+    org.neo4j.server.webadmin.data.uri = /db/data/
+2012-03-26 23:32:31.999-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator END ---
+2012-03-26 23:32:32.021-0700: Mounted discovery module (org.neo4j.server.rest.discovery) at: /
+2012-03-26 23:32:32.060-0700: Loaded server plugin "CypherPlugin" (org.neo4j.server.plugin.cypher.CypherPlugin)
+2012-03-26 23:32:32.061-0700:   GraphDatabaseService.execute_query: execute a query
+2012-03-26 23:32:32.062-0700: Loaded server plugin "GremlinPlugin" (org.neo4j.server.plugin.gremlin.GremlinPlugin)
+2012-03-26 23:32:32.063-0700:   GraphDatabaseService.execute_script: execute a Gremlin script with 'g' set to the Neo4jGraph and 'results' containing the results. Only results of one object type is supported.
+2012-03-26 23:32:32.064-0700: Mounted REST API at: /db/data/
+2012-03-26 23:32:32.065-0700: Mounted management API at: /db/manage/
+2012-03-26 23:32:32.096-0700: Mounted webadmin at: /webadmin
+2012-03-26 23:32:33.566-0700: Server started on: http://localhost:7474/
+2012-03-26 23:32:33.567-0700: --- SERVER STARTUP END ---
+2012-03-26 23:33:25.525-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore non clean shutdown detected
+2012-03-26 23:33:25.534-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db non clean shutdown detected
+2012-03-26 23:33:25.535-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db.names non clean shutdown detected
+2012-03-26 23:33:25.542-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db non clean shutdown detected
+2012-03-26 23:33:25.543-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.strings non clean shutdown detected
+2012-03-26 23:33:25.544-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index non clean shutdown detected
+2012-03-26 23:33:25.545-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index.keys non clean shutdown detected
+2012-03-26 23:33:25.545-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.arrays non clean shutdown detected
+2012-03-26 23:33:25.547-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshipstore.db non clean shutdown detected
+2012-03-26 23:33:25.549-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.nodestore.db non clean shutdown detected
+2012-03-26 23:33:25.563-0700: Non clean shutdown detected on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.2]. Recovery started ...
+2012-03-26 23:33:25.566-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.2] logVersion=1 with committed tx=1267
+2012-03-26 23:33:25.566-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.2] entries found=0 lastEntryPos=16
+2012-03-26 23:33:25.567-0700: Internal recovery completed, scanned 0 log entries. Recovered 0 transactions. Last tx recovered: -1
+2012-03-26 23:33:25.567-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] sorting 0 xids
+2012-03-26 23:33:25.568-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] checkRecoveryComplete 0 xids
+2012-03-26 23:33:25.620-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshiptypestore.db.names rebuild id generator, highId=17 defragged count=0
+2012-03-26 23:33:25.730-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index.keys rebuild id generator, highId=13 defragged count=0
+2012-03-26 23:33:25.810-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.index rebuild id generator, highId=12 defragged count=0
+2012-03-26 23:33:25.864-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.strings rebuild id generator, highId=1 defragged count=0
+2012-03-26 23:33:25.919-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db.arrays rebuild id generator, highId=1 defragged count=0
+2012-03-26 23:33:26.335-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.propertystore.db rebuild id generator, highId=28 defragged count=0
+2012-03-26 23:33:26.637-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.relationshipstore.db rebuild id generator, highId=389 defragged count=0
+2012-03-26 23:33:26.706-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore.nodestore.db rebuild id generator, highId=238 defragged count=0
+2012-03-26 23:33:26.758-0700: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore rebuild id generator, highId=6 defragged count=0
+2012-03-26 23:33:26.793-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log] recovery completed.
+2012-03-26 23:33:26.793-0700: Recovery on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log.2] completed.
+2012-03-26 23:33:26.823-0700: Non clean shutdown detected on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1]. Recovery started ...
+2012-03-26 23:33:26.823-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] logVersion=0 with committed tx=1
+2012-03-26 23:33:26.823-0700: [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] entries found=0 lastEntryPos=16
+2012-03-26 23:33:26.824-0700: Internal recovery completed, scanned 0 log entries. Recovered 0 transactions. Last tx recovered: -1
+2012-03-26 23:33:26.824-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] sorting 0 xids
+2012-03-26 23:33:26.824-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] checkRecoveryComplete 0 xids
+2012-03-26 23:33:26.824-0700: XaResourceManager[D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log] recovery completed.
+2012-03-26 23:33:26.824-0700: Recovery on log [D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\index\lucene.log.1] completed.
+2012-03-26 23:33:26.826-0700: TM opening log: D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\tm_tx_log.2
+2012-03-26 23:33:26.852-0700: --- STARTUP diagnostics START ---
+2012-03-26 23:33:26.853-0700: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId[time:1332733531249, id:-7365477673237321978, store version: 13561656364791302]
+2012-03-26 23:33:26.855-0700: Kernel version: Neo4j - Graph Database Kernel 1.6.1
+2012-03-26 23:33:26.855-0700: Neo4j component versions:
+2012-03-26 23:33:26.855-0700:   Neo4j - Graph Database Kernel 1.6.1
+2012-03-26 23:33:26.857-0700: Diagnostics providers:
+    KernelDiagnostics:Versions
+    org.neo4j.kernel.info.DiagnosticsManager
+    SYSTEM_MEMORY
+    JAVA_MEMORY
+    OPERATING_SYSTEM
+    JAVA_VIRTUAL_MACHINE
+    CLASSPATH
+    LIBRARY_PATH
+    SYSTEM_PROPERTIES
+    org.neo4j.kernel.Config
+    NEO_STORE_VERSIONS
+    NEO_STORE_ID_USAGE
+    KernelDiagnostics:StoreFiles
+2012-03-26 23:33:26.858-0700: System memory information:
+    Total Physical memory: 7.98 GB
+    Free Physical memory: 6.47 GB
+    Committed virtual memory: 64.45 MB
+    Total swap space: 15.96 GB
+    Free swap space: 13.63 GB
+2012-03-26 23:33:26.861-0700: JVM memory information:
+    Free  memory: 6.76 MB
+    Total memory: 13.50 MB
+    Max   memory: 56.94 MB
+    Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+    Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen, PS Perm Gen]
+    Memory Pool: Code Cache (Non-heap memory): committed=2.44 MB, used=672.50 kB, max=48.00 MB, threshold=0.00 B
+    Memory Pool: PS Eden Space (Heap memory): committed=8.69 MB, used=3.45 MB, max=20.31 MB, threshold=?
+    Memory Pool: PS Survivor Space (Heap memory): committed=512.00 kB, used=512.00 kB, max=512.00 kB, threshold=?
+    Memory Pool: PS Old Gen (Heap memory): committed=4.31 MB, used=2.79 MB, max=42.69 MB, threshold=0.00 B
+    Memory Pool: PS Perm Gen (Non-heap memory): committed=20.75 MB, used=8.02 MB, max=82.00 MB, threshold=0.00 B
+2012-03-26 23:33:26.866-0700: Operating system information:
+    Operating System: Windows 7; version: 6.1; arch: amd64; cpus: 8
+    Process id: 4572@cbc-desktop
+    Byte order: LITTLE_ENDIAN
+2012-03-26 23:33:26.877-0700: JVM information:
+    VM Name: Java HotSpot(TM) 64-Bit Server VM
+    VM Vendor: Oracle Corporation
+    VM Version: 22.1-b02
+    JIT compiler: HotSpot 64-Bit Tiered Compilers
+    VM Arguments: [-Dorg.neo4j.server.properties=conf/neo4j-server.properties, -Djava.util.logging.config.file=conf/logging.properties, -Xms3m, -Xmx64m]
+2012-03-26 23:33:26.878-0700: Java classpath:
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-graph-matching-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\resources.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-tests.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/zipfs.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jsse.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-jmx-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/mimepull-1.6.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/org.apache.servicemix.bundles.jline-0.9.94_1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/slf4j-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-jaxrs-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-community-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/servlet-api-2.5-20081211.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-udc-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-multipart-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/blueprints-neo4j-graph-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-core-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/scala-library-2.9.0-1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/lucene-core-3.5.0.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\jce.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/groovy-1.8.4.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\sunrsasign.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/dnsns.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-digester-1.8.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-server-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-cypher-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-beanutils-core-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jansi-1.5.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-util-3.2.jar
+     [bootstrap] C:\Program Files\Java\jre7\classes
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/antlr-2.7.7.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunmscapi.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/rrd4j-2.0.7.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-gremlin-plugin-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-tree-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-cypher-plugin-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-beanutils-1.8.0.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jcl-over-slf4j-1.6.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\rt.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/gremlin-java-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-io-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-graph-algo-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/geronimo-jta_1.1_spec-1.1.1.jar
+     [bootstrap] C:\Program Files\Java\jre7\lib\charsets.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/pipes-0.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-shell-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-lucene-index-1.6.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/localedata.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/stax-api-1.0.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jackson-mapper-asl-1.8.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-commons-3.2.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunjce_provider.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-collections-3.2.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/log4j-over-slf4j-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-lang-2.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-analysis-3.2.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/server-api-1.6.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jettison-1.3.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/blueprints-core-1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jetty-util-6.1.25.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jersey-core-1.9.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/asm-3.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jetty-6.1.25.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-logging-1.1.1.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/gremlin-groovy-1.4.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/neo4j-server-1.6.1-static-web.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/lib/neo4j-kernel-1.6.1-tests.jar
+     [loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/commons-configuration-1.6.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/jsr311-api-1.1.1.jar
+     [loader.1] file:/C:/Program%20Files/Java/jre7/lib/ext/sunec.jar
+     [classpath + loader.0] file:/D:/Code/TheRealDeal/Tools/neo4j-community-1.6.1/system/lib/slf4j-jdk14-1.6.1.jar
+2012-03-26 23:33:26.891-0700: Library path:
+    C:\Program Files\Java\jre7\bin
+    C:\Windows\Sun\Java\bin
+    C:\Windows\System32
+    C:\Windows
+    C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+    C:\Windows\System32
+    C:\Windows
+    C:\Windows\System32\wbem
+    C:\Windows\System32\WindowsPowerShell\v1.0
+    C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\Tools\Binn
+    C:\Program Files\Microsoft SQL Server\100\DTS\Binn
+    C:\Program Files (x86)\Git\cmd
+    C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0
+    D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1
+    D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1
+2012-03-26 23:33:26.895-0700: System.properties:
+    sun.boot.library.path = C:\Program Files\Java\jre7\bin
+    org.neo4j.server.properties = conf/neo4j-server.properties
+    path.separator = ;
+    file.encoding.pkg = sun.io
+    user.country = US
+    user.script = 
+    sun.java.launcher = SUN_STANDARD
+    sun.os.patch.level = Service Pack 1
+    user.dir = D:\Code\THEREA~1\Tools\NEO4J-~1.1
+    user.variant = 
+    sun.jnu.encoding = Cp1252
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    user.home = C:\
+    user.timezone = America/Los_Angeles
+    file.encoding = Cp1252
+    user.name = CBC-DESKTOP$
+    sun.java.command = org.neo4j.server.Bootstrapper
+    sun.arch.data.model = 64
+    user.language = en
+    awt.toolkit = sun.awt.windows.WToolkit
+    file.separator = \
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.cpu.endian = little
+    sun.desktop = windows
+    sun.cpu.isalist = amd64
+2012-03-26 23:33:26.896-0700: Neo4j Kernel properties:
+    store_dir=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db
+    logical_log=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\nioneo_logical.log
+    node_auto_indexing=false
+    neostore.relationshipstore.db.mapped_memory=100M
+    keep_logical_logs=true
+    neostore.nodestore.db.mapped_memory=20M
+    use_memory_mapped_buffers=false
+    rebuild_idgenerators_fast=true
+    neostore.propertystore.db.index.keys.mapped_memory=1M
+    neostore.propertystore.db.arrays.mapped_memory=130M
+    neostore.propertystore.db.strings.mapped_memory=130M
+    neo_store=D:\Code\TheRealDeal\Tools\neo4j-community-1.6.1\data\graph.db\neostore
+    neostore.propertystore.db.index.mapped_memory=1M
+    create=true
+    enable_remote_shell=true
+    neostore.propertystore.db.mapped_memory=90M
+    relationship_auto_indexing=false
+    neo4j.ext.udc.source=server
+2012-03-26 23:33:26.897-0700: Store versions:
+    NeoStore v0.A.0
+    NodeStore v0.A.0
+    RelationshipStore v0.A.0
+    RelationshipTypeStore v0.A.0
+    PropertyStore v0.A.0
+    PropertyIndexStore v0.A.0
+    StringPropertyStore v0.A.0
+    ArrayPropertyStore v0.A.0
+2012-03-26 23:33:26.897-0700: Id usage:
+    NodeStore: used=238 high=237
+    RelationshipStore: used=389 high=388
+    RelationshipTypeStore: used=16 high=15
+    PropertyStore: used=28 high=27
+    PropertyIndexStore: used=12 high=11
+    StringPropertyStore: used=1 high=0
+    ArrayPropertyStore: used=1 high=0
+2012-03-26 23:33:26.898-0700: Storage files:
+    active_tx_log: 11.00 B
+    index:
+      lucene-store.db: 40.00 B
+      lucene.log.1: 16.00 B
+      lucene.log.active: 4.00 B
+    - Total: 60.00 B
+    lock: 0.00 B
+    messages.log: 58.68 kB
+    neostore: 54.00 B
+    neostore.id: 9.00 B
+    neostore.nodestore.db: 20.48 kB
+    neostore.nodestore.db.id: 9.00 B
+    neostore.propertystore.db: 921.58 kB
+    neostore.propertystore.db.arrays: 128.00 B
+    neostore.propertystore.db.arrays.id: 9.00 B
+    neostore.propertystore.db.id: 9.00 B
+    neostore.propertystore.db.index: 10.24 kB
+    neostore.propertystore.db.index.id: 9.00 B
+    neostore.propertystore.db.index.keys: 1.00 kB
+    neostore.propertystore.db.index.keys.id: 9.00 B
+    neostore.propertystore.db.strings: 128.00 B
+    neostore.propertystore.db.strings.id: 9.00 B
+    neostore.relationshipstore.db: 1024.00 kB
+    neostore.relationshipstore.db.id: 9.00 B
+    neostore.relationshiptypestore.db: 80.00 B
+    neostore.relationshiptypestore.db.id: 9.00 B
+    neostore.relationshiptypestore.db.names: 646.00 B
+    neostore.relationshiptypestore.db.names.id: 9.00 B
+    nioneo_logical.log.2: 16.00 B
+    nioneo_logical.log.active: 4.00 B
+    nioneo_logical.log.v0: 299.64 kB
+    tm_tx_log.1: 28.68 kB
+    tm_tx_log.2: 0.00 B
+2012-03-26 23:33:26.903-0700: --- STARTUP diagnostics END ---
+2012-03-26 23:33:26.984-0700: Extension org.neo4j.kernel.KernelExtension[kernel jmx] loaded ok
+2012-03-26 23:33:26.984-0700: Extension org.neo4j.kernel.KernelExtension[dummy] loaded ok
+2012-03-26 23:33:26.984-0700: Extension org.neo4j.kernel.KernelExtension[other dummy] loaded ok
+2012-03-26 23:33:28.124-0700: Extension org.neo4j.kernel.KernelExtension[shell] loaded ok
+2012-03-26 23:33:28.126-0700: Extension org.neo4j.kernel.KernelExtension[kernel udc] loaded ok
+2012-03-26 23:33:28.127-0700: --- SERVER STARTUP START ---
+2012-03-26 23:33:28.127-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator START ---
+2012-03-26 23:33:28.130-0700: Server configuration:
+    org.neo4j.server.database.location = data/graph.db
+    org.neo4j.server.webserver.http.enabled = true
+    org.neo4j.server.webserver.port = 7474
+    org.neo4j.server.webserver.https.enabled = true
+    org.neo4j.server.webserver.https.port = 7473
+    org.neo4j.server.webserver.https.cert.location = conf/ssl/snakeoil.cert
+    org.neo4j.server.webserver.https.key.location = conf/ssl/snakeoil.key
+    org.neo4j.server.webserver.https.keystore.location = system/keystore
+    org.neo4j.server.webadmin.rrdb.location = data/rrd
+    org.neo4j.server.db.tuning.properties = conf/neo4j.properties
+    org.neo4j.server.webadmin.management.uri = /db/manage/
+    org.neo4j.server.webadmin.data.uri = /db/data/
+2012-03-26 23:33:28.130-0700: --- STARTUP diagnostics for org.neo4j.server.configuration.Configurator END ---
+2012-03-26 23:33:28.152-0700: Mounted discovery module (org.neo4j.server.rest.discovery) at: /
+2012-03-26 23:33:28.194-0700: Loaded server plugin "CypherPlugin" (org.neo4j.server.plugin.cypher.CypherPlugin)
+2012-03-26 23:33:28.196-0700:   GraphDatabaseService.execute_query: execute a query
+2012-03-26 23:33:28.197-0700: Loaded server plugin "GremlinPlugin" (org.neo4j.server.plugin.gremlin.GremlinPlugin)
+2012-03-26 23:33:28.197-0700:   GraphDatabaseService.execute_script: execute a Gremlin script with 'g' set to the Neo4jGraph and 'results' containing the results. Only results of one object type is supported.
+2012-03-26 23:33:28.198-0700: Mounted REST API at: /db/data/
+2012-03-26 23:33:28.199-0700: Mounted management API at: /db/manage/
+2012-03-26 23:33:28.231-0700: Mounted webadmin at: /webadmin
+2012-03-26 23:33:29.673-0700: Server started on: http://localhost:7474/
+2012-03-26 23:33:29.674-0700: --- SERVER STARTUP END ---

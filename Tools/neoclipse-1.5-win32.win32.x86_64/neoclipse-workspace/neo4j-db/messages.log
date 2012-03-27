@@ -1,0 +1,217 @@
+2012-03-26 23:37:30.557-0700: Creating new db @ D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\neostore
+2012-03-26 23:37:32.087-0700: Opened [D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\nioneo_logical.log.1] clean empty log, version=0, lastTxId=1
+2012-03-26 23:37:32.127-0700: Opened [D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\index\lucene.log.1] clean empty log, version=0, lastTxId=1
+2012-03-26 23:37:32.147-0700: TM new log: tm_tx_log.1
+2012-03-26 23:37:32.177-0700: --- CONFIGURATION START ---
+2012-03-26 23:37:32.177-0700: Graph Database: org.neo4j.kernel.EmbeddedGraphDatabase StoreId[time:1332830250567, id:-4278894429647622796, store version: 13561656364791302]
+2012-03-26 23:37:32.177-0700: Physical mem: 8173MB, Heap size: 1816MB
+2012-03-26 23:37:32.177-0700: Kernel version: Neo4j - Graph Database Kernel 1.5
+2012-03-26 23:37:32.177-0700: Neo4j component versions:
+2012-03-26 23:37:32.177-0700:   Neo4j - Graph Database Kernel 1.5
+2012-03-26 23:37:32.177-0700: Store versions:
+2012-03-26 23:37:32.177-0700:   NeoStore v0.A.0
+2012-03-26 23:37:32.177-0700:   NodeStore v0.A.0
+2012-03-26 23:37:32.177-0700:   RelationshipStore v0.A.0
+2012-03-26 23:37:32.177-0700:   RelationshipTypeStore v0.A.0
+2012-03-26 23:37:32.177-0700:   PropertyStore v0.A.0
+2012-03-26 23:37:32.177-0700:   PropertyIndexStore v0.A.0
+2012-03-26 23:37:32.177-0700:   StringPropertyStore v0.A.0
+2012-03-26 23:37:32.177-0700:   ArrayPropertyStore v0.A.0
+2012-03-26 23:37:32.177-0700: Process id: 4348@cbc-desktop
+2012-03-26 23:37:32.177-0700: Operating System: Windows 7; version: 6.1; arch: amd64; cpus: 8
+2012-03-26 23:37:32.177-0700: Total Physical memory: 7.98 GB
+2012-03-26 23:37:32.177-0700: Free Physical memory: 6.49 GB
+2012-03-26 23:37:32.177-0700: Committed virtual memory: 241.73 MB
+2012-03-26 23:37:32.177-0700: Total swap space: 15.96 GB
+2012-03-26 23:37:32.177-0700: Free swap space: 13.63 GB
+2012-03-26 23:37:32.177-0700: Byte order: LITTLE_ENDIAN
+2012-03-26 23:37:32.177-0700: VM Name: Java HotSpot(TM) 64-Bit Server VM
+2012-03-26 23:37:32.177-0700: VM Vendor: Oracle Corporation
+2012-03-26 23:37:32.177-0700: VM Version: 22.1-b02
+2012-03-26 23:37:32.177-0700: JIT compiler: HotSpot 64-Bit Tiered Compilers
+2012-03-26 23:37:32.187-0700: Class Path:
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\jsse.jar
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\resources.jar
+2012-03-26 23:37:32.187-0700:    [classpath] D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\jce.jar
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\rt.jar
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\classes
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\sunrsasign.jar
+2012-03-26 23:37:32.187-0700:    [bootstrap] C:\Program Files\Java\jre7\lib\charsets.jar
+2012-03-26 23:37:32.187-0700: Library Path:
+2012-03-26 23:37:32.187-0700:   C:\Windows\System32
+2012-03-26 23:37:32.187-0700:   C:\Windows\Sun\Java\bin
+2012-03-26 23:37:32.187-0700:   C:\Windows\System32
+2012-03-26 23:37:32.187-0700:   C:\Windows
+2012-03-26 23:37:32.187-0700:   C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common
+2012-03-26 23:37:32.187-0700:   C:\Windows\System32
+2012-03-26 23:37:32.187-0700:   C:\Windows
+2012-03-26 23:37:32.187-0700:   C:\Windows\System32\wbem
+2012-03-26 23:37:32.187-0700:   C:\Windows\System32\WindowsPowerShell\v1.0
+2012-03-26 23:37:32.187-0700:   C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn
+2012-03-26 23:37:32.187-0700:   C:\Program Files\Microsoft SQL Server\100\Tools\Binn
+2012-03-26 23:37:32.187-0700:   C:\Program Files\Microsoft SQL Server\100\DTS\Binn
+2012-03-26 23:37:32.187-0700:   C:\Program Files (x86)\Git\cmd
+2012-03-26 23:37:32.187-0700:   C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0
+2012-03-26 23:37:32.187-0700:   D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64
+2012-03-26 23:37:32.187-0700: Garbage Collector: PS Scavenge: [PS Eden Space, PS Survivor Space]
+2012-03-26 23:37:32.187-0700: Garbage Collector: PS MarkSweep: [PS Eden Space, PS Survivor Space, PS Old Gen, PS Perm Gen]
+2012-03-26 23:37:32.187-0700: Memory Pool: Code Cache (Non-heap memory): committed=2.44 MB, used=1.48 MB, max=48.00 MB, threshold=0.00 B
+2012-03-26 23:37:32.187-0700: Memory Pool: PS Eden Space (Heap memory): committed=31.94 MB, used=4.47 MB, max=670.69 MB, threshold=?
+2012-03-26 23:37:32.187-0700: Memory Pool: PS Survivor Space (Heap memory): committed=5.31 MB, used=5.29 MB, max=5.31 MB, threshold=?
+2012-03-26 23:37:32.187-0700: Memory Pool: PS Old Gen (Heap memory): committed=85.19 MB, used=20.60 MB, max=1.33 GB, threshold=0.00 B
+2012-03-26 23:37:32.187-0700: Memory Pool: PS Perm Gen (Non-heap memory): committed=29.56 MB, used=29.48 MB, max=82.00 MB, threshold=0.00 B
+2012-03-26 23:37:32.187-0700: VM Arguments: []
+2012-03-26 23:37:32.187-0700: System properties:
+2012-03-26 23:37:32.187-0700:   osgi.bundles.defaultStartLevel = 4
+2012-03-26 23:37:32.187-0700:   sun.java.launcher = SUN_STANDARD
+2012-03-26 23:37:32.187-0700:   org.osgi.supports.framework.extension = true
+2012-03-26 23:37:32.187-0700:   sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2012-03-26 23:37:32.187-0700:   osgi.framework.beginningstartlevel = 1
+2012-03-26 23:37:32.187-0700:   osgi.ws = win32
+2012-03-26 23:37:32.187-0700:   sun.desktop = windows
+2012-03-26 23:37:32.187-0700:   osgi.instance.area = file:/D:/Code/TheRealDeal/Tools/neoclipse-1.5-win32.win32.x86_64/neoclipse-workspace/
+2012-03-26 23:37:32.187-0700:   user.name = Caleb Chenoweth
+2012-03-26 23:37:32.187-0700:   org.osgi.framework.system.packages = javax.accessibility,javax.activation,javax.activity,javax.annotation,javax.annotation.processing,javax.crypto,javax.crypto.interfaces,javax.crypto.spec,javax.imageio,javax.imageio.event,javax.imageio.metadata,javax.imageio.plugins.bmp,javax.imageio.plugins.jpeg,javax.imageio.spi,javax.imageio.stream,javax.jws,javax.jws.soap,javax.lang.model,javax.lang.model.element,javax.lang.model.type,javax.lang.model.util,javax.management,javax.management.loading,javax.management.modelmbean,javax.management.monitor,javax.management.openmbean,javax.management.relation,javax.management.remote,javax.management.remote.rmi,javax.management.timer,javax.naming,javax.naming.directory,javax.naming.event,javax.naming.ldap,javax.naming.spi,javax.net,javax.net.ssl,javax.print,javax.print.attribute,javax.print.attribute.standard,javax.print.event,javax.rmi,javax.rmi.CORBA,javax.rmi.ssl,javax.script,javax.security.auth,javax.security.auth.callback,javax.security.auth.kerberos,javax.security.auth.login,javax.security.auth.spi,javax.security.auth.x500,javax.security.cert,javax.security.sasl,javax.sound.midi,javax.sound.midi.spi,javax.sound.sampled,javax.sound.sampled.spi,javax.sql,javax.sql.rowset,javax.sql.rowset.serial,javax.sql.rowset.spi,javax.swing,javax.swing.border,javax.swing.colorchooser,javax.swing.event,javax.swing.filechooser,javax.swing.plaf,javax.swing.plaf.basic,javax.swing.plaf.metal,javax.swing.plaf.multi,javax.swing.plaf.synth,javax.swing.table,javax.swing.text,javax.swing.text.html,javax.swing.text.html.parser,javax.swing.text.rtf,javax.swing.tree,javax.swing.undo,javax.tools,javax.transaction,javax.transaction.xa,javax.xml,javax.xml.bind,javax.xml.bind.annotation,javax.xml.bind.annotation.adapters,javax.xml.bind.attachment,javax.xml.bind.helpers,javax.xml.bind.util,javax.xml.crypto,javax.xml.crypto.dom,javax.xml.crypto.dsig,javax.xml.crypto.dsig.dom,javax.xml.crypto.dsig.keyinfo,javax.xml.crypto.dsig.spec,javax.xml.datatype,javax.xml.namespace,javax.xml.parsers,javax.xml.soap,javax.xml.stream,javax.xml.stream.events,javax.xml.stream.util,javax.xml.transform,javax.xml.transform.dom,javax.xml.transform.sax,javax.xml.transform.stax,javax.xml.transform.stream,javax.xml.validation,javax.xml.ws,javax.xml.ws.handler,javax.xml.ws.handler.soap,javax.xml.ws.http,javax.xml.ws.soap,javax.xml.ws.spi,javax.xml.xpath,org.ietf.jgss,org.omg.CORBA,org.omg.CORBA_2_3,org.omg.CORBA_2_3.portable,org.omg.CORBA.DynAnyPackage,org.omg.CORBA.ORBPackage,org.omg.CORBA.portable,org.omg.CORBA.TypeCodePackage,org.omg.CosNaming,org.omg.CosNaming.NamingContextExtPackage,org.omg.CosNaming.NamingContextPackage,org.omg.Dynamic,org.omg.DynamicAny,org.omg.DynamicAny.DynAnyFactoryPackage,org.omg.DynamicAny.DynAnyPackage,org.omg.IOP,org.omg.IOP.CodecFactoryPackage,org.omg.IOP.CodecPackage,org.omg.Messaging,org.omg.PortableInterceptor,org.omg.PortableInterceptor.ORBInitInfoPackage,org.omg.PortableServer,org.omg.PortableServer.CurrentPackage,org.omg.PortableServer.POAManagerPackage,org.omg.PortableServer.POAPackage,org.omg.PortableServer.portable,org.omg.PortableServer.ServantLocatorPackage,org.omg.SendingContext,org.omg.stub.java.rmi,org.w3c.dom,org.w3c.dom.bootstrap,org.w3c.dom.css,org.w3c.dom.events,org.w3c.dom.html,org.w3c.dom.ls,org.w3c.dom.ranges,org.w3c.dom.stylesheets,org.w3c.dom.traversal,org.w3c.dom.views ,org.xml.sax,org.xml.sax.ext,org.xml.sax.helpers
+2012-03-26 23:37:32.197-0700:   eclipse.launcher = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse.exe
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.language = en
+2012-03-26 23:37:32.197-0700:   user.language = en
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.processor = x86-64
+2012-03-26 23:37:32.197-0700:   osgi.syspath = d:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins
+2012-03-26 23:37:32.197-0700:   sun.boot.library.path = C:\Program Files\Java\jre7\bin
+2012-03-26 23:37:32.197-0700:   osgi.manifest.cache = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\configuration\org.eclipse.osgi\manifests
+2012-03-26 23:37:32.197-0700:   osgi.compatibility.bootdelegation = true
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.os.name = windows 7
+2012-03-26 23:37:32.197-0700:   user.timezone = America/Los_Angeles
+2012-03-26 23:37:32.197-0700:   sun.arch.data.model = 64
+2012-03-26 23:37:32.197-0700:   osgi.bundles = org.eclipse.equinox.common@2:start,org.eclipse.update.configurator@3:start,org.eclipse.core.runtime@start
+2012-03-26 23:37:32.197-0700:   sun.cpu.isalist = amd64
+2012-03-26 23:37:32.197-0700:   sun.jnu.encoding = Cp1252
+2012-03-26 23:37:32.197-0700:   eclipse.application = org.neo4j.neoclipse.application
+2012-03-26 23:37:32.197-0700:   file.encoding.pkg = sun.io
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.vendor = Eclipse
+2012-03-26 23:37:32.197-0700:   file.separator = \
+2012-03-26 23:37:32.197-0700:   user.country = US
+2012-03-26 23:37:32.197-0700:   org.eclipse.equinox.launcher.splash.location = d:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\configuration\org.eclipse.equinox.launcher\org.neo4j.neoclipse_1.5.0\splash.bmp
+2012-03-26 23:37:32.197-0700:   osgi.os = win32
+2012-03-26 23:37:32.197-0700:   eclipse.commands = -os
+win32
+-ws
+win32
+-arch
+x86_64
+-showsplash
+-launcher
+D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse.exe
+-name
+Neoclipse
+--launcher.library
+D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher.win32.win32.x86_64_1.0.101.R34x_v20080731\eclipse_1115.dll
+-startup
+D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar
+-exitdata
+f4c_5c
+-data
+@noDefault
+-vm
+C:\Windows\system32\javaw.exe
+
+2012-03-26 23:37:32.197-0700:   osgi.splashLocation = d:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\configuration\org.eclipse.equinox.launcher\org.neo4j.neoclipse_1.5.0\splash.bmp
+2012-03-26 23:37:32.197-0700:   osgi.arch = x86_64
+2012-03-26 23:37:32.197-0700:   path.separator = ;
+2012-03-26 23:37:32.197-0700:   org.osgi.supports.framework.fragment = true
+2012-03-26 23:37:32.197-0700:   user.variant = 
+2012-03-26 23:37:32.197-0700:   osgi.framework.shape = jar
+2012-03-26 23:37:32.197-0700:   sun.io.unicode.encoding = UnicodeLittle
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.version = 1.4.0
+2012-03-26 23:37:32.197-0700:   awt.toolkit = sun.awt.windows.WToolkit
+2012-03-26 23:37:32.197-0700:   user.script = 
+2012-03-26 23:37:32.197-0700:   osgi.install.area = file:/D:/Code/TheRealDeal/Tools/neoclipse-1.5-win32.win32.x86_64/
+2012-03-26 23:37:32.197-0700:   osgi.framework = file:/d:/Code/TheRealDeal/Tools/neoclipse-1.5-win32.win32.x86_64/plugins/org.eclipse.osgi_3.4.3.R34x_v20081215-1030.jar
+2012-03-26 23:37:32.197-0700:   user.home = C:\Users\Caleb Chenoweth
+2012-03-26 23:37:32.197-0700:   osgi.bundlestore = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\configuration\org.eclipse.osgi\bundles
+2012-03-26 23:37:32.197-0700:   osgi.splashPath = platform:/base/plugins/org.neo4j.neoclipse
+2012-03-26 23:37:32.197-0700:   osgi.nl = en_US
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.os.version = 6.1.0
+2012-03-26 23:37:32.197-0700:   eclipse.startTime = 1332830240137
+2012-03-26 23:37:32.197-0700:   sun.java.command = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar -os win32 -ws win32 -arch x86_64 -showsplash -launcher D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse.exe -name Neoclipse --launcher.library D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher.win32.win32.x86_64_1.0.101.R34x_v20080731\eclipse_1115.dll -startup D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar -exitdata f4c_5c -data @noDefault -vm C:\Windows\system32\javaw.exe -vmargs -jar D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar
+2012-03-26 23:37:32.197-0700:   eclipse.vm = C:\Windows\system32\javaw.exe
+2012-03-26 23:37:32.197-0700:   sun.cpu.endian = little
+2012-03-26 23:37:32.197-0700:   sun.os.patch.level = Service Pack 1
+2012-03-26 23:37:32.197-0700:   eclipse.product = org.neo4j.neoclipse.neoclipseProduct
+2012-03-26 23:37:32.197-0700:   eclipse.home.location = file:/D:/Code/TheRealDeal/Tools/neoclipse-1.5-win32.win32.x86_64/
+2012-03-26 23:37:32.197-0700:   user.dir = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64
+2012-03-26 23:37:32.197-0700:   org.osgi.supports.framework.requirebundle = true
+2012-03-26 23:37:32.197-0700:   eclipse.ee.install.verify = false
+2012-03-26 23:37:32.197-0700:   file.encoding = Cp1252
+2012-03-26 23:37:32.197-0700:   osgi.framework.version = 3.4.3.R34x_v20081215-1030
+2012-03-26 23:37:32.197-0700:   eclipse.vmargs = -jar
+D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\plugins\org.eclipse.equinox.launcher_1.0.101.R34x_v20081125.jar
+
+2012-03-26 23:37:32.197-0700:   org.osgi.framework.executionenvironment = OSGi/Minimum-1.0,OSGi/Minimum-1.1,JRE-1.1,J2SE-1.2,J2SE-1.3,J2SE-1.4,J2SE-1.5,JavaSE-1.6
+2012-03-26 23:37:32.197-0700:   osgi.logfile = D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\.metadata\.log
+2012-03-26 23:37:32.197-0700:   osgi.configuration.area = file:/D:/Code/TheRealDeal/Tools/neoclipse-1.5-win32.win32.x86_64/configuration/
+2012-03-26 23:37:32.197-0700: Neo4j Kernel properties:
+2012-03-26 23:37:32.197-0700:   store_dir=D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db
+2012-03-26 23:37:32.197-0700:   logical_log=D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\nioneo_logical.log
+2012-03-26 23:37:32.197-0700:   node_auto_indexing=false
+2012-03-26 23:37:32.197-0700:   neostore.relationshipstore.db.mapped_memory=100M
+2012-03-26 23:37:32.197-0700:   neostore.nodestore.db.mapped_memory=20M
+2012-03-26 23:37:32.197-0700:   use_memory_mapped_buffers=false
+2012-03-26 23:37:32.197-0700:   rebuild_idgenerators_fast=true
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.index.keys.mapped_memory=1M
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.arrays.mapped_memory=130M
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.strings.mapped_memory=130M
+2012-03-26 23:37:32.197-0700:   neo_store=D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\neostore
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.index.mapped_memory=1M
+2012-03-26 23:37:32.197-0700:   create=true
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.mapped_memory=90M
+2012-03-26 23:37:32.197-0700:   relationship_auto_indexing=false
+2012-03-26 23:37:32.197-0700: Storage files:
+2012-03-26 23:37:32.197-0700:   active_tx_log: 11.00 B
+2012-03-26 23:37:32.197-0700:   index:
+2012-03-26 23:37:32.197-0700:     lucene-store.db: 32.00 B
+2012-03-26 23:37:32.197-0700:     lucene.log.1: 16.00 B
+2012-03-26 23:37:32.197-0700:     lucene.log.active: 4.00 B
+2012-03-26 23:37:32.197-0700:   - Total: 52.00 B
+2012-03-26 23:37:32.197-0700:   lock: 0.00 B
+2012-03-26 23:37:32.197-0700:   messages.log: 16.88 kB
+2012-03-26 23:37:32.197-0700:   neostore: 45.00 B
+2012-03-26 23:37:32.197-0700:   neostore.id: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.nodestore.db: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.nodestore.db.id: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db: 0.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.arrays: 128.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.arrays.id: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.id: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.index: 0.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.index.id: 9.00 B
+2012-03-26 23:37:32.197-0700:   neostore.propertystore.db.index.keys: 38.00 B
+2012-03-26 23:37:32.207-0700:   neostore.propertystore.db.index.keys.id: 9.00 B
+2012-03-26 23:37:32.207-0700:   neostore.propertystore.db.strings: 128.00 B
+2012-03-26 23:37:32.207-0700:   neostore.propertystore.db.strings.id: 9.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshipstore.db: 0.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshipstore.db.id: 9.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshiptypestore.db: 0.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshiptypestore.db.id: 9.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshiptypestore.db.names: 38.00 B
+2012-03-26 23:37:32.207-0700:   neostore.relationshiptypestore.db.names.id: 9.00 B
+2012-03-26 23:37:32.207-0700:   nioneo_logical.log.1: 16.00 B
+2012-03-26 23:37:32.207-0700:   nioneo_logical.log.active: 4.00 B
+2012-03-26 23:37:32.207-0700:   tm_tx_log.1: 0.00 B
+2012-03-26 23:37:32.207-0700: Id usage:
+2012-03-26 23:37:32.207-0700:   NodeStore: used=1 high=0
+2012-03-26 23:37:32.207-0700:   RelationshipStore: used=0 high=-1
+2012-03-26 23:37:32.207-0700:   RelationshipTypeStore: used=0 high=-1
+2012-03-26 23:37:32.207-0700:   PropertyStore: used=0 high=-1
+2012-03-26 23:37:32.207-0700:   PropertyIndexStore: used=0 high=-1
+2012-03-26 23:37:32.207-0700:   StringPropertyStore: used=1 high=0
+2012-03-26 23:37:32.207-0700:   ArrayPropertyStore: used=1 high=0
+2012-03-26 23:37:32.207-0700: --- CONFIGURATION END ---
+2012-03-26 23:37:32.277-0700: Extension org.neo4j.kernel.KernelExtension[kernel jmx] loaded ok
+2012-03-26 23:37:32.277-0700: Extension org.neo4j.kernel.KernelExtension[kernel udc] loaded ok
+2012-03-26 23:38:00.517-0700: Closed log D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\nioneo_logical.log
+2012-03-26 23:38:01.207-0700: NeoStore closed
+2012-03-26 23:38:01.247-0700: Closed log D:\Code\TheRealDeal\Tools\neoclipse-1.5-win32.win32.x86_64\neoclipse-workspace\neo4j-db\index\lucene.log
+2012-03-26 23:38:01.247-0700: NeoStore closed
+2012-03-26 23:38:01.267-0700: TM shutting down
