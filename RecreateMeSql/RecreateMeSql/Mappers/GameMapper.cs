@@ -3,7 +3,7 @@ using System.Linq;
 using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMeSql.Relationships;
 
@@ -23,7 +23,7 @@ namespace RecreateMeSql.Mappers
             return MapPickupGame(genericGameData, gameQuery, sport, location);
         }
 
-        public GameWithTeams MapTeamGame(IGremlinNodeQuery<RetrievedGame> gameQuery)
+        public TeamGame MapTeamGame(IGremlinNodeQuery<RetrievedGame> gameQuery)
         {
             var location = gameQuery.InE(RelationsTypes.GameToLocation).OutV<Location>().Single().Data.Name;
             var sport = gameQuery.InE(RelationsTypes.GameToSport).OutV<Sport>().Single().Data.Name;
@@ -33,10 +33,10 @@ namespace RecreateMeSql.Mappers
             return MapGameWithTeams(genericGameData, gameQuery, sport, location);
         }
 
-        private GameWithTeams MapGameWithTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery, string sportForGame,
+        private TeamGame MapGameWithTeams(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery, string sportForGame,
                                                       string locationForGame)
         {
-            var gameWTeams = MapGenericGameData((x, y, z) => new GameWithTeams(x, y, z), locationForGame, gameData, sportForGame);
+            var gameWTeams = MapGenericGameData((x, y, z) => new TeamGame(x, y, z), locationForGame, gameData, sportForGame);
 
             gameWTeams.TeamsIds = gameQuery.TeamsForGame().Select(x => x.Data.Id).ToList();
             return gameWTeams;

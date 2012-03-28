@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Scheduling.Handlers
 {
@@ -30,6 +30,6 @@ namespace RecreateMe.Scheduling.Handlers
     public class GetGamesForProfileResponse
     {
         public IList<PickUpGame> PickupGames { get; set; }
-        public IList<GameWithTeams> TeamGames { get; set; }
+        public IList<TeamGame> TeamGames { get; set; }
     }
 }

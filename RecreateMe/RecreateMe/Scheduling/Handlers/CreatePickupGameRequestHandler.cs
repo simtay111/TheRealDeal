@@ -1,6 +1,6 @@
 using System;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers

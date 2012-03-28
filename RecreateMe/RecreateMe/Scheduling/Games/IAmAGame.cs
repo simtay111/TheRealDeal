@@ -2,7 +2,7 @@ using System;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 
-namespace RecreateMe.Scheduling.Handlers.Games
+namespace RecreateMe.Scheduling.Games
 {
     public interface IAmAGame
     {

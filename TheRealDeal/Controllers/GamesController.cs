@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Web.Mvc;
 using RecreateMe;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Games;
 

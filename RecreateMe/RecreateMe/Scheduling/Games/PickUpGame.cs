@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 
-namespace RecreateMe.Scheduling.Handlers.Games
+namespace RecreateMe.Scheduling.Games
 {
     public class PickUpGame : IAmAGame
     {

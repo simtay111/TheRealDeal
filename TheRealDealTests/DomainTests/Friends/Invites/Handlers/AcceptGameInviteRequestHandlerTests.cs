@@ -4,7 +4,7 @@ using RecreateMe;
 using RecreateMe.Friends.Invites;
 using RecreateMe.Friends.Invites.Handlers;
 using RecreateMe.Scheduling;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
 {

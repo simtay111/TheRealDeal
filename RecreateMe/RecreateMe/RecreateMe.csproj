@@ -89,14 +89,16 @@
     <Compile Include="ResponseCodes.cs" />
     <Compile Include="ResponseCodesStrings.cs" />
     <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\DeletePickUpGameRequestHandler.cs" />
+    <Compile Include="Scheduling\Handlers\DeleteTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandler.cs" />
-    <Compile Include="Scheduling\Handlers\Games\GameFactory.cs" />
-    <Compile Include="Scheduling\Handlers\Games\IAmAGame.cs" />
-    <Compile Include="Scheduling\Handlers\Games\PickUpGame.cs" />
-    <Compile Include="Scheduling\Handlers\Games\GameWithTeams.cs" />
-    <Compile Include="Scheduling\Handlers\Games\IGameFactory.cs" />
+    <Compile Include="Scheduling\Games\GameFactory.cs" />
+    <Compile Include="Scheduling\Games\IAmAGame.cs" />
+    <Compile Include="Scheduling\Games\PickUpGame.cs" />
+    <Compile Include="Scheduling\Games\TeamGame.cs" />
+    <Compile Include="Scheduling\Games\IGameFactory.cs" />
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandler.cs" />
     <Compile Include="Scheduling\ITeamGameRepository.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />
@@ -115,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scheduling\Cleaning\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

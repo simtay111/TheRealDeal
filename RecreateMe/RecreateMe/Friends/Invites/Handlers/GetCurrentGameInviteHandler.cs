@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RecreateMe.Scheduling;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Friends.Invites.Handlers
 {

@@ -4,8 +4,8 @@ using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers

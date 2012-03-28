@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 
-namespace RecreateMe.Scheduling.Handlers.Games
+namespace RecreateMe.Scheduling.Games
 {
-    public class GameWithTeams : IAmAGame
+    public class TeamGame : IAmAGame
     {
         [JsonIgnore]
         public IList<string> TeamsIds = new List<string>();
 
-        public GameWithTeams(DateTimeOffset dateTime, Sport sport, Location location)
+        public TeamGame(DateTimeOffset dateTime, Sport sport, Location location)
         {
             DateTime = dateTime;
             Sport = sport;

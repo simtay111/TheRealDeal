@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Moq;
 using NUnit.Framework;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games

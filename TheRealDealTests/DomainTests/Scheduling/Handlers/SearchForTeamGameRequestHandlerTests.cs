@@ -6,8 +6,8 @@ using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
-using RecreateMe.Scheduling.Handlers.Games;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 {
@@ -24,11 +24,11 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var location1 = TestData.CreateLocationBend();
             var location2 = TestData.CreateLocationHamsterville();
 
-            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
-            var soccerGame2 = new GameWithTeams(DateTime.Now, soccer, location2);
-            var basketballGame = new GameWithTeams(DateTime.Now, basketball, location1);
+            var soccerGame1 = new TeamGame(DateTime.Now, soccer, location1);
+            var soccerGame2 = new TeamGame(DateTime.Now, soccer, location2);
+            var basketballGame = new TeamGame(DateTime.Now, basketball, location1);
 
-            var listOfGames = new List<GameWithTeams> { soccerGame1, soccerGame2, basketballGame };
+            var listOfGames = new List<TeamGame> { soccerGame1, soccerGame2, basketballGame };
 
             var request = new SearchForTeamGameRequest() { Location = location1.Name, Sport = soccer.Name };
 
@@ -66,8 +66,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var soccer = TestData.CreateSoccerGame();
             var location1 = TestData.CreateLocationBend();
 
-            var soccerGame1 = new GameWithTeams(DateTime.Now, soccer, location1);
-            var listOfGames = new List<GameWithTeams> { soccerGame1 };
+            var soccerGame1 = new TeamGame(DateTime.Now, soccer, location1);
+            var listOfGames = new List<TeamGame> { soccerGame1 };
 
             var request = new SearchForTeamGameRequest { Location = location1.Name, Sport = string.Empty };
 

@@ -5,8 +5,8 @@ using Moq;
 using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Scheduling;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
-using RecreateMe.Scheduling.Handlers.Games;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 {

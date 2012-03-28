@@ -4,8 +4,8 @@ using NUnit.Framework;
 using RecreateMe;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
-using RecreateMe.Scheduling.Handlers.Games;
 using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
@@ -21,14 +21,14 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         private Mock<IGameFactory> _mockGameFactory;
         private Sport _sport;
         private Location _location;
-        private GameWithTeams _teamGame;
+        private TeamGame _teamTeamGame;
 
         [SetUp]
         public void SetUp()
         {
             _sport = new Sport { Name = SoccerName };
             _location = new Location { Name = LocationName };
-            _teamGame = new GameWithTeams(DateTime.Now, _sport, _location);
+            _teamTeamGame = new TeamGame(DateTime.Now, _sport, _location);
             _mockGameRepo = new Mock<ITeamGameRepository>();
         }
 
@@ -76,7 +76,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            _mockGameRepo.Verify(x => x.SaveTeamGame(It.Is<GameWithTeams>(y => y.Creator == profile1)));
+            _mockGameRepo.Verify(x => x.SaveTeamGame(It.Is<TeamGame>(y => y.Creator == profile1)));
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            Assert.That(response.GameId, Is.EqualTo(_teamGame.Id));
+            Assert.That(response.GameId, Is.EqualTo(_teamTeamGame.Id));
         }
 
         [Test]
@@ -109,14 +109,14 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var date = DateTime.Now;
             SetupMockSportLocationAndGameRepos();
             _mockGameRepo = new Mock<ITeamGameRepository>();
-            _teamGame = new GameWithTeams(date, _sport, _location) { IsPrivate = true };
-            var nonPrivateGame = new GameWithTeams(date, _sport, _location);
+            _teamTeamGame = new TeamGame(date, _sport, _location) { IsPrivate = true };
+            var nonPrivateGame = new TeamGame(date, _sport, _location);
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), true)).Returns(
-                _teamGame);
+                _teamTeamGame);
             _mockGameFactory.Setup(x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), false)).Returns(
                 nonPrivateGame);
-            _mockGameRepo.Setup(x => x.SaveTeamGame(It.IsAny<GameWithTeams>())).Verifiable();
+            _mockGameRepo.Setup(x => x.SaveTeamGame(It.IsAny<TeamGame>())).Verifiable();
 
             const string location = LocationName;
 
@@ -134,7 +134,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             var response = handler.Handle(request);
 
-            _mockGameRepo.Verify(x => x.SaveTeamGame(_teamGame), Times.AtLeastOnce());
+            _mockGameRepo.Verify(x => x.SaveTeamGame(_teamTeamGame), Times.AtLeastOnce());
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
@@ -225,12 +225,12 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                 MinPlayers = 3,
                 Sport = SoccerName
             };
-            var gameWithoutTeams = new GameWithTeams(DateTime.Parse(request.DateTime), _sport, _location);
+            var gameWithoutTeams = new TeamGame(DateTime.Parse(request.DateTime), _sport, _location);
             _mockGameFactory.Setup(
                 x => x.CreateGameWithTeams(It.Is<DateTime>(d => d == DateTime.Parse(request.DateTime))
                     , It.Is<Sport>(d => d == _sport), It.Is<Location>(d => d == _location), It.IsAny<bool>())).Returns(
                     gameWithoutTeams);
-            _mockGameRepo.Setup(x => x.SaveTeamGame(It.Is<GameWithTeams>(d => d == gameWithoutTeams)));
+            _mockGameRepo.Setup(x => x.SaveTeamGame(It.Is<TeamGame>(d => d == gameWithoutTeams)));
 
             var handler = CreateHandler();
 
@@ -255,7 +255,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _mockGameFactory = new Mock<IGameFactory>();
             _mockGameFactory.Setup(
                 x => x.CreateGameWithTeams(It.IsAny<DateTime>(), It.IsAny<Sport>(), It.IsAny<Location>(), It.IsAny<bool>())).Returns(
-                    _teamGame);
+                    _teamTeamGame);
         }
     }
 }

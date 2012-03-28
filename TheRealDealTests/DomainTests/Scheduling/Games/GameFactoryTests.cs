@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games
@@ -24,9 +24,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void CanCreateGameWithTeams()
         {
-            GameWithTeams game = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location);
+            TeamGame teamGame = _factory.CreateGameWithTeams(DateTime.Now, _sport, _location);
 
-            AssertGameWithTeamsWasCreatedAndDataLinesUp(game);
+            AssertGameWithTeamsWasCreatedAndDataLinesUp(teamGame);
         }
 
         [Test]
@@ -47,11 +47,11 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
             Assert.That(teamGame.IsPrivate, Is.True);
         }
 
-        private void AssertGameWithTeamsWasCreatedAndDataLinesUp(GameWithTeams game)
+        private void AssertGameWithTeamsWasCreatedAndDataLinesUp(TeamGame teamGame)
         {
-            Assert.NotNull(game);
-            Assert.That(game.Sport.Name, Is.EqualTo("Soccer"));
-            Assert.That(game.Location.Name, Is.EqualTo(_location.Name));
+            Assert.NotNull(teamGame);
+            Assert.That(teamGame.Sport.Name, Is.EqualTo("Soccer"));
+            Assert.That(teamGame.Location.Name, Is.EqualTo(_location.Name));
         }
 
 

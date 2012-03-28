@@ -1,4 +1,5 @@
-﻿@using RecreateMe.Scheduling.Handlers.Games
+﻿@using RecreateMe.Scheduling.Games
+@using RecreateMe.Scheduling.Handlers.Games
 @using TheRealDeal
 @using TheRealDeal.Models.Games
 @model ListOfGamesModel
@@ -21,7 +22,7 @@
     @Html.Label(" MinPlayers: " + game.MinPlayers)
     @if (game.HasTeams)
     {
-        @Html.Label("Teams: " + ((GameWithTeams)game).TeamsIds.Count)
+        @Html.Label("Teams: " + ((TeamGame)game).TeamsIds.Count)
         continue;
     }
     @Html.Label("Players: " + ((PickUpGame)game).PlayersIds.Count)
@@ -44,7 +45,7 @@
         @Html.Label(" MinPlayers: " + myCreatedGames.MinPlayers)
         @if (myCreatedGames.HasTeams)
         {
-            @Html.Label("Teams: " + ((GameWithTeams)myCreatedGames).TeamsIds.Count)
+            @Html.Label("Teams: " + ((TeamGame)myCreatedGames).TeamsIds.Count)
             continue;
         }
         @Html.Label("Players: " + ((PickUpGame)myCreatedGames).PlayersIds.Count)

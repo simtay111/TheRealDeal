@@ -1,14 +1,15 @@
 using System.Collections.Generic;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Scheduling
 {
     public interface ITeamGameRepository
     {
-        void SaveTeamGame(GameWithTeams game);
-        GameWithTeams GetTeamGameById(string id);
-        IList<GameWithTeams> GetTeamGamesForProfile(string profileId);
+        void SaveTeamGame(TeamGame teamGame);
+        TeamGame GetTeamGameById(string id);
+        IList<TeamGame> GetTeamGamesForProfile(string profileId);
         void AddTeamToGame(string teamid, string gameId);
-        IEnumerable<GameWithTeams> FindTeamGameByLocation(string location);
+        IEnumerable<TeamGame> FindTeamGameByLocation(string location);
+        void DeleteGame(string id);
     }
 }

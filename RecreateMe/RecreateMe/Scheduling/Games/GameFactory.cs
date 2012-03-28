@@ -2,13 +2,13 @@ using System;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
 
-namespace RecreateMe.Scheduling.Handlers.Games
+namespace RecreateMe.Scheduling.Games
 {
     public class GameFactory : IGameFactory
     {
-        public GameWithTeams CreateGameWithTeams(DateTime dateTime, Sport sport, Location location, bool isPrivate = false)
+        public TeamGame CreateGameWithTeams(DateTime dateTime, Sport sport, Location location, bool isPrivate = false)
         {
-            return new GameWithTeams(dateTime, sport, location) {IsPrivate = isPrivate};
+            return new TeamGame(dateTime, sport, location) {IsPrivate = isPrivate};
         }
 
         public PickUpGame CreatePickUpGame(DateTime dateTime, Sport sport, Location location, bool isPrivate = false)

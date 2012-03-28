@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
 using RecreateMe.Scheduling;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships.BaseNode;
@@ -24,23 +24,23 @@ namespace RecreateMeSql.Repositories
             : this(GraphClientFactory.Create(), new GameMapper()) { }
 
 
-        public void SaveTeamGame(GameWithTeams game)
+        public void SaveTeamGame(TeamGame teamGame)
         {
             CreateGameBaseNode();
 
-            var gameNode = CreateTeamGameNodeAndSaveGenericData(game);
+            var gameNode = CreateTeamGameNodeAndSaveGenericData(teamGame);
 
-            SaveGameWithTeamData(game, gameNode);
+            SaveGameWithTeamData(teamGame, gameNode);
         }
 
-        public GameWithTeams GetTeamGameById(string id)
+        public TeamGame GetTeamGameById(string id)
         {
             var gameQuery = GraphClient.GameWithId(id);
 
             return _gameMapper.MapTeamGame(gameQuery);
         }
 
-        public IList<GameWithTeams> GetTeamGamesForProfile(string profileId)
+        public IList<TeamGame> GetTeamGamesForProfile(string profileId)
         {
             var gamesWithTeams = GraphClient.ProfileWithId(profileId).GamesWithTeamsForProfile().Select(x => x.Data.Id).ToList();
 
@@ -53,36 +53,41 @@ namespace RecreateMeSql.Repositories
             CreateTeamInGameRelationship(gameNode.Reference, teamid);
         }
 
-        public IEnumerable<GameWithTeams> FindTeamGameByLocation(string location)
+        public IEnumerable<TeamGame> FindTeamGameByLocation(string location)
         {
             throw new System.NotImplementedException();
         }
 
-        private NodeReference<GameWithTeams> CreateTeamGameNodeAndSaveGenericData(GameWithTeams game)
+        public void DeleteGame(string id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private NodeReference<TeamGame> CreateTeamGameNodeAndSaveGenericData(TeamGame teamGame)
         {
             var gameBaseNode = GraphClient.GameBaseNode().Single();
 
-            var gameNode = GraphClient.Create(game);
+            var gameNode = GraphClient.Create(teamGame);
 
             GraphClient.CreateRelationship(gameBaseNode.Reference, new GameRelationship(gameNode));
 
-            var sportNode = GraphClient.SportWithName(game.Sport.Name).Single();
+            var sportNode = GraphClient.SportWithName(teamGame.Sport.Name).Single();
 
             GraphClient.CreateRelationship(sportNode.Reference, new GameToSportRelationship(gameNode));
 
-            var locationNode = GraphClient.LocationWithName(game.Location.Name).Single();
+            var locationNode = GraphClient.LocationWithName(teamGame.Location.Name).Single();
 
             GraphClient.CreateRelationship(locationNode.Reference, new GameToLocationRelationship(gameNode));
 
-            var profileNode = GraphClient.ProfileWithId(game.Creator).Single();
+            var profileNode = GraphClient.ProfileWithId(teamGame.Creator).Single();
 
             GraphClient.CreateRelationship(profileNode.Reference, new CreatedByRelationship(gameNode));
             return gameNode;
         }
 
-        private void SaveGameWithTeamData(GameWithTeams game, NodeReference gameNode)
+        private void SaveGameWithTeamData(TeamGame teamGame, NodeReference gameNode)
         {
-            foreach (var teamId in game.TeamsIds)
+            foreach (var teamId in teamGame.TeamsIds)
             {
                 CreateTeamInGameRelationship(gameNode, teamId);
             }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
 using RecreateMe.Scheduling;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
 using RecreateMeSql.Relationships.BaseNode;
@@ -56,6 +56,11 @@ namespace RecreateMeSql.Repositories
         {
             var gameNode = GraphClient.GameWithId(gameId).Single();
             CreatePlaysInGameRelationship(gameNode.Reference, profileId);
+        }
+
+        public void DeleteGame(string gameId)
+        {
+            throw new System.NotImplementedException();
         }
 
         private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)

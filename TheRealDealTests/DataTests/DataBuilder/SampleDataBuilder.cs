@@ -4,7 +4,7 @@ using System.Linq;
 using Neo4jClient;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
 using RecreateMeSql.Repositories;
@@ -283,9 +283,9 @@ namespace TheRealDealTests.DataTests.DataBuilder
             return game;
         }
 
-        public GameWithTeams CreateGameWithTeams1And2()
+        public TeamGame CreateGameWithTeams1And2()
         {
-            var game = new GameWithTeams(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new TeamGame(DateTimeOffset.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;

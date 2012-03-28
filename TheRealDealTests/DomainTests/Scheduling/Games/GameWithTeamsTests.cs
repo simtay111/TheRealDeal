@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Moq;
 using NUnit.Framework;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Games
@@ -11,82 +11,82 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
     [TestFixture]
     public class GameWithTeamsTests
     {
-        private GameWithTeams _game;
+        private TeamGame _teamGame;
 
         [SetUp]
         public void SetUp()
         {
-            _game = new GameWithTeams(DateTime.Now, null, null);
+            _teamGame = new TeamGame(DateTime.Now, null, null);
         }
 
         [Test]
         public void KnowsItsCreator()
         {
-            _game.Creator = "123";
-            Assert.That(_game.Creator, Is.EqualTo("123"));
+            _teamGame.Creator = "123";
+            Assert.That(_teamGame.Creator, Is.EqualTo("123"));
         }
 
         [Test]
         public void KnowsIfItIsPrivate()
         {
-            _game.IsPrivate = false;
-            Assert.False(_game.IsPrivate);
+            _teamGame.IsPrivate = false;
+            Assert.False(_teamGame.IsPrivate);
         }
 
         [Test]
         public void HasDateTimeForEvent()
         {
-            Assert.NotNull(_game.DateTime);
-            Trace.Write(_game.DateTime);
+            Assert.NotNull(_teamGame.DateTime);
+            Trace.Write(_teamGame.DateTime);
         }
 
         [Test]
         public void HasASport()
         {
             var sport = new Mock<Sport>().Object;
-            _game.Sport = sport;
-            Assert.That(_game.Sport, Is.InstanceOf<Sport>());
+            _teamGame.Sport = sport;
+            Assert.That(_teamGame.Sport, Is.InstanceOf<Sport>());
         }
 
         [Test]
         public void HasALocation()
         {
             var location = new Mock<Location>().Object;
-            _game.Location = location;
-            Assert.That(_game.Location, Is.InstanceOf<Location>());
+            _teamGame.Location = location;
+            Assert.That(_teamGame.Location, Is.InstanceOf<Location>());
         }
 
         [Test]
         public void HoldsMinAndMaximumPlayerValues()
         {
-            Assert.Null(_game.MinPlayers);
-            Assert.Null(_game.MaxPlayers);
-            _game.MinPlayers = 3;
-            _game.MaxPlayers = 5;
-            Assert.NotNull(_game.MinPlayers);
-            Assert.NotNull(_game.MaxPlayers);
+            Assert.Null(_teamGame.MinPlayers);
+            Assert.Null(_teamGame.MaxPlayers);
+            _teamGame.MinPlayers = 3;
+            _teamGame.MaxPlayers = 5;
+            Assert.NotNull(_teamGame.MinPlayers);
+            Assert.NotNull(_teamGame.MaxPlayers);
         }
 
         [Test]
         public void EveryGameHasAGameIdThatIsAGuidCreatedAtCreationgOfGame()
         {
-            Assert.NotNull(_game.Id);
+            Assert.NotNull(_teamGame.Id);
         }
 
         [Test]
         public void CanAddTeamsToGame()
         {
-            _game.AddTeam("team1");
-            Assert.AreEqual(_game.TeamsIds.Count, 1);
+            _teamGame.AddTeam("team1");
+            Assert.AreEqual(_teamGame.TeamsIds.Count, 1);
         }
 
         [Test]
         public void ThrowsCannotAddItemExceptionIfAtCapacity()
         {
-            _game.AddTeam("Team1");
-            _game.AddTeam("Team2");
+            _teamGame.AddTeam("Team1");
+            _teamGame.AddTeam("Team2");
 
-            var exception = Assert.Throws(typeof(Exception), () => _game.AddTeam("Team3"),
+            var exception = Assert.Throws(typeof(Exception), () => _teamGame.AddTeam("Team3"),
                                           "Exception should have been thrown");
             Assert.That(exception.Message, Is.EqualTo("Could not add team to game, game is full."));
         }
@@ -94,7 +94,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void CanCheckIfGameIsFull()
         {
-            var game = new GameWithTeams(DateTime.Now, null, null);
+            var game = new TeamGame(DateTime.Now, null, null);
             game.TeamsIds.Add("123");
             game.TeamsIds.Add("123");
 

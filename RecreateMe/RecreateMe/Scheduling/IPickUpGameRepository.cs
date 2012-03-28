@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Scheduling
 {
@@ -10,5 +10,6 @@ namespace RecreateMe.Scheduling
         IList<PickUpGame> FindPickUpGameByLocation(string location);
         IList<PickUpGame> GetPickupGamesForProfile(string profileId);
         void AddPlayerToGame(string gameId, string profileId);
+        void DeleteGame(string gameId);
     }
 }

@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using RecreateMe.Locales;
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
@@ -33,7 +33,7 @@ namespace TheRealDealTests.DataTests.Repositories
             _data.CreateSoccerSport();
             var team = _data.CreateTeam1();
 
-            var game = new GameWithTeams(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new TeamGame(DateTimeOffset.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;

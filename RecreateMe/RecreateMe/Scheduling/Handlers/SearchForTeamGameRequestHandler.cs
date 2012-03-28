@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using RecreateMe.Scheduling.Handlers.Games;
+using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Scheduling.Handlers
 {
@@ -19,7 +18,7 @@ namespace RecreateMe.Scheduling.Handlers
         {
             if (String.IsNullOrEmpty(request.Location)) return new SearchForTeamGameResponse(ResponseCodes.LocationNotSpecified);
 
-            var results = new List<GameWithTeams>();
+            var results = new List<TeamGame>();
 
             results.AddRange(_TeamGameRepository.FindTeamGameByLocation(request.Location));
 
@@ -38,10 +37,10 @@ namespace RecreateMe.Scheduling.Handlers
 
     public class SearchForTeamGameResponse
     {
-        public IList<GameWithTeams> GamesFound;
+        public IList<TeamGame> GamesFound;
         public ResponseCodes Status { get; set; }
 
-        public SearchForTeamGameResponse(IList<GameWithTeams> gamesFound)
+        public SearchForTeamGameResponse(IList<TeamGame> gamesFound)
         {
             GamesFound = gamesFound;
             Status = ResponseCodes.Success;
