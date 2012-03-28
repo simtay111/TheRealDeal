@@ -10,7 +10,7 @@ using TheRealDealTests.DataTests.DataBuilder;
 namespace TheRealDealTests.DataTests.Repositories
 {
     [TestFixture]
-    [Category("Isolated")]
+    [Category("Integration")]
     public class PickUpGameRepositoryTests
     {
         private PickUpGameRepository _repo;
