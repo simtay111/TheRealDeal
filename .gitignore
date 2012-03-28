@@ -3,6 +3,7 @@
 #ignore binary and object directories create by msbuild
 bin/
 obj/
+*Tools/neo4j-community-1.6.1/data/
 
 #ignore ".user" and ".suo" files generate by visual studio
 *.user
