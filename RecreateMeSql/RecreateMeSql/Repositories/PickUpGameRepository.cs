@@ -66,7 +66,6 @@ namespace RecreateMeSql.Repositories
                 return;
 
             GraphClient.Delete(game.Reference, DeleteMode.NodeAndRelationships);
-
         }
 
         private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)

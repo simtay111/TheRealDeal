@@ -28,7 +28,8 @@ namespace RecreateMe
         AlreadyFriend,
         ProfileIdRequired,
         AlreadyInGame,
-        GameIsFull
+        GameIsFull,
+        NotCreator
     }
 
     public static class ResponseCodeExtensions

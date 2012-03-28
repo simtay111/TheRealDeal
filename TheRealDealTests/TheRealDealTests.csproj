@@ -104,6 +104,7 @@
     <Compile Include="DomainTests\Sports\SportTests.cs" />
     <Compile Include="DomainTests\Sports\SportWithSkillLevelTests.cs" />
     <Compile Include="DomainTests\Teams\CreateTeamRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Teams\DeleteTeamRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Teams\GetTeamsForProfileHandlerTests.cs" />
     <Compile Include="DomainTests\Teams\TeamTests.cs" />
     <Compile Include="DomainTests\Teams\ViewTeamRequestHandlerTests.cs" />
