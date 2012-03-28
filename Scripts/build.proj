@@ -18,6 +18,9 @@
   <Target Name="Integration">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Integration"></Exec>
   </Target>
+  <Target Name="Isolated">
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Isolated"></Exec>
+  </Target>
   <Target Name="Data">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Data"></Exec>
   </Target>

@@ -60,7 +60,13 @@ namespace RecreateMeSql.Repositories
 
         public void DeleteGame(string gameId)
         {
-            throw new System.NotImplementedException();
+            var game = GraphClient.GameWithId(gameId).SingleOrDefault();
+
+            if (game == null)
+                return;
+
+            GraphClient.Delete(game.Reference, DeleteMode.NodeAndRelationships);
+
         }
 
         private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)

@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\CreateLoginsTable.sql = Scripts\CreateLoginsTable.sql
 		Scripts\Data.bat = Scripts\Data.bat
 		Scripts\Integration.bat = Scripts\Integration.bat
+		Scripts\Isolated.bat = Scripts\Isolated.bat
 		Scripts\push.bat = Scripts\push.bat
 		Scripts\Tests.bat = Scripts\Tests.bat
 	EndProjectSection

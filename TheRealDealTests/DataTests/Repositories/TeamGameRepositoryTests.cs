@@ -79,5 +79,25 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(game.TeamsIds.Count, Is.EqualTo(3));
             Assert.True(game.TeamsIds.Single(x => x == _data.TeamId2).Any());
         }
+
+        [Test]
+        public void CanDeleteTeamGames()
+        {
+            _data.CreateData();
+
+            _repo.DeleteGame(_data.GameWithTeamsId);
+
+            var exception = Assert.Throws<InvalidOperationException>(()=>_repo.GetTeamGameById(_data.GameWithTeamsId));
+            Assert.That(exception.Message, Is.EqualTo("Sequence contains no elements"));
+        }
+
+        [Test]
+        public void DoesNotThrowIfGameDoesNotExist()
+        {
+            _data.CreateAccounts();
+            _repo.CreateGameBaseNode();
+
+            Assert.DoesNotThrow(() =>_repo.DeleteGame("123"));
+        }
     }
 }

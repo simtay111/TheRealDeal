@@ -14,7 +14,6 @@ namespace RecreateMeSql
         public int? MinPlayers { get; set; }
         public int? MaxPlayers { get; set; }
         public bool IsPrivate { get; set; }
-        public bool HasTeams { get; set; }
         public string Creator { get; set; }
     }
 }

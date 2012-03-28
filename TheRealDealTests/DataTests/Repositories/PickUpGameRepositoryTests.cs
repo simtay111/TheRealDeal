@@ -10,7 +10,7 @@ using TheRealDealTests.DataTests.DataBuilder;
 namespace TheRealDealTests.DataTests.Repositories
 {
     [TestFixture]
-    [Category("Integration")]
+    [Category("Isolated")]
     public class PickUpGameRepositoryTests
     {
         private PickUpGameRepository _repo;
@@ -87,6 +87,26 @@ namespace TheRealDealTests.DataTests.Repositories
             var game = _repo.GetPickUpGameById(_data.PickUpGame.Id);
 
             Assert.That(game.PlayersIds.Any(x => x == profileId));
+        }
+
+        [Test]
+        public void CanDeletePickUpGames()
+        {
+            _data.CreateData();
+
+            _repo.DeleteGame(_data.PickUpGame.Id);
+
+            var exception = Assert.Throws<InvalidOperationException>(() => _repo.GetPickUpGameById(_data.PickUpGame.Id));
+            Assert.That(exception.Message, Is.EqualTo("Sequence contains no elements"));
+        }
+
+        [Test]
+        public void DoesNotThrowIfGameDoesNotExist()
+        {
+            _data.CreateAccounts();
+            _repo.CreateGameBaseNode();
+
+            Assert.DoesNotThrow(() => _repo.DeleteGame("123"));
         }
     }
 }
