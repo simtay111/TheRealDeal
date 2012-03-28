@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RecreateMe.Scheduling.Games;
 
@@ -11,5 +12,6 @@ namespace RecreateMe.Scheduling
         void AddTeamToGame(string teamid, string gameId);
         IEnumerable<TeamGame> FindTeamGameByLocation(string location);
         void DeleteGame(string id);
+        IList<TeamGame> GetAllGamesBeforeDate(DateTime dateTime);
     }
 }

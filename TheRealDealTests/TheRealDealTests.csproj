@@ -74,6 +74,7 @@
     <Compile Include="DomainTests\Friends\Invites\InviteFactoryTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />
     <Compile Include="DomainTests\Friends\Search\SearchForFriendsRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\GameMaintenance\OldGameRemoverTests.cs" />
     <Compile Include="DomainTests\Locales\LocationTests.cs" />
     <Compile Include="DomainTests\Login\LoginRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Login\RegisterUserHandlerTests.cs" />

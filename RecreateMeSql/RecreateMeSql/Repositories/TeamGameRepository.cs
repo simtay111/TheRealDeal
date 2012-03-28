@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
@@ -66,6 +67,11 @@ namespace RecreateMeSql.Repositories
                 return;
 
             GraphClient.Delete(gameNodeReference.Reference, DeleteMode.NodeAndRelationships);
+        }
+
+        public IList<TeamGame> GetAllGamesBeforeDate(DateTime dateTime)
+        {
+            throw new NotImplementedException();
         }
 
         private NodeReference<TeamGame> CreateTeamGameNodeAndSaveGenericData(TeamGame teamGame)

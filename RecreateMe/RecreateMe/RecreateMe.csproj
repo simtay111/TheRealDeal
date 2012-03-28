@@ -67,6 +67,7 @@
     <Compile Include="Friends\Invites\InviteFactory.cs" />
     <Compile Include="Friends\Invites\InviteSender.cs" />
     <Compile Include="Friends\Search\SearchForFriendsRequestHandler.cs" />
+    <Compile Include="GameMaintenance\Cleaner.cs" />
     <Compile Include="IHandler.cs" />
     <Compile Include="Locales\ILocationRepository.cs" />
     <Compile Include="Locales\Location.cs" />
