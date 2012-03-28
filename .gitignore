@@ -1,0 +1,9 @@
+# git ignore file
+
+#ignore binary and object directories create by msbuild
+bin/
+obj/
+
+#ignore ".user" and ".suo" files generate by visual studio
+*.user
+*.suo
