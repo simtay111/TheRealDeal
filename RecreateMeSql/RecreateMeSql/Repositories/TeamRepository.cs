@@ -56,6 +56,11 @@ namespace RecreateMeSql.Repositories
             return teamNodes.Select(MapTeam).ToList();
         }
 
+        public void DeleteTeam(string teamId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         private void CreateTeamBaseNode()
         {
             var teamBaseNode = GraphClient.Create(new SchemaNode { Type = SchemaNodeTypes.TeamBase });

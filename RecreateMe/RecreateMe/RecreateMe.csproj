@@ -110,6 +110,7 @@
     <Compile Include="Sports\Sport.cs" />
     <Compile Include="Sports\SportWithSkillLevel.cs" />
     <Compile Include="Teams\Handlers\CreateTeamRequestHandler.cs" />
+    <Compile Include="Teams\Handlers\DeleteTeamRequestHandler.cs" />
     <Compile Include="Teams\Handlers\GetTeamsForProfileHandler.cs" />
     <Compile Include="Teams\Handlers\ViewTeamRequestHandler.cs" />
     <Compile Include="Teams\ITeamRepository.cs" />

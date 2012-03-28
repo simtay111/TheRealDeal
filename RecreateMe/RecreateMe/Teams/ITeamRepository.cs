@@ -7,5 +7,6 @@ namespace RecreateMe.Teams
         bool Save(Team team);
         Team GetById(string id);
         IList<Team> GetTeamsForProfile(string id);
+        void DeleteTeam(string teamId);
     }
 }
