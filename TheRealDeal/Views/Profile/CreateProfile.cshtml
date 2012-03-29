@@ -1,42 +1,44 @@
 ﻿@using RecreateMe.Sports
 @using TheRealDeal.Models.Profile
 @model CreateProfileModel
-           
-
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
-<div id="BannerText">
-<h2>Create new profile</h2>
-</div>
-@Html.ValidationSummary(true, "Oops! Problem creating profile!")
+<span class="span4">
+    <div class="hero-unit">
+        <div id="BannerText">
+            <h2>
+                Create new profile</h2>
+        </div>
+        @Html.ValidationSummary(true, "Oops! Problem creating profile!")
+        @using (Html.BeginForm())
+        {
 
+            <div class="CreateProfile">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name)
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+            <div class="CreateProfile">
+                @Html.LabelFor(x => x.Location)
+                @Html.TextBoxFor(x => x.Location)
+            </div>
+            <div class="CreateProfile">
+                @Html.LabelFor(x => x.Sports)
+                @Html.DropDownList("Sports", Model.SportsList, "-- Select One --")
+                @Html.ValidationMessageFor(x => x.Sports)
+            </div>
+            <div class="CreateProfile">
+                @Html.LabelFor(x => Model.SkillLevel)
+                @Html.TextBoxFor(x => Model.SkillLevel, new { })
+                @Html.ValidationMessageFor(x => Model.SkillLevel)
+            </div>
 
-@using (Html.BeginForm())
-{
-
-    <div class="CreateProfile">
-        @Html.LabelFor(x => x.Name)
-        @Html.TextBoxFor(x => x.Name)
-        @Html.ValidationMessageFor(x => x.Name)
+            <button type="submit" class="btn btn-primary">
+                CreateProfile</button>
+            <button type="button" class="btn"onclick="location.href = '/Profile/ChooseProfile/'">
+                Cancel</button>
+        }
     </div>
-    <div class="CreateProfile">
-        @Html.LabelFor(x => x.Location)
-        @Html.TextBoxFor(x => x.Location)
-    </div>
-    <div class="CreateProfile">
-        @Html.LabelFor(x => x.Sports)
-        @Html.DropDownList("Sports", Model.SportsList, "-- Select One --")
-        @Html.ValidationMessageFor(x => x.Sports)
-    
-    </div>
-    <div class="CreateProfile">
-        @Html.LabelFor(x => Model.SkillLevel)
-        @Html.TextBoxFor(x => Model.SkillLevel, new {})
-        @Html.ValidationMessageFor(x => Model.SkillLevel)
-    </div>
-
-    <button type="submit">CreateProfile</button>
-    <button type="button" onclick="location.href = '/Profile/ChooseProfile/'">Go back please!</button>
-}
+</span>

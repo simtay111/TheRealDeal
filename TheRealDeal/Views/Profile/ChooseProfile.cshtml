@@ -3,42 +3,49 @@
 @using TheRealDeal
 @using TheRealDeal.Models.Profile
 @model ChooseProfileModel
-
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
-<div id="BannerText">
-<h2>Choose/Create A Profile</h2>
-</div>
-@using (Html.BeginForm())
-{
+<span class="span4">
+    <div class="hero-unit">
+        <div id="BannerText">
+            <h2>
+                Your Profiles</h2>
+        </div>
+ 
+<!-- Add data-toggle="buttons-radio" for radio style toggling on btn-group -->
+        @using (Html.BeginForm())
+        {
+
+            var profiles = (IList<Profile>)ViewData[ViewDataConstants.Profiles];
+            var checkFirstProfile = true;
     
-    var profiles = (IList<Profile>) ViewData[ViewDataConstants.Profiles];
-    var checkFirstProfile = true;
-    
-    <ul id="ProfileList">
-    
-    @foreach (var prof in profiles)
-    {
+            <ul id="ProfileList">
+                @foreach (var prof in profiles)
+                {
         
-            <li id="ProfileOption">
-                @Html.RadioButton("Profile", prof.ProfileId, checkFirstProfile)
-                @Html.Label(prof.ProfileId)
-            </li>
-        checkFirstProfile = false;
-    }
-    </ul>
+                    <li id="ProfileOption">
+                        @Html.RadioButton("Profile", prof.ProfileId, checkFirstProfile)
+                        @Html.Label(prof.ProfileId)
+                    </li>
+                    checkFirstProfile = false;
+                }
+            </ul>
     
-    <div id="ButtonsContainer">
-    @if (profiles.Count != 0)
-    {
-         <button type="submit">Use Selected</button>
-    }
-    @if (profiles.Count < 3)
-    {
-        @: Or
-        <button type="button" onclick="location.href='/Profile/CreateProfile/'">Create Profile</button>
-    }
+            <div id="ButtonsContainer">
+                @if (profiles.Count != 0)
+                {
+                    <button type="submit" class="btn btn-primary">
+                        Use Selected</button>
+                }
+                @if (profiles.Count < 3)
+                {
+                    @:<strong>Or</strong>
+        <button type="button" class="btn" onclick="location.href='/Profile/CreateProfile/'">
+            Create Profile</button>
+                }
+            </div>
+        }
     </div>
-}
+</span>

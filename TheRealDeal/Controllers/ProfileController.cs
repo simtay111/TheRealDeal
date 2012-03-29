@@ -25,6 +25,9 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
 
+            if (response.Profiles.Count == 0)
+                return RedirectToAction("CreateProfile");
+
             ViewData[ViewDataConstants.Profiles] = response.Profiles;
 
             return View();
