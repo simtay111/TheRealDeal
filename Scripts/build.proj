@@ -3,25 +3,34 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <Nunit>C:\Program Files (x86)\TestDriven.NET 3\NUnit\2.5 </Nunit>
-    <RecreateMeProj>C:\projects\TheRealDeal\RecreateMe\Tests\recreatemetests.csproj</RecreateMeProj>
-    <TheRealDealTests>C:\Projects\TheRealDeal\TheRealDealTests\bin\Debug</TheRealDealTests>
+    <BaseDirectory>$(MSBuildProjectDirectory)\..</BaseDirectory>
     
+    <TheRealDealTests>$(BaseDirectory)\TheRealDealTests\bin\Debug</TheRealDealTests>
+    
+    <ToolsDirectory>$(BaseDirectory)\Tools</ToolsDirectory>
+    <Nunit>$(ToolsDirectory)\NUnit\2.5 </Nunit>
+    
+    <!--<RecreateMeProj>C:\projects\TheRealDeal\RecreateMe\Tests\recreatemetests.csproj</RecreateMeProj>-->
   </PropertyGroup>
 
   <Target Name="Tests">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /exclude=Integration,Data"></Exec>
   </Target> 
+  
   <Target Name="AllTests">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels"></Exec>
   </Target>
+  
   <Target Name="Integration">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Integration"></Exec>
   </Target>
+  
   <Target Name="Isolated">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Isolated"></Exec>
   </Target>
+  
   <Target Name="Data">
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Data"></Exec>
   </Target>
+  
 </Project>
