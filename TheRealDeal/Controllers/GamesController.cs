@@ -14,14 +14,15 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            //var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
-            //var handler = new GetGamesForProfileRequestHandler(new GameRepository());
-            //var response = handler.Handle(request);
+            var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
+            var handler = new GetGamesForProfileRequestHandler(new PickUpGameRepository(),new TeamGameRepository() );
+            var response = handler.Handle(request);
 
-            //var model = new ListOfGamesModel { Games = response.TeamGames, CurrentProfile = GetProfileFromCookie() };
+            var model = new ListOfGamesModel { TeamGames = response.TeamGames,
+                PickUpGames = response.PickupGames,
+                CurrentProfile = GetProfileFromCookie() };
 
-            //return View(model);
-            throw new NotImplementedException();
+            return View(model);
         }
 
         [Authorize]

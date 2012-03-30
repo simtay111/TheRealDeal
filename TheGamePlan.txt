@@ -1,0 +1,32 @@
+UI needs building
+	build with request.
+	Validation in requests... (as well as model if you want)
+	Standardize and simplify views
+	
+Organizations
+	Create... Name, Id, CreatorId, 
+	manage Leagues,
+	
+Scheduling for Team Games for organizations 
+	Leagues dynamic amount (ie. Mens League -> 1A, 2A, 3A)
+	Optionally add team to league upon creation
+	Schedule teams in right spots (Can't overschedule a field/courts)
+	
+Courts/Fields (amounts available/in use)
+	
+Pickup Games 
+Invite System 
+	Friend Request
+	Game Invite
+	Team Invite
+	
+Delete Games Once Done?
+Reminder System For When A Game is upcoming 
+	
+
+	
+	
+	
+	
+	
+Rating System
