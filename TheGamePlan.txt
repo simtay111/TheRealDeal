@@ -3,7 +3,7 @@ UI needs building
 	Validation in requests... (as well as model if you want)
 	Standardize and simplify views
 	
-Organizations
+Organizations [ST]
 	Create... Name, Id, CreatorId, 
 	manage Leagues,
 	
