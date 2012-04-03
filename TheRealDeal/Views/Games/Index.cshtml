@@ -1,12 +1,15 @@
-﻿@using RecreateMe.Scheduling.Games
-@using TheRealDeal
-@using TheRealDeal.Models.Games
+﻿@using TheRealDeal.Models.Games
 @model ListOfGamesModel
 @{
     ViewBag.Title = "Games";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    window.onload = function () {
+        $('#GamesNavBtn').addClass('active');
+    }
+</script>
 
 <span class="span6">
     <div class="hero-unit">
