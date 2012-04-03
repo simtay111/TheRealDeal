@@ -15,7 +15,8 @@ namespace TheRealDealTests.DomainTests.Organizations.Handlers
 
             var request = new CreateOrganizationRequest
                               {
-                                  Name = "My Organization"
+                                  Name = "My Organization",
+                                  ProfileId = "Simtay111"
                               };
 
             var handler = new CreateOrganizationRequestHandler(orgRepo.Object);
@@ -25,8 +26,8 @@ namespace TheRealDealTests.DomainTests.Organizations.Handlers
             Assert.NotNull(response);
 
             orgRepo.Verify(x => x.Save(It.Is<Organization>(y => y.Name == request.Name)));
+            orgRepo.Verify(x => x.Save(It.Is<Organization>(y => y.CreatorId == request.ProfileId)));
             orgRepo.Verify(x => x.Save(It.Is<Organization>(y => !string.IsNullOrEmpty(y.Id))));
         }
-         
     }
 }

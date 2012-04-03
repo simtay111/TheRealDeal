@@ -14,7 +14,8 @@ namespace RecreateMe.Organizations.Handlers
         {
             var organization = new Organization
                                    {
-                                       Name = request.Name
+                                       Name = request.Name,
+                                       CreatorId = request.ProfileId
                                    };
 
             _organizationRepository.Save(organization);
@@ -26,6 +27,8 @@ namespace RecreateMe.Organizations.Handlers
     public class CreateOrganizationRequest
     {
         public string Name { get; set; }
+
+        public string ProfileId { get; set; }
     }
 
     public class CreateOrganizationResponse
