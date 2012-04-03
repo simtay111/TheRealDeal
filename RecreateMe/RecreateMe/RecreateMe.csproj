@@ -78,6 +78,7 @@
     <Compile Include="Login\IUserRepository.cs" />
     <Compile Include="Login\Handlers\LoginRequestHandler.cs" />
     <Compile Include="Login\Handlers\RegisterUserHandler.cs" />
+    <Compile Include="Organizations\Handlers\AddLeagueToOrganizationRequestHandler.cs" />
     <Compile Include="Organizations\Handlers\CreateOrganizationRequestHandler.cs" />
     <Compile Include="Organizations\IOrganizationRepository.cs" />
     <Compile Include="Organizations\Organization.cs" />

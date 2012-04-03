@@ -29,7 +29,8 @@ namespace RecreateMe
         ProfileIdRequired,
         AlreadyInGame,
         GameIsFull,
-        NotCreator
+        NotCreator,
+        AlreadyInLeague
     }
 
     public static class ResponseCodeExtensions

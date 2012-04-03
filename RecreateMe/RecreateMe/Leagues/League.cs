@@ -9,12 +9,12 @@ namespace RecreateMe.Leagues
 
         public string Id { get; set; }
 
-        public IList<League> ChildLeagues { get; set; }
+        public IList<string> ChildLeaguesIds { get; set; }
 
         public League()
         {
             Id = Guid.NewGuid().ToString();
-            ChildLeagues = new List<League>();
+            ChildLeaguesIds = new List<string>();
         }
     }
 }

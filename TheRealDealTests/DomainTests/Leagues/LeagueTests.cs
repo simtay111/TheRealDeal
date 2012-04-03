@@ -11,7 +11,7 @@ namespace TheRealDealTests.DomainTests.Leagues
         {
             var league = new League();
 
-            Assert.That(league.ChildLeagues, Is.Empty);
+            Assert.That(league.ChildLeaguesIds, Is.Empty);
         }
          
     }
