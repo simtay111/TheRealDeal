@@ -22,14 +22,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\StartNeo4j.bat = Scripts\StartNeo4j.bat
 		Scripts\StopNeo4j.bat = Scripts\StopNeo4j.bat
 		Scripts\Tests.bat = Scripts\Tests.bat
+		TheGamePlan.txt = TheGamePlan.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRealDealTests", "TheRealDealTests\TheRealDealTests.csproj", "{17791E72-A723-4BF7-9598-105F0A0D7B06}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{EA6880F4-7FBB-4044-9BD0-949F54FE7FAD}"
-	ProjectSection(SolutionItems) = preProject
-		TheGamePlan.txt = TheGamePlan.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

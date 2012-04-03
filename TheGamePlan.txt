@@ -30,3 +30,4 @@ Reminder System For When A Game is upcoming
 	
 	
 Rating System
+Rating System
