@@ -69,6 +69,9 @@
     <Compile Include="Friends\Search\SearchForFriendsRequestHandler.cs" />
     <Compile Include="GameMaintenance\Cleaner.cs" />
     <Compile Include="IHandler.cs" />
+    <Compile Include="Leagues\Handlers\CreateLeagueRequestHandler.cs" />
+    <Compile Include="Leagues\ILeagueRepository.cs" />
+    <Compile Include="Leagues\League.cs" />
     <Compile Include="Locales\ILocationRepository.cs" />
     <Compile Include="Locales\Location.cs" />
     <Compile Include="Login\Account.cs" />

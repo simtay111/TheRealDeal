@@ -4,10 +4,13 @@ UI needs building
 	Standardize and simplify views
 	
 Organizations [ST]
-	Create... Name, Id, CreatorId, 
+	Create... Name,	 Id, CreatorId, [St]
+	Delete 
+	(low priority) Invent a validation method to limit creation of organizations to actual organizatiun
 	manage Leagues,
 	
 Scheduling for Team Games for organizations 
+	Create League: Name, Child Leagues [ST]
 	Leagues dynamic amount (ie. Mens League -> 1A, 2A, 3A)
 	Optionally add team to league upon creation
 	Schedule teams in right spots (Can't overschedule a field/courts)
