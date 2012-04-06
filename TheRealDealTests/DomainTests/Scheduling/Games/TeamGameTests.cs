@@ -9,7 +9,7 @@ using RecreateMe.Sports;
 namespace TheRealDealTests.DomainTests.Scheduling.Games
 {
     [TestFixture]
-    public class GameWithTeamsTests
+    public class TeamGameTests
     {
         private TeamGame _teamGame;
 

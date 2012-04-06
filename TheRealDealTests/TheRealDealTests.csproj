@@ -100,7 +100,7 @@
     <Compile Include="DomainTests\RequestExecutor\RequestExecutorTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\GameFactoryTests.cs" />
     <Compile Include="DomainTests\Scheduling\Games\PickUpGameTests.cs" />
-    <Compile Include="DomainTests\Scheduling\Games\GameWithTeamsTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Games\TeamGameTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\AddTeamToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\DeletePickUpGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\DeleteTeamGameRequestHandlerTests.cs" />
