@@ -69,6 +69,7 @@
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Divisions\DivisionTests.cs" />
     <Compile Include="DomainTests\Divisions\Handlers\AddDivisionToLeagueRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Divisions\Handlers\AddTeamToDivisionRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Divisions\Handlers\CreateDivisionRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\GetFriendsRequestHandlerTests.cs" />

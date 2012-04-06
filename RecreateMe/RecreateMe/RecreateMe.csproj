@@ -57,6 +57,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Divisions\Division.cs" />
     <Compile Include="Divisions\Handlers\AddDivisionToLeagueRequestHandler.cs" />
+    <Compile Include="Divisions\Handlers\AddTeamToDivisionRequestHandler.cs" />
     <Compile Include="Divisions\Handlers\CreateDivisionRequestHandler.cs" />
     <Compile Include="Divisions\IDivisionRepository.cs" />
     <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandler.cs" />

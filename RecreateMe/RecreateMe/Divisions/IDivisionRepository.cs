@@ -3,5 +3,6 @@
     public interface IDivisionRepository
     {
         void Save(Division division);
+        Division GetById(string divisionId);
     }
 }
