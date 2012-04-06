@@ -12,10 +12,18 @@ Organizations [ST]
 Scheduling for Team Games for organizations 
 	Create League: Name, Child Leagues [ST]
 	Create Division: Name [ST]
+	Add Division to league [ST]
+	Add Team To Division
+
 	Add League To Organization [ST]
 	Leagues dynamic amount (ie. Mens League -> 1A, 2A, 3A)
 	Optionally add team to league upon creation
 	Schedule teams in right spots (Can't overschedule a field/courts)
+
+	Schedules:
+		yeah.... a lot to do here...
+		Need to have a schedule for a division
+
 	
 Courts/Fields (amounts available/in use)
 	
