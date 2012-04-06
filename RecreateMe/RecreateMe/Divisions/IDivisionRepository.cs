@@ -1,4 +1,4 @@
-﻿namespace RecreateMe.Divisinos
+﻿namespace RecreateMe.Divisions
 {
     public interface IDivisionRepository
     {

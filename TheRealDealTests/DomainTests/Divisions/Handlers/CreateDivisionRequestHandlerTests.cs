@@ -1,7 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
-using RecreateMe.Divisinos;
-using RecreateMe.Divisinos.Handlers;
+using RecreateMe.Divisions;
+using RecreateMe.Divisions.Handlers;
 
 namespace TheRealDealTests.DomainTests.Divisions.Handlers
 {

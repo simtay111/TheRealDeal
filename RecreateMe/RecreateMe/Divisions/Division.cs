@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RecreateMe.Divisinos
+namespace RecreateMe.Divisions
 {
     public class Division
     {

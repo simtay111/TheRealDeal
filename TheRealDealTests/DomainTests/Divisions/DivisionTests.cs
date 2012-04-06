@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using RecreateMe.Divisinos;
+using RecreateMe.Divisions;
 
 namespace TheRealDealTests.DomainTests.Divisions
 {

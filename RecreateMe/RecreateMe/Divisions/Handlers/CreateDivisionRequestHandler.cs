@@ -1,4 +1,4 @@
-﻿namespace RecreateMe.Divisinos.Handlers
+﻿namespace RecreateMe.Divisions.Handlers
 {
     public class CreateDivisionRequestHandler : IHandler<CreateDivisionRequest, CreateDivisionRespone>
     {
