@@ -67,6 +67,8 @@
     <Compile Include="DataTests\Repositories\TeamRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\UserRepositoryTests.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
+    <Compile Include="DomainTests\Divisions\DivisionTests.cs" />
+    <Compile Include="DomainTests\Divisions\Handlers\CreateDivisionRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\AddPlayerToFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Handlers\GetFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Friends\Invites\Handlers\AcceptGameInviteRequestHandlerTests.cs" />
@@ -76,12 +78,12 @@
     <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />
     <Compile Include="DomainTests\Friends\Search\SearchForFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\GameMaintenance\OldGameRemoverTests.cs" />
-    <Compile Include="DomainTests\Leagues\Handlers\AddLeagueToOrganizationRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Leagues\Handlers\CreateLeagueRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Leagues\LeagueTests.cs" />
     <Compile Include="DomainTests\Locales\LocationTests.cs" />
     <Compile Include="DomainTests\Login\LoginRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Login\RegisterUserHandlerTests.cs" />
+    <Compile Include="DomainTests\Organizations\Handlers\AddLeagueToOrganizationRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Organizations\Handlers\CreateOrganizationRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Organizations\OrganizationTests.cs" />
     <Compile Include="DomainTests\ProfileSetup\Handlers\GetListOfConfigurableProfileOptionsHandlerTests.cs" />

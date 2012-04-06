@@ -55,6 +55,9 @@
     <Compile Include="Configuration\ConfigurationProvider.cs" />
     <Compile Include="Configuration\IConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Divisinos\Division.cs" />
+    <Compile Include="Divisinos\Handlers\CreateDivisionRequestHandler.cs" />
+    <Compile Include="Divisinos\IDivisionRepository.cs" />
     <Compile Include="Friends\Handlers\AddPlayerToFriendsRequestHandler.cs" />
     <Compile Include="Friends\Handlers\GetFriendsRequestHandler.cs" />
     <Compile Include="Friends\Invites\Handlers\AcceptPickupGameInviteRequestHandler.cs" />
