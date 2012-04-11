@@ -28,11 +28,8 @@ namespace TheRealDealTests.DomainTests.Leagues
 
             var response = handler.Handle(request);
 
-            Assert.NotNull(response);
-            Assert.That(organization.LeagueIds.Count, Is.EqualTo(1));
-            Assert.That(organization.LeagueIds[0], Is.EqualTo(request.LeagueId));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
-            orgRepo.Verify(x => x.Save(organization));
+            orgRepo.Verify(x => x.AddLeagueToOrganization(organization, request.LeagueId));
         }
 
         [Test]
@@ -57,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Leagues
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyInLeague));
             Assert.That(organization.LeagueIds.Count, Is.EqualTo(1));
-            orgRepo.Verify(x => x.Save(organization), Times.Never());
+            orgRepo.Verify(x => x.AddLeagueToOrganization(organization, request.LeagueId), Times.Never());
         }
     }
 }

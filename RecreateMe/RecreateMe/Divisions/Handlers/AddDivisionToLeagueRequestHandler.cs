@@ -14,10 +14,10 @@ namespace RecreateMe.Divisions.Handlers
         public AddDivisionToLeagueResponse Handle(AddDivisionToLeagueRequest request)
         {
             var league = _leagueRepository.GetById(request.LeagueId);
+            if (league.DivisionIds.Contains(request.DivisionId))
+                return new AddDivisionToLeagueResponse() {Status = ResponseCodes.AlreadyInLeague};
 
-            league.DivisionIds.Add(request.DivisionId);
-
-            _leagueRepository.Save(league);
+            _leagueRepository.AddDivisionToLeague(league, request.DivisionId);
 
             return new AddDivisionToLeagueResponse();
         }
@@ -31,5 +31,6 @@ namespace RecreateMe.Divisions.Handlers
 
     public class AddDivisionToLeagueResponse
     {
+        public ResponseCodes Status { get; set; }
     }
 }

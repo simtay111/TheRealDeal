@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using RecreateMe;
 using RecreateMe.Divisions.Handlers;
 using RecreateMe.Leagues;
 
@@ -8,20 +9,43 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
     [TestFixture]
     public class AddDivisionToLeagueRequestHandlerTests
     {
+        private Mock<ILeagueRepository> _leagueRepo;
+        private AddDivisionToLeagueRequestHandler _handler;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _leagueRepo = new Mock<ILeagueRepository>();
+            _handler = new AddDivisionToLeagueRequestHandler(_leagueRepo.Object);
+        }
+
         [Test]
         public void CanAddDivisionToLeague()
         {
-            var leagueRepo = new Mock<ILeagueRepository>();
-            var request = new AddDivisionToLeagueRequest { DivisionId = "D1", LeagueId = "League"};
+            var request = new AddDivisionToLeagueRequest { DivisionId = "D1", LeagueId = "League" };
             var league = new League();
-            leagueRepo.Setup(x => x.GetById(request.LeagueId)).Returns(league);
+            _leagueRepo.Setup(x => x.GetById(request.LeagueId)).Returns(league);
 
-            var handler = new AddDivisionToLeagueRequestHandler(leagueRepo.Object);
+            var response = _handler.Handle(request);
 
-            var response = handler.Handle(request);
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _leagueRepo.Verify(x => x.AddDivisionToLeague(league,
+                request.DivisionId));
+        }
 
-            Assert.NotNull(response);
-            leagueRepo.Verify(x => x.Save(It.Is<League>(y => y.DivisionIds.Contains(request.DivisionId))));
+        [Test]
+        public void CanNotAddADivisionTwice()
+        {
+            var request = new AddDivisionToLeagueRequest { DivisionId = "D1", LeagueId = "League" };
+            var league = new League();
+            league.DivisionIds.Add(request.DivisionId);
+            _leagueRepo.Setup(x => x.GetById(request.LeagueId)).Returns(league);
+
+            var response = _handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyInLeague));
+            _leagueRepo.Verify(x => x.AddDivisionToLeague(league,
+                request.DivisionId), Times.Never());
         }
     }
 }

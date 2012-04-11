@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using RecreateMe;
 using RecreateMe.Divisions;
 using RecreateMe.Divisions.Handlers;
 
@@ -8,21 +9,41 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
     [TestFixture]
     public class AddTeamToDivisionRequestHandlerTests
     {
+        private Mock<IDivisionRepository> _divisionRepo;
+        private AddTeamToDivisionRequestHandler _handler;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _divisionRepo = new Mock<IDivisionRepository>();
+            _handler = new AddTeamToDivisionRequestHandler(_divisionRepo.Object);
+        }
+
         [Test]
         public void CanAddATeamToDivision()
         {
             var request = new AddTeamToDivisionRequest {TeamId = "12345", DivisionId = "DivId"};
-
-            var divisionRepo = new Mock<IDivisionRepository>();
             var division = new Division();
-            divisionRepo.Setup(x => x.GetById(request.DivisionId)).Returns(division);
+            _divisionRepo.Setup(x => x.GetById(request.DivisionId)).Returns(division);
 
-            var handler = new AddTeamToDivisionRequestHandler(divisionRepo.Object);
+            var response = _handler.Handle(request);
 
-            var response = handler.Handle(request);
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _divisionRepo.Verify(x => x.AddTeamToDivision(division, request.TeamId));
+        }
 
-            Assert.NotNull(response);
-            divisionRepo.Verify(x => x.Save(It.Is<Division>(y => y.TeamIds.Contains(request.TeamId))));
+        [Test]
+        public void CannotAddATeamToDivisionTwice()
+        {
+            var request = new AddTeamToDivisionRequest { TeamId = "12345", DivisionId = "DivId" };
+            var division = new Division();
+            division.TeamIds.Add(request.TeamId);
+            _divisionRepo.Setup(x => x.GetById(request.DivisionId)).Returns(division);
+
+            var response = _handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.DuplicateEntryFound));
+            _divisionRepo.Verify(x => x.AddTeamToDivision(division, request.TeamId), Times.Never());
         }
          
     }

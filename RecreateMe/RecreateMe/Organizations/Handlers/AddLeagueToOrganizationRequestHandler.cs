@@ -16,9 +16,7 @@
             if (org.LeagueIds.Contains(request.LeagueId))
                 return new AddLeagueToOrganizationResponse {Status = ResponseCodes.AlreadyInLeague};
 
-            org.LeagueIds.Add(request.LeagueId);
-
-            _organizationRepository.Save(org);
+            _organizationRepository.AddLeagueToOrganization(org, request.LeagueId);
 
             return new AddLeagueToOrganizationResponse {Status = ResponseCodes.Success};
         }

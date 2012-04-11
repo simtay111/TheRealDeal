@@ -30,7 +30,8 @@ namespace RecreateMe
         AlreadyInGame,
         GameIsFull,
         NotCreator,
-        AlreadyInLeague
+        AlreadyInLeague,
+        DuplicateEntryFound
     }
 
     public static class ResponseCodeExtensions

@@ -4,5 +4,6 @@
     {
         void Save(Division division);
         Division GetById(string divisionId);
+        void AddTeamToDivision(Division division, string teamId);
     }
 }

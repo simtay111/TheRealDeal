@@ -13,9 +13,10 @@
         {
             var division = _divisionRepository.GetById(request.DivisionId);
 
-            division.TeamIds.Add(request.TeamId);
+            if (division.TeamIds.Contains(request.TeamId))
+                return new AddTeamToDivisionResponse {Status = ResponseCodes.DuplicateEntryFound};
 
-            _divisionRepository.Save(division);
+            _divisionRepository.AddTeamToDivision(division, request.TeamId);
 
             return new AddTeamToDivisionResponse();
         }
@@ -30,5 +31,6 @@
 
     public class AddTeamToDivisionResponse
     {
+        public ResponseCodes Status { get; set; }
     }
 }
