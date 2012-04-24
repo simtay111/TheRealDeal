@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
 <!DOCTYPE html>
-<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet">
-<link href="@Url.Content("~/Content/bootstrap-responsive.css")" rel="stylesheet">
 <span class="span4">
     <div class="hero-unit">
         <div id="BannerText">
@@ -17,7 +15,7 @@
             <div>
                 <div>
                     @Html.Label("Username", "User Name:")
-                    @Html.TextBoxFor(x => x.UserName, new { @class = "input-large" })
+                    @Html.TextBoxFor(x => x.UserName)
                 </div>
                 <div>
                     @Html.Label("Password", "Password:")
