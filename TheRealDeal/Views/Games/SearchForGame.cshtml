@@ -6,13 +6,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    window.onload = function () {
+        $('#SearchNavBtn').addClass('active');
+    }
+</script>
+
 <h2>Search for a game</h2>
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(x => x.Location);
-    @Html.TextBoxFor(x => x.Location);
-    @Html.LabelFor(x => x.Sport);
-    @Html.TextBoxFor(x => x.Sport);
+    <div>
+    @Html.LabelFor(x => x.Sport)
+    @Html.DropDownListFor(x => x.Sport, Model.SearchableSports)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.Location)
+    @Html.DropDownListFor(x => x.Location, Model.SearchableLocations)
+    </div>
     <button type="submit">Search</button>
 }
 

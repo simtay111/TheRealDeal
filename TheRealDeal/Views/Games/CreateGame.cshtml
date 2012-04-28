@@ -6,6 +6,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    window.onload = function () {
+        $('#CreateGameNavBtn').addClass('active');
+    }
+</script>
+
 <h2>Create Game</h2>
 
 @using (Html.BeginForm()){
@@ -16,15 +22,6 @@
     <div>
     @Html.LabelFor(x => x.Location)
     @Html.DropDownListFor(x => x.Location, new SelectList(Model.AvailableLocations))
-    </div>
-
-    <div>
-    @Html.LabelFor(x => x.HasTeams)
-    @Html.CheckBoxFor(x => x.HasTeams)
-    </div>
-    <div>
-    @Html.LabelFor(x => x.IsPrivate)
-    @Html.CheckBoxFor(x => x.IsPrivate)
     </div>
     <div>
     @Html.ValidationMessageFor(x => x.MaxPlayers)

@@ -30,7 +30,13 @@ namespace TheRealDeal.Controllers
 
             ViewData[ViewDataConstants.Profiles] = response.Profiles;
 
-            return View();
+            var cookie = HttpContext.Request.Cookies[Constants.CookieName] ??
+            new HttpCookie(Constants.CookieName) { Expires = DateTime.Now.AddHours(1) };
+            cookie.Values[Constants.CurrentProfileCookieField] = response.Profiles[0].ProfileId;
+
+            HttpContext.Response.Cookies.Add(cookie);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
@@ -86,7 +92,7 @@ namespace TheRealDeal.Controllers
 
             var selectList = new SelectList(sports);
 
-            var viewModel = new CreateProfileModel()
+            var viewModel = new CreateProfileModel
                                 {
                                     SportsList = selectList
                                 };

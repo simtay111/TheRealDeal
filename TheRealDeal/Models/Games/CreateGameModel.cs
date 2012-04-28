@@ -6,10 +6,6 @@ namespace TheRealDeal.Models.Games
 {
     public class CreateGameModel
     {
-        public bool HasTeams { get; set; }
-
-        public bool IsPrivate { get; set; }
-
         public string Location { get; set; }
 
         [RegularExpression("[0-9]{0,2}", ErrorMessage = "Must be a number")]

@@ -218,8 +218,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CanCreateAGameWithNoTeams()
         {
             SetupMockSportLocationAndGameRepos();
-            var request = new CreatePickupGameRequest()
-            {
+            var request = new CreatePickupGameRequest
+                              {
                 DateTime = "03/03/03 12:00",
                 Location = LocationName,
                 MaxPlayers = 5,

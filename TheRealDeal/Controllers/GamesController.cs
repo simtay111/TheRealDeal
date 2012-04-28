@@ -28,7 +28,20 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult SearchForGame()
         {
-            return View();
+            return View(CreateSearchViewModel());
+        }
+
+        private SearchForGameModel CreateSearchViewModel()
+        {
+            var sports = new SportRepository().GetNamesOfAllSports();
+            var locations = new LocationRepository().GetNamesOfAllLocations();
+
+            var viewModel = new SearchForGameModel
+                                {
+                                    SearchableSports = new SelectList(sports),
+                                    SearchableLocations = new SelectList(locations)
+                                };
+            return viewModel;
         }
 
         [Authorize]
@@ -41,7 +54,7 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
 
-            //model.Results = response.GamesFound;
+            model.Results = response.GamesFound;
 
             return View(model);
         }
@@ -64,7 +77,6 @@ namespace TheRealDeal.Controllers
             var request = new CreatePickupGameRequest
                               {
                                   DateTime = DateTime.Now.ToString(),
-                                  IsPrivate = model.IsPrivate,
                                   Location = model.Location,
                                   MaxPlayers = model.MaxPlayers,
                                   MinPlayers = model.MinPlayers,
@@ -116,8 +128,6 @@ namespace TheRealDeal.Controllers
             
             return RedirectToAction("Index");
         }
-
-
 
         [Authorize]
         public ActionResult JoinGame(string gameId)

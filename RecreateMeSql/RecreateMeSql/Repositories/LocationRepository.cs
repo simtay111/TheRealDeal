@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
 using RecreateMe.Locales;
@@ -58,6 +59,11 @@ namespace RecreateMeSql.Repositories
         private bool LocationExists(string locationName)
         {
             return GraphClient.LocationWithName(locationName).Any();
+        }
+
+        public List<string> GetNamesOfAllLocations()
+        {
+            return new List<Location>() {new Location("Portland"), new Location("Bend")}.Select(x => x.Name).ToList();
         }
     }
 }
