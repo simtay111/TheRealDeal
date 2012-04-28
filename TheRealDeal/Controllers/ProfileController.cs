@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using RecreateMe;
 using RecreateMe.Profiles;
 using RecreateMe.Profiles.Handlers;
+using RecreateMe.Sports;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Profile;
 
@@ -89,12 +90,16 @@ namespace TheRealDeal.Controllers
         private CreateProfileModel CreateViewModel()
         {
             var sports = new SportRepository().GetNamesOfAllSports();
+            var locations = new LocationRepository().GetNamesOfAllLocations();
 
-            var selectList = new SelectList(sports);
+            var availableSports = new SelectList(sports);
+            var availableLocations = new SelectList(locations);
 
             var viewModel = new CreateProfileModel
                                 {
-                                    SportsList = selectList
+                                    AvailableSports = availableSports,
+                                    AvailableLocations = availableLocations,
+                                    AvailableSkillLevels = new SelectList(new SkillLevelProvider().GetListOfAvailableSkillLevels())
                                 };
             return viewModel;
         }

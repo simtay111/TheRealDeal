@@ -2,14 +2,15 @@
 @using TheRealDeal
 @using TheRealDeal.Models.Setup
 @model AddSportModel
-@{
-    ViewBag.Title = "title";
-    Layout = "../Shared/_Layout.cshtml";
-}
-<h2>
-    Which sport would you like to add to your profile</h2>
+
+@*<header class="jumbotron">
+<h2>Which sport would you like to add to your profile</h2></header>*@
 <div>
-    Your current sports are:
+    @if (Model.SportsForProfile.Count != 0)
+     {
+        @Html.Label("Your current sports are:")
+     }
+        
     @foreach (var sport in Model.SportsForProfile)
     {
         <div>
@@ -19,13 +20,12 @@
     @using (Html.BeginForm())
     {
         <div>
-            <h3>
-                Which sport would you like to add?</h3>
+            <h3 style="padding-top: 5px; padding-bottom: 5px;">Edit your sports:</h3>
             @Html.DropDownList("ChosenSport", Model.AvailableSports, "-- Select Sport --")
             @Html.DropDownList("ChosenSkillLevel", Model.SkillLevels, "-- Skill Level --")
         </div>
-        <button type="submit">
-            Add this sport pleeease!</button>
+        <button type="submit" class="btn btn-primary" style="margin-left: 30px;">
+            Add this sport!</button>
         @Html.ValidationMessageFor(x => x.ChosenSport)
         @Html.ValidationMessageFor(x => x.ChosenSkillLevel)
     }

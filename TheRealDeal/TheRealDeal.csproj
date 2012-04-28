@@ -97,6 +97,7 @@
     <Compile Include="Models\Profile\ChooseProfileModel.cs" />
     <Compile Include="Models\Profile\CreateProfileModel.cs" />
     <Compile Include="Models\Setup\AddSportModel.cs" />
+    <Compile Include="Models\Setup\SetupOptionsModel.cs" />
     <Compile Include="Models\Teams\CreateTeamModel.cs" />
     <Compile Include="Models\Teams\ViewTeamModel.cs" />
     <Compile Include="Models\Teams\TeamsViewModel.cs" />

@@ -1,20 +1,63 @@
-﻿@model object
+﻿@using TheRealDeal.Models.Setup
+@model SetupOptionsModel
 
 @{
     ViewBag.Title = "title";
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<h2>Which options would you like to setup for your profile?</h2>
+<div>
+    @if (Model.SportsForProfile.Count != 0)
+     {
+        @Html.Label("Your current sports are:")
+     }
+        
+    @foreach (var sport in Model.SportsForProfile)
+    {
+        <div>
+            @Html.Label("Sports", sport.Name + " - Skill Level: " + sport.SkillLevel.Level)
+        </div>
+    }
+    <form action="Sports" method="POST">
+        <div>
+            <h3 style="padding-top: 5px; padding-bottom: 5px;">Edit your sports:</h3>
+            @Html.DropDownList("ChosenSport", Model.AvailableSports, "-- Select Sport --")
+            @Html.DropDownList("ChosenSkillLevel", Model.SkillLevels, "-- Skill Level --")
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left: 30px;">
+            Add this sport!</button>
+            <div>
+        @Html.ValidationMessageFor(x => x.ChosenSport)
+        </div><div>
+        @Html.ValidationMessageFor(x => x.ChosenSkillLevel)
+        </div>
+        </form>
+    
+</div>
+
+<div>  Your current locations:
 <ul>
-@foreach (var option in (IList<string>)ViewData["ListOfOptions"])
-{
-  
-    <li>
-    <button type="button" onclick="location.href='/Setup/@option/'">@option</button>
-    </li>
-}
+    @foreach (var location in Model.CurrentLocations)
+    {
+        <li>
+            @Html.Label("CurrentLocations", location.Name)
+        </li>
+    }
 </ul>
+</div>
+<div>
+    <form action="Location" method="POST">
+        @Html.Label("Please type the name of the location: ")
+        <div>
+        @Html.DropDownList("LocationToAdd", Model.AvailableLocations, "-- Select One --")
+        </div>
+        <div>
+        <button type="submit">Add this location!</button>
+        </div>
+        @Html.ValidationMessageFor(x => x.LocationToAdd)
+    </form>
+</div>
+
 
 
 

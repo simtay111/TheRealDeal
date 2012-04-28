@@ -13,6 +13,8 @@ namespace TheRealDeal.Models.Profile
         [RegularExpression("[0-9]", ErrorMessage = "Skill Level Must Be From One To Ten!")]
         public string SkillLevel { get; set; }
 
-        public SelectList SportsList { get; set; }
+        public SelectList AvailableSports { get; set; }
+        public SelectList AvailableLocations { get; set; }
+        public SelectList AvailableSkillLevels { get; set; }
     }
 }

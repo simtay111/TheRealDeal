@@ -1,35 +1,34 @@
 ﻿@using TheRealDeal.Models.Account
 @model RegisterModel
-
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
-
 <span class="span4">
     <div class="hero-unit">
-
-<h2>Register!</h2>
-@Html.ValidationSummary(true, "Errors!")
-
-@using (Html.BeginForm())
-{
-    <div>
-        <div>
-            @Html.Label("User Name", "Login Email: ")
-        </div>
-        <div> @Html.TextBoxFor(d => d.UserName)</div>
-        <div>
-            @Html.Label("Password", "Password: ")
-        </div>
-        <div>@Html.PasswordFor(d => d.Password)</div>
-        <div>
-            @Html.Label("Confirm Password", "Confirm Password: ")
-        </div>
-        <div>@Html.PasswordFor(d => d.ConfirmPassword)</div>
-        
-        <button type="submit" class="btn btn-primary">Register Me!</button>
+        <header class="jumbotron">
+            <h2>Register!</h2>
+        </header>
+        @Html.ValidationSummary(true)
+        @using (Html.BeginForm())
+        {
+            <div>
+                <div>
+                    @Html.Label("User Name", "Login Email: ")
+                </div>
+                <div>
+                    @Html.TextBoxFor(d => d.UserName)</div>
+                <div>
+                    @Html.Label("Password", "Password: ")
+                </div>
+                <div>@Html.PasswordFor(d => d.Password)</div>
+                <div>
+                    @Html.Label("Confirm Password", "Confirm Password: ")
+                </div>
+                <div>@Html.PasswordFor(d => d.ConfirmPassword)</div>
+                <button type="submit" class="btn btn-primary">
+                    Register Me!</button>
+            </div>
+        }
     </div>
-}
-</div>
 </span>

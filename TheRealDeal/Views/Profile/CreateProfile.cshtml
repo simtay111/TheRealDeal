@@ -21,16 +21,16 @@
             </div>
             <div class="CreateProfile">
                 @Html.LabelFor(x => x.Location)
-                @Html.TextBoxFor(x => x.Location)
+                @Html.DropDownList("Location", Model.AvailableLocations, "-- Select One --")
             </div>
             <div class="CreateProfile">
                 @Html.LabelFor(x => x.Sports)
-                @Html.DropDownList("Sports", Model.SportsList, "-- Select One --")
+                @Html.DropDownList("Sports", Model.AvailableSports, "-- Select One --")
                 @Html.ValidationMessageFor(x => x.Sports)
             </div>
             <div class="CreateProfile">
                 @Html.LabelFor(x => Model.SkillLevel)
-                @Html.TextBoxFor(x => Model.SkillLevel, new { })
+                @Html.DropDownList("SkillLevel", Model.AvailableSkillLevels, "-- Select A Skill Level --")
                 @Html.ValidationMessageFor(x => Model.SkillLevel)
             </div>
 
