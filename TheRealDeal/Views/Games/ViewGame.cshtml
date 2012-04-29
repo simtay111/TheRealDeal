@@ -1,0 +1,28 @@
+﻿@using TheRealDeal.Models.Games
+@model ViewGameModel
+
+@{
+    ViewBag.Title = Model.Game.Sport;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+@Html.Label("Info", String.Format("This is a {0} game. \nIt is located at {1}.  " +
+                                "\nThe game starts in {2}.", Model.Game.Sport.Name, Model.Game.Location.Name,
+                                    Model.Game.DateTime.ToString("MMM dd @ HH:mm")))
+</div>
+
+@if (!Model.Game.PlayersIds.Contains(Model.ProfileId))
+{
+    <div>
+        @using (Html.BeginForm("JoinGame", "Games", new { gameId = Model.Game.Id }))
+        {
+                <button class="btn btn-primary btn-large" style="margin: 25px"type="submit">Join!</button>
+        }
+    </div>
+}
+else
+{
+    <button type="button" onclick="location.href = '/Games/Index/'"  style="margin: 25px" class="btn btn-primary">Back!</button>
+}
+                                

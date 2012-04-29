@@ -54,6 +54,8 @@ namespace TheRealDeal.Controllers
 
             var response = handler.Handle(request);
 
+            model = CreateSearchViewModel();
+
             model.Results = response.GamesFound;
 
             return View(model);
@@ -160,6 +162,20 @@ namespace TheRealDeal.Controllers
             var profile = new ProfileRepository().GetByProfileId(GetProfileFromCookie());
             model.AvailableLocations = profile.Locations.Select(x => x.Name).ToList();
             return model;
+        }
+
+        [Authorize]
+        public ActionResult ViewGame(string gameid)
+        {
+            var game = new PickUpGameRepository().GetPickUpGameById(gameid);
+
+            var model = new ViewGameModel
+                            {
+                                Game = game,
+                                ProfileId = GetProfileFromCookie()
+                            };
+
+            return View(model);
         }
     }
 }
