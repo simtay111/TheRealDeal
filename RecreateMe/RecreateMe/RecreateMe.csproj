@@ -88,6 +88,7 @@
     <Compile Include="Organizations\IOrganizationRepository.cs" />
     <Compile Include="Organizations\Organization.cs" />
     <Compile Include="ProfileSetup\Handlers\GetListOfConfigurableProfileOptionsHandle.cs" />
+    <Compile Include="ProfileSetup\Handlers\RemoveLocationFromProfileRequestHandler.cs" />
     <Compile Include="ProfileSetup\Handlers\RemoveSportFromProfileRequestHandler.cs" />
     <Compile Include="Profiles\Handlers\AddLocationToProfileRequestHandle.cs" />
     <Compile Include="Profiles\Handlers\AddSportToProfileRequestHandle.cs" />

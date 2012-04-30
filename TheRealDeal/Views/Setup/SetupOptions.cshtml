@@ -15,6 +15,7 @@
 </script>
 
 <div>
+<h3 style="padding-top: 5px; padding-bottom: 5px;">Edit your sports:</h3>
     @if (Model.SportsForProfile.Count != 0)
      {
         @Html.Label("Your current sports are:")
@@ -23,12 +24,13 @@
     @foreach (var sport in Model.SportsForProfile)
     {
         <div>
-            @Html.Label("Sports", sport.Name + " - Skill Level: " + sport.SkillLevel.Level)
+            <label> @sport.Name - Skill Level: @sport.SkillLevel.Level  
+            @Html.ActionLink("Remove", "RemoveSport", new {sportName = sport.Name})
+            </label>
         </div>
     }
     <form action="Sports" method="POST">
         <div>
-            <h3 style="padding-top: 5px; padding-bottom: 5px;">Edit your sports:</h3>
             <div>
             @Html.ValidationMessageFor(x => x.AvailableSports)
             </div>
@@ -46,15 +48,18 @@
     
 </div>
 
-<div>  Your current locations:
-<ul>
+<h3 style="padding-top: 5px; padding-bottom: 5px;">Edit your location:</h3>
+<div> 
+    @if (Model.CurrentLocations.Count != 0)
+     {
+        @Html.Label("Your current locations are:")
+     }
     @foreach (var location in Model.CurrentLocations)
     {
-        <li>
-            @Html.Label("CurrentLocations", location.Name)
-        </li>
+            <label> @location.Name
+            @Html.ActionLink("Remove", "RemoveLocation", new { locationName = location.Name })
+            </label>
     }
-</ul>
 </div>
 <div>
     <form action="Location" method="POST">

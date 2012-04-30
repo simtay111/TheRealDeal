@@ -140,8 +140,15 @@ namespace RecreateMeSql.Repositories
         public void RemoveSportFromProfile(string profileId, string sportName)
         {
             var sportNode = GraphClient.SportWithName(sportName).Single();
-            var profile = GraphClient.ProfileWithId(profileId).OutE().Where(x => x.EndNodeReference == sportNode.Reference).Single();
-            GraphClient.DeleteRelationship(profile.Reference);
+            var relationship = GraphClient.ProfileWithId(profileId).OutE().Where(x => x.EndNodeReference == sportNode.Reference).Single();
+            GraphClient.DeleteRelationship(relationship.Reference);
+        }
+
+        public void RemoveLocationFromProfile(string profileId, string locationName)
+        {
+            var locNode = GraphClient.LocationWithName(locationName).Single();
+            var relationship = GraphClient.ProfileWithId(profileId).OutE().Where(x => x.EndNodeReference == locNode.Reference).Single();
+            GraphClient.DeleteRelationship(relationship.Reference);
         }
 
         private void CreateLocationRelationships(Profile profile, NodeReference<Profile> profileNode)

@@ -257,5 +257,18 @@ namespace TheRealDealTests.DataTests.Repositories
             var finalProfile = _repo.GetByProfileId(profile.ProfileId);
             Assert.That(finalProfile.SportsPlayed.Count, Is.EqualTo(0));
         }
+
+        [Test]
+        public void CanRemoveLocationFromProfile()
+        {
+            _data.CreateAccount1();
+            _data.CreateLocationBend();
+            var profile = _data.CreateProfileForAccount1();
+
+            _repo.RemoveLocationFromProfile(profile.ProfileId, "Bend");
+
+            var finalProfile = _repo.GetByProfileId(profile.ProfileId);
+            Assert.That(finalProfile.Locations.Count, Is.EqualTo(0));
+        }
     }
 }

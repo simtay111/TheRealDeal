@@ -19,5 +19,6 @@ namespace RecreateMe.Profiles
         IList<string> GetFriendsProfileNameList(string profileId);
         bool ProfileExistsWithName(string profileName);
         void RemoveSportFromProfile(string profileId, string sportName);
+        void RemoveLocationFromProfile(string profileId, string locationName);
     }
 }

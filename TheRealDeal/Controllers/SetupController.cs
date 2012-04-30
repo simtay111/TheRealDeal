@@ -125,6 +125,30 @@ namespace TheRealDeal.Controllers
             return RedirectToAction("SetupOptions", "Setup");
         }
 
+        [Authorize]
+        public ActionResult RemoveSport(string sportName)
+        {
+            var request = new RemoveSportFromProfileRequest {ProfileId = GetProfileFromCookie(), SportName = sportName};
+
+            var handler = new RemoveSportFromProfileRequestHandler(new ProfileRepository());
+
+            handler.Handle(request);
+
+            return RedirectToAction("SetupOptions", CreateSetupOptionsModel());
+        }
+
+        [Authorize]
+        public ActionResult RemoveLocation(string locationName)
+        {
+            var request = new RemoveLocationFromProfileRequest { ProfileId = GetProfileFromCookie(), LocationName = locationName };
+
+            var handler = new RemoveLocationFromProfileRequestHandler(new ProfileRepository());
+
+            handler.Handle(request);
+
+            return RedirectToAction("SetupOptions", CreateSetupOptionsModel());
+        }
+
         private AddSportModel CreateSportsModel()
         {
             var profileId = GetProfileFromCookie();

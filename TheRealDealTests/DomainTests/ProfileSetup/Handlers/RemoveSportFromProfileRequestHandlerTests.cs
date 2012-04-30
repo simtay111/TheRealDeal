@@ -16,7 +16,7 @@ namespace TheRealDealTests.DomainTests.ProfileSetup.Handlers
         }
 
         [Test]
-        public void CanDoSomething()
+        public void CanRemoveSPortsFromProfile()
         {
             var request = new RemoveSportFromProfileRequest {ProfileId = "ProfileId", SportName = "Soccer"};
             var profileRepo = new Mock<IProfileRepository>();
