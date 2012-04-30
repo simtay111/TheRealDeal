@@ -27,7 +27,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                                   ProfileId = profileId
                               };
 
-            var handler = new GetGamesForProfileRequestHandler(gameRepo.Object, teamRepo.Object);
+            var handler = new GetGamesForProfileRequestHandle(gameRepo.Object, teamRepo.Object);
 
             var response = handler.Handle(request);
 

@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             CreateMockRepositoriesThatReturn(_teamGame);
 
-            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
+            var handler = new AddTeamToGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(_request);
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
@@ -47,7 +47,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             CreateMockRepositoriesThatReturn(_teamGame);
 
-            var handler = new AddTeamToGameRequestHandler(_gameRepository.Object);
+            var handler = new AddTeamToGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(_request);
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.GameIsFull));

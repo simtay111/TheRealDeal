@@ -26,7 +26,7 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
                                   ProfileId = profile.ProfileId
                               };
 
-            var handler = new GetFriendsRequestHandler(repo.Object);
+            var handler = new GetFriendsRequestHandle(repo.Object);
 
             var response = handler.Handle(request);
 

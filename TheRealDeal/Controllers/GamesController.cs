@@ -15,7 +15,7 @@ namespace TheRealDeal.Controllers
         public ActionResult Index()
         {
             var request = new GetGamesForProfileRequest { ProfileId = GetProfileFromCookie() };
-            var handler = new GetGamesForProfileRequestHandler(new PickUpGameRepository(),new TeamGameRepository() );
+            var handler = new GetGamesForProfileRequestHandle(new PickUpGameRepository(),new TeamGameRepository() );
             var response = handler.Handle(request);
 
             var model = new ListOfGamesModel { TeamGames = response.TeamGames,
@@ -50,7 +50,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport};
 
-            var handler = new SearchForPickupGameRequestHandler(new PickUpGameRepository());
+            var handler = new SearchForPickupGameRequestHandle(new PickUpGameRepository());
 
             var response = handler.Handle(request);
 
@@ -76,9 +76,11 @@ namespace TheRealDeal.Controllers
                 return View(CreateViewModel());
             }
 
+            var dateTimeString = model.DateOfEvent + " " + model.TimeOfEvent;
+
             var request = new CreatePickupGameRequest
                               {
-                                  DateTime = DateTime.Now.ToString(),
+                                  DateTime = dateTimeString,
                                   Location = model.Location,
                                   MaxPlayers = model.MaxPlayers,
                                   MinPlayers = model.MinPlayers,
@@ -86,7 +88,7 @@ namespace TheRealDeal.Controllers
                                   Creator = GetProfileFromCookie()
                               };
 
-            var handler = new CreatePickupGameRequestHandler(new SportRepository(), new LocationRepository(),
+            var handler = new CreatePickupGameRequestHandle(new SportRepository(), new LocationRepository(),
                                                        new PickUpGameRepository(), new GameFactory());
 
             var response = handler.Handle(request);
@@ -95,7 +97,7 @@ namespace TheRealDeal.Controllers
 
                 var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
 
-                var joinHandler = new JoinGameRequestHandler(new PickUpGameRepository());
+                var joinHandler = new JoinGameRequestHandle(new PickUpGameRepository());
 
                 var joinResponse = joinHandler.Handle(joinRequest);
 
@@ -121,7 +123,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new AddTeamToGameRequest() {GameId = model.GameId, TeamId = model.TeamId};
 
-            var handler = new AddTeamToGameRequestHandler(new TeamGameRepository());
+            var handler = new AddTeamToGameRequestHandle(new TeamGameRepository());
 
             var response = handler.Handle(request);
 
@@ -136,7 +138,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new JoinGameRequest {GameId = gameId, ProfileId = GetProfileFromCookie()};
 
-            var handler = new JoinGameRequestHandler(new PickUpGameRepository());
+            var handler = new JoinGameRequestHandle(new PickUpGameRepository());
 
             var response = handler.Handle(request);
 
@@ -176,6 +178,18 @@ namespace TheRealDeal.Controllers
                             };
 
             return View(model);
+        }
+
+        [Authorize]
+        public ActionResult DeleteGame(string gameid)
+        {
+            var request = new DeletePickUpGameRequest {GameId = gameid, ProfileId = GetProfileFromCookie()};
+
+            var handler = new DeletePickUpGameRequestHandle(new PickUpGameRepository());
+
+            var response = handler.Handle(request);
+
+            return RedirectToAction("Index");
         }
     }
 }

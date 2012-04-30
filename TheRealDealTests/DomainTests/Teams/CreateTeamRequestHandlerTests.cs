@@ -29,7 +29,7 @@ namespace TheRealDealTests.DomainTests.Teams
             teamRepository.Setup(x => x.Save(It.Is<Team>(d => d.Name == teamName
                                                                       && d.MaxSize == maxSize))).Returns(true);
 
-            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            var handler = new CreateTeamRequestHandle(teamRepository.Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
@@ -47,7 +47,7 @@ namespace TheRealDealTests.DomainTests.Teams
                               };
 
             var teamRepository = new Mock<ITeamRepository>().Object;
-            var handler = new CreateTeamRequestHandler(teamRepository);
+            var handler = new CreateTeamRequestHandle(teamRepository);
 
             var response = handler.Handle(request);
 
@@ -72,7 +72,7 @@ namespace TheRealDealTests.DomainTests.Teams
             teamRepository.Setup(x => x.Save(It.Is<Team>(d => d.Name == teamName
                                                                       && d.MaxSize == Constants.DefaultTeamSize))).Returns(true);
 
-            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            var handler = new CreateTeamRequestHandle(teamRepository.Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
@@ -97,7 +97,7 @@ namespace TheRealDealTests.DomainTests.Teams
                                                                       && d.MaxSize == maxSize
                                                                       && d.PlayersIds.Any(y => y == profileName)))).Returns(true);
 
-            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            var handler = new CreateTeamRequestHandle(teamRepository.Object);
             var response = handler.Handle(request);
 
             teamRepository.Verify(x => x.Save(It.Is<Team>(d => d.Name == teamName
@@ -118,7 +118,7 @@ namespace TheRealDealTests.DomainTests.Teams
                 Name = teamName,
             };
 
-            var handler = new CreateTeamRequestHandler(new Mock<ITeamRepository>().Object);
+            var handler = new CreateTeamRequestHandle(new Mock<ITeamRepository>().Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileIdRequired));
@@ -140,7 +140,7 @@ namespace TheRealDealTests.DomainTests.Teams
 
             var teamRepository = new Mock<ITeamRepository>();
 
-            var handler = new CreateTeamRequestHandler(teamRepository.Object);
+            var handler = new CreateTeamRequestHandle(teamRepository.Object);
             handler.Handle(request);
 
             teamRepository.Verify(x => x.Save(It.Is<Team>(d => d.Creator == profileName)));

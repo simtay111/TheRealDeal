@@ -35,7 +35,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 
-            var handler = new SearchForPickupGameRequestHandler(_gameRepository.Object);
+            var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(request);
 
@@ -52,7 +52,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             _gameRepository = new Mock<IPickUpGameRepository>();
 
-            var handler = new SearchForPickupGameRequestHandler(_gameRepository.Object);
+            var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(request);
 
@@ -74,7 +74,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
                 .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
 
-            var handler = new SearchForPickupGameRequestHandler(_gameRepository.Object);
+            var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(request);
 

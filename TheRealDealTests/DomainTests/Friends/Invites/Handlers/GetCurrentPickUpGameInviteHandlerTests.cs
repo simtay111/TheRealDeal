@@ -26,7 +26,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
             var gameWithoutTeams = new PickUpGame();
             gameRepo.Setup(x => x.GetPickUpGameById(invite.EventId)).Returns(gameWithoutTeams);
 
-            var handler = new GetCurrentGameInviteHandler(inviteRepo.Object, gameRepo.Object);
+            var handler = new GetCurrentGameInviteHandle(inviteRepo.Object, gameRepo.Object);
 
             var response = handler.Handle(request);
 

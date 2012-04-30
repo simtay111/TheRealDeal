@@ -244,5 +244,18 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(friendsNames.Count, Is.EqualTo(1));
             Assert.That(friendsNames[0], Is.EqualTo(profile2.ProfileId));
         }
+
+        [Test]
+        public void CanRemoveSportFromProfile()
+        {
+            _data.CreateAccount1();
+            _data.CreateBasketballSport();
+            var profile = _data.CreateProfileForAccount1();
+
+            _repo.RemoveSportFromProfile(profile.ProfileId, "Basketball");
+
+            var finalProfile = _repo.GetByProfileId(profile.ProfileId);
+            Assert.That(finalProfile.SportsPlayed.Count, Is.EqualTo(0));
+        }
     }
 }

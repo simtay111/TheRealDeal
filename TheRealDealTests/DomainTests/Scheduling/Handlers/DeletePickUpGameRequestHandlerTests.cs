@@ -25,7 +25,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                                   ProfileId = "Creator"
                               };
 
-            var handler = new DeletePickUpGameRequestHandler(pickUpGameRepo.Object);
+            var handler = new DeletePickUpGameRequestHandle(pickUpGameRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -47,7 +47,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                 ProfileId = "CowCreator"
             };
 
-            var handler = new DeletePickUpGameRequestHandler(pickUpGameRepo.Object);
+            var handler = new DeletePickUpGameRequestHandle(pickUpGameRepo.Object);
 
             var response = handler.Handle(request);
 

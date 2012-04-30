@@ -137,6 +137,13 @@ namespace RecreateMeSql.Repositories
             return nodes.Any();
         }
 
+        public void RemoveSportFromProfile(string profileId, string sportName)
+        {
+            var sportNode = GraphClient.SportWithName(sportName).Single();
+            var profile = GraphClient.ProfileWithId(profileId).OutE().Where(x => x.EndNodeReference == sportNode.Reference).Single();
+            GraphClient.DeleteRelationship(profile.Reference);
+        }
+
         private void CreateLocationRelationships(Profile profile, NodeReference<Profile> profileNode)
         {
             foreach (var location in profile.Locations)

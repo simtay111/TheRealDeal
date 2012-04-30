@@ -27,7 +27,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
             var request = CreateAcceptGameRequest();
             var gameWithoutTeams = new PickUpGame { MaxPlayers = 1 };
             _gameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(gameWithoutTeams);
-            var handler = new AcceptPickupGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
+            var handler = new AcceptPickupGameInviteRequestHandle(_gameRepo.Object, _inviteRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -43,7 +43,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
             var request = CreateAcceptGameRequest();
             var gameWithoutTeams = new PickUpGame { MaxPlayers = 0 };
             _gameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(gameWithoutTeams);
-            var handler = new AcceptPickupGameInviteRequestHandler(_gameRepo.Object, _inviteRepo.Object);
+            var handler = new AcceptPickupGameInviteRequestHandle(_gameRepo.Object, _inviteRepo.Object);
 
             var response = handler.Handle(request);
 

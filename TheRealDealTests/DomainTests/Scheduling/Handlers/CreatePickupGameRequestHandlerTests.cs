@@ -240,9 +240,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
-        private CreatePickupGameRequestHandler CreateHandler()
+        private CreatePickupGameRequestHandle CreateHandler()
         {
-            return new CreatePickupGameRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
+            return new CreatePickupGameRequestHandle(_mockSportRepo.Object, _mockLocationRepo.Object,
                                                 _mockGameRepo.Object, _mockGameFactory.Object);
         }
 

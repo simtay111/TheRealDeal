@@ -32,7 +32,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             _loginWasCreated = false;
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 
@@ -45,7 +45,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             _confirmPassword = "Different";
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 
@@ -59,7 +59,7 @@ namespace TheRealDealTests.DomainTests.Login
             _password = "moo";
             _confirmPassword = "moo";
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 
@@ -72,7 +72,7 @@ namespace TheRealDealTests.DomainTests.Login
             _password = "LopngPasswoooord";
             _confirmPassword = "LopngPasswoooord";
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 
@@ -84,7 +84,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             _email = _existingUser;
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 
@@ -96,7 +96,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             _email = "MooMooCow";
             var request = CreateRequestFromFieldProperties();
-            var handler = new RegisterUserHandler(_userRepo);
+            var handler = new RegisterUserHandle(_userRepo);
 
             var response = handler.Handle(request);
 

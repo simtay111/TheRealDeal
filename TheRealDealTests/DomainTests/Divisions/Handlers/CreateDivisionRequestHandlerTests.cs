@@ -15,7 +15,7 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
 
             var request = new CreateDivisionRequest {Name = "D1"};
 
-            var handler = new CreateDivisionRequestHandler(divisionRepo.Object);
+            var handler = new CreateDivisionRequestHandle(divisionRepo.Object);
 
             var response = handler.Handle(request);
 

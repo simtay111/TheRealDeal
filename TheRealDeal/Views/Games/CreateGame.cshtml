@@ -14,37 +14,52 @@
 
 <h2>Create Game</h2>
 
-@using (Html.BeginForm()){
+@using (Html.BeginForm())
+{
     <div>
     @Html.LabelFor(x => x.Sport)
     @Html.DropDownListFor(x => x.Sport, new SelectList(Model.AvailableSports))
     </div>
     <div>
-    @Html.LabelFor(x => x.Location)
+    @Html.LabelFor(x => x.Location, "General Location")
     @Html.DropDownListFor(x => x.Location, new SelectList(Model.AvailableLocations))
     </div>
     <div>
+    @Html.ValidationMessageFor(x => x.DateOfEvent)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.DateOfEvent, "Date for event (ex: 02/18/2004)")
+    @Html.TextBoxFor(x => x.DateOfEvent)
+    </div>
+    <div>
+    @Html.ValidationMessageFor(x => x.TimeOfEvent)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.TimeOfEvent, "Time for event (ex: 15:30 for 3:30 pm)")
+    @Html.TextBoxFor(x => x.TimeOfEvent)
+    </div>
+    <div>
+    @Html.ValidationMessageFor(x => x.ExactLocation)
+    </div>
+    <div>
+    @Html.LabelFor(x => x.ExactLocation, "Exact location:")
+    @Html.TextBoxFor(x => x.ExactLocation)
+    </div>
+        <div>
     @Html.ValidationMessageFor(x => x.MaxPlayers)
     </div>
     <div>
-    @Html.LabelFor(x => x.MaxPlayers)
+    @Html.LabelFor(x => x.MaxPlayers, "Max Players (Optional)")
     @Html.TextBoxFor(x => x.MaxPlayers)
     </div>
     <div>
     @Html.ValidationMessageFor(x => x.MinPlayers)
     </div>
     <div>
-    @Html.LabelFor(x => x.MinPlayers)
+    @Html.LabelFor(x => x.MinPlayers, "Min Players (Optional)")
     @Html.TextBoxFor(x => x.MinPlayers)
     </div>
-  @*  <div>
-    @Html.LabelFor(x => x.DateTimeOfEvent)
-    @Html.
-    </div>*@
     
-
-    
-    <button id="submitCreateGame" class="btn btn-primary" type="submit">Create this team!</button>
-    
+    <button id="submitCreateGame" class="btn btn-primary" type="submit">Create game!</button>
 }
 

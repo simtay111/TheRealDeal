@@ -53,10 +53,10 @@
             }*@
             @foreach (var game in Model.PickUpGames)
             {
-                
-                @Html.ActionLink(String.Format("{0} in {1} at {2}", game.Sport.Name,
+             <div>
+                @Html.ActionLink(String.Format("{0} in {1} on {2}", game.Sport.Name,
                 game.Location.Name, game.DateTime.ToDisplayableGameTime()), "ViewGame",  new { gameId = game.Id },
-                new {style = "padding-left: 20px"})
+                     new { style = "padding-left: 20px" })</div>   
             }
 
 @*            </div></div>

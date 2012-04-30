@@ -34,7 +34,7 @@ namespace TheRealDeal.Controllers
                                   ProfileId = GetProfileFromCookie()
                               };
 
-            var handler = new CreateTeamRequestHandler(new TeamRepository());
+            var handler = new CreateTeamRequestHandle(new TeamRepository());
 
             var response = handler.Handle(request);
 
@@ -49,7 +49,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new ViewTeamRequest {TeamId = teamId};
 
-            var handler = new ViewTeamRequestHandler(new TeamRepository());
+            var handler = new ViewTeamRequestHandle(new TeamRepository());
 
             var response = handler.Handle(request);
 
@@ -64,7 +64,7 @@ namespace TheRealDeal.Controllers
 
             var request = new GetTeamsForProfileRequest {ProfileId = profileId};
 
-            var response = new GetTeamsForProfileHandler(new TeamRepository()).Handle(request);
+            var response = new GetTeamsForProfileHandle(new TeamRepository()).Handle(request);
 
             var model = new TeamsViewModel {Teams = response.Teams};
             return model;

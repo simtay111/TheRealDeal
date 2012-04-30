@@ -19,7 +19,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Search.Handlers
             const string name = "Nancy Drew";
             var request = new SearchForProfileRequest {Name = name};
             _mockProfileRepo = CreateMockProfileRepository(name);
-            var handler = new SearchForProfileRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForProfileRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -33,7 +33,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Search.Handlers
             const string name = "Meowsa";
             var request = new SearchForProfileRequest { Name = name };
             _mockProfileRepo = CreateMockProfileRepository("ProfileNames");
-            var handler = new SearchForProfileRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForProfileRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 

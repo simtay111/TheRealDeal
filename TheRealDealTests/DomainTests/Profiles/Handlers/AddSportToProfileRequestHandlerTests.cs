@@ -39,7 +39,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _mockIProfileUpdater.Setup(x => x.AddSportToProfile(It.Is<Profile>(d => d == _profile), It.IsAny<SportWithSkillLevel>())).
                 Callback(() => _profileWasSavedSuccessfully = true);
 
-            var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+            var handler = new AddSportToProfileRequestHandle(_mockIProfileUpdater.Object, _mockSportRepo.Object);
             var response = handler.Handle(_request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
@@ -58,7 +58,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
                            };
             SetUpMockProfileUpdaterAndSportRepo(_profile.ProfileId);
             _mockSportRepo.Setup(x => x.FindByName(_request.Sport)).Returns(new Sport {Name = "Soccer"});
-            var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+            var handler = new AddSportToProfileRequestHandle(_mockIProfileUpdater.Object, _mockSportRepo.Object);
 
             var response = handler.Handle(_request);
 
@@ -76,7 +76,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             };
             _profile = new Profile();
             SetUpMockProfileUpdaterAndSportRepo(uniqueId);
-            var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+            var handler = new AddSportToProfileRequestHandle(_mockIProfileUpdater.Object, _mockSportRepo.Object);
 
             handler.Handle(_request);
 
@@ -88,7 +88,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
         public void ThrowsExceptionWhenThereIsNoSportSpecified()
         {
             var request = new AddSportToProfileRequest();
-            var handler = new AddSportToProfileRequestHandler(_mockIProfileUpdater.Object, _mockSportRepo.Object);
+            var handler = new AddSportToProfileRequestHandle(_mockIProfileUpdater.Object, _mockSportRepo.Object);
 
             var response = handler.Handle(request);
             

@@ -89,6 +89,7 @@
     <Compile Include="DomainTests\Organizations\Handlers\CreateOrganizationRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Organizations\OrganizationTests.cs" />
     <Compile Include="DomainTests\ProfileSetup\Handlers\GetListOfConfigurableProfileOptionsHandlerTests.cs" />
+    <Compile Include="DomainTests\ProfileSetup\Handlers\RemoveSportFromProfile.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\AddLocationToProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\AddSportToProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Profiles\Handlers\CreateProfileRequestHandlerTests.cs" />

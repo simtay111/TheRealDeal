@@ -17,7 +17,7 @@ namespace TheRealDealTests.DomainTests.Teams
             repo.Setup(x => x.GetTeamsForProfile(request.ProfileId))
                 .Returns(new List<Team> {TestData.CreateTeam1()});
 
-            var handler = new GetTeamsForProfileHandler(repo.Object);
+            var handler = new GetTeamsForProfileHandle(repo.Object);
 
             var response = handler.Handle(request);
 

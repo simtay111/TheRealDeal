@@ -22,7 +22,7 @@ namespace TheRealDealTests.DomainTests.Teams
                                   TeamId = team.Id
                               };
             
-            var handler = new ViewTeamRequestHandler(teamRepo.Object);
+            var handler = new ViewTeamRequestHandle(teamRepo.Object);
 
             var response = handler.Handle(request);
 

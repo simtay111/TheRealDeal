@@ -19,7 +19,7 @@ namespace TheRealDealTests.DomainTests.Organizations.Handlers
                                   ProfileId = "Simtay111"
                               };
 
-            var handler = new CreateOrganizationRequestHandler(orgRepo.Object);
+            var handler = new CreateOrganizationRequestHandle(orgRepo.Object);
 
             var response = handler.Handle(request);
 

@@ -18,7 +18,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             var request = new LoginRequest {Username = Username, Password = Password};
             SetupMockUserRepo();
-            var handler = new LoginRequestHandler(_mockUserRepo.Object);
+            var handler = new LoginRequestHandle(_mockUserRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -30,7 +30,7 @@ namespace TheRealDealTests.DomainTests.Login
         {
             var request = new LoginRequest { Username = "Hamster", Password = Password };
             SetupMockUserRepo();
-            var handler = new LoginRequestHandler(_mockUserRepo.Object);
+            var handler = new LoginRequestHandle(_mockUserRepo.Object);
 
             var response = handler.Handle(request);
 

@@ -22,7 +22,7 @@ namespace TheRealDealTests.DomainTests.Friends.Invites.Handlers
              _mockInviteSender.Setup(x => x.SetEventIdForInvites(request.GameId)).Verifiable();
              _mockInviteSender.Setup(x => x.SetSenderId(request.InviterId)).Verifiable();
              _mockInviteSender.Setup(x => x.SendInviteTo(request.FriendIds[0])).Verifiable();
-             var handler = new InviteFriendsToGameRequestHandler(_mockInviteSender.Object);
+             var handler = new InviteFriendsToGameRequestHandle(_mockInviteSender.Object);
 
              var response = handler.Handle(request);
 

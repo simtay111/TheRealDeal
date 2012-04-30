@@ -102,9 +102,9 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileNameAlreadyExists));
         }
 
-        private CreateProfileRequestHandler CreateProfileRequestHandler()
+        private CreateProfileRequestHandle CreateProfileRequestHandler()
         {
-            var handler = new CreateProfileRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
+            var handler = new CreateProfileRequestHandle(_mockSportRepo.Object, _mockLocationRepo.Object,
                                                           _mockProfileRepo.Object, _mockProfileBuilder.Object);
             return handler;
         }

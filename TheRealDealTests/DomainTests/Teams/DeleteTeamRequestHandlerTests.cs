@@ -23,7 +23,7 @@ namespace TheRealDealTests.DomainTests.Teams
             var team = new Team(request.TeamId) { Creator = request.ProfileId };
             teamRepo.Setup(x => x.GetById(request.TeamId)).Returns(team);
 
-            var handler = new DeleteTeamRequestHandler(teamRepo.Object);
+            var handler = new DeleteTeamRequestHandle(teamRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -44,7 +44,7 @@ namespace TheRealDealTests.DomainTests.Teams
             var team = new Team(request.TeamId) {Creator = "NotCreator"};
             teamRepo.Setup(x => x.GetById(request.TeamId)).Returns(team);
 
-            var handler = new DeleteTeamRequestHandler(teamRepo.Object);
+            var handler = new DeleteTeamRequestHandle(teamRepo.Object);
 
             var response = handler.Handle(request);
 

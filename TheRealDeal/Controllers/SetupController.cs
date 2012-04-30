@@ -19,7 +19,7 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult SetupOptions()
         {
-            var handler = new GetListOfConfigurableProfileOptionsHandler(new ConfigurationProvider());
+            var handler = new GetListOfConfigurableProfileOptionsHandle(new ConfigurationProvider());
 
             var response = handler.Handle(new GetListOfConfigurableProfileOptionsRequest());
 
@@ -56,8 +56,11 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult Sports(SetupOptionsModel model)
         {
-            if (!ModelState.IsValid)
+            if (string.IsNullOrEmpty(model.ChosenSport) || string.IsNullOrEmpty(model.ChosenSkillLevel))
+            {
+                ModelState.AddModelError("AvailableSports", "Please choose a sport AND a skill level");
                 return View("SetupOptions", CreateSetupOptionsModel());
+            }
 
             var profile = GetProfileFromCookie();
             var request = new AddSportToProfileRequest
@@ -67,13 +70,13 @@ namespace TheRealDeal.Controllers
                                   UniqueId = profile
                               };
 
-            var handler = new AddSportToProfileRequestHandler(new ProfileRepository(), new SportRepository());
+            var handler = new AddSportToProfileRequestHandle(new ProfileRepository(), new SportRepository());
 
             var response = handler.Handle(request);
 
             if (response.Status == ResponseCodes.Success)
             {
-                return View("SetupOptions");
+                return View("SetupOptions", CreateSetupOptionsModel());
             }
 
             var errorMessage = response.Status.GetMessage();
@@ -94,8 +97,9 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult Location(SetupOptionsModel model)
         {
-            if (!ModelState.IsValid)
+            if (string.IsNullOrEmpty(model.LocationToAdd))
             {
+                ModelState.AddModelError("AvailableLocations", "Please choose a location");
                 return View("SetupOptions", CreateSetupOptionsModel());
             }
 
@@ -106,7 +110,7 @@ namespace TheRealDeal.Controllers
                                   ProfileId = profileId
                               };
 
-            var handler = new AddLocationToProfileRequestHandler(new ProfileRepository(), new LocationRepository());
+            var handler = new AddLocationToProfileRequestHandle(new ProfileRepository(), new LocationRepository());
 
             var response = handler.Handle(request);
 
@@ -155,7 +159,7 @@ namespace TheRealDeal.Controllers
         {
             var request = new GetSportsForProfileRequest { ProfileId = profileId };
 
-            var handler = new GetSportsForProfileHandler(new ProfileRepository());
+            var handler = new GetSportsForProfileHandle(new ProfileRepository());
 
             var response = handler.Handle(request);
             return response.SportsForProfile;

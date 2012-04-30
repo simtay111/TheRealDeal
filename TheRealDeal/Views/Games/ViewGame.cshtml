@@ -23,6 +23,10 @@
 }
 else
 {
-    <button type="button" onclick="location.href = '/Games/Index/'"  style="margin: 25px" class="btn btn-primary">Back!</button>
+    <button type="button" onclick="location.href = '/Games/Index/'"  style="margin-top: 25px; margin-left: 25px" class="btn btn-primary">Back!</button>
+    if (Model.Game.Creator == Model.ProfileId)
+    {
+        <button type="button" onclick=" location.href = '/Games/DeleteGame?gameId=@Model.Game.Id'"  style="margin-top: 25px; margin-left: 25px" class="btn btn-danger">Delete Game</button>
+    }
 }
                                 

@@ -16,7 +16,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var profileRepo = new Mock<IProfileRepository>();
             profileRepo.Setup(x => x.GetByProfileId(profileId)).Returns(profile);
             var request = new GetSportsForProfileRequest { ProfileId = profileId};
-            var handler = new GetSportsForProfileHandler(profileRepo.Object);
+            var handler = new GetSportsForProfileHandle(profileRepo.Object);
 
             var response = handler.Handle(request);
 

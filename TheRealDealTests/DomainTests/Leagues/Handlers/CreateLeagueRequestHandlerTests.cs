@@ -18,7 +18,7 @@ namespace TheRealDealTests.DomainTests.Leagues
                                   Name = "Leage1Name"
                               };
 
-            var handler = new CreateLeagueRequestHandler(leagueRepo.Object);
+            var handler = new CreateLeagueRequestHandle(leagueRepo.Object);
 
             var response = handler.Handle(request);
 

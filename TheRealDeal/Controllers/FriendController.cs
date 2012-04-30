@@ -39,7 +39,7 @@ namespace TheRealDeal.Controllers
                 MyProfile = GetProfileFromCookie()
             };
 
-            var handler = new SearchForFriendsRequestHandler(new ProfileRepository());
+            var handler = new SearchForFriendsRequestHandle(new ProfileRepository());
 
             var response = handler.Handle(request);
 
@@ -56,7 +56,7 @@ namespace TheRealDeal.Controllers
                                   ProfileId = GetProfileFromCookie()
                               };
 
-            var handler = new AddPlayerToFriendsRequestHandler(new ProfileRepository());
+            var handler = new AddPlayerToFriendsRequestHandle(new ProfileRepository());
 
             handler.Handle(request);
 

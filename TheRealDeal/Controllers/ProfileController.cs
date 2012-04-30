@@ -22,7 +22,7 @@ namespace TheRealDeal.Controllers
                                   Account = HttpContext.User.Identity.Name
                               };
 
-            var handler = new GetProfilesForAccountRequestHandler(new ProfileRepository());
+            var handler = new GetProfilesForAccountRequestHandle(new ProfileRepository());
 
             var response = handler.Handle(request);
 
@@ -71,7 +71,7 @@ namespace TheRealDeal.Controllers
             var request = new CreateProfileRequest(User.Identity.Name, model.Name, model.Location, model.Sports,
                                                    model.SkillLevel);
 
-            var handler = new CreateProfileRequestHandler(new SportRepository(), new LocationRepository(),
+            var handler = new CreateProfileRequestHandle(new SportRepository(), new LocationRepository(),
                                                           new ProfileRepository(), new ProfileBuilder());
 
             var response = handler.Handle(request);

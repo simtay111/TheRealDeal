@@ -33,7 +33,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
             var mockProfileRepo = new Mock<IProfileRepository>();
             mockProfileRepo.Setup(x => x.FindAllByName(request.ProfileName)).Returns(listOfProfiles);
 
-            var handler = new SearchForFriendsRequestHandler(mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -48,7 +48,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -62,7 +62,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -76,7 +76,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             SetupProfileRepoToReturnThreeProfilesForName();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -90,7 +90,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             SetupProfileRepoForSports();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -104,7 +104,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
 
             SetupProfileRepoToReturnTForLocationQuery();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -119,7 +119,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
             SetupProfileRepoToReturnTForLocationQuery();
             SetupProfileRepoForSports();
 
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -130,7 +130,7 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         public void ReturnsBadResponseCodeIfNoFieldsWereSpecified()
         {
             var request = new SearchForFriendsRequest { ProfileName = "", Sport = "", Location = "" };
-            var handler = new SearchForFriendsRequestHandler(_mockProfileRepo.Object);
+            var handler = new SearchForFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 

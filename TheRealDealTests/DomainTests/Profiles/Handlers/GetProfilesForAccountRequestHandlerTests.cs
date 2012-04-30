@@ -17,7 +17,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var mockProfileRepo = new Mock<IProfileRepository>();
             mockProfileRepo.Setup(x => x.GetByAccount(accountName)).Returns(new List<Profile>() 
                 { new Profile(), new Profile() });
-            var handler = new GetProfilesForAccountRequestHandler(mockProfileRepo.Object);
+            var handler = new GetProfilesForAccountRequestHandle(mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -31,7 +31,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             var request = new GetProfilesForAccountRequest() { Account = accountName };
             var mockProfileRepo = new Mock<IProfileRepository>();
             mockProfileRepo.Setup(x => x.GetByAccount(accountName)).Returns(new List<Profile>());
-            var handler = new GetProfilesForAccountRequestHandler(mockProfileRepo.Object);
+            var handler = new GetProfilesForAccountRequestHandle(mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 

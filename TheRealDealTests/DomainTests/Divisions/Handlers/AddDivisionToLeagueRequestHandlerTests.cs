@@ -10,13 +10,13 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
     public class AddDivisionToLeagueRequestHandlerTests
     {
         private Mock<ILeagueRepository> _leagueRepo;
-        private AddDivisionToLeagueRequestHandler _handler;
+        private AddDivisionToLeagueRequestHandle _handle;
 
         [SetUp]
         public void SetUp()
         {
             _leagueRepo = new Mock<ILeagueRepository>();
-            _handler = new AddDivisionToLeagueRequestHandler(_leagueRepo.Object);
+            _handle = new AddDivisionToLeagueRequestHandle(_leagueRepo.Object);
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
             var league = new League();
             _leagueRepo.Setup(x => x.GetById(request.LeagueId)).Returns(league);
 
-            var response = _handler.Handle(request);
+            var response = _handle.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
             _leagueRepo.Verify(x => x.AddDivisionToLeague(league,
@@ -41,7 +41,7 @@ namespace TheRealDealTests.DomainTests.Divisions.Handlers
             league.DivisionIds.Add(request.DivisionId);
             _leagueRepo.Setup(x => x.GetById(request.LeagueId)).Returns(league);
 
-            var response = _handler.Handle(request);
+            var response = _handle.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyInLeague));
             _leagueRepo.Verify(x => x.AddDivisionToLeague(league,

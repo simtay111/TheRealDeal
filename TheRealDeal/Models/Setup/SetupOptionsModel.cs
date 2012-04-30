@@ -18,13 +18,10 @@ namespace TheRealDeal.Models.Setup
 
         public SelectList AvailableLocations { get; set; }
 
-        [Required(ErrorMessage = "Please choose a location.")]
         public string LocationToAdd { get; set; }
 
-        [Required(ErrorMessage = "Please choose a skill level.")]
         public string ChosenSkillLevel { get; set; }
 
-        [Required(ErrorMessage = "Please choose a sport.")]
         public string ChosenSport { get; set; }
     }
 }

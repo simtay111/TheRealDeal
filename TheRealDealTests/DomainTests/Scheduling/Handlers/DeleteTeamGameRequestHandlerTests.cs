@@ -25,7 +25,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                                   ProfileId = "Creator"
                               };
 
-            var handler = new DeleteTeamGameRequestHandler(teamGameRepo.Object);
+            var handler = new DeleteTeamGameRequestHandle(teamGameRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -47,7 +47,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
                 ProfileId = "CowCreator"
             };
 
-            var handler = new DeleteTeamGameRequestHandler(teamGameRepo.Object);
+            var handler = new DeleteTeamGameRequestHandle(teamGameRepo.Object);
 
             var response = handler.Handle(request);
 

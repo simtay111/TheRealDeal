@@ -24,7 +24,7 @@ namespace TheRealDealTests.DomainTests.Leagues
 
             orgRepo.Setup(x => x.GetById(request.OrganizationId)).Returns(organization);
 
-            var handler = new AddLeagueToOrganizationRequestHandler(orgRepo.Object);
+            var handler = new AddLeagueToOrganizationRequestHandle(orgRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -48,7 +48,7 @@ namespace TheRealDealTests.DomainTests.Leagues
 
             orgRepo.Setup(x => x.GetById(request.OrganizationId)).Returns(organization);
 
-            var handler = new AddLeagueToOrganizationRequestHandler(orgRepo.Object);
+            var handler = new AddLeagueToOrganizationRequestHandle(orgRepo.Object);
 
             var response = handler.Handle(request);
 

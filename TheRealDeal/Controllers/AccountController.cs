@@ -23,7 +23,7 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult LogIn(LogOnModel model)
         {
-            var handler = new LoginRequestHandler(new UserRepository());
+            var handler = new LoginRequestHandle(new UserRepository());
 
             var request = new LoginRequest { Password = model.Password, Username = model.UserName };
 
@@ -47,7 +47,7 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
-            var handler = new RegisterUserHandler(new UserRepository());
+            var handler = new RegisterUserHandle(new UserRepository());
 
             var request = new RegisterUserRequest()
                               {

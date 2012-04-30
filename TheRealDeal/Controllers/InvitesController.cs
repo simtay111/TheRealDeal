@@ -9,7 +9,7 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var request = new GetCurrentGameInviteHandler(new InviteRepository(), new PickUpGameRepository());
+            var request = new GetCurrentGameInviteHandle(new InviteRepository(), new PickUpGameRepository());
 
             return View();
         }

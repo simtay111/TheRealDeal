@@ -36,7 +36,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
                                   ProfileId = profileId
                               };
             CreateMockProfileAndLocationRepos(profileId, location);
-            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+            var handler = new AddLocationToProfileRequestHandle(_mockProfileRepo.Object, _mockLocationRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -53,7 +53,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
                                   Location = null
                               };
             CreateMockProfileAndLocationRepos("Moo", null);
-            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+            var handler = new AddLocationToProfileRequestHandle(_mockProfileRepo.Object, _mockLocationRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -70,7 +70,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             };
             CreateMockProfileAndLocationRepos("Moo", request.Location);
             _mockLocationRepo.Setup(x => x.FindByName(request.Location)).Returns(() => null);
-            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+            var handler = new AddLocationToProfileRequestHandle(_mockProfileRepo.Object, _mockLocationRepo.Object);
 
             var response = handler.Handle(request);
 
@@ -90,7 +90,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _profile = new Profile();
             _profile.Locations.Add(new Location("Bend"));
             CreateMockProfileAndLocationRepos(profileId, request.Location);
-            var handler = new AddLocationToProfileRequestHandler(_mockProfileRepo.Object, _mockLocationRepo.Object);
+            var handler = new AddLocationToProfileRequestHandle(_mockProfileRepo.Object, _mockLocationRepo.Object);
 
             var response = handler.Handle(request);
 

@@ -18,7 +18,7 @@ namespace TheRealDealTests.DomainTests.ProfileSetup.Handlers
 
             var request = new GetListOfConfigurableProfileOptionsRequest();
 
-            var handler = new GetListOfConfigurableProfileOptionsHandler(configurationProvider.Object);
+            var handler = new GetListOfConfigurableProfileOptionsHandle(configurationProvider.Object);
 
             var response = handler.Handle(request);
 
