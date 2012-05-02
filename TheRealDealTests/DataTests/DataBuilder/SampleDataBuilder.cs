@@ -290,7 +290,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport(FootballName);
+            game.Sport = new Sport(Basketballname);
             game.Location = new Location(LocationPortland);
             game.AddPlayer(Profile1Id);
             game.AddPlayer(Profile2Id);

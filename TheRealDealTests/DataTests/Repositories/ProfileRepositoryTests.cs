@@ -275,7 +275,7 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanGetProfilesForGame()
         {
             _data.CreateLocationPortland();
-            _data.CreateFootballSport();
+            _data.CreateBasketballSport();
             var profile = _data.CreateAccountWithProfile1();
             var profile2 = _data.CreateAccountWithProfile2();
             var game = _data.CreateGameWithProfile1AndProfile2();

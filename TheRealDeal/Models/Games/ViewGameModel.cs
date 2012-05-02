@@ -9,6 +9,6 @@ namespace TheRealDeal.Models.Games
 
         public string ProfileId { get; set; }
 
-        public List<RecreateMe.Profiles.Profile> Players { get; set; }
+        public Dictionary<string, int> PlayerIdsAndSkillLevels { get; set; }
     }
 }

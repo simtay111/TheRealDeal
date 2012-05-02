@@ -2,6 +2,7 @@
 using System.Linq;
 using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
+using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers.Views
 {
@@ -22,9 +23,19 @@ namespace RecreateMe.Scheduling.Handlers.Views
 
             var profiles = _profileRepository.GetProfilesInGame(request.GameId);
 
-            var dict = profiles.ToDictionary(profile => profile.ProfileId, profile => profile.SportsPlayed.Single(x => x.Name == game.Sport.Name).SkillLevel.Level);
+            var dict = profiles.ToDictionary(profile => profile.ProfileId,
+                profile => GetSkillLevelForGame(game, profile));
+
 
             return new ViewGameResponse {Game = game, ProfilesAndSkillLevels = dict};
+        }
+
+        private static int GetSkillLevelForGame(PickUpGame game, Profile profile)
+        {
+            var sport = profile.SportsPlayed.SingleOrDefault(x => x.Name == game.Sport.Name);
+
+            var skillLevel = sport != null ? sport.SkillLevel.Level : Constants.DefaultSkillLevel;
+            return skillLevel;
         }
     }
 

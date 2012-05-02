@@ -65,7 +65,7 @@ namespace TheRealDealTests.DataTests.Repositories
 
             var pickUpGames = _repo.GetPickupGamesForProfile("Simtay111");
 
-            Assert.That(pickUpGames.Count, Is.EqualTo(1));
+            Assert.That(pickUpGames.Count, Is.EqualTo(2));
         }
 
         [Test]

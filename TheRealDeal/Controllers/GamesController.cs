@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using RecreateMe;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
+using RecreateMe.Scheduling.Handlers.Views;
 using RecreateMeSql.Repositories;
 using TheRealDeal.Models.Games;
 
@@ -170,13 +171,13 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult ViewGame(string gameid)
         {
-            var game = new PickUpGameRepository().GetPickUpGameById(gameid);
-            var profiles = new ProfileRepository().GetProfilesInGame(gameid);
-
+            var request = new ViewGameRequest() {GameId = gameid};
+            var handler = new ViewGameRequestHandler(new ProfileRepository(), new PickUpGameRepository());
+            var response = handler.Handle(request);
             var model = new ViewGameModel
                             {
-                                Game = game,
-                                Players = profiles,
+                                Game = response.Game,
+                                PlayerIdsAndSkillLevels = response.ProfilesAndSkillLevels,
                                 ProfileId = GetProfileFromCookie()
                             };
 
