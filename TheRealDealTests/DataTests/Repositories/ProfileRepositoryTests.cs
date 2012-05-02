@@ -270,5 +270,21 @@ namespace TheRealDealTests.DataTests.Repositories
             var finalProfile = _repo.GetByProfileId(profile.ProfileId);
             Assert.That(finalProfile.Locations.Count, Is.EqualTo(0));
         }
+
+        [Test]
+        public void CanGetProfilesForGame()
+        {
+            _data.CreateLocationPortland();
+            _data.CreateFootballSport();
+            var profile = _data.CreateAccountWithProfile1();
+            var profile2 = _data.CreateAccountWithProfile2();
+            var game = _data.CreateGameWithProfile1AndProfile2();
+
+            var profiles = _repo.GetProfilesInGame(game.Id);
+
+            Assert.That(profiles.Count, Is.EqualTo(2));
+            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
+            Assert.That(profiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+        }
     }
 }

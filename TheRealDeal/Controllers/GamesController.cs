@@ -85,7 +85,8 @@ namespace TheRealDeal.Controllers
                                   MaxPlayers = model.MaxPlayers,
                                   MinPlayers = model.MinPlayers,
                                   Sport = model.Sport,
-                                  Creator = GetProfileFromCookie()
+                                  Creator = GetProfileFromCookie(),
+                                  ExactLocation = model.ExactLocation
                               };
 
             var handler = new CreatePickupGameRequestHandle(new SportRepository(), new LocationRepository(),
@@ -170,10 +171,12 @@ namespace TheRealDeal.Controllers
         public ActionResult ViewGame(string gameid)
         {
             var game = new PickUpGameRepository().GetPickUpGameById(gameid);
+            var profiles = new ProfileRepository().GetProfilesInGame(gameid);
 
             var model = new ViewGameModel
                             {
                                 Game = game,
+                                Players = profiles,
                                 ProfileId = GetProfileFromCookie()
                             };
 

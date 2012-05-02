@@ -20,5 +20,6 @@ namespace RecreateMe.Profiles
         bool ProfileExistsWithName(string profileName);
         void RemoveSportFromProfile(string profileId, string sportName);
         void RemoveLocationFromProfile(string profileId, string locationName);
+        List<Profile> GetProfilesInGame(string gameId);
     }
 }

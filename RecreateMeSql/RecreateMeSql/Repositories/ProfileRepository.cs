@@ -188,5 +188,12 @@ namespace RecreateMeSql.Repositories
             GraphClient.CreateRelationship(profileNode,
                                             profileToSportRelationship);
         }
+
+        public List<Profile> GetProfilesInGame(string gameId)
+        {
+            var thingy = GraphClient.GameWithId(gameId).InE(RelationsTypes.PlaysInGame).OutV<Profile>();
+
+            return thingy.Select(x => _profileMapper.Map(x)).ToList();
+        }
     }
 }

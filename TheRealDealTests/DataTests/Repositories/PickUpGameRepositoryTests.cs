@@ -40,6 +40,7 @@ namespace TheRealDealTests.DataTests.Repositories
             game.Location = new Location("Bend");
             game.AddPlayer(profile.ProfileId);
             game.Creator = profile.ProfileId;
+            game.ExactLocation = "A road in space";
 
             _repo.SavePickUpGame(game);
 
@@ -54,6 +55,7 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
             Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(profile.ProfileId));
             Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
+            Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
         }
 
         [Test]

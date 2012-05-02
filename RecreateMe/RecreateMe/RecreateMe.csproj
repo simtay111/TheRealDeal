@@ -115,6 +115,7 @@
     <Compile Include="Scheduling\Games\TeamGame.cs" />
     <Compile Include="Scheduling\Games\IGameFactory.cs" />
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandle.cs" />
+    <Compile Include="Scheduling\Handlers\Views\ViewGameRequestHandler.cs" />
     <Compile Include="Scheduling\ITeamGameRepository.cs" />
     <Compile Include="Scheduling\Handlers\JoinGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\SearchForPickupGameRequestHandle.cs" />

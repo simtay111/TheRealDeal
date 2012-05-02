@@ -45,11 +45,12 @@ namespace RecreateMeSql.Mappers
         private PickUpGame MapPickupGame(RetrievedGame gameData, IGremlinNodeQuery<RetrievedGame> gameQuery,
                                                             string sportForGame, string locationForGame)
         {
-            var gameWoTeams = MapGenericGameData((x, y, z) => new PickUpGame(x, y, z), locationForGame, gameData,
+            var pickupGame = MapGenericGameData((x, y, z) => new PickUpGame(x, y, z), locationForGame, gameData,
                                                  sportForGame);
 
-            gameWoTeams.PlayersIds = gameQuery.PlayersForGame().Select(x => x.Data.ProfileId).ToList();
-            return gameWoTeams;
+            pickupGame.PlayersIds = gameQuery.PlayersForGame().Select(x => x.Data.ProfileId).ToList();
+            pickupGame.ExactLocation = gameData.ExactLocation;
+            return pickupGame;
         }
 
         private T MapGenericGameData<T>(Func<DateTimeOffset, Sport, Location, T> createGame, string locationForGame, RetrievedGame gameData, string sportForGame) where T : IAmAGame

@@ -15,5 +15,6 @@ namespace RecreateMeSql
         public int? MaxPlayers { get; set; }
         public bool IsPrivate { get; set; }
         public string Creator { get; set; }
+        public string ExactLocation { get; set; }
     }
 }

@@ -112,6 +112,7 @@
     <Compile Include="DomainTests\Scheduling\Handlers\GetGamesForProfileRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\JoinGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\SearchForPickUpGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\Views\ViewGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Sports\SkillLevelProviderTests.cs" />
     <Compile Include="DomainTests\Sports\SkillLevelTests.cs" />
     <Compile Include="DomainTests\Sports\SportTests.cs" />

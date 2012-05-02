@@ -52,5 +52,7 @@ namespace RecreateMe.Scheduling.Games
         public string Creator { get; set; }
 
         public bool IsPrivate { get; set; }
+
+        public string ExactLocation { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RecreateMe.Scheduling.Games;
+﻿using System.Collections.Generic;
+using RecreateMe.Scheduling.Games;
 
 namespace TheRealDeal.Models.Games
 {
@@ -7,5 +8,7 @@ namespace TheRealDeal.Models.Games
         public PickUpGame Game { get; set; }
 
         public string ProfileId { get; set; }
+
+        public List<RecreateMe.Profiles.Profile> Players { get; set; }
     }
 }

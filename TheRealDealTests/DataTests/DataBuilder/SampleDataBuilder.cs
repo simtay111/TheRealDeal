@@ -66,6 +66,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         private void CreateGames()
         {
             CreateGameWithProfile1();
+            CreateGameWithProfile1AndProfile2();
             CreateGameWithTeams1And2();
         }
 
@@ -276,6 +277,23 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.Sport = new Sport(SoccerName);
             game.Location = new Location(LocationBendName);
             game.AddPlayer(Profile1Id);
+            game.Creator = Profile1Id;
+
+            new PickUpGameRepository().SavePickUpGame(game);
+            PickUpGame = game;
+            return game;
+        }
+
+        public PickUpGame CreateGameWithProfile1AndProfile2()
+        {
+            var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = new Sport(FootballName);
+            game.Location = new Location(LocationPortland);
+            game.AddPlayer(Profile1Id);
+            game.AddPlayer(Profile2Id);
             game.Creator = Profile1Id;
 
             new PickUpGameRepository().SavePickUpGame(game);
