@@ -8,6 +8,7 @@ using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.Relationships.GameRelationships;
 using RecreateMeSql.Relationships.ProfileRelationships;
+using RecreateMeSql.Relationships.TeamRelationship;
 using RecreateMeSql.SchemaNodes;
 
 namespace RecreateMeSql.Repositories
@@ -36,7 +37,7 @@ namespace RecreateMeSql.Repositories
             {
                 var profile = GraphClient.ProfileWithId(profileId).Single();
                 if (profileId == team.Creator)
-                    GraphClient.CreateRelationship(profile.Reference, new CreatedByRelationship(teamNode));
+                    GraphClient.CreateRelationship(profile.Reference, new TeamCreatedByRelationship(teamNode));
                 GraphClient.CreateRelationship(profile.Reference, new PartOfTeamRelationship(teamNode));
             }
 

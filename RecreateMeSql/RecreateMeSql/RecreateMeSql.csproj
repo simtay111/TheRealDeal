@@ -59,6 +59,7 @@
     <Compile Include="Relationships\ProfileRelationships\ProfileToLocationRelationship.cs" />
     <Compile Include="Relationships\BaseNode\LocationRelationship.cs" />
     <Compile Include="Relationships\RelationsTypes.cs" />
+    <Compile Include="Relationships\TeamRelationship\TeamCreatedByRelationship.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\PickUpGameRepository.cs" />
     <Compile Include="Repositories\InviteRepository.cs" />

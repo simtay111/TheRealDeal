@@ -43,7 +43,7 @@ namespace RecreateMeSql.Repositories
 
         public IList<TeamGame> GetTeamGamesForProfile(string profileId)
         {
-            var gamesWithTeams = GraphClient.ProfileWithId(profileId).GamesWithTeamsForProfile().Select(x => x.Data.Id).ToList();
+            var gamesWithTeams = GraphClient.ProfileWithId(profileId).TeamGamesForProfile().Select(x => x.Data.Id).ToList();
 
             return gamesWithTeams.Select(game => _gameMapper.MapTeamGame(GraphClient.GameWithId(game))).ToList();
         }

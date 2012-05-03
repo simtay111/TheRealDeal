@@ -12,5 +12,6 @@ namespace RecreateMe.Scheduling
         void AddPlayerToGame(string gameId, string profileId);
         void DeleteGame(string gameId);
         void RemovePlayerFromGame(string profileId, string gameId);
+        List<PickUpGame> GetByCreated(string profileId);
     }
 }

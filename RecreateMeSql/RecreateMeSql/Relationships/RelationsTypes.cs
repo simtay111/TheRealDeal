@@ -3,6 +3,7 @@ namespace RecreateMeSql.Relationships
     public static class RelationsTypes
     {
         public const string CreatedBy = "CreatedBy";
+        public const string TeamCreatedBy = "TeamCreatedBy";
         public const string TeamInGame = "TeamInGame";
         public const string PlaysInGame = "PlaysInGame";
         public const string GameToSport = "GameToSport";

@@ -50,7 +50,7 @@ namespace TheRealDeal.Controllers
         [HttpPost]
         public ActionResult SearchForGame(SearchForGameModel model)
         {
-            var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport};
+            var request = new SearchForPickupGameRequest {Location = model.Location, Sport = model.Sport, ProfileId = GetProfileFromCookie()};
 
             var handler = new SearchForPickupGameRequestHandle(new PickUpGameRepository());
 
@@ -66,7 +66,7 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult CreateGame()
         {
-            var gamesInProfile = new PickUpGameRepository().GetPickupGamesForProfile(GetProfileFromCookie());
+            var gamesInProfile = new PickUpGameRepository().GetByCreated(GetProfileFromCookie());
 
             if (gamesInProfile.Count >= RecreateMe.Constants.MaxAmountOfCreatedGames)
                 return RedirectToAction("ErrorsScreen",

@@ -69,6 +69,19 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
+        public void CanGetListOfGamesThatProfileCreated()
+        {
+            _data.CreateData();
+            var pickUpGames = _repo.GetPickupGamesForProfile(SampleDataBuilder.Profile1Id);
+            Assert.That(pickUpGames.Count, Is.EqualTo(2));
+
+            _repo.RemovePlayerFromGame(SampleDataBuilder.Profile1Id, _data.PickUpGame.Id);
+
+            var createdGames =  _repo.GetByCreated(SampleDataBuilder.Profile1Id);
+            Assert.That(createdGames.Count, Is.EqualTo(2));
+        }
+
+        [Test]
         public void CanGetPickUpGameByLocation()
         {
             _data.CreateData();

@@ -49,15 +49,22 @@ namespace RecreateMeSql.Repositories
 
         public IList<PickUpGame> GetPickupGamesForProfile(string profileId)
         {
-            var gamesWithTeams = GraphClient.ProfileWithId(profileId).GamesWithoutTeamsForProfile().Select(x => x.Data.Id).ToList();
+            var games = GraphClient.ProfileWithId(profileId).PickUpGamesForProfile().Select(x => x.Data.Id).ToList();
 
-            return gamesWithTeams.Select(game => _gameMapper.MapPickupGame(GraphClient.GameWithId(game))).ToList();
+            return games.Select(game => _gameMapper.MapPickupGame(GraphClient.GameWithId(game))).ToList();
         }
 
         public void AddPlayerToGame(string gameId, string profileId)
         {
             var gameNode = GraphClient.GameWithId(gameId).Single();
             CreatePlaysInGameRelationship(gameNode.Reference, profileId);
+        }
+
+        public List<PickUpGame> GetByCreated(string profileId)
+        {
+            var games = GraphClient.ProfileWithId(profileId).GamesThisProfileCreated().Select(x => x.Data.Id).ToList();
+
+            return games.Select(x => _gameMapper.MapPickupGame(GraphClient.GameWithId(x))).ToList();
         }
 
         public void DeleteGame(string gameId)
