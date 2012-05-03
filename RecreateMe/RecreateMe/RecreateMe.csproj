@@ -108,7 +108,7 @@
     <Compile Include="Scheduling\Handlers\DeleteTeamGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\LeaveGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForTeamGameRequestHandle.cs" />
-    <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandle.cs" />
+    <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandle.cs" />
     <Compile Include="Scheduling\Games\GameFactory.cs" />
     <Compile Include="Scheduling\Games\IAmAGame.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Scheduling\Handlers\GetGamesForProfileRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\Views\ViewGameRequestHandler.cs" />
     <Compile Include="Scheduling\ITeamGameRepository.cs" />
-    <Compile Include="Scheduling\Handlers\JoinGameRequestHandle.cs" />
+    <Compile Include="Scheduling\Handlers\JoinGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForPickupGameRequestHandle.cs" />
     <Compile Include="Scheduling\IPickUpGameRepository.cs" />
     <Compile Include="Sports\ISportRepository.cs" />

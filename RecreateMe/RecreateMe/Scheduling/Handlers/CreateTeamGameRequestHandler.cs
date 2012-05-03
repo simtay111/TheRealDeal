@@ -5,14 +5,14 @@ using RecreateMe.Sports;
 
 namespace RecreateMe.Scheduling.Handlers
 {
-    public class CreateTeamGameRequestHandle : IHandle<CreateTeamGameRequest, CreateTeamGameResponse>
+    public class CreateTeamGameRequestHandler : IHandle<CreateTeamGameRequest, CreateTeamGameResponse>
     {
         private readonly ILocationRepository _locationRepository;
         private readonly ITeamGameRepository _teamGameRepo;
         private readonly IGameFactory _gameFactory;
         private readonly ISportRepository _sportRepository;
 
-        public CreateTeamGameRequestHandle(ISportRepository sportRepository, ILocationRepository locationRepository, ITeamGameRepository teamGameRepo, IGameFactory gameFactory)
+        public CreateTeamGameRequestHandler(ISportRepository sportRepository, ILocationRepository locationRepository, ITeamGameRepository teamGameRepo, IGameFactory gameFactory)
         {
             _sportRepository = sportRepository;
             _locationRepository = locationRepository;

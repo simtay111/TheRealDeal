@@ -3,11 +3,11 @@ using RecreateMe.Scheduling.Games;
 
 namespace RecreateMe.Scheduling.Handlers
 {
-    public class JoinGameRequestHandle: IHandle<JoinGameRequest, JoinGameResponse>
+    public class JoinGameRequestHandler: IHandle<JoinGameRequest, JoinGameResponse>
     {
         private readonly IPickUpGameRepository _pickUpGameRepository;
 
-        public JoinGameRequestHandle(IPickUpGameRepository pickUpGameRepository)
+        public JoinGameRequestHandler(IPickUpGameRepository pickUpGameRepository)
         {
             _pickUpGameRepository = pickUpGameRepository;
         }

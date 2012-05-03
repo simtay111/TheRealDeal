@@ -28,7 +28,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
 
-            var handler = new JoinGameRequestHandle(_mockGameRepo.Object);
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.AlreadyInGame));
@@ -42,7 +42,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
 
-            var handler = new JoinGameRequestHandle(_mockGameRepo.Object);
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
 
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.GameIsFull));
@@ -56,7 +56,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
 
-            var handler = new JoinGameRequestHandle(_mockGameRepo.Object);
+            var handler = new JoinGameRequestHandler(_mockGameRepo.Object);
             var response = handler.Handle(request);
 
             _mockGameRepo.Verify(x => x.AddPlayerToGame(game.Id, request.ProfileId));

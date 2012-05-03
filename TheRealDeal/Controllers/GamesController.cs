@@ -6,6 +6,7 @@ using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
 using RecreateMe.Scheduling.Handlers.Views;
 using RecreateMeSql.Repositories;
+using TheRealDeal.Models;
 using TheRealDeal.Models.Games;
 
 namespace TheRealDeal.Controllers
@@ -65,6 +66,12 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult CreateGame()
         {
+            var gamesInProfile = new PickUpGameRepository().GetPickupGamesForProfile(GetProfileFromCookie());
+
+            if (gamesInProfile.Count >= RecreateMe.Constants.MaxAmountOfCreatedGames)
+                return RedirectToAction("ErrorsScreen",
+                                 new ErrorModel() { Message = String.Format("We're sorry, each player can only create {0} total games.", RecreateMe.Constants.MaxAmountOfCreatedGames) });
+
             return View(CreateViewModel());
         }
 
@@ -99,7 +106,7 @@ namespace TheRealDeal.Controllers
 
                 var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
 
-                var joinHandler = new JoinGameRequestHandle(new PickUpGameRepository());
+                var joinHandler = new JoinGameRequestHandler(new PickUpGameRepository());
 
                 var joinResponse = joinHandler.Handle(joinRequest);
 
@@ -138,9 +145,15 @@ namespace TheRealDeal.Controllers
         [Authorize]
         public ActionResult JoinGame(string gameId)
         {
+            var gamesInProfile = new PickUpGameRepository().GetPickupGamesForProfile(GetProfileFromCookie());
+
+            if (gamesInProfile.Count >= RecreateMe.Constants.MaxAmountOfGamesPlayingIn)
+                return RedirectToAction("ErrorsScreen",
+                                 new ErrorModel { Message = String.Format("We're sorry, each player can only play in {0} games.", RecreateMe.Constants.MaxAmountOfGamesPlayingIn) });
+
             var request = new JoinGameRequest {GameId = gameId, ProfileId = GetProfileFromCookie()};
 
-            var handler = new JoinGameRequestHandle(new PickUpGameRepository());
+            var handler = new JoinGameRequestHandler(new PickUpGameRepository());
 
             var response = handler.Handle(request);
 
@@ -206,6 +219,11 @@ namespace TheRealDeal.Controllers
             var response = handler.Handle(request);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ErrorsScreen(ErrorModel errorModel)
+        {
+            return View(errorModel);
         }
     }
 }

@@ -11,6 +11,8 @@
         public const int DefaultTeamSize = 1;
         public const int MinPasswordLength = 8;
         public const int MaxPasswordLength = 14;
+        public const int MaxAmountOfCreatedGames = 3;
+        public const int MaxAmountOfGamesPlayingIn = 4;
         public const string UserNameRegex = @"^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$";
     }
 }

@@ -239,9 +239,9 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
-        private CreateTeamGameRequestHandle CreateHandler()
+        private CreateTeamGameRequestHandler CreateHandler()
         {
-            return new CreateTeamGameRequestHandle(_mockSportRepo.Object, _mockLocationRepo.Object,
+            return new CreateTeamGameRequestHandler(_mockSportRepo.Object, _mockLocationRepo.Object,
                                                 _mockGameRepo.Object, _mockGameFactory.Object);
         }
 

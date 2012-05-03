@@ -80,6 +80,7 @@
     <Compile Include="Controllers\InvitesController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\Friend\FriendsListModel.cs" />
     <Compile Include="Models\Friend\SearchForFriendModel.cs" />
     <Compile Include="Models\Games\AddTeamToGameModel.cs" />
@@ -264,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Games\ViewGame.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Games\ErrorsScreen.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

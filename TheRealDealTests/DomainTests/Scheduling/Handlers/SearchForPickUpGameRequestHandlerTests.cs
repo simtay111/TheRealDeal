@@ -45,6 +45,36 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void FiltersOutGamesThatProfilesIsAPartOf()
+        {
+            Assert.Fail("FINISH ME!!! YOU ASS HOLE!");
+            var soccer = TestData.CreateSoccerGame();
+            var basketball = TestData.CreateBasketballGame();
+            var location1 = TestData.CreateLocationBend();
+            var location2 = TestData.CreateLocationHamsterville();
+
+            var soccerGame1 = new PickUpGame(DateTime.Now, soccer, location1);
+            var soccerGame2 = new PickUpGame(DateTime.Now, soccer, location2);
+            var basketballGame = new PickUpGame(DateTime.Now, basketball, location1);
+
+            var listOfGames = new List<PickUpGame> { soccerGame1, soccerGame2, basketballGame };
+
+            var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = soccer.Name };
+
+            _gameRepository = new Mock<IPickUpGameRepository>();
+            _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
+                .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
+
+            var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.GamesFound.Count, Is.EqualTo(1));
+            Assert.That(response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
+            Assert.That(response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
+        }
+
+        [Test]
         public void ThrowsExceptionWhenLocationIsNotSpecified()
         {
 

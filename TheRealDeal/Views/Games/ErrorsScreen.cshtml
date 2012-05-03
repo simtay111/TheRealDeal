@@ -1,0 +1,13 @@
+﻿@using TheRealDeal.Models
+@model ErrorModel
+
+@{
+    ViewBag.Title = "Ooops";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color: Red">Oh no!</h2>
+
+<label style="padding: 15px; font-size: 14px">@Model.Message</label>
+
+<button class="btn btn-inverse" onclick="location.href = '/#'">Back To Home</button>
