@@ -92,6 +92,19 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
+        public void CanRemoveProfilesFromGame()
+        {
+            _data.CreateData();
+
+            const string profileId = "Profile1";
+            _repo.RemovePlayerFromGame(profileId, _data.PickUpGame.Id);
+
+            var game = _repo.GetPickUpGameById(_data.PickUpGame.Id);
+
+            Assert.True(!game.PlayersIds.Any(x => x == profileId));
+        }
+
+        [Test]
         public void CanDeletePickUpGames()
         {
             _data.CreateData();

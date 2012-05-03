@@ -11,5 +11,6 @@ namespace RecreateMe.Scheduling
         IList<PickUpGame> GetPickupGamesForProfile(string profileId);
         void AddPlayerToGame(string gameId, string profileId);
         void DeleteGame(string gameId);
+        void RemovePlayerFromGame(string profileId, string gameId);
     }
 }

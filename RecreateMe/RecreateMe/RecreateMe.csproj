@@ -106,6 +106,7 @@
     <Compile Include="Scheduling\Handlers\AddTeamToGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\DeletePickUpGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\DeleteTeamGameRequestHandle.cs" />
+    <Compile Include="Scheduling\Handlers\LeaveGameRequestHandler.cs" />
     <Compile Include="Scheduling\Handlers\SearchForTeamGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\CreateTeamGameRequestHandle.cs" />
     <Compile Include="Scheduling\Handlers\CreatePickupGameRequestHandle.cs" />

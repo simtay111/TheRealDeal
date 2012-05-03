@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Neo4jClient;
+using Neo4jClient.Gremlin;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Games;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Mappers;
+using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.Relationships.GameRelationships;
 using RecreateMeSql.Relationships.ProfileRelationships;
@@ -66,6 +68,13 @@ namespace RecreateMeSql.Repositories
                 return;
 
             GraphClient.Delete(game.Reference, DeleteMode.NodeAndRelationships);
+        }
+
+        public void RemovePlayerFromGame(string profileId, string gameId)
+        {
+            var gameNode = GraphClient.GameWithId(gameId).Single();
+            var relationship = GraphClient.ProfileWithId(profileId).OutE(RelationsTypes.PlaysInGame).Where(x => x.EndNodeReference == gameNode.Reference).Single();
+            GraphClient.DeleteRelationship(relationship.Reference);
         }
 
         private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)

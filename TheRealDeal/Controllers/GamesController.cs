@@ -195,5 +195,17 @@ namespace TheRealDeal.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize]
+        public ActionResult LeaveGame(string gameid)
+        {
+            var request = new LeaveGameRequest { GameId = gameid, ProfileId = GetProfileFromCookie() };
+
+            var handler = new LeaveGameRequestHandler(new PickUpGameRepository());
+
+            var response = handler.Handle(request);
+
+            return RedirectToAction("Index");
+        }
     }
 }

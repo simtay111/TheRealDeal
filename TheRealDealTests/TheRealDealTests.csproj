@@ -106,6 +106,7 @@
     <Compile Include="DomainTests\Scheduling\Handlers\AddTeamToGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\DeletePickUpGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\DeleteTeamGameRequestHandlerTests.cs" />
+    <Compile Include="DomainTests\Scheduling\Handlers\LeaveGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\SearchForTeamGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\CreateTeamGameRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Scheduling\Handlers\CreatePickupGameRequestHandlerTests.cs" />
