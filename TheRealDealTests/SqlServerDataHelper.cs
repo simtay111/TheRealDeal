@@ -25,7 +25,9 @@ namespace TheRealDealTests
                 using (var db = ConnectionFactory.OpenDbConnection())   
                 using (var dbCmd = db.CreateCommand())
                 {
-                    dbCmd.DeleteAll<PlayerInGame>();
+                    dbCmd.DeleteAll<PlayerLocationLink>();
+                    dbCmd.DeleteAll<PlayerSportLink>();
+                    dbCmd.DeleteAll<PlayerInGameLink>();
                     dbCmd.DeleteAll<PickUpGame>();
                     dbCmd.DeleteAll<Location>();
                     dbCmd.DeleteAll<Sport>();
@@ -39,7 +41,9 @@ namespace TheRealDealTests
              using (var db = ConnectionFactory.OpenDbConnection())
              using (var dbCmd = db.CreateCommand())
              {
-                 dbCmd.DropTable<PlayerInGame>();
+                 dbCmd.DropTable<PlayerLocationLink>();
+                 dbCmd.DropTable<PlayerSportLink>();
+                 dbCmd.DropTable<PlayerInGameLink>();
                  dbCmd.DropTable<PickUpGame>();
                  dbCmd.DropTable<Location>();
                  dbCmd.DropTable<Sport>();
@@ -51,7 +55,9 @@ namespace TheRealDealTests
                  dbCmd.CreateTable<Sport>(true);
                  dbCmd.CreateTable<Location>(true);
                  dbCmd.CreateTable<PickUpGame>(true);
-                 dbCmd.CreateTable<PlayerInGame>(true);
+                 dbCmd.CreateTable<PlayerInGameLink>(true);
+                 dbCmd.CreateTable<PlayerSportLink>(true);
+                 dbCmd.CreateTable<PlayerLocationLink>(true);
              }
          }
     }

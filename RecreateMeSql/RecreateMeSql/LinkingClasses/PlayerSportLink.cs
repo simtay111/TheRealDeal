@@ -1,10 +1,11 @@
 ﻿using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
+using RecreateMe.Sports;
 using ServiceStack.DataAnnotations;
 
 namespace RecreateMeSql.LinkingClasses
 {
-    public class PlayerInGame
+    public class PlayerSportLink
     {
         [AutoIncrement]
         public int Id { get; set; }
@@ -12,7 +13,9 @@ namespace RecreateMeSql.LinkingClasses
         [References(typeof(Profile))]
         public string PlayerId { get; set; } 
 
-        [References(typeof(PickUpGame))]
-        public string GameId { get; set; } 
+        [References(typeof(Sport))]
+        public string Sport { get; set; }
+
+        public int Skill { get; set; }
     }
 }

@@ -31,6 +31,8 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanGetByAccount()
         {
             _data.CreateAccount1();
+            _data.CreateBasketballSport();
+            _data.CreateLocationBend();
             _data.CreateProfileForAccount1();
 
             const string accountId = AccountId;
@@ -43,8 +45,8 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanSaveProfiles()
         {
             _data.CreateAccount1();
-            //_data.CreateLocationBend();
-            //_data.CreateSoccerSport();
+            _data.CreateLocationBend();
+            _data.CreateSoccerSport();
             var profile = new Profile
                               {
                                   AccountName = AccountId,
@@ -64,9 +66,9 @@ namespace TheRealDealTests.DataTests.Repositories
             var returnedProfiles = _repo.GetByAccount(profile.AccountName);
             Assert.True(wasSuccessful);
             Assert.That(returnedProfiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
-            //Assert.That(returnedProfiles[0].Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
-            //Assert.That(returnedProfiles[0].SportsPlayed[0].Name, Is.EqualTo(profile.SportsPlayed[0].Name));
-            //Assert.That(returnedProfiles[0].SportsPlayed[0].SkillLevel.Level, Is.EqualTo(profile.SportsPlayed[0].SkillLevel.Level));
+            Assert.That(returnedProfiles[0].Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
+            Assert.That(returnedProfiles[0].SportsPlayed[0].Name, Is.EqualTo(profile.SportsPlayed[0].Name));
+            Assert.That(returnedProfiles[0].SportsPlayed[0].SkillLevel.Level, Is.EqualTo(profile.SportsPlayed[0].SkillLevel.Level));
         }
 
         [Test]
@@ -92,6 +94,8 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanCheckIfAProfileAlreadyExistsWithProfileName()
         {
             _data.CreateAccount1();
+            _data.CreateBasketballSport();
+            _data.CreateLocationBend();
             _data.CreateProfileForAccount1();
 
             Assert.True(_repo.ProfileExistsWithName(Profile1Id));
@@ -104,6 +108,7 @@ namespace TheRealDealTests.DataTests.Repositories
             _data.CreateAccount1();
             _data.CreateSoccerSport();
             _data.CreateBasketballSport();
+            _data.CreateLocationBend();
             var profile = _data.CreateProfileForAccount1();
             const string sport = "Soccer";
 
@@ -117,6 +122,8 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanGetByProfileId()
         {
             _data.CreateAccount1();
+            _data.CreateBasketballSport();
+            _data.CreateLocationBend();
             var profile = _data.CreateProfileForAccount1();
 
             var updatedProfile = _repo.GetByProfileId(profile.ProfileId);
@@ -130,7 +137,7 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanAddLocationsToProfile()
         {
             _data.CreateAccount1();
-            _data.CreateSoccerSport();
+            _data.CreateBasketballSport();
             _data.CreateLocationBend();
             _data.CreateLocationPortland();
             var profile = _data.CreateProfileForAccount1();
@@ -143,6 +150,7 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
+        [Ignore("Not Implemented Yet")]
         public void CanAddFriendsToProfile()
         {
             _data.CreateAccount1();
@@ -166,6 +174,11 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanFindAllByName()
         {
             _data.CreateAccount1();
+            _data.CreateBasketballSport();
+            _data.CreateSoccerSport();
+            _data.CreateFootballSport();
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
             var profile = _data.CreateProfileForAccount1();
             _data.CreateAccount2();
             var profile2 = _data.CreateProfileForAccount2();
@@ -173,13 +186,18 @@ namespace TheRealDealTests.DataTests.Repositories
             var profiles = _repo.FindAllByName("i");
 
             Assert.That(profiles.Count, Is.EqualTo(2));
-            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
-            Assert.That(profiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.That(profiles[1].ProfileId, Is.EqualTo(profile.ProfileId));
+            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
         }
 
         [Test]
         public void CanFindAllByNameExcludesProfileIdsWithoutMatches()
         {
+            _data.CreateBasketballSport();
+            _data.CreateSoccerSport();
+            _data.CreateFootballSport();
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
             _data.CreateAccount1();
             var profile = _data.CreateProfileForAccount1();
             _data.CreateAccount2();
@@ -194,8 +212,11 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanFindAllBySports()
         {
-            _data.CreateSoccerSport();
             _data.CreateBasketballSport();
+            _data.CreateSoccerSport();
+            _data.CreateFootballSport();
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
             _data.CreateAccount1();
             var profile1 = _data.CreateProfileForAccount1();
             _data.CreateAccount2();
@@ -207,18 +228,21 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(soccerProfiles.Count, Is.EqualTo(1));
             Assert.That(basketballProfiles.Count, Is.EqualTo(2));
             Assert.That(soccerProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
-            Assert.That(basketballProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
-            Assert.That(basketballProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.That(basketballProfiles[1].ProfileId, Is.EqualTo(profile1.ProfileId));
+            Assert.That(basketballProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
         }
 
         [Test]
         public void CanFindAllByLocation()
         {
+            _data.CreateBasketballSport();
+            _data.CreateSoccerSport();
+            _data.CreateFootballSport();
             _data.CreateLocationBend();
             _data.CreateLocationPortland();
             _data.CreateAccount1();
-            _data.CreateAccount2();
             var profile1 = _data.CreateProfileForAccount1();
+            _data.CreateAccount2();
             var profile2 = _data.CreateProfileForAccount2();
 
             var bendProfiles = _repo.FindAllByLocation("Bend");
@@ -227,11 +251,12 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(portlandProfiles.Count, Is.EqualTo(1));
             Assert.That(bendProfiles.Count, Is.EqualTo(2));
             Assert.That(portlandProfiles[0].ProfileId, Is.EqualTo(profile2.ProfileId));
-            Assert.That(bendProfiles[0].ProfileId, Is.EqualTo(profile1.ProfileId));
-            Assert.That(bendProfiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.True(bendProfiles.Any(x => x.ProfileId == profile1.ProfileId));
+            Assert.True(bendProfiles.Any(x => x.ProfileId == profile2.ProfileId));
         }
 
         [Test]
+        [Ignore("Not doing friends yet")]
         public void GetListOfFriendsProfileIdsForFriendList()
         {
             _data.CreateAccount1();
@@ -251,6 +276,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _data.CreateAccount1();
             _data.CreateBasketballSport();
+            _data.CreateLocationBend();
             var profile = _data.CreateProfileForAccount1();
 
             _repo.RemoveSportFromProfile(profile.ProfileId, "Basketball");
@@ -263,6 +289,7 @@ namespace TheRealDealTests.DataTests.Repositories
         public void CanRemoveLocationFromProfile()
         {
             _data.CreateAccount1();
+            _data.CreateBasketballSport();
             _data.CreateLocationBend();
             var profile = _data.CreateProfileForAccount1();
 
@@ -275,8 +302,11 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanGetProfilesForGame()
         {
-            _data.CreateLocationPortland();
             _data.CreateBasketballSport();
+            _data.CreateSoccerSport();
+            _data.CreateFootballSport();
+            _data.CreateLocationBend();
+            _data.CreateLocationPortland();
             var profile = _data.CreateAccountWithProfile1();
             var profile2 = _data.CreateAccountWithProfile2();
             var game = _data.CreateGameWithProfile1AndProfile2();
@@ -284,8 +314,8 @@ namespace TheRealDealTests.DataTests.Repositories
             var profiles = _repo.GetProfilesInGame(game.Id);
 
             Assert.That(profiles.Count, Is.EqualTo(2));
-            Assert.That(profiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
-            Assert.That(profiles[1].ProfileId, Is.EqualTo(profile2.ProfileId));
+            Assert.True(profiles.Any(x => x.ProfileId == profile.ProfileId));
+            Assert.True(profiles.Any(x => x.ProfileId == profile2.ProfileId));
         }
     }
 }

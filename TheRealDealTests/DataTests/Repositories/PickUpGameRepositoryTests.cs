@@ -49,10 +49,12 @@ namespace TheRealDealTests.DataTests.Repositories
 
         private PickUpGame CreateGame()
         {
-            _data.CreateAccount1();
-            _profile = _data.CreateProfileForAccount1();
             _data.CreateLocationBend();
             _data.CreateSoccerSport();
+            _data.CreateBasketballSport();
+            _data.CreateAccount1();
+            _profile = _data.CreateProfileForAccount1();
+
 
             var game = CreatePickUpGameOnly();
             return game;

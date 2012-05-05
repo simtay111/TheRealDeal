@@ -50,7 +50,7 @@ namespace RecreateMeSql.Repositories
         private PickUpGame GetGameById(string id, IDbCommand dbCmd)
         {
             var game = dbCmd.GetById<PickUpGame>(id);
-            game.PlayersIds = dbCmd.Each<PlayerInGame>("GameId = {0}", id).Select(y => y.PlayerId).ToList();
+            game.PlayersIds = dbCmd.Each<PlayerInGameLink>("GameId = {0}", id).Select(y => y.PlayerId).ToList();
             return game;
         }
 
@@ -68,7 +68,7 @@ namespace RecreateMeSql.Repositories
             using (IDbConnection db = _connectionFactory.OpenDbConnection())
             using (IDbCommand dbCmd = db.CreateCommand())
             {
-                var gameIds = dbCmd.Select<PlayerInGame>("PlayerId = {0}", profileId).Select(x => x.GameId);
+                var gameIds = dbCmd.Select<PlayerInGameLink>("PlayerId = {0}", profileId).Select(x => x.GameId);
                 return gameIds.Select(x => GetGameById(x, dbCmd)).ToList();
             }
         }
@@ -78,7 +78,7 @@ namespace RecreateMeSql.Repositories
             using (IDbConnection db = _connectionFactory.OpenDbConnection())
             using (IDbCommand dbCmd = db.CreateCommand())
             {
-                dbCmd.Insert(new PlayerInGame { GameId = gameId, PlayerId = profileId });
+                dbCmd.Insert(new PlayerInGameLink { GameId = gameId, PlayerId = profileId });
             }
         }
 
@@ -107,11 +107,11 @@ namespace RecreateMeSql.Repositories
             using (var dbCmd = db.CreateCommand())
             {
                 var playerInGame =
-                    dbCmd.Select<PlayerInGame>("GameId = {0} and PlayerId = {1}", gameId, profileId).SingleOrDefault
+                    dbCmd.Select<PlayerInGameLink>("GameId = {0} and PlayerId = {1}", gameId, profileId).SingleOrDefault
                         ();
                 if (playerInGame == null)
                     return;
-                dbCmd.DeleteById<PlayerInGame>(playerInGame.Id);
+                dbCmd.DeleteById<PlayerInGameLink>(playerInGame.Id);
             }
         }
 

@@ -59,7 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
-    <Compile Include="LinkingClasses\PlayerInGame.cs" />
+    <Compile Include="LinkingClasses\PlayerLocationLink.cs" />
+    <Compile Include="LinkingClasses\PlayerSportLink.cs" />
+    <Compile Include="LinkingClasses\PlayerInGameLink.cs" />
     <Compile Include="Repositories\PickUpGameRepository.cs" />
     <Compile Include="Repositories\InviteRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />

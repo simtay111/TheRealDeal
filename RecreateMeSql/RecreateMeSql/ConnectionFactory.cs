@@ -15,15 +15,6 @@ namespace RecreateMeSql
         static ConnectionFactory()
         {
             _factory = new OrmLiteConnectionFactory(@"Server=(local);Database=PortlandPickUp;Trusted_Connection=True;", SqlServerOrmLiteDialectProvider.Instance);
-             using (var db = _factory.OpenDbConnection())
-             using (var dbCmd = db.CreateCommand())
-             {
-                 //dbCmd.CreateTable<Account>(true);
-                 //dbCmd.CreateTable<Profile>(true);
-                 //dbCmd.CreateTable<Sport>(true);
-                 //dbCmd.CreateTable<Location>(true);
-                 //dbCmd.CreateTable<PickUpGame>(true);
-             }
         }
 
         public static OrmLiteConnectionFactory Create()

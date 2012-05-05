@@ -8,6 +8,7 @@ namespace TheRealDealTests.DataTests.Repositories
 {
     [TestFixture]
     [Category("Integration")]
+    [Ignore]
     public class TeamRepositoryTests
     {
         private TeamRepository _repo;
