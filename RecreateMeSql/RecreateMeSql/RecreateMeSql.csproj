@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="LinkingClasses\PlayerInGame.cs" />
     <Compile Include="Repositories\PickUpGameRepository.cs" />
     <Compile Include="Repositories\InviteRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
@@ -66,9 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TeamGameRepository.cs" />
     <Compile Include="Repositories\TeamRepository.cs" />
-    <Compile Include="RetrievedGame.cs" />
-    <Compile Include="SchemaNodes\SchemaNode.cs" />
-    <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

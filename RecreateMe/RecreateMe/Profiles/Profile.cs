@@ -9,14 +9,13 @@ namespace RecreateMe.Profiles
 {
     public class Profile
     {
-
         public Profile()
         {
             Locations = new List<Location>();
             SportsPlayed = new List<SportWithSkillLevel>();
             FriendsIds = new List<string>();
         }
-
+        [PrimaryKey]
         public string ProfileId { get; set; }
 
         [References(typeof(Account))]

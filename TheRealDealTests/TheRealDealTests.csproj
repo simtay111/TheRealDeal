@@ -160,8 +160,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataTests\Connection\" />
-    <Folder Include="DataTests\Mappers\" />
     <Folder Include="DeliveryTests\" />
   </ItemGroup>
   <ItemGroup>

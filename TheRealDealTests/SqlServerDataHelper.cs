@@ -5,6 +5,7 @@ using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMeSql;
+using RecreateMeSql.LinkingClasses;
 using ServiceStack.OrmLite;
 
 namespace TheRealDealTests
@@ -24,6 +25,7 @@ namespace TheRealDealTests
                 using (var db = ConnectionFactory.OpenDbConnection())   
                 using (var dbCmd = db.CreateCommand())
                 {
+                    dbCmd.DeleteAll<PlayerInGame>();
                     dbCmd.DeleteAll<PickUpGame>();
                     dbCmd.DeleteAll<Location>();
                     dbCmd.DeleteAll<Sport>();
@@ -37,6 +39,7 @@ namespace TheRealDealTests
              using (var db = ConnectionFactory.OpenDbConnection())
              using (var dbCmd = db.CreateCommand())
              {
+                 dbCmd.DropTable<PlayerInGame>();
                  dbCmd.DropTable<PickUpGame>();
                  dbCmd.DropTable<Location>();
                  dbCmd.DropTable<Sport>();
@@ -48,6 +51,7 @@ namespace TheRealDealTests
                  dbCmd.CreateTable<Sport>(true);
                  dbCmd.CreateTable<Location>(true);
                  dbCmd.CreateTable<PickUpGame>(true);
+                 dbCmd.CreateTable<PlayerInGame>(true);
              }
          }
     }

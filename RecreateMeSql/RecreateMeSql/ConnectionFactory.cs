@@ -18,11 +18,11 @@ namespace RecreateMeSql
              using (var db = _factory.OpenDbConnection())
              using (var dbCmd = db.CreateCommand())
              {
-                 dbCmd.CreateTable<Account>(true);
-                 dbCmd.CreateTable<Profile>(true);
-                 dbCmd.CreateTable<Sport>(true);
-                 dbCmd.CreateTable<Location>(true);
-                 dbCmd.CreateTable<PickUpGame>(true);
+                 //dbCmd.CreateTable<Account>(true);
+                 //dbCmd.CreateTable<Profile>(true);
+                 //dbCmd.CreateTable<Sport>(true);
+                 //dbCmd.CreateTable<Location>(true);
+                 //dbCmd.CreateTable<PickUpGame>(true);
              }
         }
 

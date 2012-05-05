@@ -32,8 +32,7 @@ namespace RecreateMeSql.Repositories
             using (IDbConnection db = _connectionFactory.OpenDbConnection())
             using (IDbCommand dbCmd = db.CreateCommand())
             {
-                dbCmd.CreateTable<Profile>(true);
-                dbCmd.Save(profile);
+                dbCmd.Insert(profile);
             }
             return true;
         }

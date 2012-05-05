@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using RecreateMe.Locales;
+using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMeSql.Repositories;
@@ -15,6 +17,7 @@ namespace TheRealDealTests.DataTests.Repositories
     {
         private PickUpGameRepository _repo;
         private SampleDataBuilder _data;
+        private Profile _profile;
 
         [SetUp]
         public void SetUp()
@@ -27,22 +30,8 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanSaveAndGetPickupGames()
         {
-            _data.CreateAccount1();
-            var profile = _data.CreateProfileForAccount1();
-            _data.CreateLocationBend();
-            _data.CreateSoccerSport();
 
-            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
-            game.MaxPlayers = 5;
-            game.MinPlayers = 3;
-            game.IsPrivate = true;
-            game.Sport = "Soccer";
-            game.Location = "Bend";
-            game.AddPlayer(profile.ProfileId);
-            game.Creator = profile.ProfileId;
-            game.ExactLocation = "A road in space";
-
-            _repo.SavePickUpGame(game);
+            var game = CreateGame();
 
             var retrievedGame = _repo.GetPickUpGameById(game.Id);
 
@@ -53,15 +42,43 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
             Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
             Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
-            //Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(profile.ProfileId));
+            Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(_profile.ProfileId));
             Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
             Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
+        }
+
+        private PickUpGame CreateGame()
+        {
+            _data.CreateAccount1();
+            _profile = _data.CreateProfileForAccount1();
+            _data.CreateLocationBend();
+            _data.CreateSoccerSport();
+
+            var game = CreatePickUpGameOnly();
+            return game;
+        }
+
+        private PickUpGame CreatePickUpGameOnly()
+        {
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = "Soccer";
+            game.Location = "Bend";
+            game.AddPlayer(_profile.ProfileId);
+            game.Creator = _profile.ProfileId;
+            game.ExactLocation = "A road in space";
+
+            _repo.SavePickUpGame(game);
+            return game;
         }
 
         [Test]
         public void CanGetListOfGamesThatProfileIsPartOf()
         {
-            _data.CreateData();
+            CreateGame();
+            CreatePickUpGameOnly();
 
             var pickUpGames = _repo.GetPickupGamesForProfile("Simtay111");
 
@@ -71,11 +88,8 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanGetListOfGamesThatProfileCreated()
         {
-            _data.CreateData();
-            var pickUpGames = _repo.GetPickupGamesForProfile(SampleDataBuilder.Profile1Id);
-            Assert.That(pickUpGames.Count, Is.EqualTo(2));
-
-            _repo.RemovePlayerFromGame(SampleDataBuilder.Profile1Id, _data.PickUpGame.Id);
+            CreateGame();
+            CreatePickUpGameOnly();
 
             var createdGames =  _repo.GetByCreated(SampleDataBuilder.Profile1Id);
             Assert.That(createdGames.Count, Is.EqualTo(2));
@@ -84,7 +98,8 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanGetPickUpGameByLocation()
         {
-            _data.CreateData();
+            CreateGame();
+            CreatePickUpGameOnly();
 
             var games = _repo.FindPickUpGameByLocation("Bend");
 
@@ -94,47 +109,47 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanAddProfilesToGame()
         {
-            _data.CreateData();
+            var game = CreateGame();
+            _data.CreateAccountWithProfile2();
+
 
             const string profileId = "Profile1";
-            _repo.AddPlayerToGame(_data.PickUpGame.Id, profileId);
+            _repo.AddPlayerToGame(game.Id, profileId);
 
-            var game = _repo.GetPickUpGameById(_data.PickUpGame.Id);
+            var retrievedGame = _repo.GetPickUpGameById(game.Id);
 
-            Assert.That(game.PlayersIds.Any(x => x == profileId));
+            Assert.That(retrievedGame.PlayersIds.Any(x => x == profileId));
         }
 
         [Test]
         public void CanRemoveProfilesFromGame()
         {
-            _data.CreateData();
+            var game = CreateGame();
+            _data.CreateAccountWithProfile2();
+            _repo.AddPlayerToGame(game.Id, "Profile1");
 
             const string profileId = "Profile1";
-            _repo.RemovePlayerFromGame(profileId, _data.PickUpGame.Id);
+            _repo.RemovePlayerFromGame(profileId, game.Id);
 
-            var game = _repo.GetPickUpGameById(_data.PickUpGame.Id);
+            var retrievedGame = _repo.GetPickUpGameById(game.Id);
 
-            Assert.True(!game.PlayersIds.Any(x => x == profileId));
+            Assert.True(!retrievedGame.PlayersIds.Any(x => x == profileId));
         }
 
         [Test]
         public void CanDeletePickUpGames()
         {
-            _data.CreateData();
+            var game = CreateGame();
 
-            _repo.DeleteGame(_data.PickUpGame.Id);
+            _repo.DeleteGame(game.Id);
 
-            var exception = Assert.Throws<InvalidOperationException>(() => _repo.GetPickUpGameById(_data.PickUpGame.Id));
-            Assert.That(exception.Message, Is.EqualTo("Sequence contains no elements"));
+            Assert.Throws<ArgumentNullException>(() => _repo.GetPickUpGameById(game.Id));
         }
 
         [Test]
         public void DoesNotThrowIfGameDoesNotExist()
         {
-            //_data.CreateAccounts();
-            //_repo.CreateGameBaseNode();
-
-            //Assert.DoesNotThrow(() => _repo.DeleteGame("123"));
+            Assert.DoesNotThrow(() => _repo.DeleteGame("123"));
         }
     }
 }

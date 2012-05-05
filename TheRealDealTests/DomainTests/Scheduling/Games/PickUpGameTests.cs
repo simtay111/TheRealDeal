@@ -16,7 +16,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [SetUp]
         public void SetUp()
         {
-            _game = new PickUpGame(DateTime.Now, null, null);
+            _game = new PickUpGame(DateTime.Now, new Sport(), new Location());
         }
 
         [Test]
@@ -44,17 +44,17 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void HasASport()
         {
-            var sport = new Mock<Sport>().Object;
+            var sport = new Sport("Soccer");
             _game.Sport = sport.Name;
-            Assert.That(_game.Sport, Is.InstanceOf<Sport>());
+            Assert.That(_game.Sport, Is.EqualTo(sport.Name));
         }
 
         [Test]
         public void HasALocation()
         {
-            var location = new Mock<Location>().Object;
+            var location = new Location("Bend");
             _game.Location = location.Name;
-            Assert.That(_game.Location, Is.InstanceOf<Location>());
+            Assert.That(_game.Location, Is.EqualTo(location.Name));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
          [Test]
         public void CannotAddPlayerToGameIfAtMaxCapacity()
          {
-             var game = new PickUpGame(DateTime.Now, null, null);
+             var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
              game.MaxPlayers = 0;
 
              var exception = Assert.Throws(typeof (Exception), () => game.AddPlayer("Profile1"));
@@ -87,7 +87,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void CanCheckToSeeIfGameIsFull()
         {
-            var game = new PickUpGame(DateTime.Now, null, null);
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 0;
 
             Assert.True(game.IsFull());
