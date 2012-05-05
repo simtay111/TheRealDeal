@@ -1,15 +1,6 @@
-﻿using System;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using Neo4jClient;
-using Neo4jClient.Gremlin;
+﻿using System.Data;
 using RecreateMe.Login;
-using RecreateMeSql.Connection;
-using RecreateMeSql.Relationships;
-using RecreateMeSql.Relationships.AccountRelationships;
 using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.SqlServer;
 
 namespace RecreateMeSql.Repositories
 {

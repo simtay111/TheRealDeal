@@ -13,16 +13,17 @@ namespace RecreateMe.Scheduling.Games
         [Ignore]
         public IList<string> PlayersIds { get; set; }
 
-        public PickUpGame(DateTimeOffset dateTime, Sport sport, Location location)
+        public PickUpGame(DateTime dateTime, Sport sport, Location location)
         {
             DateTime = dateTime;
-            Sport = sport;
-            Location = location;
+            Sport = sport.Name;
+            Location = location.Name;
             Id = Guid.NewGuid().ToString();
             PlayersIds = new List<string>();
         }
 
-        public PickUpGame() :this(DateTimeOffset.Now, null, null)
+        public PickUpGame()
+            : this(DateTime.Now, new Sport(), new Location())
         {
         }
 
@@ -40,24 +41,26 @@ namespace RecreateMe.Scheduling.Games
             return (PlayersIds.Count >= MaxPlayers);
         }
 
-        public int? MaxPlayers { get; set; }
-
-        public int? MinPlayers { get; set; }
-        [Ignore]
-        public Location Location { get; set; }
-        [Ignore]
-        public Sport Sport { get; set; }
-
-        public DateTimeOffset DateTime { get; set; }
-
         [PrimaryKey]
         public string Id { get; set; }
-        
+
+        public DateTime DateTime { get; set; }
+
+        [References(typeof(Location))]
+        public string Location { get; set; }
+
+        [References(typeof(Sport))]
+        public string Sport { get; set; }
+
         [References(typeof(Profile))]
         public string Creator { get; set; }
 
         public bool IsPrivate { get; set; }
 
         public string ExactLocation { get; set; }
+
+        public int? MaxPlayers { get; set; }
+
+        public int? MinPlayers { get; set; }
     }
 }

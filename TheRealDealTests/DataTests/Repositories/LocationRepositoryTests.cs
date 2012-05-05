@@ -1,10 +1,5 @@
-﻿using System.Linq;
-using Neo4jClient.Gremlin;
-using NUnit.Framework;
-using RecreateMeSql.Connection;
-using RecreateMeSql.Relationships;
+﻿using NUnit.Framework;
 using RecreateMeSql.Repositories;
-using RecreateMeSql.SchemaNodes;
 using TheRealDealTests.DataTests.DataBuilder;
 
 namespace TheRealDealTests.DataTests.Repositories

@@ -67,7 +67,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
 
             handler.Handle(request);
 
-            Assert.That(_profile.AccountId, Is.EqualTo("AccountId"));
+            Assert.That(_profile.AccountName, Is.EqualTo("AccountId"));
         }
 
         [Test]

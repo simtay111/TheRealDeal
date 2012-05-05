@@ -23,7 +23,7 @@ namespace RecreateMe.Scheduling.Handlers
             results.AddRange(_pickUpGameRepository.FindPickUpGameByLocation(request.Location).Where(x => !x.PlayersIds.Contains(request.ProfileId)));
 
             if (!string.IsNullOrEmpty(request.Sport))
-               results = results.Where(x => x.Sport.Name == request.Sport).ToList();
+               results = results.Where(x => x.Sport == request.Sport).ToList();
 
             return new SearchForPickUpGameResponse(results);
         }

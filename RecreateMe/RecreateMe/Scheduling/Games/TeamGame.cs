@@ -11,19 +11,19 @@ namespace RecreateMe.Scheduling.Games
         [JsonIgnore]
         public IList<string> TeamsIds = new List<string>();
 
-        public TeamGame(DateTimeOffset dateTime, Sport sport, Location location)
+        public TeamGame(DateTime dateTime, Sport sport, Location location)
         {
             DateTime = dateTime;
-            Sport = sport;
-            Location = location;
+            Sport = sport.Name;
+            Location = location.Name;
             Id = Guid.NewGuid().ToString();
         }
 
-        public DateTimeOffset DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         [JsonIgnore]
-        public Sport Sport { get; set; }
+        public string Sport { get; set; }
         [JsonIgnore]
-        public Location Location { get; set; }
+        public string Location { get; set; }
 
         public int? MinPlayers { get; set; }
 

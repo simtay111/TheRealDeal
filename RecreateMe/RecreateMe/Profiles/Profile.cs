@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using RecreateMe.Locales;
+using RecreateMe.Login;
 using RecreateMe.Sports;
 using ServiceStack.DataAnnotations;
 
@@ -16,7 +17,10 @@ namespace RecreateMe.Profiles
             FriendsIds = new List<string>();
         }
 
-        public string AccountId { get; set; }
+        public string ProfileId { get; set; }
+
+        [References(typeof(Account))]
+        public string AccountName { get; set; }
 
         [Ignore]
         public IList<string> FriendsIds { get; private set; }
@@ -26,8 +30,5 @@ namespace RecreateMe.Profiles
 
         [Ignore]
         public IList<SportWithSkillLevel> SportsPlayed { get; set; }
-
-        [PrimaryKey]
-        public string ProfileId { get; set; }
     }
 }

@@ -32,30 +32,30 @@ namespace TheRealDealTests.DataTests.Repositories
             _data.CreateLocationBend();
             _data.CreateSoccerSport();
 
-            var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport("Soccer");
-            game.Location = new Location("Bend");
+            game.Sport = "Soccer";
+            game.Location = "Bend";
             game.AddPlayer(profile.ProfileId);
             game.Creator = profile.ProfileId;
             game.ExactLocation = "A road in space";
 
             _repo.SavePickUpGame(game);
 
-            //var retrievedGame = _repo.GetPickUpGameById(game.Id);
+            var retrievedGame = _repo.GetPickUpGameById(game.Id);
 
-            //Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
-            //Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
-            //Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
-            //Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
-            //Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
-            //Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
-            //Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
+            Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
+            Assert.That(retrievedGame.Location, Is.EqualTo(game.Location));
+            Assert.That(retrievedGame.Sport, Is.EqualTo(game.Sport));
+            Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
+            Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
+            Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
+            Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
             //Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(profile.ProfileId));
-            //Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
-            //Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
+            Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
+            Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
         }
 
         [Test]

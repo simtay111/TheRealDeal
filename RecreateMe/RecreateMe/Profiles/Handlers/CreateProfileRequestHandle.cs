@@ -52,7 +52,7 @@ namespace RecreateMe.Profiles.Handlers
             var profileId = request.ProfileId;
 
             var profile = CreateProfile(sport, skill, profileId, location);
-            profile.AccountId = request.UserId;
+            profile.AccountName = request.UserId;
             return profile;
         }
 

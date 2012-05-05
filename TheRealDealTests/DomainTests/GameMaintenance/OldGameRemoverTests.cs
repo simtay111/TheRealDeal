@@ -17,8 +17,8 @@ namespace TheRealDealTests.DomainTests.GameMaintenance
 
             var teamGameRepo = new Mock<ITeamGameRepository>();
             var dateTime = new DateTime(2000,12,12);
-            var teamGame1 = new TeamGame(new DateTimeOffset(dateTime.AddHours(-1)), null, null);
-            var teamGame2 = new TeamGame(new DateTimeOffset(dateTime.AddHours(-2)), null, null);
+            var teamGame1 = new TeamGame(dateTime.AddHours(-1), null, null);
+            var teamGame2 = new TeamGame(dateTime.AddHours(-2), null, null);
 
             teamGameRepo.Setup(x => x.GetAllGamesBeforeDate(It.IsAny<DateTime>())).Returns(new List<TeamGame> {teamGame1, teamGame2});
 

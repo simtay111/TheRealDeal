@@ -59,41 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
-    <Compile Include="Connection\GraphClientFactory.cs" />
-    <Compile Include="GremlinQueriesExtensions.cs" />
-    <Compile Include="Mappers\GameMapper.cs" />
-    <Compile Include="Relationships\BaseNode\BaseTeamRelationship.cs" />
-    <Compile Include="Relationships\GameRelationships\CreatedByRelationship.cs" />
-    <Compile Include="Relationships\GameRelationships\TeamInGameRelationship.cs" />
-    <Compile Include="Relationships\ProfileRelationships\PlaysInGameRelationship.cs" />
-    <Compile Include="Relationships\GameRelationships\GameToSportRelationship.cs" />
-    <Compile Include="Relationships\GameRelationships\GameToLocationRelationship.cs" />
-    <Compile Include="Relationships\BaseNode\GameRelationship.cs" />
-    <Compile Include="Relationships\ProfileRelationships\PartOfTeamRelationship.cs" />
-    <Compile Include="Relationships\ProfileRelationships\FriendRelationship.cs" />
-    <Compile Include="Relationships\ProfileRelationships\ProfileToSportRelationship.cs" />
-    <Compile Include="Relationships\ProfileRelationships\ProfileToLocationRelationship.cs" />
-    <Compile Include="Relationships\BaseNode\LocationRelationship.cs" />
-    <Compile Include="Relationships\RelationsTypes.cs" />
-    <Compile Include="Relationships\TeamRelationship\TeamCreatedByRelationship.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\PickUpGameRepository.cs" />
     <Compile Include="Repositories\InviteRepository.cs" />
     <Compile Include="Repositories\LocationRepository.cs" />
-    <Compile Include="Mappers\AccountMapper.cs" />
-    <Compile Include="Mappers\ProfileMapper.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Relationships\AccountRelationships\AccountRelationship.cs" />
-    <Compile Include="Relationships\BaseNode\BaseNodeRelationship.cs" />
-    <Compile Include="Relationships\BaseNode\SportRelationship.cs" />
-    <Compile Include="Relationships\AccountRelationships\HasProfileRelationship.cs" />
     <Compile Include="Repositories\TeamGameRepository.cs" />
+    <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="RetrievedGame.cs" />
     <Compile Include="SchemaNodes\SchemaNode.cs" />
     <Compile Include="SchemaNodes\SchemaNodeTypes.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
-    <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
-using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMeSql.Repositories;
 
@@ -43,22 +42,22 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var randomNumber = new Random((int)DateTime.Today.Ticks);
 
-            for (int k = 0; k < 100; k++)
-            {
-                var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
-                game.MaxPlayers = 5;
-                game.MinPlayers = 3;
-                game.IsPrivate = true;
-                game.Sport = new Sport(SportIds[((int)(randomNumber.NextDouble() * SportIds.Count))]);
-                game.Location = new Location(LocationIds[((int)(randomNumber.NextDouble() * LocationIds.Count))]);
-                for (int i = 0; i < 3; i++)
-                {
-                    game.AddPlayer(ProfileIds[((int)(randomNumber.NextDouble() * ProfileIds.Count))]);
-                }
-                game.Creator = Profile1Id;
+            //for (int k = 0; k < 100; k++)
+            //{
+            //    var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            //    game.MaxPlayers = 5;
+            //    game.MinPlayers = 3;
+            //    game.IsPrivate = true;
+            //    game.Sport = new Sport(SportIds[((int)(randomNumber.NextDouble() * SportIds.Count))]);
+            //    game.Location = new Location(LocationIds[((int)(randomNumber.NextDouble() * LocationIds.Count))]);
+            //    for (int i = 0; i < 3; i++)
+            //    {
+            //        game.AddPlayer(ProfileIds[((int)(randomNumber.NextDouble() * ProfileIds.Count))]);
+            //    }
+            //    game.Creator = Profile1Id;
 
-                new PickUpGameRepository().SavePickUpGame(game);
-            }
+            //    new PickUpGameRepository().SavePickUpGame(game);
+            //}
         }
 
         private void CreateExtraProfiles()
@@ -69,7 +68,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             {
                 var profile = new Profile
                                   {
-                                      AccountId = AccountIds[i],
+                                      AccountName = AccountIds[i],
                                       ProfileId = ProfileIds[i],
                                       Locations =
                                           new List<Location> { new Location(LocationBendName), new Location(LocationPortland) },

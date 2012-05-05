@@ -33,12 +33,12 @@ namespace TheRealDealTests.DataTests.Repositories
             _data.CreateSoccerSport();
             var team = _data.CreateTeam1();
 
-            var game = new TeamGame(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new TeamGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport("Soccer");
-            game.Location = new Location("Bend");
+            game.Sport = "Soccer";
+            game.Location = "Bend";
             game.AddTeam(team.Id);
             game.Creator = profile.ProfileId;
 
@@ -47,8 +47,8 @@ namespace TheRealDealTests.DataTests.Repositories
             var retrievedGame = _repo.GetTeamGameById(game.Id);
 
             Assert.That(game.Id, Is.EqualTo(retrievedGame.Id));
-            Assert.That(retrievedGame.Location.Name, Is.EqualTo(game.Location.Name));
-            Assert.That(retrievedGame.Sport.Name, Is.EqualTo(game.Sport.Name));
+            Assert.That(retrievedGame.Location, Is.EqualTo(game.Location));
+            Assert.That(retrievedGame.Sport, Is.EqualTo(game.Sport));
             Assert.That(retrievedGame.IsPrivate, Is.EqualTo(game.IsPrivate));
             Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
             Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
@@ -95,7 +95,6 @@ namespace TheRealDealTests.DataTests.Repositories
         public void DoesNotThrowIfGameDoesNotExist()
         {
             _data.CreateAccounts();
-            _repo.CreateGameBaseNode();
 
             Assert.DoesNotThrow(() =>_repo.DeleteGame("123"));
         }

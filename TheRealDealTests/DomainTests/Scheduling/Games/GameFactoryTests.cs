@@ -50,16 +50,16 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         private void AssertGameWithTeamsWasCreatedAndDataLinesUp(TeamGame teamGame)
         {
             Assert.NotNull(teamGame);
-            Assert.That(teamGame.Sport.Name, Is.EqualTo("Soccer"));
-            Assert.That(teamGame.Location.Name, Is.EqualTo(_location.Name));
+            Assert.That(teamGame.Sport, Is.EqualTo("Soccer"));
+            Assert.That(teamGame.Location, Is.EqualTo(_location.Name));
         }
 
 
         private void AssertGameWithTeamsWasCreatedAndDataLinesUp(PickUpGame game)
         {
             Assert.NotNull(game);
-            Assert.That(game.Sport.Name, Is.EqualTo("Soccer"));
-            Assert.That(game.Location.Name, Is.EqualTo(_location.Name));
+            Assert.That(game.Sport, Is.EqualTo("Soccer"));
+            Assert.That(game.Location, Is.EqualTo(_location.Name));
         }
     }
 }

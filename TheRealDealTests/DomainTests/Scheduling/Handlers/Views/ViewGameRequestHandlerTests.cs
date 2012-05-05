@@ -28,7 +28,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers.Views
         {
             var game = new PickUpGame();
             const string sportName = "Soccer";
-            game.Sport = new Sport(sportName);
+            game.Sport = sportName;
             const string profileId = "Larry";
             const string profileId2 = "Bob";
             var profile1 = new Profile {ProfileId = profileId,  SportsPlayed = new List<SportWithSkillLevel> {new SportWithSkillLevel(){Name = sportName, SkillLevel = new SkillLevel(1)}}};
@@ -54,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers.Views
         {
             var game = new PickUpGame();
             const string sportName = "Soccer";
-            game.Sport = new Sport(sportName);
+            game.Sport = sportName;
             const string profileId = "Larry";
             var profile1 = new Profile { ProfileId = profileId, SportsPlayed = new List<SportWithSkillLevel>() };
             var profiles = new List<Profile> { profile1};

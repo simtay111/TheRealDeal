@@ -31,5 +31,24 @@ namespace TheRealDealTests
                     dbCmd.DeleteAll<Account>();
                 }
          }
+
+         public static void RebuildSchema()
+         {
+             using (var db = ConnectionFactory.OpenDbConnection())
+             using (var dbCmd = db.CreateCommand())
+             {
+                 dbCmd.DropTable<PickUpGame>();
+                 dbCmd.DropTable<Location>();
+                 dbCmd.DropTable<Sport>();
+                 dbCmd.DropTable<Profile>();
+                 dbCmd.DropTable<Account>();
+
+                 dbCmd.CreateTable<Account>(true);
+                 dbCmd.CreateTable<Profile>(true);
+                 dbCmd.CreateTable<Sport>(true);
+                 dbCmd.CreateTable<Location>(true);
+                 dbCmd.CreateTable<PickUpGame>(true);
+             }
+         }
     }
 }

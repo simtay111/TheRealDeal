@@ -44,7 +44,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         public void HasASport()
         {
             var sport = new Mock<Sport>().Object;
-            _teamGame.Sport = sport;
+            _teamGame.Sport = sport.Name;
             Assert.That(_teamGame.Sport, Is.InstanceOf<Sport>());
         }
 
@@ -52,7 +52,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         public void HasALocation()
         {
             var location = new Mock<Location>().Object;
-            _teamGame.Location = location;
+            _teamGame.Location = location.Name;
             Assert.That(_teamGame.Location, Is.InstanceOf<Location>());
         }
 

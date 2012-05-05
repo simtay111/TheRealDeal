@@ -107,7 +107,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
             var profile = new Profile
                               {
-                                  AccountId = "Cows@Moo.com",
+                                  AccountName = "Cows@Moo.com",
                                   ProfileId = Profile2Id,
                                   Locations = new List<Location> { new Location(LocationBendName), new Location(LocationPortland) },
                                   SportsPlayed = new List<SportWithSkillLevel>
@@ -132,7 +132,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
             var profile = new Profile
                               {
-                                  AccountId = "Simtay111@Gmail.com",
+                                  AccountName = "Simtay111@Gmail.com",
                                   ProfileId = Profile1Id,
                                   Locations = new List<Location> { new Location(LocationBendName) },
                                   SportsPlayed = new List<SportWithSkillLevel>
@@ -270,12 +270,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         public PickUpGame CreateGameWithProfile1()
         {
-            var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport(SoccerName);
-            game.Location = new Location(LocationBendName);
+            game.Sport = SoccerName;
+            game.Location = LocationBendName;
             game.AddPlayer(Profile1Id);
             game.Creator = Profile1Id;
 
@@ -286,12 +286,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         public PickUpGame CreateGameWithProfile1AndProfile2()
         {
-            var game = new PickUpGame(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport(Basketballname);
-            game.Location = new Location(LocationPortland);
+            game.Sport = Basketballname;
+            game.Location = LocationPortland;
             game.AddPlayer(Profile1Id);
             game.AddPlayer(Profile2Id);
             game.Creator = Profile1Id;
@@ -303,12 +303,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         public TeamGame CreateGameWithTeams1And2()
         {
-            var game = new TeamGame(DateTimeOffset.Now, new Sport(), new Location());
+            var game = new TeamGame(DateTime.Now, new Sport(), new Location());
             game.MaxPlayers = 5;
             game.MinPlayers = 3;
             game.IsPrivate = true;
-            game.Sport = new Sport(SoccerName);
-            game.Location = new Location(LocationBendName);
+            game.Sport = SoccerName;
+            game.Location = LocationBendName;
             game.AddTeam(TeamId1);
             game.AddTeam(TeamId2);
             game.Creator = Profile2Id;

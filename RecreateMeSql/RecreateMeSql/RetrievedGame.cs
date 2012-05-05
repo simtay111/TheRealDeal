@@ -8,7 +8,7 @@ namespace RecreateMeSql
     public class RetrievedGame
     {
         public string Id { get; set; }
-        public DateTimeOffset DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public Sport Sport { get; set; }
         public Location Location { get; set; }
         public int? MinPlayers { get; set; }

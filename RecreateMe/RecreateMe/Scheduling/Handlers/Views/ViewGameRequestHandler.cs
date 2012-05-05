@@ -32,7 +32,7 @@ namespace RecreateMe.Scheduling.Handlers.Views
 
         private static int GetSkillLevelForGame(PickUpGame game, Profile profile)
         {
-            var sport = profile.SportsPlayed.SingleOrDefault(x => x.Name == game.Sport.Name);
+            var sport = profile.SportsPlayed.SingleOrDefault(x => x.Name == game.Sport);
 
             var skillLevel = sport != null ? sport.SkillLevel.Level : Constants.DefaultSkillLevel;
             return skillLevel;

@@ -8,9 +8,9 @@ namespace RecreateMe.Scheduling.Games
     {
         int? MaxPlayers { get; set; }
         int? MinPlayers { get; set; }
-        Location Location { get; set; }
-        Sport Sport { get; set; }
-        DateTimeOffset DateTime { get; set; }
+        string Location { get; set; }
+        string Sport { get; set; }
+        DateTime DateTime { get; set; }
         string Id { get; set; }
         string Creator { get; set; }
         bool IsPrivate { get; set; }

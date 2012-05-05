@@ -38,15 +38,15 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = soccer.Name };
 
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
-                .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
+                .Returns(listOfGames.Where(x => x.Location == location1.Name).ToList());
 
             var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
 
             var response = handler.Handle(request);
 
             Assert.That(response.GamesFound.Count, Is.EqualTo(1));
-            Assert.That(response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
-            Assert.That(response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
+            Assert.That(response.GamesFound[0].Location, Is.EqualTo(location1.Name));
+            Assert.That(response.GamesFound[0].Sport, Is.EqualTo(soccer.Name));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var soccerGame1 = new PickUpGame(DateTime.Now, soccer, location1);
             var listOfGames = new List<PickUpGame> { soccerGame1 };
             _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
-                .Returns(listOfGames.Where(x => x.Location.Name == location1.Name).ToList());
+                .Returns(listOfGames.Where(x => x.Location == location1.Name).ToList());
             var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = string.Empty };
 
             var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
@@ -97,8 +97,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             var response = handler.Handle(request);
 
             Assert.That(response.GamesFound.Count, Is.EqualTo(1));
-            Assert.That(response.GamesFound[0].Location.Name, Is.EqualTo(location1.Name));
-            Assert.That(response.GamesFound[0].Sport.Name, Is.EqualTo(soccer.Name));
+            Assert.That(response.GamesFound[0].Location, Is.EqualTo(location1.Name));
+            Assert.That(response.GamesFound[0].Sport, Is.EqualTo(soccer.Name));
         }        
     }
 }

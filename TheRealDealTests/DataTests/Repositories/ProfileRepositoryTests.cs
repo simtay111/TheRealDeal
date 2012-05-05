@@ -47,7 +47,7 @@ namespace TheRealDealTests.DataTests.Repositories
             //_data.CreateSoccerSport();
             var profile = new Profile
                               {
-                                  AccountId = AccountId,
+                                  AccountName = AccountId,
                                   ProfileId = Profile1Id,
                                   Locations = new List<Location> { new Location("Bend") },
                                   SportsPlayed = new List<SportWithSkillLevel>
@@ -61,7 +61,7 @@ namespace TheRealDealTests.DataTests.Repositories
 
             var wasSuccessful = _repo.Save(profile);
 
-            var returnedProfiles = _repo.GetByAccount(profile.AccountId);
+            var returnedProfiles = _repo.GetByAccount(profile.AccountName);
             Assert.True(wasSuccessful);
             Assert.That(returnedProfiles[0].ProfileId, Is.EqualTo(profile.ProfileId));
             //Assert.That(returnedProfiles[0].Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
@@ -76,14 +76,14 @@ namespace TheRealDealTests.DataTests.Repositories
             _data.CreateLocationBend();
             var profile = new Profile
             {
-                AccountId = AccountId,
+                AccountName = AccountId,
                 ProfileId = Profile1Id,
                 Locations = new List<Location> { new Location("Bend"), new Location("NonExisten") },
             };
 
             _repo.Save(profile);
 
-            var returnedProfile = _repo.GetByAccount(profile.AccountId).First();
+            var returnedProfile = _repo.GetByAccount(profile.AccountName).First();
             Assert.That(returnedProfile.Locations[0].Name, Is.EqualTo(profile.Locations[0].Name));
             Assert.That(returnedProfile.Locations.Count, Is.EqualTo(1));
         }

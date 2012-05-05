@@ -1,16 +1,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Neo4jClient;
-using Neo4jClient.Gremlin;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
-using RecreateMeSql.Connection;
-using RecreateMeSql.Mappers;
-using RecreateMeSql.Relationships;
-using RecreateMeSql.Relationships.AccountRelationships;
-using RecreateMeSql.Relationships.ProfileRelationships;
 using ServiceStack.OrmLite;
 
 namespace RecreateMeSql.Repositories
@@ -80,7 +73,7 @@ namespace RecreateMeSql.Repositories
             using (IDbConnection db = _connectionFactory.OpenDbConnection())
             using (IDbCommand dbCmd = db.CreateCommand())
             {
-                return dbCmd.Each<Profile>("AccountId = {0}", accountId).ToList();
+                return dbCmd.Each<Profile>("AccountName = {0}", accountId).ToList();
             }
         }
 
