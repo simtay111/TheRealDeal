@@ -47,16 +47,34 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.101.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\packages\ServiceStack.Common.3.7.4\lib\net35\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\packages\ServiceStack.Common.3.7.4\lib\net35\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=3.7.6.750, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.7.6\lib\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.SqlServer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.SqlServer.3.7.6\lib\ServiceStack.OrmLite.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.7.6\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTests\Connection\GraphClientFactoryTests.cs" />
     <Compile Include="DataTests\DataBuilder\DataBuilderTests.cs" />
     <Compile Include="DataTests\DataBuilder\DataTestHelper.cs" />
+    <Compile Include="DataTests\DataBuilder\RandomExtensions.cs" />
     <Compile Include="DataTests\DataBuilder\SampleDataBuilder.cs" />
+    <Compile Include="DataTests\DataBuilder\SuperDataBuilder.cs" />
     <Compile Include="DataTests\Mappers\ProfileMapperTests.cs" />
     <Compile Include="DataTests\Repositories\BaseRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\TeamGameRepositoryTests.cs" />
@@ -125,6 +143,7 @@
     <Compile Include="DomainTests\Teams\ViewTeamRequestHandlerTests.cs" />
     <Compile Include="DomainTests\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecreateMeSql\RecreateMeSql\RecreateMeSql.csproj">

@@ -63,7 +63,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateGames();
         }
 
-        private void CreateGames()
+        protected void CreateGames()
         {
             CreateGameWithProfile1();
             CreateGameWithProfile1AndProfile2();

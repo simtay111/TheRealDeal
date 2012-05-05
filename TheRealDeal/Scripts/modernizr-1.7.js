@@ -104,7 +104,7 @@ window.Modernizr = (function(window,document,undefined){
     
     
     
-    // todo: consider using http://javascript.nwbox.com/CSSSupport/css-support.js instead
+    // : consider using http://javascript.nwbox.com/CSSSupport/css-support.js instead
     testMediaQuery = function(mq){
 
       var st = document.createElement('style'),
@@ -813,7 +813,7 @@ window.Modernizr = (function(window,document,undefined){
 
 
     // Run through all tests and detect their support in the current UA.
-    // todo: hypothetically we could be doing an array of tests and use a basic loop here.
+    // : hypothetically we could be doing an array of tests and use a basic loop here.
     for ( var feature in tests ) {
         if ( hasOwnProperty( tests, feature ) ) {
             // run the test, throw the return value into the Modernizr,

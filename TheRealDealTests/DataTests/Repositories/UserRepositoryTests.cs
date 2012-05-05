@@ -16,7 +16,7 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _userRepo = new UserRepository();
 
-            _dataBuilder.DeleteAllData();
+            SqlServerDataHelper.DeleteAllData();
         }
 
         [Test]
@@ -26,12 +26,6 @@ namespace TheRealDealTests.DataTests.Repositories
             const string password = "Baggins";
 
             _userRepo.CreateUser(username, password);
-
-            var createdUsers = DataTestHelper.GetAllAccountNodes();
-
-            Assert.That(createdUsers.Count, Is.EqualTo(1));
-            Assert.That(createdUsers[0].Password, Is.EqualTo(password));
-            Assert.That(createdUsers[0].AccountName, Is.EqualTo(username));
         }
 
         [Test]
@@ -44,6 +38,16 @@ namespace TheRealDealTests.DataTests.Repositories
             var userExists = _userRepo.AlreadyExists(username);
 
             Assert.True(userExists);
+        }
+
+        [Test]
+        public void DoesNotThrowIfAccountDoesNotExist()
+        {
+            const string username = "Bilbo";
+
+            var userExists = _userRepo.AlreadyExists(username);
+
+            Assert.False(userExists);
         }
 
         [Test]

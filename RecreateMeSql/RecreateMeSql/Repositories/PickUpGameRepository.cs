@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
+using RecreateMe.Locales;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Games;
 using RecreateMeSql.Connection;
@@ -10,114 +12,66 @@ using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.BaseNode;
 using RecreateMeSql.Relationships.GameRelationships;
 using RecreateMeSql.Relationships.ProfileRelationships;
+using ServiceStack.OrmLite;
 
 namespace RecreateMeSql.Repositories
 {
-    public class PickUpGameRepository : BaseRepository, IPickUpGameRepository
+    public class PickUpGameRepository : IPickUpGameRepository
     {
-        private readonly GameMapper _gameMapper;
+        private readonly OrmLiteConnectionFactory _connectionFactory;
 
-        public PickUpGameRepository(GraphClient graphClient, GameMapper gameMapper) :base(graphClient)
+        public PickUpGameRepository(OrmLiteConnectionFactory connectionFactory)
         {
-            _gameMapper = gameMapper;
+            _connectionFactory = connectionFactory;
         }
 
         public PickUpGameRepository()
-            : this(GraphClientFactory.Create(), new GameMapper()) { }
+            : this(ConnectionFactory.Create())
+        {
+        }
 
         public void SavePickUpGame(PickUpGame game)
         {
-            CreateGameBaseNode();
-
-            var gameNode = CreatePickUpGameNodeAndSaveGenericData(game);
-
-            SavePickUpGameData(game, gameNode);
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                dbCmd.Save(game);
+            }
         }
 
         public PickUpGame GetPickUpGameById(string id)
         {
-            var pickUpGameQuery = GraphClient.GameWithId(id);
-
-            return _gameMapper.MapPickupGame(pickUpGameQuery);
+            throw new System.NotImplementedException();
         }
 
         public IList<PickUpGame> FindPickUpGameByLocation(string location)
         {
-            var games = GraphClient.PickUpGamesAtLocation(location).Select(x => x.Data.Id).ToList();
-            return games.Select(x => _gameMapper.MapPickupGame(GraphClient.GameWithId(x))).ToList();
+            throw new System.NotImplementedException();
         }
 
         public IList<PickUpGame> GetPickupGamesForProfile(string profileId)
         {
-            var games = GraphClient.ProfileWithId(profileId).PickUpGamesForProfile().Select(x => x.Data.Id).ToList();
-
-            return games.Select(game => _gameMapper.MapPickupGame(GraphClient.GameWithId(game))).ToList();
+            throw new System.NotImplementedException();
         }
 
         public void AddPlayerToGame(string gameId, string profileId)
         {
-            var gameNode = GraphClient.GameWithId(gameId).Single();
-            CreatePlaysInGameRelationship(gameNode.Reference, profileId);
-        }
-
-        public List<PickUpGame> GetByCreated(string profileId)
-        {
-            var games = GraphClient.ProfileWithId(profileId).GamesThisProfileCreated().Select(x => x.Data.Id).ToList();
-
-            return games.Select(x => _gameMapper.MapPickupGame(GraphClient.GameWithId(x))).ToList();
+            throw new System.NotImplementedException();
         }
 
         public void DeleteGame(string gameId)
         {
-            var game = GraphClient.GameWithId(gameId).SingleOrDefault();
-
-            if (game == null)
-                return;
-
-            GraphClient.Delete(game.Reference, DeleteMode.NodeAndRelationships);
+            throw new System.NotImplementedException();
         }
 
         public void RemovePlayerFromGame(string profileId, string gameId)
         {
-            var gameNode = GraphClient.GameWithId(gameId).Single();
-            var relationship = GraphClient.ProfileWithId(profileId).OutE(RelationsTypes.PlaysInGame).Where(x => x.EndNodeReference == gameNode.Reference).Single();
-            GraphClient.DeleteRelationship(relationship.Reference);
+            throw new System.NotImplementedException();
         }
 
-        private void CreatePlaysInGameRelationship(NodeReference gameNode, string profileId)
+        public List<PickUpGame> GetByCreated(string profileId)
         {
-            var profileNode = GraphClient.ProfileWithId(profileId).Single();
-            GraphClient.CreateRelationship(profileNode.Reference, new PlaysInGameRelationship(gameNode));
-        }
-
-        private void SavePickUpGameData(PickUpGame game, NodeReference gameNode)
-        {
-            foreach (var profileId in game.PlayersIds)
-            {
-                CreatePlaysInGameRelationship(gameNode, profileId);
-            }
-        }
-
-        private NodeReference<PickUpGame> CreatePickUpGameNodeAndSaveGenericData(PickUpGame game)
-        {
-            var gameBaseNode = GraphClient.GameBaseNode().Single();
-
-            var gameNode = GraphClient.Create(game);
-
-            GraphClient.CreateRelationship(gameBaseNode.Reference, new GameRelationship(gameNode));
-
-            var sportNode = GraphClient.SportWithName(game.Sport.Name).Single();
-
-            GraphClient.CreateRelationship(sportNode.Reference, new GameToSportRelationship(gameNode));
-
-            var locationNode = GraphClient.LocationWithName(game.Location.Name).Single();
-
-            GraphClient.CreateRelationship(locationNode.Reference, new GameToLocationRelationship(gameNode));
-
-            var profileNode = GraphClient.ProfileWithId(game.Creator).Single();
-
-            GraphClient.CreateRelationship(profileNode.Reference, new CreatedByRelationship(gameNode));
-            return gameNode;
+            throw new System.NotImplementedException();
         }
     }
 }

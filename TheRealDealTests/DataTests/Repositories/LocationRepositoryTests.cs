@@ -19,7 +19,7 @@ namespace TheRealDealTests.DataTests.Repositories
         [SetUp]
         public void SetUp()
         {
-            _data.DeleteAllData();
+            SqlServerDataHelper.DeleteAllData();
             _repo = new LocationRepository();
         }
 
@@ -44,17 +44,6 @@ namespace TheRealDealTests.DataTests.Repositories
             var location = _repo.FindByName(locationname);
 
             Assert.That(location.Name, Is.EqualTo(locationname));
-        }
-
-        [Test]
-        public void CreatesLocationSchemaNodeIfItDoesntExistWhenCreatingLocations()
-        {
-            _repo.CreateLocation("Bend");
-
-            var gc = GraphClientFactory.Create();
-            var nodes = gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.LocationBase.ToString());
-            Assert.True(nodes.Any());
         }
 
         [Test]

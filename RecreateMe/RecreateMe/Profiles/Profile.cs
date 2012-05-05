@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using RecreateMe.Locales;
 using RecreateMe.Sports;
+using ServiceStack.DataAnnotations;
 
 namespace RecreateMe.Profiles
 {
     public class Profile
     {
+
         public Profile()
         {
             Locations = new List<Location>();
@@ -14,18 +16,18 @@ namespace RecreateMe.Profiles
             FriendsIds = new List<string>();
         }
 
-        [JsonIgnore]
         public string AccountId { get; set; }
 
-        [JsonIgnore]
+        [Ignore]
         public IList<string> FriendsIds { get; private set; }
 
-        [JsonIgnore]
+        [Ignore]
         public IList<Location> Locations { get; set; }
 
-        [JsonIgnore]
+        [Ignore]
         public IList<SportWithSkillLevel> SportsPlayed { get; set; }
 
+        [PrimaryKey]
         public string ProfileId { get; set; }
     }
 }

@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using RecreateMe.Locales;
+using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using ServiceStack.DataAnnotations;
 
 namespace RecreateMe.Scheduling.Games
 {
     public class PickUpGame : IAmAGame
     {
-        [JsonIgnore]
-        public IList<string> PlayersIds = new List<string>();
+        [Ignore]
+        public IList<string> PlayersIds { get; set; }
 
         public PickUpGame(DateTimeOffset dateTime, Sport sport, Location location)
         {
@@ -17,6 +19,7 @@ namespace RecreateMe.Scheduling.Games
             Sport = sport;
             Location = location;
             Id = Guid.NewGuid().ToString();
+            PlayersIds = new List<string>();
         }
 
         public PickUpGame() :this(DateTimeOffset.Now, null, null)
@@ -40,15 +43,17 @@ namespace RecreateMe.Scheduling.Games
         public int? MaxPlayers { get; set; }
 
         public int? MinPlayers { get; set; }
-        [JsonIgnore]
+        [Ignore]
         public Location Location { get; set; }
-        [JsonIgnore]
+        [Ignore]
         public Sport Sport { get; set; }
 
         public DateTimeOffset DateTime { get; set; }
 
+        [PrimaryKey]
         public string Id { get; set; }
-        [JsonIgnore]
+        
+        [References(typeof(Profile))]
         public string Creator { get; set; }
 
         public bool IsPrivate { get; set; }

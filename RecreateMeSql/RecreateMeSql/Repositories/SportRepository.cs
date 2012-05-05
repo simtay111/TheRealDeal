@@ -1,43 +1,53 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Neo4jClient;
+using RecreateMe.Locales;
 using RecreateMe.Sports;
-using RecreateMeSql.Connection;
-using RecreateMeSql.Relationships.BaseNode;
+using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.SqlServer;
 
 namespace RecreateMeSql.Repositories
 {
-    public class SportRepository : BaseRepository, ISportRepository
+    public class SportRepository :  ISportRepository
     {
-        public SportRepository(GraphClient graphClient) : base(graphClient)
+        private readonly OrmLiteConnectionFactory _connectionFactory;
+
+        public SportRepository(OrmLiteConnectionFactory connectionFactory)
         {
+            _connectionFactory = connectionFactory;
         }
 
         public SportRepository()
-            : this(GraphClientFactory.Create()) { }
+            : this(ConnectionFactory.Create()) { }
 
         public Sport FindByName(string name)
         {
-            var sport = GraphClient.SportWithName(name).FirstOrDefault();
-
-            return sport == null ? null : new Sport(sport.Data.Name);
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                return dbCmd.GetById<Sport>(name);
+            }
         }
 
         public IList<string> GetNamesOfAllSports()
         {
-            return GraphClient.AllSportNodes().Select(sport => sport.Data.Name).ToList();
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                return dbCmd.Each<Sport>().Select(x => x.Name).ToList();
+            }
         }
 
         public void CreateSport(string sportName)
         {
-            var sport = new Sport(sportName);
-
-            CreateSportBaseNode();
-
-            var sportBaseNode = GraphClient.SportBaseNode().Single();
-            var sportNode = GraphClient.Create(sport);
-
-            GraphClient.CreateRelationship(sportBaseNode.Reference, new SportRelationship(sportNode));
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                var sport = dbCmd.GetByIdOrDefault<Location>(sportName);
+                if (sport != null)
+                    return;
+                dbCmd.Insert(new Sport(sportName));
+            }
         }
     }
 }

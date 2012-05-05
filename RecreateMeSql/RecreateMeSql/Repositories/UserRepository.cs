@@ -1,49 +1,70 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
 using Neo4jClient;
 using Neo4jClient.Gremlin;
 using RecreateMe.Login;
 using RecreateMeSql.Connection;
 using RecreateMeSql.Relationships;
 using RecreateMeSql.Relationships.AccountRelationships;
+using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.SqlServer;
 
 namespace RecreateMeSql.Repositories
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository : IUserRepository
     {
-        public UserRepository(GraphClient graphClient) : base (graphClient)
+        private readonly OrmLiteConnectionFactory _connectionFactory;
+
+        public UserRepository(OrmLiteConnectionFactory connectionFactory)
         {
+            _connectionFactory = connectionFactory;
         }
 
-        public UserRepository(): this(GraphClientFactory.Create())
+        public UserRepository() : this(ConnectionFactory.Create())
         {
         }
 
         public void CreateUser(string userName, string password)
         {
-            var account = new Account { Password = password, AccountName = userName };
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())   
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                dbCmd.CreateTable<Account>();
 
-            var rootnode = GraphClient.Get(new RootNode());
+                dbCmd.Insert(new Account {AccountName = userName, Password = password});
+            }
 
-            var accountNode = GraphClient.Create(account);
+            //var account = new Account { Password = password, AccountName = userName };
 
-            GraphClient.CreateRelationship(rootnode.Reference, new AccountRelationship(accountNode));
+            //var rootnode = GraphClient.Get(new RootNode());
+
+            //var accountNode = GraphClient.Create(account);
+
+            //GraphClient.CreateRelationship(rootnode.Reference, new AccountRelationship(accountNode));
         }
 
         public bool AlreadyExists(string username)
         {
-            var nodes = GraphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => n.AccountName == username);
-
-            return nodes.Any();
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                return dbCmd.GetByIdOrDefault<Account>(username) != null;
+            }
         }
 
         public bool FoundUserByNameAndPassword(string username, string password)
         {
-            var accountNode = GraphClient.RootNode.OutE(RelationsTypes.Account).InV<Account>(n => (n.AccountName == username)).FirstOrDefault();
+             using (IDbConnection db = _connectionFactory.OpenDbConnection())
+             using (IDbCommand dbCmd = db.CreateCommand())
+             {
+                var user =dbCmd.GetByIdOrDefault<Account>(username);
+                if (user == null)
+                    return false;
+                 return (user.AccountName == username && user.Password == password);
+             }
 
-            if (accountNode == null)
-                return false;
-
-            return accountNode.Data.Password == password;
         }
     }
 }

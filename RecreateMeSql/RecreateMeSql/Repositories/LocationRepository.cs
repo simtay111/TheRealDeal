@@ -1,69 +1,55 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Neo4jClient;
 using RecreateMe.Locales;
-using RecreateMeSql.Connection;
-using RecreateMeSql.Relationships.BaseNode;
-using RecreateMeSql.SchemaNodes;
+using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.SqlServer;
 
 namespace RecreateMeSql.Repositories
 {
-    public class LocationRepository : BaseRepository, ILocationRepository
+    public class LocationRepository : ILocationRepository
     {
-        public LocationRepository(GraphClient graphClient) : base(graphClient)
+        private readonly OrmLiteConnectionFactory _connectionFactory;
+
+        public LocationRepository(OrmLiteConnectionFactory connectionFactory)
         {
+            _connectionFactory = connectionFactory;
         }
 
         public LocationRepository()
-            : this(GraphClientFactory.Create()) { }
+            : this(ConnectionFactory.Create())
+        {
+        }
 
         public Location FindByName(string name)
         {
-            var locNode = GraphClient.LocationWithName(name).FirstOrDefault();
-
-            return locNode != null ? new Location(locNode.Data.Name) : null;
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                return dbCmd.GetById<Location>(name);
+            }
         }
 
-        public bool CreateLocation(string locationName)
+        public bool CreateLocation(string name)
         {
-            var location = new Location(locationName);
-
-            if (!LocationBaseNodeExists())
-                CreateLocationBaseNode();
-            else if (LocationExists(locationName))
-                return false;
-
-            var locationBaseNode = GraphClient.LocationBaseNode().Single();
-
-            var locationNode = GraphClient.Create(location);
-
-            GraphClient.CreateRelationship(locationBaseNode.Reference, new LocationRelationship(locationNode));
-
+             using (IDbConnection db = _connectionFactory.OpenDbConnection())
+             using (IDbCommand dbCmd = db.CreateCommand())
+             {
+                 var location = dbCmd.GetByIdOrDefault<Location>(name);
+                 if (location != null)
+                     return false;
+                 dbCmd.Insert(new Location(name));
+             }
             return true;
-        }
-
-        private void CreateLocationBaseNode()
-        {
-            var locationBaseNode = GraphClient.Create(new SchemaNode { Type = SchemaNodeTypes.LocationBase });
-
-            var rootNode = GraphClient.RootNode;
-
-            GraphClient.CreateRelationship(rootNode, new BaseNodeRelationship(locationBaseNode));
-        }
-
-        private bool LocationBaseNodeExists()
-        {
-            return GraphClient.LocationBaseNode().Any();
-        }
-
-        private bool LocationExists(string locationName)
-        {
-            return GraphClient.LocationWithName(locationName).Any();
         }
 
         public List<string> GetNamesOfAllLocations()
         {
-            return new List<Location>() {new Location("Portland"), new Location("Bend")}.Select(x => x.Name).ToList();
+            using (IDbConnection db = _connectionFactory.OpenDbConnection())
+            using (IDbCommand dbCmd = db.CreateCommand())
+            {
+                return dbCmd.Each<Location>().Select(x => x.Name).ToList();
+            }
         }
     }
 }

@@ -14,19 +14,18 @@ namespace TheRealDealTests.DataTests.Repositories
     public class SportRepositoryTests
     {
         private SportRepository _repo;
-        private SampleDataBuilder _data = new SampleDataBuilder();
 
         [SetUp]
         public void SetUp()
         {
-            _data.DeleteAllData();
+            SqlServerDataHelper.DeleteAllData();
             _repo = new SportRepository();
         }
 
         [Test]
         public void CanFindSportsByName()
         {
-            _data.CreateSoccerSport();
+            _repo.CreateSport("Soccer");
             const string soccerName = "Soccer";
 
             var sport = _repo.FindByName(soccerName);
@@ -45,22 +44,11 @@ namespace TheRealDealTests.DataTests.Repositories
         }
 
         [Test]
-        public void CreatesSportsNodeIfItDoesNotExistWhenCreatingSports()
-        {
-            _repo.CreateSport("Soccer");
-
-            var gc = GraphClientFactory.Create();
-            var nodes = gc.RootNode.OutE(RelationsTypes.BaseNode.ToString())
-                .InV<SchemaNode>(n => n.Type == SchemaNodeTypes.SportBase.ToString());
-            Assert.True(nodes.Any());
-        }
-
-        [Test]
         public void CanGetListOfAllSports()
         {
-            _data.CreateBasketballSport();
-            _data.CreateFootballSport();
-            _data.CreateSoccerSport();
+            _repo.CreateSport("Soccer");
+            _repo.CreateSport("Basketball");
+            _repo.CreateSport("Football");
 
             var sports = _repo.GetNamesOfAllSports();
 
