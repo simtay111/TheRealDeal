@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\Data.bat = Scripts\Data.bat
 		Scripts\Integration.bat = Scripts\Integration.bat
 		Scripts\Isolated.bat = Scripts\Isolated.bat
+		Scripts\LargeData.bat = Scripts\LargeData.bat
 		Scripts\push.bat = Scripts\push.bat
 		Scripts\StartNeo4j.bat = Scripts\StartNeo4j.bat
 		Scripts\StopNeo4j.bat = Scripts\StopNeo4j.bat
