@@ -50,6 +50,26 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void GamesReturnWithPlayerIds()
+        {
+            var soccer = TestData.CreateSoccerGame();
+            var location1 = TestData.CreateLocationBend();
+            var soccerGame1 = new PickUpGame(DateTime.Now, soccer, location1);
+            const string expected = "Boop";
+            soccerGame1.PlayersIds.Add(expected);
+            var listOfGames = new List<PickUpGame> { soccerGame1 };
+            var request = new SearchForPickupGameRequest { Location = location1.Name, Sport = soccer.Name };
+            _gameRepository.Setup(x => x.FindPickUpGameByLocation(It.Is<string>(d => d == location1.Name)))
+                .Returns(listOfGames.Where(x => x.Location == location1.Name).ToList());
+            var handler = new SearchForPickupGameRequestHandle(_gameRepository.Object);
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.GamesFound.Count, Is.EqualTo(1));
+            Assert.That(response.GamesFound[0].PlayersIds, Has.Member(expected));
+        }
+
+        [Test]
         public void FiltersOutGamesThatProfilesIsAPartOf()
         {
             var soccer = TestData.CreateSoccerGame();

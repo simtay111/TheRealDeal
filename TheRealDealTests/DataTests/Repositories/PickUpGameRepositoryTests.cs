@@ -47,35 +47,6 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
         }
 
-        private PickUpGame CreateGame()
-        {
-            _data.CreateLocationBend();
-            _data.CreateSoccerSport();
-            _data.CreateBasketballSport();
-            _data.CreateAccount1();
-            _profile = _data.CreateProfileForAccount1();
-
-
-            var game = CreatePickUpGameOnly();
-            return game;
-        }
-
-        private PickUpGame CreatePickUpGameOnly()
-        {
-            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
-            game.MaxPlayers = 5;
-            game.MinPlayers = 3;
-            game.IsPrivate = true;
-            game.Sport = "Soccer";
-            game.Location = "Bend";
-            game.AddPlayer(_profile.ProfileId);
-            game.Creator = _profile.ProfileId;
-            game.ExactLocation = "A road in space";
-
-            _repo.SavePickUpGame(game);
-            return game;
-        }
-
         [Test]
         public void CanGetListOfGamesThatProfileIsPartOf()
         {
@@ -100,12 +71,13 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanGetPickUpGameByLocation()
         {
-            CreateGame();
+            var game = CreateGame();
             CreatePickUpGameOnly();
 
             var games = _repo.FindPickUpGameByLocation("Bend");
 
             Assert.That(games.Count, Is.EqualTo(2));
+            Assert.That(games[0].PlayersIds, Has.Member(game.PlayersIds[0]));
         }
 
         [Test]
@@ -152,6 +124,35 @@ namespace TheRealDealTests.DataTests.Repositories
         public void DoesNotThrowIfGameDoesNotExist()
         {
             Assert.DoesNotThrow(() => _repo.DeleteGame("123"));
+        }
+
+        private PickUpGame CreateGame()
+        {
+            _data.CreateLocationBend();
+            _data.CreateSoccerSport();
+            _data.CreateBasketballSport();
+            _data.CreateAccount1();
+            _profile = _data.CreateProfileForAccount1();
+
+
+            var game = CreatePickUpGameOnly();
+            return game;
+        }
+
+        private PickUpGame CreatePickUpGameOnly()
+        {
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
+            game.MaxPlayers = 5;
+            game.MinPlayers = 3;
+            game.IsPrivate = true;
+            game.Sport = "Soccer";
+            game.Location = "Bend";
+            game.AddPlayer(_profile.ProfileId);
+            game.Creator = _profile.ProfileId;
+            game.ExactLocation = "A road in space";
+
+            _repo.SavePickUpGame(game);
+            return game;
         }
     }
 }

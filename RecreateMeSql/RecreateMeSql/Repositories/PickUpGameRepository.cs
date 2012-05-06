@@ -50,7 +50,7 @@ namespace RecreateMeSql.Repositories
         private PickUpGame GetGameById(string id, IDbCommand dbCmd)
         {
             var game = dbCmd.GetById<PickUpGame>(id);
-            game.PlayersIds = dbCmd.Each<PlayerInGameLink>("GameId = {0}", id).Select(y => y.PlayerId).ToList();
+            MapPlayersInGame(dbCmd, game);
             return game;
         }
 
@@ -59,7 +59,9 @@ namespace RecreateMeSql.Repositories
             using (var db = _connectionFactory.OpenDbConnection())
             using (var dbCmd = db.CreateCommand())
             {
-                return dbCmd.Select<PickUpGame>("Location = {0}", location);
+                var games = dbCmd.Select<PickUpGame>("Location = {0}", location);
+                games.ForEach(x => MapPlayersInGame(dbCmd, x));
+                return games;
             }
         }
 
@@ -69,7 +71,9 @@ namespace RecreateMeSql.Repositories
             using (IDbCommand dbCmd = db.CreateCommand())
             {
                 var gameIds = dbCmd.Select<PlayerInGameLink>("PlayerId = {0}", profileId).Select(x => x.GameId);
-                return gameIds.Select(x => GetGameById(x, dbCmd)).ToList();
+                var games =  gameIds.Select(x => GetGameById(x, dbCmd)).ToList();
+                games.ForEach(x => MapPlayersInGame(dbCmd, x));
+                return games;
             }
         }
 
@@ -120,8 +124,15 @@ namespace RecreateMeSql.Repositories
             using (var db = _connectionFactory.OpenDbConnection())
             using (var dbCmd = db.CreateCommand())
             {
-                return dbCmd.Select<PickUpGame>("Creator = {0}", profileId);
+                var games = dbCmd.Select<PickUpGame>("Creator = {0}", profileId);
+                games.ForEach(x => MapPlayersInGame(dbCmd, x));
+                return games;
             }
+        }
+
+        private void MapPlayersInGame(IDbCommand dbCmd, PickUpGame game)
+        {
+            game.PlayersIds = dbCmd.Each<PlayerInGameLink>("GameId = {0}", game.Id).Select(y => y.PlayerId).ToList();
         }
     }
 }
