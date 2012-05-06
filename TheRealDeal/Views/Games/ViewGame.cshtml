@@ -9,7 +9,7 @@
 <div class="hero-unit">
     <h3>
         @String.Format("This is a {0} game. \nIt is located in {1}.  " +
-                                    "\nThe game starts at {2}.", Model.Game.Sport.Name, Model.Game.Location.Name,
+                                    "\nThe game starts at {2}.", Model.Game.Sport, Model.Game.Location,
                                         Model.Game.DateTime.ToString("MMM dd @ HH:mm"))
     </h3>
 

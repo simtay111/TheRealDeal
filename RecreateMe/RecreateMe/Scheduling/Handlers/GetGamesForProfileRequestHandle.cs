@@ -17,7 +17,7 @@ namespace RecreateMe.Scheduling.Handlers
         public GetGamesForProfileResponse Handle(GetGamesForProfileRequest request)
         {
             var pickUpGames = _pickUpGameRepository.GetPickupGamesForProfile(request.ProfileId);
-            var teamGames = _teamGameRepo.GetTeamGamesForProfile(request.ProfileId);
+            var teamGames = new List<TeamGame>();
 
             return new GetGamesForProfileResponse {PickupGames = pickUpGames, TeamGames = teamGames};
         }
