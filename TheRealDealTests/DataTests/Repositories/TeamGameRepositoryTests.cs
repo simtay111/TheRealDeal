@@ -22,7 +22,6 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _repo = new TeamGameRepository();
             _data = new SampleDataBuilder();
-            _data.DeleteAllData();
         }
 
         [Test]

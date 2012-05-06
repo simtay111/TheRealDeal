@@ -2,9 +2,11 @@ using System;
 using Moq;
 using NUnit.Framework;
 using RecreateMe;
+using RecreateMe.Locales;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
+using RecreateMe.Sports;
 using RecreateMe.Teams;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
@@ -21,7 +23,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void SetUp()
         {
             _team = new Team();
-            _teamGame = new TeamGame(DateTime.Now, null, null);
+            _teamGame = new TeamGame(DateTime.Now, new Sport(), new Location());
         }
 
         [Test]

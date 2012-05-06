@@ -19,7 +19,6 @@ namespace TheRealDealTests.DataTests.Repositories
         {
             _repo = new TeamRepository();
             _data = new SampleDataBuilder();
-            _data.DeleteAllData();
         }
 
         [Test]

@@ -2,9 +2,11 @@ using System;
 using Moq;
 using NUnit.Framework;
 using RecreateMe;
+using RecreateMe.Locales;
 using RecreateMe.Scheduling;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Scheduling.Handlers;
+using RecreateMe.Sports;
 
 namespace TheRealDealTests.DomainTests.Scheduling.Handlers
 {
@@ -23,7 +25,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CannotJoinGameAlreadyAPartOf()
         {
             var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
-            var game = new PickUpGame(DateTime.Now, null, null);
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
             game.PlayersIds.Add("123");
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
@@ -38,7 +40,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CannotJoinGameIfFull()
         {
             var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
-            var game = new PickUpGame(DateTime.Now, null, null) { MaxPlayers = 0 };
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location()) { MaxPlayers = 0 };
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
 
@@ -52,7 +54,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         public void CanJoinGame()
         {
             var request = new JoinGameRequest { GameId = "1", ProfileId = "123" };
-            var game = new PickUpGame(DateTime.Now, null, null);
+            var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
 
             _mockGameRepo.Setup(x => x.GetPickUpGameById(request.GameId)).Returns(game);
 

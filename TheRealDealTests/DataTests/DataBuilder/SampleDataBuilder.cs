@@ -29,37 +29,15 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public const string FootballName = "Football";
         public const string Basketballname = "Basketball";
 
-        public void DeleteAllData()
-        {
-            var graphClient = BuildGraphClient();
-
-            var nodes = graphClient.ExecuteGetAllNodesGremlin<GenericNodeType>
-                ("g.V.filter{it.Id != 0}", new Dictionary<string, object>()).ToList();
-
-            nodes.RemoveAt(0);
-
-            foreach (var node in nodes)
-            {
-                graphClient.Delete(node.Reference, DeleteMode.NodeAndRelationships);
-            }
-        }
-
-        private GraphClient BuildGraphClient()
-        {
-            var graphClient = new GraphClient(new Uri("http://localhost:7474/db/data"));
-
-            graphClient.Connect();
-            return graphClient;
-        }
-
         public void CreateData()
         {
+            SqlServerDataHelper.DeleteAllData();
             CreateAccounts();
             CreateLocations();
             CreateSports();
             CreateProfilesForAccounts();
-            CreateFriendship();
-            CreateTeams();
+            //CreateFriendship();
+            //CreateTeams();
             CreateGames();
         }
 
@@ -67,7 +45,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             CreateGameWithProfile1();
             CreateGameWithProfile1AndProfile2();
-            CreateGameWithTeams1And2();
+            //CreateGameWithTeams1And2();
         }
 
         private void CreateTeams()

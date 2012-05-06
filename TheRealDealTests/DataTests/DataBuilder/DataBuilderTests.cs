@@ -10,7 +10,6 @@ namespace TheRealDealTests.DataTests.DataBuilder
         [Category("Data")]
         public void BuildMeSumDater()
         {
-            _dataBuilder.DeleteAllData();
             _dataBuilder.CreateData();
         }
     }

@@ -16,7 +16,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [SetUp]
         public void SetUp()
         {
-            _teamGame = new TeamGame(DateTime.Now, null, null);
+            _teamGame = new TeamGame(DateTime.Now, new Sport(), new Location());
         }
 
         [Test]
@@ -43,17 +43,15 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void HasASport()
         {
-            var sport = new Mock<Sport>().Object;
+            var sport = new Sport("Soccer");
             _teamGame.Sport = sport.Name;
-            Assert.That(_teamGame.Sport, Is.InstanceOf<Sport>());
         }
 
         [Test]
         public void HasALocation()
         {
-            var location = new Mock<Location>().Object;
+            var location = new Location("Bend");
             _teamGame.Location = location.Name;
-            Assert.That(_teamGame.Location, Is.InstanceOf<Location>());
         }
 
         [Test]
@@ -94,7 +92,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Games
         [Test]
         public void CanCheckIfGameIsFull()
         {
-            var game = new TeamGame(DateTime.Now, null, null);
+            var game = new TeamGame(DateTime.Now, new Sport(), new Location());
             game.TeamsIds.Add("123");
             game.TeamsIds.Add("123");
 

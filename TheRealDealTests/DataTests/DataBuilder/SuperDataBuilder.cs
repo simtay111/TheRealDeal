@@ -16,9 +16,9 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public List<string> LocationIds = new List<string> {LocationPortland, LocationBendName};
 
         [Test]
+        [Ignore("Super Data Stuff Needs Work")]
          public void BuildData()
          {
-             DeleteAllData();
              CreateData();
 
              CreateExtraAccounts();
@@ -26,7 +26,6 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateExtraGames();
          }
 
-        [Test]
         public void RandomNumberGenerator()
         {
             var randomNumber = new Random((int)DateTime.Today.Ticks);

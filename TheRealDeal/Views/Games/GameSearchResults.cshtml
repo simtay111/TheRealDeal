@@ -12,8 +12,8 @@
             foreach (var game in Model.Results)
             {
                 <div>
-                @Html.ActionLink(String.Format("{0} game on {3}. There are {1} players currently", game.Sport.Name, game.PlayersIds.Count,
-                     game.MaxPlayers, game.DateTime.DateTime.ToDisplayableGameTime()), "ViewGame", "Games", new { gameId = game.Id }, null)
+                @Html.ActionLink(String.Format("{0} game on {3}. There are {1} players currently", game.Sport, game.PlayersIds.Count,
+                     game.MaxPlayers, game.DateTime.ToDisplayableGameTime()), "ViewGame", "Games", new { gameId = game.Id }, null)
                 </div>
             }
         }
