@@ -41,14 +41,15 @@ namespace RecreateMe.Profiles.Handlers
 
         private bool ProfileNameAlreadyExists(string profileName)
         {
-            return _profileRepository.ProfileExistsWithName(profileName);    
+            return _profileRepository.ProfileExistsWithName(profileName);
         }
 
         private Profile BuildProfileFromRequest(CreateProfileRequest request)
         {
             var skill = CreateSkillLevel(request);
-            var sport = request.Sports != "" ? _sportRepository.FindByName(request.Sports) : null ;
-            var location = request.Location != "" ? _locationRepository.FindByName(request.Location) : null;
+            var sport = !string.IsNullOrEmpty(request.Sports) ? _sportRepository.FindByName(request.Sports) : null;
+            var location = !string.IsNullOrEmpty(request.Location) ? 
+                _locationRepository.FindByName(request.Location) : null;
             var profileId = request.ProfileId;
 
             var profile = CreateProfile(sport, skill, profileId, location);
@@ -86,11 +87,11 @@ namespace RecreateMe.Profiles.Handlers
             SkillLevel = skillLevel;
         }
 
-        public readonly string UserId;
-        public readonly string ProfileId;
-        public readonly string Location;
-        public readonly string Sports;
-        public readonly string SkillLevel;
+        public string UserId { get; set; }
+        public string ProfileId { get; set; }
+        public string Location { get; set; }
+        public string Sports { get; set; }
+        public string SkillLevel { get; set; }
     }
 
     public class CreateProfileResponse

@@ -4,13 +4,13 @@
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_accountLayout.cshtml";
 }
-<span class="span4">
+<span class="span5">
     <div class="hero-unit">
         <div id="BannerText">
             <h2>
                 Create new profile</h2>
         </div>
-        @Html.ValidationSummary(true, "Oops! Problem creating profile!")
+        @Html.ValidationSummary(true, "Please Correct The Following:")
         @using (Html.BeginForm())
         {
 

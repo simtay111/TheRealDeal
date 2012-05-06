@@ -31,7 +31,8 @@ namespace RecreateMe
         GameIsFull,
         NotCreator,
         AlreadyInLeague,
-        DuplicateEntryFound
+        DuplicateEntryFound,
+        LoginAndPasswordMismatch
     }
 
     public static class ResponseCodeExtensions
@@ -65,6 +66,10 @@ namespace RecreateMe
                     return "You already have this location in your profile dummy...";
                 case (ResponseCodes.AlreadyInGame):
                     return "You already are a part of this game dummy...";
+                case (ResponseCodes.ProfileNameAlreadyExists):
+                    return "Sorry, that name is already taken =(";
+                case (ResponseCodes.LoginAndPasswordMismatch):
+                    return "Login name and Password do not match";
             }
 
             return message;

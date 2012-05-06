@@ -102,6 +102,24 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.ProfileNameAlreadyExists));
         }
 
+        [Test]
+        public void DoesNotGoToSportOrLocationRepositoryIfNullRequest()
+        {
+            CreateMockRepositories();
+            const string accountName = "NoProfiles";
+            var request = new CreateProfileRequest(accountName, "MyAccount");
+            request.Location = null;
+            request.Sports = null;
+            _mockProfileRepo.Setup(x => x.GetByAccount(accountName)).Returns(new List<Profile>());
+            var handler = CreateProfileRequestHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _mockSportRepo.Verify(x => x.FindByName(It.IsAny<string>()), Times.Never());
+            _mockLocationRepo.Verify(x => x.FindByName(It.IsAny<string>()), Times.Never());
+        }
+
         private CreateProfileRequestHandle CreateProfileRequestHandler()
         {
             var handler = new CreateProfileRequestHandle(_mockSportRepo.Object, _mockLocationRepo.Object,

@@ -14,7 +14,7 @@ namespace RecreateMe.Login.Handlers
             if (_userRepository.FoundUserByNameAndPassword(request.Username, request.Password))
                 return new LoginResponse(ResponseCodes.Success);
 
-            return new LoginResponse(ResponseCodes.Failure);
+            return new LoginResponse(ResponseCodes.LoginAndPasswordMismatch);
         }
     }
 

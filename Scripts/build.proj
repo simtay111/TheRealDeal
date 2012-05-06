@@ -33,8 +33,8 @@
     <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Data"></Exec>
   </Target>
   
-  <Target Name="Large">
-    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=Data"></Exec>
+  <Target Name="LargeData">
+    <Exec WorkingDirectory="$(Nunit)" Command="nunit-console $(TheRealDealTests)\TheRealDealTests.Dll /labels /include=LargeData"></Exec>
   </Target>
   
 </Project>

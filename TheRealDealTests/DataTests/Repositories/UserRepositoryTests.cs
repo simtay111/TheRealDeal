@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
@@ -38,6 +39,12 @@ namespace TheRealDealTests.DataTests.Repositories
             var userExists = _userRepo.AlreadyExists(username);
 
             Assert.True(userExists);
+        }
+        
+        [Test]
+        public void LoginNameIsNotCaseSensitive()
+        {
+            throw new NotImplementedException();
         }
 
         [Test]

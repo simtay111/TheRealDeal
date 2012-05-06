@@ -17,7 +17,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         public List<string> LocationIds = new List<string> {LocationPortland, LocationBendName};
 
         [Test]
-        //[Ignore("Super Data Stuff Needs Work")]
+        [Category("LargeData")]
          public void BuildData()
          {
              CreateData();
@@ -42,7 +42,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var randomNumber = new Random((int)DateTime.Today.Ticks);
 
-            for (int k = 0; k < 10000; k++)
+            for (int k = 0; k < 1000; k++)
             {
                 var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
                 game.MaxPlayers = 5;

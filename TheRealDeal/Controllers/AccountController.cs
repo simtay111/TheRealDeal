@@ -36,6 +36,9 @@ namespace TheRealDeal.Controllers
                 return RedirectToAction("ChooseProfile", "Profile");
             }
 
+            var errorMessage = response.Status.GetMessage();
+            ModelState.AddModelError("", errorMessage);
+
             return View(model);
         }
 

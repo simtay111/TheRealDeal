@@ -84,7 +84,7 @@ namespace TheRealDeal.Controllers
             var errorMessage = response.Status.GetMessage();
             ModelState.AddModelError("", errorMessage);
 
-            return View(model);
+            return View(CreateViewModel());
         }
 
         private CreateProfileModel CreateViewModel()
