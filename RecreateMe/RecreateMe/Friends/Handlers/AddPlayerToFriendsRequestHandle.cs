@@ -20,9 +20,9 @@ namespace RecreateMe.Friends.Handlers
 
             var friendProfile = _profileRepository.GetByProfileId(request.FriendId);
 
-            profile.FriendsIds.Add(friendProfile.ProfileId);
+            profile.FriendsIds.Add(friendProfile.ProfileName);
 
-            _profileRepository.AddFriendToProfile(profile.ProfileId, friendProfile.ProfileId);
+            _profileRepository.AddFriendToProfile(profile.ProfileName, friendProfile.ProfileName);
 
             return new AddPlayerToFriendsResponse(ResponseCodes.Success);
         }

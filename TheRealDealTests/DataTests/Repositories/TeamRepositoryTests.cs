@@ -46,8 +46,8 @@ namespace TheRealDealTests.DataTests.Repositories
                            {
                                MaxSize = 14,
                                Name = "MyBestTeam",
-                               PlayersIds = new List<string> {profile1.ProfileId, profile2.ProfileId},
-                               Creator = profile1.ProfileId
+                               PlayersIds = new List<string> {profile1.ProfileName, profile2.ProfileName},
+                               Creator = profile1.ProfileName
                            };
 
             var saved = _repo.Save(team);
@@ -57,9 +57,9 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedTeam.MaxSize, Is.EqualTo(team.MaxSize));
             Assert.That(retrievedTeam.Name, Is.EqualTo(team.Name));
             Assert.That(retrievedTeam.PlayersIds.Count, Is.EqualTo(2));
-            Assert.That(retrievedTeam.PlayersIds[0], Is.EqualTo(profile1.ProfileId));
-            Assert.That(retrievedTeam.PlayersIds[1], Is.EqualTo(profile2.ProfileId));
-            Assert.That(retrievedTeam.Creator, Is.EqualTo(profile1.ProfileId));
+            Assert.That(retrievedTeam.PlayersIds[0], Is.EqualTo(profile1.ProfileName));
+            Assert.That(retrievedTeam.PlayersIds[1], Is.EqualTo(profile2.ProfileName));
+            Assert.That(retrievedTeam.Creator, Is.EqualTo(profile1.ProfileName));
         }
 
         [Test]
@@ -71,12 +71,12 @@ namespace TheRealDealTests.DataTests.Repositories
             {
                 MaxSize = 14,
                 Name = "MyBestTeam",
-                PlayersIds = new List<string> { profile.ProfileId },
-                Creator = profile.ProfileId
+                PlayersIds = new List<string> { profile.ProfileName },
+                Creator = profile.ProfileName
             };
             _repo.Save(team);
 
-            var teams = _repo.GetTeamsForProfile(profile.ProfileId);
+            var teams = _repo.GetTeamsForProfile(profile.ProfileName);
 
             Assert.That(teams.Count, Is.EqualTo(1));
             Assert.That(teams[0].Name, Is.EqualTo(team.Name));

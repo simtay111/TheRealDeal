@@ -31,8 +31,8 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers.Views
             game.Sport = sportName;
             const string profileId = "Larry";
             const string profileId2 = "Bob";
-            var profile1 = new Profile {ProfileId = profileId,  SportsPlayed = new List<SportWithSkillLevel> {new SportWithSkillLevel(){Name = sportName, SkillLevel = new SkillLevel(1)}}};
-            var profile2 = new Profile {ProfileId = profileId2, SportsPlayed = new List<SportWithSkillLevel> {new SportWithSkillLevel(){Name = sportName, SkillLevel = new SkillLevel(3)}}};
+            var profile1 = new Profile {ProfileName = profileId,  SportsPlayed = new List<SportWithSkillLevel> {new SportWithSkillLevel(){Name = sportName, SkillLevel = new SkillLevel(1)}}};
+            var profile2 = new Profile {ProfileName = profileId2, SportsPlayed = new List<SportWithSkillLevel> {new SportWithSkillLevel(){Name = sportName, SkillLevel = new SkillLevel(3)}}};
             var profiles = new List<Profile> {profile1, profile2};
             _profileRepo.Setup(x => x.GetProfilesInGame(game.Id)).Returns(profiles);
             _pickupGameRepo.Setup(x => x.GetPickUpGameById(game.Id)).Returns(game);
@@ -56,7 +56,7 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers.Views
             const string sportName = "Soccer";
             game.Sport = sportName;
             const string profileId = "Larry";
-            var profile1 = new Profile { ProfileId = profileId, SportsPlayed = new List<SportWithSkillLevel>() };
+            var profile1 = new Profile { ProfileName = profileId, SportsPlayed = new List<SportWithSkillLevel>() };
             var profiles = new List<Profile> { profile1};
             _profileRepo.Setup(x => x.GetProfilesInGame(game.Id)).Returns(profiles);
             _pickupGameRepo.Setup(x => x.GetPickUpGameById(game.Id)).Returns(game);

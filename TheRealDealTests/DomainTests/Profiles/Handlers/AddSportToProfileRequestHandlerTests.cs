@@ -54,9 +54,9 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
                            {
                                SkillLevel = 1,
                                Sport = "Soccer",
-                               UniqueId = _profile.ProfileId
+                               UniqueId = _profile.ProfileName
                            };
-            SetUpMockProfileUpdaterAndSportRepo(_profile.ProfileId);
+            SetUpMockProfileUpdaterAndSportRepo(_profile.ProfileName);
             _mockSportRepo.Setup(x => x.FindByName(_request.Sport)).Returns(new Sport {Name = "Soccer"});
             var handler = new AddSportToProfileRequestHandle(_mockIProfileUpdater.Object, _mockSportRepo.Object);
 

@@ -32,7 +32,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile1 = new Profile
                             {
-                               ProfileId = "ProfileOne",
+                               ProfileName = "ProfileOne",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
                                Locations = {CreateLocation1()}
                            };
@@ -43,7 +43,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile2 = new Profile
                             {
-                               ProfileId = "ProfileTwo",
+                               ProfileName = "ProfileTwo",
                                SportsPlayed = { CreateSoccerWithSkillLevel() },
                                Locations = {CreateLocation2()}
                            };
@@ -54,7 +54,7 @@ namespace TheRealDealTests.DomainTests
         {
             _profile3 = new Profile
                             {
-                               ProfileId = "ProfileThree",
+                               ProfileName = "ProfileThree",
                                SportsPlayed = { CreateBasketballWithSkillLevel() },
                                Locations = {CreateLocation3()}
                            };
@@ -115,7 +115,7 @@ namespace TheRealDealTests.DomainTests
                        {
                            MaxSize = 6,
                            Name = "Super team",
-                           PlayersIds = GetListOfMockedProfiles().Select(x => x.ProfileId).ToList()
+                           PlayersIds = GetListOfMockedProfiles().Select(x => x.ProfileName).ToList()
                        };
         }
 
@@ -128,7 +128,7 @@ namespace TheRealDealTests.DomainTests
                        {
                            MaxSize = 12,
                            Name = "Mega team",
-                           PlayersIds = profiles.Select(x => x.ProfileId).ToList()
+                           PlayersIds = profiles.Select(x => x.ProfileName).ToList()
                        };
         }
 

@@ -23,7 +23,7 @@ namespace RecreateMe.Profiles
         {
             _profile = new Profile
             {
-                ProfileId = ProfileId
+                ProfileName = ProfileId
             };
             _profile.Locations.Add(Location);
             CreateSportAndSkillLevel();

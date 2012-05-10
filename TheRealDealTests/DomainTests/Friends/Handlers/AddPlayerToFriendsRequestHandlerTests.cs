@@ -23,14 +23,14 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.FriendId)).Returns(friendProfile);
-            _mockProfileRepo.Setup(x => x.AddFriendToProfile(profile.ProfileId, friendProfile.ProfileId)).Callback(() => profileWasSaved = true);
+            _mockProfileRepo.Setup(x => x.AddFriendToProfile(profile.ProfileName, friendProfile.ProfileName)).Callback(() => profileWasSaved = true);
 
             var handler = new AddPlayerToFriendsRequestHandle(_mockProfileRepo.Object);
 
             var response = handler.Handle(request);
 
             Assert.True(profileWasSaved);
-            Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile.ProfileId));
+            Assert.That(profile.FriendsIds[0], Is.SameAs(friendProfile.ProfileName));
             Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
@@ -40,8 +40,8 @@ namespace TheRealDealTests.DomainTests.Friends.Handlers
             var request = new AddPlayerToFriendsRequest() { FriendId = "SomeId", ProfileId = "ProfId" };
 
             var profile = new Profile();
-            var friendProfile = new Profile() {ProfileId = request.FriendId};
-            profile.FriendsIds.Add(friendProfile.ProfileId);
+            var friendProfile = new Profile() {ProfileName = request.FriendId};
+            profile.FriendsIds.Add(friendProfile.ProfileName);
 
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.GetByProfileId(request.ProfileId)).Returns(profile);

@@ -23,7 +23,7 @@ namespace RecreateMe.Scheduling.Handlers.Views
 
             var profiles = _profileRepository.GetProfilesInGame(request.GameId);
 
-            var dict = profiles.ToDictionary(profile => profile.ProfileId,
+            var dict = profiles.ToDictionary(profile => profile.ProfileName,
                 profile => GetSkillLevelForGame(game, profile));
 
 

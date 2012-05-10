@@ -26,8 +26,8 @@
                 {
         
                     <li id="ProfileOption">
-                        @Html.RadioButton("Profile", prof.ProfileId, checkFirstProfile)
-                        @Html.Label(prof.ProfileId)
+                        @Html.RadioButton("Profile", prof.ProfileName, checkFirstProfile)
+                        @Html.Label(prof.ProfileName)
                     </li>
                     checkFirstProfile = false;
                 }

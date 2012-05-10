@@ -42,7 +42,7 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.MinPlayers, Is.EqualTo(game.MinPlayers));
             Assert.That(retrievedGame.MaxPlayers, Is.EqualTo(game.MaxPlayers));
             Assert.That(retrievedGame.DateTime, Is.InRange(game.DateTime.AddSeconds(-1), game.DateTime.AddSeconds(1)));
-            Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(_profile.ProfileId));
+            Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(_profile.ProfileName));
             Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
             Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
         }
@@ -147,8 +147,8 @@ namespace TheRealDealTests.DataTests.Repositories
             game.IsPrivate = true;
             game.Sport = "Soccer";
             game.Location = "Bend";
-            game.AddPlayer(_profile.ProfileId);
-            game.Creator = _profile.ProfileId;
+            game.AddPlayer(_profile.ProfileName);
+            game.Creator = _profile.ProfileName;
             game.ExactLocation = "A road in space";
 
             _repo.SavePickUpGame(game);

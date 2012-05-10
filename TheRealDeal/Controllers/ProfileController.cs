@@ -33,7 +33,7 @@ namespace TheRealDeal.Controllers
 
             var cookie = HttpContext.Request.Cookies[Constants.CookieName] ??
             new HttpCookie(Constants.CookieName) { Expires = DateTime.Now.AddHours(1) };
-            cookie.Values[Constants.CurrentProfileCookieField] = response.Profiles[0].ProfileId;
+            cookie.Values[Constants.CurrentProfileCookieField] = response.Profiles[0].ProfileName;
 
             HttpContext.Response.Cookies.Add(cookie);
 

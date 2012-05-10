@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Sports;
@@ -15,8 +14,9 @@ namespace RecreateMe.Profiles
             SportsPlayed = new List<SportWithSkillLevel>();
             FriendsIds = new List<string>();
         }
+
         [PrimaryKey]
-        public string ProfileId { get; set; }
+        public string ProfileName { get; set; }
 
         [References(typeof(Account))]
         public string AccountName { get; set; }

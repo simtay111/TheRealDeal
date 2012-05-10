@@ -26,8 +26,8 @@ namespace TheRealDealTests.DomainTests.Friends.Search
         public void DoesNotFindSelf()
         {
             var request = new SearchForFriendsRequest { ProfileName = Name1, Sport = "", Location = "", MyProfile = "MyProfile" };
-            var profile = new Profile {ProfileId = request.MyProfile};
-            var friendProfile = new Profile {ProfileId = Name1};
+            var profile = new Profile {ProfileName = request.MyProfile};
+            var friendProfile = new Profile {ProfileName = Name1};
             var listOfProfiles = new List<Profile> {profile, friendProfile};
 
             var mockProfileRepo = new Mock<IProfileRepository>();

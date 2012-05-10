@@ -84,7 +84,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var profile = new Profile
                               {
                                   AccountName = "Cows@Moo.com",
-                                  ProfileId = Profile2Id,
+                                  ProfileName = Profile2Id,
                                   Locations = new List<Location> { new Location(LocationBendName), new Location(LocationPortland) },
                                   SportsPlayed = new List<SportWithSkillLevel>
                                                      {new SportWithSkillLevel
@@ -109,7 +109,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             var profile = new Profile
                               {
                                   AccountName = "Simtay111@Gmail.com",
-                                  ProfileId = Profile1Id,
+                                  ProfileName = Profile1Id,
                                   Locations = new List<Location> { new Location(LocationBendName) },
                                   SportsPlayed = new List<SportWithSkillLevel>
                                                      {new SportWithSkillLevel

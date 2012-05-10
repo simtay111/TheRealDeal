@@ -40,7 +40,7 @@ namespace TheRealDealTests.DataTests.Repositories
             game.Sport = "Soccer";
             game.Location = "Bend";
             game.AddTeam(team.Id);
-            game.Creator = profile.ProfileId;
+            game.Creator = profile.ProfileName;
 
             _repo.SaveTeamGame(game);
 

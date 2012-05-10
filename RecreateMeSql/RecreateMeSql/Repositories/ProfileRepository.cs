@@ -30,7 +30,7 @@ namespace RecreateMeSql.Repositories
             using (var db = _connectionFactory.OpenDbConnection())
             using (var dbCmd = db.CreateCommand())
             {
-                var profile = dbCmd.Select<Profile>(x => x.ProfileId == profileId).SingleOrDefault();
+                var profile = dbCmd.Select<Profile>(x => x.ProfileName == profileId).SingleOrDefault();
 
                 MapSportsAndLocations(profile, dbCmd);
 
@@ -97,7 +97,7 @@ namespace RecreateMeSql.Repositories
             using (var db = _connectionFactory.OpenDbConnection())
             using (var dbCmd = db.CreateCommand())
             {
-                var profiles = dbCmd.Select<Profile>(x => x.ProfileId.Contains(name)).ToList();
+                var profiles = dbCmd.Select<Profile>(x => x.ProfileName.Contains(name)).ToList();
                 foreach (var profile in profiles)
                     MapSportsAndLocations(profile, dbCmd);
                 return profiles;
@@ -160,7 +160,7 @@ namespace RecreateMeSql.Repositories
             using (var db = _connectionFactory.OpenDbConnection())
             using (var dbCmd = db.CreateCommand())
             {
-                var profile = dbCmd.Select<Profile>(x => x.ProfileId == profileName).SingleOrDefault();
+                var profile = dbCmd.Select<Profile>(x => x.ProfileName == profileName).SingleOrDefault();
                 return (profile != null);
             }
         }
@@ -204,9 +204,9 @@ namespace RecreateMeSql.Repositories
 
         private void MapSportsAndLocations(Profile profile, IDbCommand dbCmd)
         {
-            profile.SportsPlayed = dbCmd.Select<PlayerSportLink>("PlayerId = {0}", profile.ProfileId)
+            profile.SportsPlayed = dbCmd.Select<PlayerSportLink>("PlayerId = {0}", profile.ProfileName)
                 .Select(x => new SportWithSkillLevel { Name = x.Sport, SkillLevel = new SkillLevel(x.Skill) }).ToList();
-            profile.Locations = dbCmd.Select<PlayerLocationLink>("PlayerId = {0}", profile.ProfileId)
+            profile.Locations = dbCmd.Select<PlayerLocationLink>("PlayerId = {0}", profile.ProfileName)
                 .Select(x => new Location() { Name = x.Location }).ToList();
         }
 
@@ -214,7 +214,7 @@ namespace RecreateMeSql.Repositories
         {
             return new PlayerLocationLink
                        {
-                           PlayerId = profile.ProfileId,
+                           PlayerId = profile.ProfileName,
                            Location = location.Name
                        };
         }
@@ -223,7 +223,7 @@ namespace RecreateMeSql.Repositories
         {
             return new PlayerSportLink
                        {
-                           PlayerId = profile.ProfileId,
+                           PlayerId = profile.ProfileName,
                            Sport = sport.Name,
                            Skill = sport.SkillLevel.Level
                        };

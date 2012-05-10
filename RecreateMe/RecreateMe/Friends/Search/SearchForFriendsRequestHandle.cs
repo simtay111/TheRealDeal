@@ -29,7 +29,7 @@ namespace RecreateMe.Friends.Search
             if (!String.IsNullOrEmpty(request.Location))   
                 results = results.Where(x => (x.Locations.Where(y => y.Name == request.Location)).Count() > 0).ToList();
 
-            var selfProfile = results.FirstOrDefault(x => x.ProfileId == request.MyProfile);
+            var selfProfile = results.FirstOrDefault(x => x.ProfileName == request.MyProfile);
             if (selfProfile != null)
                 results.Remove(selfProfile);
 

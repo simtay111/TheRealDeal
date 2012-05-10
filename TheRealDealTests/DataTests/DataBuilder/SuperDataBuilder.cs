@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
@@ -12,51 +11,39 @@ namespace TheRealDealTests.DataTests.DataBuilder
 {
     public class SuperDataBuilder : SampleDataBuilder
     {
-        public List<string> ProfileIds = new List<string> {"Bilbo", "Gregory", "Jimbo", "Nancy", "Pickles"};
-        public List<string> AccountIds = new List<string> {"Bilbo@Bilbo.com", "Gregory@Gregory.com", "Jimbo@Jimbo.com", "Nancy@Nancy.com", "Pickles@Pickles.com"};
-        public List<string> SportIds = new List<string> {SoccerName, FootballName, Basketballname};
-        public List<string> LocationIds = new List<string> {LocationPortland, LocationBendName};
+        public List<string> ProfileIds = new List<string> { "Bilbo", "Gregory", "Jimbo", "Nancy", "Pickles" };
+        public List<string> AccountIds = new List<string> { "Bilbo@Bilbo.com", "Gregory@Gregory.com", "Jimbo@Jimbo.com", "Nancy@Nancy.com", "Pickles@Pickles.com" };
+        public List<string> SportIds = new List<string> { SoccerName, FootballName, Basketballname };
+        public List<string> LocationIds = new List<string> { LocationPortland, LocationBendName };
 
         [Test]
         [Category("LargeData")]
-         public void BuildData()
-         {
-             CreateData();
-
-             CreateExtraAccounts();
-             CreateExtraProfiles();
-            CreateExtraGames();
-         }
-
-        [Test]
-        public void RandomNumberGenerator()
+        public void BuildData()
         {
-            var randomNumber = new Random((int)DateTime.Today.Ticks);
-
-            for (int k = 0; k < 100; k++)
-            {
-                //Console.WriteLine((int)(randomNumber.NextDouble() * 5));
-                Console.WriteLine(((int)(randomNumber.NextDouble() * SportIds.Count)));
-            }
+            CreateData();
+            CreateExtraAccounts();
+            CreateExtraProfiles();
+            CreateExtraGames();
         }
 
         private void CreateExtraGames()
         {
-            
-
-            for (int k = 0; k < 100; k++)
+            for (var k = 0; k < 100; k++)
             {
-                var randomNumber = new Random((int)DateTime.Today.Ticks);
+                var randomNumber = new Random(k);
                 Console.WriteLine("Creating record: " + k);
                 var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
                 game.MaxPlayers = 5;
                 game.MinPlayers = 3;
                 game.IsPrivate = true;
-                game.Sport = SportIds[((int) (randomNumber.NextDouble()*SportIds.Count))];
+                game.Sport = SportIds[((int)(randomNumber.NextDouble() * SportIds.Count))];
                 game.Location = LocationIds[((int)(randomNumber.NextDouble() * LocationIds.Count))];
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 5; i++)
                 {
-                    game.AddPlayer(ProfileIds[((int)(randomNumber.NextDouble() * ProfileIds.Count))]);
+                    var profileId = ProfileIds[((int)(randomNumber.NextDouble() * ProfileIds.Count))];
+                    if (game.PlayersIds.Contains(profileId))
+                        continue;
+                    game.AddPlayer(profileId);
                 }
                 game.Creator = Profile1Id;
 
@@ -73,7 +60,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
                 var profile = new Profile
                                   {
                                       AccountName = AccountIds[i],
-                                      ProfileId = ProfileIds[i],
+                                      ProfileName = ProfileIds[i],
                                       Locations =
                                           new List<Location> { new Location(LocationBendName), new Location(LocationPortland) },
                                       SportsPlayed = new List<SportWithSkillLevel>
@@ -103,7 +90,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
         {
             var userRepo = new UserRepository();
 
-            foreach(var accountid in AccountIds)
+            foreach (var accountid in AccountIds)
                 userRepo.CreateUser(accountid, "password");
         }
     }
