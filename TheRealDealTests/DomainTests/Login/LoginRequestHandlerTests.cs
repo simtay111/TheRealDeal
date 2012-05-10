@@ -22,7 +22,7 @@ namespace TheRealDealTests.DomainTests.Login
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Success));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace TheRealDealTests.DomainTests.Login
 
             var response = handler.Handle(request);
 
-            Assert.That((object) response.Status, Is.EqualTo(ResponseCodes.Failure));
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.LoginAndPasswordMismatch));
         }
 
         private void SetupMockUserRepo()

@@ -135,7 +135,7 @@ namespace TheRealDealTests.DomainTests.Profiles.Handlers
             _mockSportRepo.Setup(x => x.FindByName(It.IsAny<string>())).Returns(new Sport());
             _mockProfileRepo = new Mock<IProfileRepository>();
             _mockProfileRepo.Setup(x => x.Save(It.IsAny<Profile>())).Returns(true);
-            _mockProfileRepo.Setup(x => x.GetByAccount(It.IsAny<string>())).Returns(new List<Profile> { new Profile()});
+            _mockProfileRepo.Setup(x => x.GetByAccount(It.IsAny<string>())).Returns(new List<Profile>());
             _mockProfileBuilder = new Mock<ProfileBuilder> {CallBase = true};
             _mockProfileBuilder.Setup(x => x.Build()).Returns(_profile);
         }

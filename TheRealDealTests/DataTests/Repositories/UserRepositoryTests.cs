@@ -44,7 +44,13 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void LoginNameIsNotCaseSensitive()
         {
-            throw new NotImplementedException();
+            const string username = "Bilbo";
+            const string password = "Baggins";
+            _userRepo.CreateUser(username, password);
+
+            var userMatch = _userRepo.FoundUserByNameAndPassword("bIlbo", password);
+
+            Assert.True(userMatch);
         }
 
         [Test]

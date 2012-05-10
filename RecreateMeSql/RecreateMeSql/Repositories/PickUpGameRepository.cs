@@ -60,7 +60,9 @@ namespace RecreateMeSql.Repositories
             using (var dbCmd = db.CreateCommand())
             {
                 var games = dbCmd.Select<PickUpGame>("Location = {0}", location);
+                Trace.WriteLine("PickUpGameRepository-FindPickUpGameByLocation: Start Mapping Games");
                 games.ForEach(x => MapPlayersInGame(dbCmd, x));
+                Trace.WriteLine("PickUpGameRepository-FindPickUpGameByLocation: End Mapping Games");
                 return games;
             }
         }
@@ -132,7 +134,8 @@ namespace RecreateMeSql.Repositories
 
         private void MapPlayersInGame(IDbCommand dbCmd, PickUpGame game)
         {
-            game.PlayersIds = dbCmd.Each<PlayerInGameLink>("GameId = {0}", game.Id).Select(y => y.PlayerId).ToList();
+            game.PlayersIds =
+                dbCmd.Select<PlayerInGameLink>(x => x.GameId == game.Id).Select(x => x.PlayerId).ToList();
         }
     }
 }

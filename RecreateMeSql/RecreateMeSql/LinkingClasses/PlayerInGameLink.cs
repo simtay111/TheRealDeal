@@ -10,9 +10,11 @@ namespace RecreateMeSql.LinkingClasses
         public int Id { get; set; }
 
         [References(typeof(Profile))]
+        [Index]
         public string PlayerId { get; set; } 
 
         [References(typeof(PickUpGame))]
+        [Index]
         public string GameId { get; set; } 
     }
 }

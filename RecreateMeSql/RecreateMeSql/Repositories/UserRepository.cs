@@ -53,7 +53,7 @@ namespace RecreateMeSql.Repositories
                 var user =dbCmd.GetByIdOrDefault<Account>(username);
                 if (user == null)
                     return false;
-                 return (user.AccountName == username && user.Password == password);
+                 return (user.AccountName.ToUpper() == username.ToUpper() && user.Password == password);
              }
 
         }

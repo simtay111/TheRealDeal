@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
@@ -27,6 +28,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             CreateExtraGames();
          }
 
+        [Test]
         public void RandomNumberGenerator()
         {
             var randomNumber = new Random((int)DateTime.Today.Ticks);
@@ -40,10 +42,12 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         private void CreateExtraGames()
         {
-            var randomNumber = new Random((int)DateTime.Today.Ticks);
+            
 
-            for (int k = 0; k < 1000; k++)
+            for (int k = 0; k < 100; k++)
             {
+                var randomNumber = new Random((int)DateTime.Today.Ticks);
+                Console.WriteLine("Creating record: " + k);
                 var game = new PickUpGame(DateTime.Now, new Sport(), new Location());
                 game.MaxPlayers = 5;
                 game.MinPlayers = 3;
