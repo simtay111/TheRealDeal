@@ -17,6 +17,7 @@ namespace TheRealDeal.Controllers
 
         public ActionResult LogIn()
         {
+            RecreateMeSql.SqlServerDataHelper.BuildSchema();
             return View();
         }
 

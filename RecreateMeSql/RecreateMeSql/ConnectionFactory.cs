@@ -1,9 +1,4 @@
-﻿using RecreateMe.Locales;
-using RecreateMe.Login;
-using RecreateMe.Profiles;
-using RecreateMe.Scheduling.Games;
-using RecreateMe.Sports;
-using ServiceStack.OrmLite;
+﻿using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
 
 namespace RecreateMeSql
