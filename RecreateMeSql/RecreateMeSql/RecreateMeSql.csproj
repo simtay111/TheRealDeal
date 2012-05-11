@@ -68,6 +68,7 @@
     <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="SqlServerDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RecreateMe\RecreateMe\RecreateMe.csproj">

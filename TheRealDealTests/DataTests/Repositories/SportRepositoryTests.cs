@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RecreateMeSql;
 using RecreateMeSql.Repositories;
 
 namespace TheRealDealTests.DataTests.Repositories

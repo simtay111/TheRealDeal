@@ -5,6 +5,7 @@ using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
 using RecreateMe.Teams;
+using RecreateMeSql;
 using RecreateMeSql.Repositories;
 
 namespace TheRealDealTests.DataTests.DataBuilder

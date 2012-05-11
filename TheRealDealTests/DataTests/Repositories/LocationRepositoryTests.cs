@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
 

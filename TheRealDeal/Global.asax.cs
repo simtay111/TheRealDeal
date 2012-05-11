@@ -33,6 +33,8 @@ namespace TheRealDeal
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            RecreateMeSql.SqlServerDataHelper.BuildSchema();
         }
     }
 }

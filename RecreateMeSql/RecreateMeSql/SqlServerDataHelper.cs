@@ -1,14 +1,14 @@
-﻿using System.Data;
+
+
 using RecreateMe.Locales;
 using RecreateMe.Login;
 using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
-using RecreateMeSql;
 using RecreateMeSql.LinkingClasses;
 using ServiceStack.OrmLite;
 
-namespace TheRealDealTests
+namespace RecreateMeSql
 {
     public static class SqlServerDataHelper
     {
@@ -58,6 +58,22 @@ namespace TheRealDealTests
                  dbCmd.CreateTable<PlayerInGameLink>(true);
                  dbCmd.CreateTable<PlayerSportLink>(true);
                  dbCmd.CreateTable<PlayerLocationLink>(true);
+             }
+         }
+
+         public static void BuildSchema()
+         {
+             using (var db = ConnectionFactory.OpenDbConnection())
+             using (var dbCmd = db.CreateCommand())
+             {
+                 dbCmd.CreateTable<Account>();
+                 dbCmd.CreateTable<Profile>();
+                 dbCmd.CreateTable<Sport>();
+                 dbCmd.CreateTable<Location>();
+                 dbCmd.CreateTable<PickUpGame>();
+                 dbCmd.CreateTable<PlayerInGameLink>();
+                 dbCmd.CreateTable<PlayerSportLink>();
+                 dbCmd.CreateTable<PlayerLocationLink>();
              }
          }
     }

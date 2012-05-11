@@ -4,6 +4,7 @@ using NUnit.Framework;
 using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Sports;
+using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
 

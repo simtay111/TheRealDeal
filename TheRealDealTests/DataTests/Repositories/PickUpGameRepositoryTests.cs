@@ -6,6 +6,7 @@ using RecreateMe.Locales;
 using RecreateMe.Profiles;
 using RecreateMe.Scheduling.Games;
 using RecreateMe.Sports;
+using RecreateMeSql;
 using RecreateMeSql.Repositories;
 using TheRealDealTests.DataTests.DataBuilder;
 

@@ -137,7 +137,6 @@
     <Compile Include="DomainTests\Teams\ViewTeamRequestHandlerTests.cs" />
     <Compile Include="DomainTests\TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlServerDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecreateMeSql\RecreateMeSql\RecreateMeSql.csproj">
