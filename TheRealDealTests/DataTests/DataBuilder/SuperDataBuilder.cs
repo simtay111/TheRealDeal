@@ -18,6 +18,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
 
         [Test]
         [Category("LargeData")]
+        [Category("Integration")]
         public void BuildData()
         {
             CreateData();
