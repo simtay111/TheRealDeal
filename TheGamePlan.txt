@@ -27,8 +27,7 @@ Scheduling for Team Games for organizations
 		TeamGames will need a court/field string/id 
 		Need to be able to create games specific to the division working in.
 		Need to be able to add teams specific to that division.
-		
-		
+
 
 	********* NEED THIS
 Courts/Fields (amounts available/in use)
