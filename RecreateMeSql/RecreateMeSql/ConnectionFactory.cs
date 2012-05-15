@@ -1,4 +1,5 @@
-﻿using ServiceStack.OrmLite;
+﻿using System.Diagnostics;
+using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
 using System.Configuration;
 
@@ -10,14 +11,27 @@ namespace RecreateMeSql
 
         static ConnectionFactory()
         {
-            //_factory = new OrmLiteConnectionFactory(@"Server=(local);Database=PortlandPickUp;Trusted_Connection=True;", SqlServerOrmLiteDialectProvider.Instance);
-            _factory = new OrmLiteConnectionFactory(ConfigurationManager.ConnectionStrings["PortlandPickUp"].ConnectionString, SqlServerOrmLiteDialectProvider.Instance);
-            
+            try
+            {
+                _factory =
+                    new OrmLiteConnectionFactory(
+                        ConfigurationManager.ConnectionStrings["PortlandPickUp"].ConnectionString,
+                        SqlServerOrmLiteDialectProvider.Instance);
+            }
+            catch
+            {
+                Trace.WriteLine("You must be testing right now... I hope...");
+            }
         }
 
         public static OrmLiteConnectionFactory Create()
         {
             return _factory;
+        }
+
+        public static void SetConnectionString(string connString)
+        {
+            _factory = new OrmLiteConnectionFactory(connString, SqlServerOrmLiteDialectProvider.Instance);
         }
     }
 }
