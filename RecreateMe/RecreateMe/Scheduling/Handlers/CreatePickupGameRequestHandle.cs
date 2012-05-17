@@ -35,6 +35,7 @@ namespace RecreateMe.Scheduling.Handlers
             game.MinPlayers = request.MinPlayers;
             game.Creator = request.Creator;
             game.ExactLocation = request.ExactLocation;
+            game.GameName = request.GameName;
 
 
             _pickUpGameRepository.SavePickUpGame(game);
@@ -70,6 +71,8 @@ namespace RecreateMe.Scheduling.Handlers
         public int? MaxPlayers { get; set; }
         public string Creator { get; set; }
         public string ExactLocation { get; set; }
+        public string GameName { get; set; }
+
         public bool IsPrivate;
     }
 

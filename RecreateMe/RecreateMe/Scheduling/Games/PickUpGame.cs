@@ -62,5 +62,7 @@ namespace RecreateMe.Scheduling.Games
         public int? MaxPlayers { get; set; }
 
         public int? MinPlayers { get; set; }
+
+        public string GameName { get; set; }
     }
 }

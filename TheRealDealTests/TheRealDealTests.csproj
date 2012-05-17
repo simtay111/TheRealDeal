@@ -77,7 +77,6 @@
     <Compile Include="DataTests\Repositories\SportRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\TeamRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\UserRepositoryTests.cs" />
-    <Compile Include="DataTests\TestFixtureForMyTests.cs" />
     <Compile Include="DataTests\TestSetUpAndTeardown.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Divisions\DivisionTests.cs" />

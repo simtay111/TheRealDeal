@@ -70,7 +70,7 @@ namespace TheRealDeal.Controllers
 
             if (gamesInProfile.Count >= RecreateMe.Constants.MaxAmountOfCreatedGames)
                 return RedirectToAction("ErrorsScreen",
-                                 new ErrorModel() { Message = String.Format("We're sorry, each player can only create {0} total games.", RecreateMe.Constants.MaxAmountOfCreatedGames) });
+                                 new ErrorModel { Message = String.Format("We're sorry, each player can only create {0} total games.", RecreateMe.Constants.MaxAmountOfCreatedGames) });
 
             return View(CreateViewModel());
         }
@@ -94,26 +94,26 @@ namespace TheRealDeal.Controllers
                                   MinPlayers = model.MinPlayers,
                                   Sport = model.Sport,
                                   Creator = GetProfileFromCookie(),
-                                  ExactLocation = model.ExactLocation
+                                  ExactLocation = model.ExactLocation,
+                                  GameName = model.GameName
                               };
 
-            var handler = new CreatePickupGameRequestHandle(new SportRepository(), new LocationRepository(),
-                                                       new PickUpGameRepository(), new GameFactory());
+            var handler = new CreatePickupGameRequestHandle(new SportRepository(), new LocationRepository(),new PickUpGameRepository(), new GameFactory());
 
             var response = handler.Handle(request);
             if (response.Status != ResponseCodes.Success)
                 throw new NotImplementedException();
 
-                var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
+            var joinRequest = new JoinGameRequest { GameId = response.GameId, ProfileId = GetProfileFromCookie() };
 
-                var joinHandler = new JoinGameRequestHandler(new PickUpGameRepository());
+            var joinHandler = new JoinGameRequestHandler(new PickUpGameRepository());
 
-                var joinResponse = joinHandler.Handle(joinRequest);
+            var joinResponse = joinHandler.Handle(joinRequest);
 
-                if (joinResponse.Status != ResponseCodes.Success)
-                    throw new NotImplementedException();
+            if (joinResponse.Status != ResponseCodes.Success)
+                throw new NotImplementedException();
 
-                return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         [Authorize]

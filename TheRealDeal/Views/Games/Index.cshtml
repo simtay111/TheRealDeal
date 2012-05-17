@@ -13,101 +13,21 @@
 </script>
 
 <span class="span6">
-@*    <div class="hero-unit">
-         <button type="button" class="btn btn-primary" onclick="location.href = '/Games/CreateGame/'">
-            I wanna create a game!</button>
-        <button type="button" class="btn btn-primary" onclick="location.href = '/Games/SearchForGame/'">
-            I wanna find a game!</button>
-    </div>*@
+
 
     <h2>Your upcoming pick up games:</h2>
-        @*<div class="row-fluid collapse in" id="TeamGames">
-            <h3>My Team Games</h3>
-            @foreach (var game in Model.TeamGames)
-            {
-                <div class="form-inline">
-                    @Html.Label(game.DateTime.ToLocalTime().ToString())
-                    @Html.Label(" " + game.Location.Name)
-                    @Html.Label(" " + game.Sport.Name)
-                    @Html.Label(" MaxPlayers: " + game.MaxPlayers)
-                    @Html.Label(" MinPlayers: " + game.MinPlayers)
-                </div>
-            }
-            </div*@
-            @*<div id="accordion" class="accordion2">
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" data-target="#myCollapse2">My Games</a>
-                    </div>
-                    <div class="accordion-body collapse in" id="myCollapse2" style="height: 0px">
-                        <div class="accordion-inner"><div class="row-fluid collapse in" id="TeamGames">*@
-@*            @foreach (var game in Model.TeamGames)
-            {
-                <div class="form-inline">
-                    @Html.Label(game.DateTime.ToLocalTime().ToString())
-                    @Html.Label(" " + game.Location.Name)
-                    @Html.Label(" " + game.Sport.Name)
-                    @Html.Label(" MaxPlayers: " + game.MaxPlayers)
-                    @Html.Label(" MinPlayers: " + game.MinPlayers)
-                </div>
-            }*@
+   
             @foreach (var game in Model.PickUpGames)
             {
              <div>
-                @Html.ActionLink(String.Format("{0} in {1} on {2}", game.Sport,
-                game.Location, game.DateTime.ToDisplayableGameTime()), "ViewGame",  new { gameId = game.Id },
+                @Html.ActionLink(String.Format("{3}: {0} in {1} on {2}", game.Sport,
+                game.Location, game.DateTime.ToDisplayableGameTime(), game.GameName), "ViewGame",  new { gameId = game.Id },
                      new { style = "padding-left: 20px" })</div>   
             }
-
-@*            </div></div>
-                    </div>
-
-                </div>*@
-@*                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" data-target="#myCollapse1">Moo</div>
-                    </div>
-                    <div class="accordion-body collapse in" id="myCollapse1" style="height: 0px">
-                        <div class="accordion-inner">COWS!</div>
-                    </div>
-
-                </div>*@
-           @* </div>*@
 
             <script type="text/javascript">
                 $(document).ready(function () {
                     $("#accordion2").collapse();
                 });
             </script>
-           
-@*            @foreach (var game in Model.PickUpGames)
-            {
-                <div class="form-inline">
-                    @Html.Label(game.DateTime.ToLocalTime().ToString())
-                    @Html.Label(" " + game.Location.Name)
-                    @Html.Label(" " + game.Sport.Name)
-                    @Html.Label(" MaxPlayers: " + game.MaxPlayers)
-                    @Html.Label(" MinPlayers: " + game.MinPlayers)
-                </div>
-            }*@
-
-
-</span>@*<h3>
-    Games I Created</h3>
-@{var currentProfileId = HttpContext.Current.Request.Cookies[Constants.CookieName].Values[Constants.CurrentProfileCookieField];}
-@foreach (var myCreatedGames in Model.Games.Where(x => x.Creator == currentProfileId))
-{
-    <div>
-        @Html.Label(myCreatedGames.DateTime.ToLocalTime().ToString())
-        @Html.Label(" " + myCreatedGames.Location.Name)
-        @Html.Label(" " + myCreatedGames.Sport.Name)
-        @Html.Label(" MaxPlayers: " + myCreatedGames.MaxPlayers)
-        @Html.Label(" MinPlayers: " + myCreatedGames.MinPlayers)
-        @if (myCreatedGames.HasTeams)
-        {
-            @Html.Label("Teams: " + ((TeamGame)myCreatedGames).TeamsIds.Count)
-            continue;
-        }
-        @Html.Label("Players: " + ((PickUpGame)myCreatedGames).PlayersIds.Count)
-    </div>
-}*@ 
+</span>

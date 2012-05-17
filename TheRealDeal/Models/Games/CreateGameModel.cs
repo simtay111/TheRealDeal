@@ -30,5 +30,8 @@ namespace TheRealDeal.Models.Games
 
         [Required(ErrorMessage = "You must specify a specific location where your game will occur")]
         public string ExactLocation { get; set; }
+
+        [RegularExpression(@".{0,30}", ErrorMessage = "Name must be less than 30 letters.")]
+        public string GameName { get; set; }
     }
 }

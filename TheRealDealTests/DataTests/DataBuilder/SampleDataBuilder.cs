@@ -255,6 +255,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.Location = LocationBendName;
             game.AddPlayer(Profile1Id);
             game.Creator = Profile1Id;
+            game.GameName = "1 Player game";
 
             new PickUpGameRepository().SavePickUpGame(game);
             PickUpGame = game;
@@ -272,6 +273,7 @@ namespace TheRealDealTests.DataTests.DataBuilder
             game.AddPlayer(Profile1Id);
             game.AddPlayer(Profile2Id);
             game.Creator = Profile1Id;
+            game.GameName = "Cool Game";
 
             new PickUpGameRepository().SavePickUpGame(game);
             PickUpGame = game;

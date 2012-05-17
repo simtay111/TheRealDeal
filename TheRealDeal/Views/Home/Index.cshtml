@@ -1,9 +1,16 @@
 ﻿@model object
 
 @{
-    ViewBag.Title = "Moo";
+    ViewBag.Title = "Portland Pick Up";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Welcome to Portland Pick Up!</h2>
+
+<h3>Providing you with the easiest access to pickup games anywhere in Portland
+It is as easy as creating your profile and simply searching for games to play in.
+</h3>
+    <div>Once you find a game you can simply join the game and go play!</div>
 
 
+    <button type="button" class="btn btn-primary" onclick="location.href='/Games/SearchForGame/'">Start searching for games!</button>

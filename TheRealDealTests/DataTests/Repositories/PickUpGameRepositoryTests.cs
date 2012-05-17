@@ -31,7 +31,6 @@ namespace TheRealDealTests.DataTests.Repositories
         [Test]
         public void CanSaveAndGetPickupGames()
         {
-
             var game = CreateGame();
 
             var retrievedGame = _repo.GetPickUpGameById(game.Id);
@@ -46,6 +45,7 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.That(retrievedGame.PlayersIds[0], Is.EqualTo(_profile.ProfileName));
             Assert.That(retrievedGame.Creator, Is.EqualTo(game.Creator));
             Assert.That(retrievedGame.ExactLocation, Is.EqualTo(game.ExactLocation));
+            Assert.That(retrievedGame.GameName, Is.EqualTo(game.GameName));
         }
 
         [Test]
@@ -151,6 +151,7 @@ namespace TheRealDealTests.DataTests.Repositories
             game.AddPlayer(_profile.ProfileName);
             game.Creator = _profile.ProfileName;
             game.ExactLocation = "A road in space";
+            game.GameName = "A game name";
 
             _repo.SavePickUpGame(game);
             return game;

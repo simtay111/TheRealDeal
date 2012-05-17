@@ -107,6 +107,33 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
         }
 
         [Test]
+        public void CanAddGameName()
+        {
+            SetupMockSportLocationAndGameRepos();
+            _mockGameRepo = new Mock<IPickUpGameRepository>();
+            const string location = LocationName;
+            const string profile1 = "Profile1";
+
+            var request = new CreatePickupGameRequest
+                              {
+                                  DateTime = "03/03/03 12:00",
+                                  Location = location,
+                                  MaxPlayers = 5,
+                                  MinPlayers = 3,
+                                  Sport = SoccerName,
+                                  Creator = profile1,
+                                  GameName = "This is a game name"
+                              };
+
+            var handler = CreateHandler();
+
+            var response = handler.Handle(request);
+
+            Assert.That(response.Status, Is.EqualTo(ResponseCodes.Success));
+            _mockGameRepo.Verify(x => x.SavePickUpGame(It.Is<PickUpGame>(y => y.GameName == request.GameName)));
+        }
+
+        [Test]
         public void ResponseReturnsWithGameIdOfCreatedGame()
         {
             SetupMockSportLocationAndGameRepos();
@@ -246,12 +273,12 @@ namespace TheRealDealTests.DomainTests.Scheduling.Handlers
             SetupMockSportLocationAndGameRepos();
             var request = new CreatePickupGameRequest
                               {
-                DateTime = "03/03/03 12:00",
-                Location = LocationName,
-                MaxPlayers = 5,
-                MinPlayers = 3,
-                Sport = SoccerName
-            };
+                                  DateTime = "03/03/03 12:00",
+                                  Location = LocationName,
+                                  MaxPlayers = 5,
+                                  MinPlayers = 3,
+                                  Sport = SoccerName
+                              };
             var gameWithoutTeams = new PickUpGame(DateTime.Parse(request.DateTime), _sport, _location);
             _mockGameFactory.Setup(
                 x => x.CreatePickUpGame(It.Is<DateTime>(d => d == DateTime.Parse(request.DateTime))
