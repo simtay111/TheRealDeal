@@ -23,8 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "buildScripts", "buildScript
 		Scripts\Tests.bat = Scripts\Tests.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheRealDealTests", "TheRealDealTests\TheRealDealTests.csproj", "{17791E72-A723-4BF7-9598-105F0A0D7B06}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,15 +41,8 @@ Global
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BBA61D-7921-4083-AD8E-100F70B700EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17791E72-A723-4BF7-9598-105F0A0D7B06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{17791E72-A723-4BF7-9598-105F0A0D7B06} = {1989552C-995F-465C-9B79-EB71C60E5017}
 	EndGlobalSection
 EndGlobal
