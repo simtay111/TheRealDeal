@@ -132,6 +132,11 @@ namespace RecreateMeSql.Repositories
             }
         }
 
+        public List<PickUpGame> GetGamesWithinDateRange(DateTime start, DateTime end)
+        {
+            throw new NotImplementedException();
+        }
+
         private void MapPlayersInGame(IDbCommand dbCmd, PickUpGame game)
         {
             game.PlayersIds =

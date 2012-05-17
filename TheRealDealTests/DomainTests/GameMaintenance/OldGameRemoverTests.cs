@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
+using RecreateMe.Configuration;
 using RecreateMe.GameMaintenance;
 using RecreateMe.Locales;
 using RecreateMe.Scheduling;
@@ -16,20 +17,20 @@ namespace TheRealDealTests.DomainTests.GameMaintenance
         [Test]
         public void RemovesGamesThatOld()
         {
+            var game1 = new PickUpGame(DateTime.Now, new Sport(), new Location());
+            var game2 = new PickUpGame(DateTime.Now, new Sport(), new Location());
+            var game3 = new PickUpGame(DateTime.Now, new Sport(), new Location());
+            var games = new List<PickUpGame> {game1, game2, game3};
+            var gameRepo = new Mock<IPickUpGameRepository>();
+            gameRepo.Setup(x => x.GetGamesWithinDateRange(It.IsAny<DateTime>(), It.IsAny<DateTime>())).Returns(games);
 
-            var teamGameRepo = new Mock<ITeamGameRepository>();
-            var dateTime = new DateTime(2000,12,12);
-            var teamGame1 = new TeamGame(dateTime.AddHours(-1), new Sport(), new Location());
-            var teamGame2 = new TeamGame(dateTime.AddHours(-2), new Sport(), new Location());
+            var gameCleaner = new OldGameRemover(gameRepo.Object);
 
-            teamGameRepo.Setup(x => x.GetAllGamesBeforeDate(It.IsAny<DateTime>())).Returns(new List<TeamGame> {teamGame1, teamGame2});
+            gameCleaner.CleanForPastMinutes(15);
 
-            var gameCleaner = new OldGameRemover(teamGameRepo.Object);
-
-            gameCleaner.Clean();
-
-            teamGameRepo.Verify(x => x.DeleteGame(teamGame1.Id), Times.Once());
-            teamGameRepo.Verify(x => x.DeleteGame(teamGame2.Id), Times.Once());
+            gameRepo.Verify(x => x.DeleteGame(game1.Id));
+            gameRepo.Verify(x => x.DeleteGame(game2.Id));
+            gameRepo.Verify(x => x.DeleteGame(game3.Id));
         }
     }
 }

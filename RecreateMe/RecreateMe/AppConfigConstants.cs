@@ -2,7 +2,8 @@
 {
     public class AppConfigConstants
     {
-        public static string SkillLevels = "SkillLevels";
+        public const string SkillLevels = "SkillLevels";
+        public const string FrequencyOfDeleteGameChecks = "FrequencyOfDeleteGameChecks";
         public const string ProfileOptions = "ProfileOptions";
     }
 }

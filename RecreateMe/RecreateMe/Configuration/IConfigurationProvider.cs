@@ -5,5 +5,6 @@ namespace RecreateMe.Configuration
     public interface IConfigurationProvider
     {
         IList<string> GetAllConfigurableProfileOptions();
+        int GetFrequencyInMinsOfDeleteGameChecks();
     }
 }

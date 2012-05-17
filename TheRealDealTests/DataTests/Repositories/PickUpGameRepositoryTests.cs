@@ -127,6 +127,14 @@ namespace TheRealDealTests.DataTests.Repositories
             Assert.DoesNotThrow(() => _repo.DeleteGame("123"));
         }
 
+        [Test]
+        public void CanGetAllGamesWithinADateRange()
+        {
+            var game = CreateGame();
+
+            
+        }
+
         private PickUpGame CreateGame()
         {
             _data.CreateLocationBend();

@@ -92,6 +92,7 @@
     <Compile Include="DomainTests\Friends\Invites\InviteSenderTests.cs" />
     <Compile Include="DomainTests\Friends\Search\SearchForFriendsRequestHandlerTests.cs" />
     <Compile Include="DomainTests\GameMaintenance\OldGameRemoverTests.cs" />
+    <Compile Include="DomainTests\GameMaintenance\TimedGameDeleterTests.cs" />
     <Compile Include="DomainTests\Leagues\Handlers\CreateLeagueRequestHandlerTests.cs" />
     <Compile Include="DomainTests\Leagues\LeagueTests.cs" />
     <Compile Include="DomainTests\Locales\LocationTests.cs" />

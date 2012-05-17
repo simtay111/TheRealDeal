@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RecreateMe.Scheduling.Games;
 
@@ -13,5 +14,6 @@ namespace RecreateMe.Scheduling
         void DeleteGame(string gameId);
         void RemovePlayerFromGame(string profileId, string gameId);
         List<PickUpGame> GetByCreated(string profileId);
+        List<PickUpGame> GetGamesWithinDateRange(DateTime start, DateTime end);
     }
 }

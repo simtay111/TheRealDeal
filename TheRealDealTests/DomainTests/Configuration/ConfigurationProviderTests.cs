@@ -42,5 +42,16 @@ namespace TheRealDealTests.DomainTests.Configuration
             Assert.That(options[0], Is.EqualTo("Sports"));
             Assert.That(options[1], Is.EqualTo("Location"));
         }
+
+        [Test]
+        public void CanGetFrequencyOfDeleteGameChecks()
+        {
+            const string frequency = "15";
+            ConfigurationManager.AppSettings.Set(AppConfigConstants.FrequencyOfDeleteGameChecks, frequency);
+
+            var value = _provider.GetFrequencyInMinsOfDeleteGameChecks();
+
+            Assert.That(value, Is.EqualTo(15));
+        }
     }
 }

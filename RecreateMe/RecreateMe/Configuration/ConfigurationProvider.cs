@@ -13,5 +13,12 @@ namespace RecreateMe.Configuration
             
             return allOptions.Split(',').Select(x => x.Trim()).ToList();
         }
+
+        public int GetFrequencyInMinsOfDeleteGameChecks()
+        {
+            var frequency = ConfigurationManager.AppSettings[AppConfigConstants.FrequencyOfDeleteGameChecks];
+
+            return int.Parse(frequency);
+        }
     }
 }

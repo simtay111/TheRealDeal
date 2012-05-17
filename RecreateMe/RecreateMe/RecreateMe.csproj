@@ -60,7 +60,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppConfigConstants.cs" />
@@ -84,7 +83,8 @@
     <Compile Include="Friends\Invites\InviteFactory.cs" />
     <Compile Include="Friends\Invites\InviteSender.cs" />
     <Compile Include="Friends\Search\SearchForFriendsRequestHandle.cs" />
-    <Compile Include="GameMaintenance\Cleaner.cs" />
+    <Compile Include="GameMaintenance\OldGameRemover.cs" />
+    <Compile Include="GameMaintenance\TimedGameDeleter.cs" />
     <Compile Include="IHandle.cs" />
     <Compile Include="Leagues\Handlers\CreateLeagueRequestHandle.cs" />
     <Compile Include="Leagues\ILeagueRepository.cs" />
