@@ -311,7 +311,7 @@ namespace TheRealDealTests.DataTests.Repositories
             var profile = _data.CreateAccountWithProfile1();
             var profile2 = _data.CreateAccountWithProfile2();
             var game = _data.CreateGameWithProfile1AndProfile2();
-
+            
             var profiles = _repo.GetProfilesInGame(game.Id);
 
             Assert.That(profiles.Count, Is.EqualTo(2));

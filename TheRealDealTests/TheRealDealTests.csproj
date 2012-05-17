@@ -77,6 +77,7 @@
     <Compile Include="DataTests\Repositories\SportRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\TeamRepositoryTests.cs" />
     <Compile Include="DataTests\Repositories\UserRepositoryTests.cs" />
+    <Compile Include="DataTests\TestFixtureForMyTests.cs" />
     <Compile Include="DataTests\TestSetUpAndTeardown.cs" />
     <Compile Include="DomainTests\Configuration\ConfigurationProviderTests.cs" />
     <Compile Include="DomainTests\Divisions\DivisionTests.cs" />
@@ -159,11 +160,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\TheRealDeal\Web.config">
-      <Link>Web.config</Link>
-    </None>
     <None Include="App.config" />
-    <None Include="Web2.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
